@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+
+% ---- Commands ------- %
+\newcommand{\documentNumber}[1]{
+    \LARGE  \textbf{ PUSP2142{#1} } \\
+    \medskip
+}
+\newcommand{\documentVersion}[1]{
+    v.{#1} \\
+    \medskip
+}
+\newcommand{\documentTitle}[1]{
+    \centerline{\rule{13cm}{0.4pt}}
+    \bigskip \bigskip
+    \LARGE {#1} \\
+    \bigskip \bigskip
+    \centerline{\rule{13cm}{0.4pt}}
+}
+\newcommand{\documentGroup}[1]{
+    \bigskip \bigskip
+    \LARGE Group {#1} \\
+    \bigskip
+}
+\newcommand{\documentResponsible}[1]{
+    \LARGE Responsible: {#1} \\
+    \medskip
+}
+\newcommand{\documentAuthors}[1]{
+    \LARGE Authors: {#1} \\
+    \medskip    
+}
+\newcommand{\documentDate}[1]{
+    \date {#1} 
+}
+
+
+% --- Header & Footer ---- %
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{}
+\rfoot{\thepage}
+\cfoot{}
+\lfoot{}
+
+
+% ------------------------------------------------ #
+
+
+\title {
+    \documentNumber {01}    % Must be 2 digits
+    \documentVersion {0.1}
+    \documentTitle {Software development plan - SDP}
+    \documentGroup {2}
+    \documentResponsible {(PG) Projet-management Group}
+    \documentAuthors {(PG) Projet-management Group}
+    \documentDate {\today}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+\section{Referenced documents}
+
+\section{Development plan}
+
+\section{Staff organisation}
+
+    \subsection{Client}
+    
+    \subsection{Head of section}
+    
+    \subsection{Experts}
+    
+    \subsection{Examiner}
+    
+    \subsection{Project managment group}
+        \subsection{Members}
+            \begin{itemize}
+                \item Victor Krook
+                \item Assar Orpana
+            \end{itemize}
+        
+        \subsection{Documents and tasks}
+            The project management group is resposible for coordinating the group effort and ensuring that the end product meets the specification. 
+            
+            The project management group will author the following documents
+            \begin{itemize}
+                \item Software development plan
+                \item SSD
+                \item Project final report
+            \end{itemize}
+    
+    \subsection{Software architecture group}
+        \subsection{members}
+            \begin{itemize}
+                \item David Vilppu
+                \item Mustafa Elomeiri
+                \item Ramtin M
+                \item 
+            \end{itemize}
+            
+    \subsection{Development group}
+        \subsection{members}
+            \begin{itemize}
+                \item Anna Bergvall
+                \item Alaa
+                \item Annelie Sinnander
+                \item Hjalmar Janson
+                \item Oscar Johansson
+                \item Sebastian Forslund
+                \item Alexandra Galonja
+                \item Alexander Olofsson
+                \item
+                \item
+            \end{itemize}
+    
+    \subsection{Quality control group}
+        \subsection{members}
+            \begin{itemize}
+                \item Alexander Möhle
+                \item
+                \item
+                \item
+                \item
+            \end{itemize}
+
+\newpage
+\section{Schedule}
+    \subsection{Estimated phase schedule}
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{|c|c|c|c|c|}
+                \hline
+                            & Phase 1 & Phase 2 & Phase 3 & Phase 4 \\
+                 \hline
+                 Start      & Week 3  & Week 7  & Week 8  & Week 10  \\
+                 \hline
+                 Stop       & Week 6  & Week 7  & Week 9  & Week 12  \\
+                 \hline
+            \end{tabular}
+            \caption{Estimated start and end weeks for the phases}
+        \end{table}
+    
+    \subsection{Estimated work load}
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{|c|c|c|c|c|}
+                \hline
+                            & Phase 1 & Phase 2 & Phase 3 & Phase 4 \\
+                 \hline
+                 Start      & Week 3  & Week 7  & Week 8  & Week 10  \\
+                 \hline
+                 Stop       & Week 6  & Week 7  & Week 9  & Week 12  \\
+                 \hline
+            \end{tabular}
+            \caption{Estimated workload in hours per person}
+        \end{table}
+        
+    \subsection{Reviews}
+        Reviews will be carried out during the last week of any phase, we have also chosen to perform informal reviews with a one day margin for eventual corrections. Informal and formal reviews are scheduled for Wednesdays and Fridays respectively. Should the formal review reveal any discrepencies between docuemnts, or fail for any other reason, a second review will be held on the following monday.
+    
+    \subsection{}
+
+\section{Standards \& tools}
+
+\section{Configuration managment}
+
+    \subsection{Project library}
+    
+    \subsection{Bug management}
+    
+    \subsection{Patch management}
+
+    \section{Version update}
+
+\section{Rules and guidelines}
+    
+\section{Follow up and quality evaluation}
+
+\section{Risk anlysis}
+
+
+\end{document}
