@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+
+
+
+% ---- Commands ------- %
+
+\newcommand{\createTitle}[4]{
+    \centering 
+    \LARGE Protocol meeting {#1} \\
+    \medskip
+    
+    \begin{flushleft}
+        \small Date: {#2} \\ \smallskip
+        \small President: {#3} \\ \smallskip
+        \small Secretary: {#4} \\ \smallskip
+    \end{flushleft}
+    \centerline{\rule{13cm}{0.4pt}}
+}
+
+\newenvironment{subs}
+  {\adjustwidth{3em}{0pt}}
+  {\endadjustwidth}
+
+\titleformat{\section}
+  {\normalfont\large\bfseries}{\thesection}{1em}{}
+  
+
+% ------------------------------------------------ #
+
+\begin{document}
+
+ \createTitle 
+    {1}                     % PR Number
+    {\today}                % Date
+    {Victor Krook}          % President
+    {Assar Orpana}          % Secretary
+
+\begin{flushleft}
+\large
+
+
+% --- Protocol start --- #
+
+% Example:
+% \section{New decision made regarding timeplan}
+% The time plan has been decided ....
+
+
+
+% --- Protocol ends --- #
+
+\end{flushleft}
+\end{document}
