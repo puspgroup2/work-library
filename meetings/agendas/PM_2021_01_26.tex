@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+
+% ---- Commands ------- %
+
+\newcommand{\createTitle}[4]{
+    \vspace{-10cm}
+    \centering
+    \LARGE Project meeting {#1} \\
+    
+    \begin{flushleft}
+        \small Date: {#2} \\ \smallskip
+        \small President: {#3} \\ \smallskip
+        \small Secretary: {#4} \\ \smallskip
+    \end{flushleft}
+    \centerline{\rule{13cm}{0.4pt}}
+}
+
+\newenvironment{subs}
+  {\adjustwidth{3em}{0pt}}
+  {\endadjustwidth}
+
+\titleformat{\section}
+  {\normalfont\small\bfseries}{\S\thesection}{1em}{}
+  
+\titleformat{\subsection}
+  {\normalfont\small\bfseries}{\hspace{0.5cm} - }{1em}{}
+
+\title{\vspace{4cm}}  % Make document start higher
+\date{}
+
+% ------------------------------------------------ #
+
+
+\begin{document}
+\maketitle
+
+ \createTitle 
+    {1}                     % PR Number
+    {2021-01-26}            % Date
+    {Victor Krook}          % President
+    {Assar Orpana}          % Secretary
+    
+\begin{flushleft}    
+
+% --- Agenda starts --- #
+
+\section{Hälsa alla välkomna}
+\section{Godkänna dagordning}
+\section{Schema}
+\subsection{Diskussion}
+\section{Dokumentstandard, latex}
+\section{Tillgänglighet}
+\section{Projektbibliotek}
+\section{Git}
+\section{E-puss}
+\section{Övning 2}
+\section{SRS}
+\section{SVVS}
+\section{SDP}
+\section{Regler}
+    \subsection{Komma i tid}
+    \subsection{Höra av sig}
+    \subsection{Obligatorisk närvaro på projektmöten}
+\section{Granskning fas 1}
+    \subsection{Granskare Emelie Engström}
+    \subsection{Informella granskningar}
+    \subsection{Hur ser processen ut?}
+    \subsection{Checklistor, mallar?}
+\section{Vilka egenskaper ska en projektledare ha?}
+\section{Övrigt}
+\section{Nästa möte}
+
+
+% --- Agenda ends --- #
+
+\end{flushleft}
+\end{document}
