@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+% ---- Commands ------- %
+\newcommand{\documentNumber}[1]{
+    \LARGE  \textbf{ PUSP2142{#1} } \\
+    \medskip
+}
+\newcommand{\documentVersion}[1]{
+    v.{#1} \\
+    \medskip
+}
+\newcommand{\documentTitle}[1]{
+    \centerline{\rule{13cm}{0.4pt}}
+    \bigskip \bigskip
+    \LARGE {#1} \\
+    \bigskip \bigskip
+    \centerline{\rule{13cm}{0.4pt}}
+}
+\newcommand{\documentGroup}[1]{
+    \bigskip \bigskip
+    \LARGE Group {#1} \\
+    \bigskip
+}
+\newcommand{\documentResponsible}[1]{
+    \LARGE Responsible: {#1} \\
+    \medskip
+}
+\newcommand{\documentAuthors}[1]{
+    \LARGE Authors: {#1} \\
+    \medskip    
+}
+\newcommand{\documentDate}[1]{
+    \date {#1} 
+}
+
+\graphicspath{{./images/}} %Defines a path to file images
+
+% --- Header & Footer ---- %
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{}
+\rfoot{\thepage}
+\cfoot{}
+\lfoot{}
+
+
+% ------------------------------------------------ #
+
+% ----- FILL THIS ----- %
+\title {
+    % Must be 2 digits
+    \documentNumber {01}    
+    
+    \documentVersion {0.1}
+    
+    % Full name - SHORTNAME
+    \documentTitle {Template}
+    \documentGroup {2}
+    
+    % Options: - Project management Group
+    %          - System architecture Group
+    %          - Developer Group
+    %          - Test Group
+    \documentResponsible {Project management Group}
+    \documentAuthors {Project management group}
+    
+    % Format: YYYY-MM-DD
+    \documentDate {2021-01-25}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+
+
+\section{Introduction}
+
+This document presents requirements for the (Sätt in namn). (Sätt in namn) is a system which purpose and main functionality is to administer time reporting with web-usage capabilities. 
+
+
+\section{Refreence documents}
+
+\begin{enumerate}
+  \item Software Requirements Specification: BaseBlockSystem, v. 1.0, Doc. number: PUSS12002
+  \item The requirements on the usability of the system applies to this document and are therefore implemented in “System-namn”, following requirements are implemented (SÄTT IN DE PUNKTER VI IMPLEMENTERAR FRÅN SRS HÄR)
+\end{enumerate}
+
+\section{Background and goals}
+\subsection{Main goals}
+
+The goal is to develop and distribute a web-based system where the user can report time and administrate the system according to their roles.
+
+\subsection{Actors and their objectives}
+The system can be used and administrated by following actors
+
+\end{document}
