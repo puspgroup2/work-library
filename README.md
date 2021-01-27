@@ -39,6 +39,15 @@ Once the documents pass **formal** review, they are merged into the *master* bra
 
 ---
 
-## Repository tree
+## Git terminal cheat sheet
+- Clone repo: `git clone URL`     
+- Update current branch: `git pull REMOTE BRANCH`
+- Push current branch: `git push -u REMOTE BRANCH`
+- Config user information: `git config --global user.name "NAME" && git config --global user.email "EMAIL"`
+- Show status: `git status`
+- Switch branch: `git checkout BRANCHNAME` 
+- Create branch: `git checkout -b BRANCHNAME`
+- Show latest commits: `git log`
+- Show latest commits as graoh: `git log --graph`
 
 ![Directory tree](images/tree.png)
