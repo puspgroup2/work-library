@@ -141,6 +141,107 @@ The system can be used and administrated by following actors;
 \subsubsection{Requirement (SÄTT NUMMER}
 \subsubsection{Requirement (SÄTT NUMMER} 
 
+\subsection{User}
+\subsubsection{Requirement 6.5.1}
+A user can create and submit a time report to the project group which they are assigned to.
+\subsubsection{Requirement 6.5.2}
+The following scenario should be supported by the system;\\
+
+\textbf{Scenario:} The user wants to submit a time report
+
+\textbf{Prerequisites} The user is logged in to the system
+
+\begin{enumerate}
+
+
+\item The user navigates to the page “Time Report”. 
+\item The user is presented with an overview of their previously reported time. 
+\item The user presses the button “Create New Time Report”
+\item The user fills in the blank textboxes with the time they have spent on the different activities.
+\item The user presses the button for “Submit”.
+\item The user is presented with a popup window confirming that the changes have been made.
+\item An updated view of the page is displayed.
+\end{enumerate}
+
+\subsubsection{Requirement 6.5.3}
+A user should be able to see a summarized view of previous reported time.
+
+\subsubsection{Requirement 6.5.4}
+The following scenario should be supported by the system;\\
+
+\textbf{Scenario:} The user wants to see a summary of their reported time.
+
+\textbf{Prerequisites} The user is logged in to the system
+\begin{enumerate}
+
+
+\item The user navigates to the page “Time report”.
+\item A page is displayed which includes the option to report time, edit old time reports but also a summarized view of their previously logged time. 
+\end{enumerate}
+
+\subsubsection{Requirement 6.5.5}
+A user should be able to change their time report after it has been submitted to the system.
+\subsubsection{Requirement 6.5.6}
+A user should be able to delete a previously submitted time report.
+\subsubsection{Requirement 6.5.7}
+The following scenario should be supported by the system;\\
+
+\textbf{Scenario:} A user wants to change or delete previously reported time.
+
+\textbf{Prerequisites} The user is logged in to the system
+
+\begin{enumerate}
+
+\item The user navigates to the page “Time report”.
+\item The user is presented with an overview of their previously reported time. 
+\item The user presses the button “Edit time report”
+\item The user chooses a time report.
+\item The user is presented with a new page which includes the previously reported time table and a button for “Delete”. 
+\item The user adds/fills in the new time or chooses to delete the report.
+\item The user clicks on the button “Submit Change”.
+\item The user is presented with a popup window confirming that the changes have been made.  
+\item An updated view of the page is displayed.
+
+\end{enumerate}
+\subsubsection{Requirement 6.5.8}
+A user should be able to change their password.
+
+\subsubsection{Requirement 6.5.9}
+The following scenario should be supported by the system;\\
+
+\textbf{Scenario:} A user wants to change their password.
+
+\textbf{Prerequisites} The user is logged in to the system
+
+\begin{enumerate}
+    \item The user clicks on the “Change Password” button in the menu.
+    \item The user is presented with a page which includes three relevant textboxes.
+    \item The user fills in the first textbox with their current password.
+    \item The user fills in the second textbox with their new password.
+    \item The user repeats their new password in the third textbox.
+    \item The user clicks the button “Change Password”.
+    \item The user's password is changed in the system.
+    \item The user is presented with a popup window confirming that the changes has been made.
+\end{enumerate}
+
+\subsubsection{Requirement 6.6.0}
+The following scenario should be supported by the system;\\
+
+\textbf{Scenario:} A user wants to change their password with invalid entry.
+
+\textbf{Prerequisites} The user is logged in to the system
+
+\begin{enumerate}
+    \item The user clicks on the “Change Password” button in the menu.
+    \item The user is presented with a page which includes three relevant textboxes.
+    \item The user fills in the first textbox with their current password.
+    \item The user fills in the second textbox with their new password which does not meet the requirement 6.2.3 in PUSS12002.
+    \item The user repeats their new password in the third textbox.
+    \item The user clicks the button “Change Password”.
+    \item The user's password is not changed and a popup window with an error message is displayed.
+    \item The user is sent back to stage 3.
+\end{enumerate}
+
 \subsection{Project Leader}
 \subsubsection{Requirement (SÄTT NUMMER}
 \subsubsection{Requirement (SÄTT NUMMER}
