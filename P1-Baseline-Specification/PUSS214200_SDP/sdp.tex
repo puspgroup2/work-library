@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 
+
 % ---- Commands ------- %
 \newcommand{\documentNumber}[1]{
     \LARGE  \textbf{ PUSP2142{#1} } \\
@@ -72,38 +73,58 @@
 \newpage
 
 \section{Introduction}
-    Hej detta e en introduktion
-    
-    ORDLISTA?
-    
-    \textbf{NOTE}
-    I samband med projektplanen är det också viktigt att tänka på att det i slutet
-    av projektet skall skrivas en slutrapport. Detta betyder att man redan vid skri-
-    vandet av planen bör överväga hur slutrapporten skall se ut så att man enkelt
-    kan stämma av med projektplanen.
-
-\section{Referenced documents}
-    \begin{itemize}
-        \item \href{https://google.github.io/styleguide/javaguide.html}{Google Java Style Guide}
-        \item PUSS214201
-    \end{itemize}
-    
-    
-
+    This document describes the development model and the development plan for !!NAME!!, 
+    which will be a system for time reporting and is based on \textit{Baseblock System}.
+    !!NAME!! will be developed by students at LTH in the course 
+    \textit{ETSF20 Programvaruutveckling för stora projekt}.
 
 \section{Terminology}
     \renewcommand{\arraystretch}{1.7}  % Vertical padding for tables
     
     \begin{table}[h]
         \centering
-        \begin{tabular}{| p{1cm} | p{10cm} |}
+        \begin{tabular}{| p{1.5cm} | p{9cm} |}
+            \hline
+                Baseblock system & This is the base system that is used in !!NAME!! \\
+            \hline
+                SG & System architecture Group \\
+            \hline
+                DG & Developer Group \\
+            \hline
+                QG & Quality control Group \\
+            \hline
+                PG & Project management Group \\
             \hline 
                 CML & Configuration Management List, consists of all configuration units \\
             \hline            
                 ECG & Error Control Group, consists of PG and SG \\
             \hline
+                SDP & Software Development Plan \\
+            \hline
+                SDP & Software Development Plan \\
+            \hline
+                SRS & Software Requirements Specification \\
+            \hline
+                SVVS & Software Verification and Validation Specification \\
+            \hline
+                SVVI & Software Verification and Validation Instruction \\
+            \hline
+                STLDD & Software Top Level Design Document \\
+            \hline
+                SDDD & Software Detailed Design Document \\
+            \hline
+                SVVR & Software Verification and Validation Report \\
+            \hline
+                SSD & System Specification Document \\
+            \hline
         \end{tabular}
     \end{table}
+
+\section{Referenced documents}
+    \begin{itemize}
+        \item \href{https://google.github.io/styleguide/javaguide.html}{Google Java Style Guide}
+        \item CML
+    \end{itemize}
     
 
 \section{Development model} %Assar och Victor
@@ -128,49 +149,99 @@
     \subsection{Examiner}
     
     \subsection{Project managment group}
-        \subsection{Documents and tasks}
-            The project management group is resposible for coordinating the group effort and ensuring that the end product meets the specification. 
-            
-            
-            
-            The project management group will author the following documents
-            \begin{itemize}
-                \item Software development plan
-                \item System specification document
-                \item Project final report
-            \end{itemize}
+        \begin{itemize}
+            \item Coordinating the group effort
+            \item Making a project schedule
+            \item Ensuring that every individual has the information they need
+            \item Authoring the following documents
+                \begin{itemize}
+                    \item SDP
+                    \item SSD
+                    \item PRF
+                \end{itemize} 
+        \end{itemize}
     
     \subsection{Software architecture group}
+        \begin{itemize}
+            \item Designing the software architecture
+            \item Delegating work to DG and QG
+            \item Coordinating the writing of the following documents
+                \begin{itemize}
+                    \item SRS
+                    \item STLDD
+                    \item SDDD
+                \end{itemize}
+        \end{itemize}
             
     \subsection{Development group}
+        \begin{itemize}
+            \item Design GUI for the software
+            \item Develop the architecture that SAG designed
+            \item Co-author the following documents
+                \begin{itemize}
+                    \item 
+                \end{itemize}
+        \end{itemize}
+        
     
     \subsection{Quality control group}
 
 \newpage
 
 \section{Schedule}
+        
+    \subsection{Estimated work load}
+        PG holds one hour long meeting every week. PG has also scheduled for a two hour time slot every wednesday where every group works on their respective task. To supplement this, the groups are expected to hold their own planing meetings and work sessions. Since the workload of each group varies between phases, it seemed more fitting to allow groups the flexibility of managing their own time. Group leaders have been tasked with making sure that coordination between groups is constant throughout the project. PG also estimated that approximately an hour every week will be spent on general discussions in the discord channel.
+        
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{|l|c|c|}
+                \hline
+                    \textbf{Activity} & \textbf{Frequency/week} & \textbf{Duration (h)} \\
+                \hline
+                    Project group meeting & 1 & 1 \\
+                 \hline
+                    Project group work & 1 & 2 \\
+                 \hline
+                    Subgroup work session & 2 & 2*2 \\
+                 \hline
+                    Self studies & 1  & 1 \\
+                 \hline
+                    Discussions & 1 & 1 \\
+                 \hline
+                    Reviews/Expert meetings & 1 & 1 \\
+                 \hline
+                    \textbf{Total hours} & & \textbf{10} \\
+                 \hline
+            \end{tabular}
+            \caption{Estimated time for each activity per person, per week}
+        \end{table}
+    
     \subsection{Estimated phase schedule}
+        Table \ref{phasetable} illustrates the estimated start and end dates 
+        for every phase as well as estimated hours spent per week, per person.
+
         \begin{table}[h]
             \centering
             \begin{tabular}{|c|c|c|c|c|}
                 \hline
-                            & Phase 1 & Phase 2 & Phase 3 & Phase 4 \\
+                    \textbf{Phase} & \textbf{Start} & \textbf{End} 3 & \textbf{Work days} & 
+                    \textbf{Estimated hours/week} \\
+                \hline
+                    1 & 18/1 & 5/2 & 15 & 10 \\
                  \hline
-                 Start      & Week 3  & Week 7  & Week 8  & Week 10  \\
+                    2 & 08/2 & 19/2 & 10 & 10 \\
                  \hline
-                 Stop       & Week 6  & Week 7  & Week 9  & Week 12  \\
+                    3 & 22/2 & 5/3  & 10 & 10 \\
+                 \hline
+                    4 & 8/3 & 19/3  & 10 & 15 \\
                  \hline
             \end{tabular}
-            \caption{Estimated start and end weeks for the phases}
+            \caption{Estimated start and end for the phases}
+            \label{phasetable}
         \end{table}
-    
-    
-    \section{Estimated work load}
         
-    \subsection{Reviews}
-        Reviews will be carried out during the last week of any phase, we have also chosen to perform informal reviews with a one day margin for eventual corrections. Informal and formal reviews are scheduled for Wednesdays and Fridays respectively. Should the formal review reveal any discrepencies between docuemnts, or fail for any other reason, a second review will be held on the following monday.
-    
-    \subsection{}
+
 
 \section{Standards \& tools}    % Victor
     In order to make the development process as easy and straight forward as possible,
@@ -190,7 +261,7 @@
     with its specific purpose, eg "Meetings" or "Developer Group".
     
     \subsection{Github \& Git}
-    Git is used for collaboration between decouments and the project library (see 8.1)
+    Git is used for collaboration between decouments and the project library (see \ref{project_library})
     and is hosted on Github. Git provides abilities that  makes certain action very
     easy, such as pulling and pushing updates to the working repository and creating pull-requests for merging.
     
@@ -208,29 +279,18 @@
     
 
 \section{Configuration managment}   % Victor
-    Git and Github are the tools that are used to handle configuration management.
+    All changes to units in the CML must follow a certain procedure once the documents
+    are in baseline. Git and Github are the tools that are used to handle configuration management.
 
-    \subsection{Project library}
+    \subsection{Project library \label{project_library}}
         The project library consists of two seperate libraries: Document libray and Work library.
     
         \subsubsection{Document library}
             The document library consists of all configuration units that have reached baseline.
             The purpose of this library is that the customer or a reviewer at any point should
             be able to access these documents.
-            This means that this library is initially empty, and documents are added as the project proceeds.
-            \\ \\
-            \textbf{ALTERNATIVT referera till CML?}
-            This library consists of:
-            \begin{itemize}
-                \item Software Development Plan (SDP)
-                \item Software Requirements Specification (SRS)
-                \item Software Verification and Validation Specification (SVVS)
-                \item Software Verification and Validation Instruction (SVVI)
-                \item Software Top Level Design Document (STLDD)
-                \item Software Detailed Design Document (SDDD)
-                \item Software Verification and Validation Report (SVVR)
-                \item System Specification Document (SSD)
-            \end{itemize}
+            This means that this library is initially empty, and documents are added as the project proceeds. In the end of phase 4, all units found in CML can be found in this library.
+
             
         \subsubsection{Work library}
             The work library contains everything all files that are required during the project.
@@ -269,23 +329,61 @@
         that must be taken in order to make changes to it.
         These steps consists of the following:
         \begin{enumerate}
-            \item Creating a problem report that states what the
-                    problem is with the unit, in its current state.
-            \item The problem report is handled to the ECG who creates a 
-                    status report. ECG must then decide if the problem was
-                    in fact a real problem or not.
-            \item If ECG decides that it was indeed a problem, then they
-                    give a proposal for a solution to the problem to
-                    the 
+            \item Creating a error report that states what the
+                    error is with the unit, in its current state.
+            \item The error report is handed to the ECG who creates a 
+                    status report. ECG then decides if the error is legitimate.
+            \item If the error is deemed legitimate, then they
+                    propose a solution and
+                    decides whom shall be responsible to fix the problem.
+                    Once the error is corrected, ECG must approve it
+                    and then the unit version must be updated.
+                    The status report is then closed.
+            \item If ECG decides that the error is to be discarded, then
+                    the problem and status report is closed.
                 
         \end{enumerate}
         
 
-    \section{Version update}
+    \subsection{Version naming \& update}
+        
+        
+    
+
 
 \section{Rules and guidelines} %Assar
+
+% Reagera på pinnade meddelande.
+% 
     
 \section{Follow up and quality evaluation}
+    To keep the quality of all documents as high as possible during the project,
+    two reviews will be carried out and the end of every phase. One informal review
+    followed by one formal review.
+    
+    \subsection{Informal Review}
+        The informal review is performed within the project group and is meant to catch
+        errors, bugs or mistakes in the documents. The purpose is to ensure as high quality
+        as possible for the formal review and the philosophy is that if documents pass
+        the informal review, they should also pass the formal review.
+        
+    \subsection{Formal Review}
+        Once the documents have passed the informal review, they must pass the formal review,
+        before they can reach baseline. During the formal review, and extern reviewer is
+        given the documents at least 48 hours in advance so that he or she can prepare.
+        During the actual review, the majority of the project group shall be present.
+        The formal review can result in one of the four scenarios:
+        \begin{enumerate}
+            \item The documents are approved
+            \item The documents are approved after certain modification.
+            \item Modifications must be made followed by a re-review.
+            \item The documents are \emph{not} approved and must be re-written,
+                    followed by a new review.
+        \end{enumerate}
+    
+    \subsection{Re-Review}
+        An opportunity to do a review after certain modifications have been made.
+        
 
 Det ska finnas en del i projektplanen som beskriver hur uppföljning, t ex av
 tidplanen, sker under projektet, samt vad som händer om arbetet inte verkar
