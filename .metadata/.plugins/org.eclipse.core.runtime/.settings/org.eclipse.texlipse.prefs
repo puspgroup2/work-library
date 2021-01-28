@@ -1,0 +1,9 @@
+AcrobatPro.command=/Applications/Adobe Acrobat Reader DC.app
+AcrobatPro.format=pdf
+AcrobatPro.forward=false
+AcrobatPro.inverse=no
+eclipse.preferences.version=1
+none.command=/Applications/Adobe Acrobat Reader DC.app
+viewerCurrent=AcrobatPro
+viewerNames=AcrobatPro,itexmac,xdvi,yap,kdvi,gv,sumatra PDF,acroread,none
+viewerNames.TEMP=AcrobatPro (/Applications/Adobe Acrobat Reader DC.app),itexmac (/usr/bin/open),xdvi (),yap (),kdvi (),gv (),sumatra PDF (),acroread (),none ()
