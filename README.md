@@ -50,4 +50,6 @@ Once the documents pass **formal** review, they are merged into the *master* bra
 - Show latest commits: `git log`
 - Show latest commits as graoh: `git log --graph`
 
-![Directory tree](images/tree.png)
+## Final dates
+- Project hand-in Monday 22/3 12:00
+- Accept Meeting Thrusday 25/3 11:00
