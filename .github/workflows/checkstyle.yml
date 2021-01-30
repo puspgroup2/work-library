@@ -32,6 +32,9 @@ jobs:
           else
             echo 'No SDDD!'
           fi
+          
+          echo 'Result is: '
+          git log -1 --name-only | awk '{print $1}' | grep PUSS214205_SDDD
 
           
           # java -jar tools/checkstyle-8.39-all.jar -c sun_checks.xml - lintertest/src 
