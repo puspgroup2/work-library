@@ -1,8 +1,8 @@
-name: CI
+name: Checkstyle Sun checks
 
 on:
   push:
-    branches: [ development ]
+    branches: [ linter-test ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,4 +26,9 @@ jobs:
           java-version: 11
         
       - name: java linter check
-        run: java -jar tools/checkstyle-8.39-all.jar -c sun_checks.xml - lintertest/src
+        run: |
+          if git log -1 --name-only | awk '{print $1}' | PUSS214205_SDDD ; then
+            echo 'SDDD Has been modified!'
+          fi
+          
+          # java -jar tools/checkstyle-8.39-all.jar -c sun_checks.xml - lintertest/src 
