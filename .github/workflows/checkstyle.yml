@@ -27,8 +27,11 @@ jobs:
         
       - name: java linter check
         run: |
-          if git log -1 --name-only | awk '{print $1}' | grep PUSS214205_SDDD ; then
-            echo 'SDDD Has been modified!'
+          if [[ $(git log -1 --name-only | awk '{print $1}' | grep PUSS214205_SDDD) ]] ; then 
+            echo 'SDDD changed!'
+          else
+            echo 'No SDDD!'
           fi
+
           
           # java -jar tools/checkstyle-8.39-all.jar -c sun_checks.xml - lintertest/src 
