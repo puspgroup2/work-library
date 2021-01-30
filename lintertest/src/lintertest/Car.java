@@ -9,7 +9,6 @@ public class Car {
      */
     public Car(final int carId) {
         this.id = carId;
-        int Ass;
     }
 
 }
