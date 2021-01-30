@@ -27,7 +27,7 @@ jobs:
         
       - name: java linter check
         run: |
-          if git log -1 --name-only | awk '{print $1}' | PUSS214205_SDDD ; then
+          if git log -1 --name-only | awk '{print $1}' | grep PUSS214205_SDDD ; then
             echo 'SDDD Has been modified!'
           fi
           
