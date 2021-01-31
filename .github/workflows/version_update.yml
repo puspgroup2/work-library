@@ -21,16 +21,12 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - 'pypy-3.8'
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
+        - 'pypy-3.6' # the latest available version of PyPy that supports Python 3.6
+        - 'pypy-3.7' # the latest available version of PyPy that supports Python 3.7
+        - 'pypy-3.7-v7.3.3' # Python 3.7 and PyPy 7.3.3
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      
-      # Runs a single command using the runners shell
-      - name: Test pip
-        run: pip install pdfkit
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - run: pip install pdfkit
