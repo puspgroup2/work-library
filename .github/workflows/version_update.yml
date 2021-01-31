@@ -21,9 +21,7 @@ jobs:
     strategy:
       matrix:
         python-version:
-        - 'pypy-3.6' # the latest available version of PyPy that supports Python 3.6
         - 'pypy-3.7' # the latest available version of PyPy that supports Python 3.7
-        - 'pypy-3.7-v7.3.3' # Python 3.7 and PyPy 7.3.3
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
@@ -35,4 +33,4 @@ jobs:
       run: sudo apt install wkhtmltopdf
     
     - name: Update status-reports
-      run: python tools/version_control info
+      run: python tools/version_control.py info
