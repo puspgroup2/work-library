@@ -12,7 +12,7 @@
 \newcommand{\documentVersion}[0]{
     v.    
     \newread\file
-        \openin\file=newfile
+        \openin\file=version
         \loop\unless\ifeof\file
             \read\file to\fileline
             {\fileline}
