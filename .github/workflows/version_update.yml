@@ -30,3 +30,9 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - run: pip install pdfkit
+      
+    - name: Install wkhtmltopdf
+      run: sudo apt install wkhtmltopdf
+    
+    - name: Update status-reports
+      run: python tools/version_control info
