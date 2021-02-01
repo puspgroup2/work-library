@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+
+% ---- Commands ------- %
+
+\newcommand{\createTitle}[5]{
+    \centering
+    \LARGE {#1} \\
+    \medskip
+    
+    \begin{flushleft}
+        \small Date: {#2} \\ \smallskip
+        \small Time: {#3} \\ \smallskip
+        \small President: {#4} \\ \smallskip
+        \small Secretary: {#5} \\ \smallskip
+    \end{flushleft}
+    \centerline{\rule{13cm}{0.4pt}}
+}
+
+\newenvironment{subs}
+  {\adjustwidth{3em}{0pt}}
+  {\endadjustwidth}
+
+\titleformat{\section}
+  {\normalfont\small\bfseries}{\S\thesection}{1em}{}
+  
+\titleformat{\subsection}
+  {\normalfont\small\bfseries}{\hspace{0.5cm} - }{1em}{}
+
+% ------------------------------------------------ #
+
+\begin{document}
+
+ \createTitle 
+    {Project Group Meeting 3}  % PR Number
+    {2021-02-02}               % Date
+    {08:15}                    % Time
+    {Victor Krook}             % President
+    {Assar Orpana}             % Secretary
+    
+\begin{flushleft}    
+
+% --- Agenda starts --- #
+
+\section{Welcome}
+\section{Approve todays agenda}
+
+\section{The Lap}
+\section{Effective meetings}
+\section{Updated time plan}
+\section{Informal Review Wednesday 3/2}
+\section{Formal Review Monday 8/2}
+\section{ING-days should be reported in e-puss}
+\section{Demo for acceptance meeting}
+\section{System name}
+\section{How developers want to handle SDDD}
+\section{Reviews compare status reports}
+\section{Personal assignment is on Canvas}
+\section{Time for help for each group is on Canvas}
+\section{Linter - Checkstyle}
+
+\section{Other}
+\section{Next meeting}
+ 
+
+% --- Agenda ends --- #
+
+\end{flushleft}
+\end{document}
