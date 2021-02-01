@@ -1,9 +1,0 @@
-version,  author,             date,                    msg
-0.0,      Victor,             2021-01-25 19:08:49,     Added base structure
-0.1,      assarorpana,        2021-01-25 19:21:28,     modified:   P1-Baseline-Specification/PUSS214200_SDP/sdp.tex
-0.2,      victor,             2021-01-26 21:44:30,     Added CM, Tools & Standards, Development Model
-0.3,      victor,             2021-01-26 21:44:45,     removed testfile
-0.4,      victor,             2021-01-27 21:34:36,     Daily commit
-0.5,      victor,             2021-01-29 17:08:29,     Added images and finished version control section
-0.6,      victor,             2021-01-31 15:08:35,     Initialized version files.
-
