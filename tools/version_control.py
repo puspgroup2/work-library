@@ -17,6 +17,8 @@ DOCUMENTS = {
     'P4-Baseline-Product': ['PUSS214206_SVVR', 'PUSS214207_SSD', 'PUSS214208_PFR']
 }
 
+VERSION_FILE_NAME = 'next_version'
+
 
 def get_version(document):
     res = subprocess.run(['git', 'log', '--oneline', document], stderr=subprocess.PIPE,
@@ -29,7 +31,7 @@ def get_version(document):
 
 
 def update_version_file(documentpath, version):
-    versionfile = os.path.join(documentpath, 'version')
+    versionfile = os.path.join(documentpath, VERSION_FILE_NAME)
     with open(versionfile, 'w') as f:
         f.write(f'0.{version}')
 
@@ -59,7 +61,7 @@ def build_versions():
     for phase, documents in DOCUMENTS.items():
         for document in documents:
             documentpath = os.path.join(phase, document)
-            versionfile = os.path.join(documentpath, 'version')
+            versionfile = os.path.join(documentpath, VERSION_FILE_NAME)
             try:
                 with open(versionfile, 'r') as f:
                     version = f.read().strip()
@@ -76,7 +78,7 @@ def update_version_files(versions, commit=False):
     # the old ones (should not be more than one at a time...!).
     for documentpath, version in versions.items():
         # Version defined by number of commits regarding the unit.
-        new_version = get_version(documentpath)      
+        new_version = get_version(documentpath) + 1
         old_version = int(version.split('.')[1])
         if old_version != new_version:
             update_version_file(documentpath, new_version)
@@ -109,14 +111,14 @@ def update_status_reports(versions):
 def build_pdfs(reports):
     for csv in reports:
         pdf = csv.replace('csv', 'pdf')
-        pdfkit.from_file(csv, pdf)
+        os.system(f'xvfb-run wkhtmltopdf {csv} {pdf}')
 
 
 if __name__ == '__main__':
 
     versions = build_versions()
 
-    if len (sys.argv) > 1:
+    if len(sys.argv) > 1:
         cmd = sys.argv[1]
 
         if cmd == 'update':
@@ -125,8 +127,8 @@ if __name__ == '__main__':
         elif cmd == 'status-reports':
             reports = update_status_reports(versions)
             build_pdfs(reports)
-            git_add(commit_utils.STATUS_REPORT_BASE)
-            git_commit(msg='Auto-generated status-reports.')
+            #git_add(commit_utils.STATUS_REPORT_BASE)
+            #git_commit(msg='Auto-generated status-reports.')
 
         elif cmd == 'init':
             create_version_files(versions)

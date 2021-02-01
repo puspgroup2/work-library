@@ -27,10 +27,32 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - run: pip install pdfkit
+        fetch-depth: 0    # Fetch all commit and tag history from branches
+        
+    - run: |
+          pip install pdfkit
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout development
+          git pull origin development
       
     - name: Install wkhtmltopdf
-      run: sudo apt install wkhtmltopdf
+      run: |
+          sudo apt install wkhtmltopdf
+          sudo apt install xvfb   # Used to prevent X-issues, see https://stackoverflow.com/questions/51787618/wkhtmltopdf-pdfkit-could-not-connect-to-any-x-display
     
+    - name: Update version files
+      run: |
+          python tools/version_control.py update
+          git add .
+          git commit --amend --no-edit   
+      
     - name: Update status-reports
-      run: python tools/version_control.py info
+      run: |
+          python tools/version_control.py status-reports
+          git add .
+          git commit -m "Auto-generated status reports"
+          
+    - name: Git push
+      run: |
+          git push -f origin development

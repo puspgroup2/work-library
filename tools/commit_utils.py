@@ -21,7 +21,8 @@ def update_status_report(commits: dict, document: str) -> None:
     with open(filepath, 'w') as f:
         f.write(f'{"version,":10}{"author, ":20}{"date, ":25}msg\n')
         for version, commit in enumerate(commits[::-1]):
-            f.write(f"{'0.%s,' % version:10}"
+            v = version + 1
+            f.write(f"{'0.%s,' % v:10}"     # version + 1 is required
                     f"{commit['author']+',':20}"
                     f"{commit['date']+',':25}"
                     f"{commit['msg']}\n")
@@ -77,10 +78,3 @@ def update_status_reports():
             filepath = glob.glob(f'{filepath}*')[0]
             commits = get_commits(filepath)
             update_status_report(commits, filepath)
-
-
-if __name__ == '__main__':
-    #update_status_reports()  
-    changed_docs = get_changed_docs()
-    update_document_versions(changed_docs)
-    # git commit --amend --no-edit 
