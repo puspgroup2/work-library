@@ -171,14 +171,12 @@ Error messages should be in the following format: ”Error code – Reason”.
 \subsection{Data}
 \subsubsection{Requirement}
 A password should consist of at least one character of each type. [a-z][A-Z][1-9] with a minimum of 8 characters.
-\subsubsection{Requirement (SÄTT NUMMER}
-\subsubsection{Requirement (SÄTT NUMMER} 
 
 \subsection{User}
 \subsubsection{Requirement}
 A user can create and submit a time report to the project group which they are assigned to.
 \subsubsection{Requirement}
-The following scenario should be supported by the system;
+The following scenario should be supported by the system.
 
 \textbf{Scenario:} The user wants to submit a time report
 
@@ -196,11 +194,11 @@ The following scenario should be supported by the system;
 \item An updated view of the page is displayed.
 \end{enumerate}
 
-\subsubsection{Requirement 6.5.3}
+\subsubsection{Requirement}
 A user should be able to see a summarized view of previous reported time.
 
-\subsubsection{Requirement 6.5.4}
-The following scenario should be supported by the system;\\
+\subsubsection{Requirement}
+The following scenario should be supported by the system.
 
 \textbf{Scenario:} The user wants to see a summary of their reported time.
 
@@ -212,12 +210,12 @@ The following scenario should be supported by the system;\\
 \item A page is displayed which includes the option to report time, edit old time reports but also a summarized view of their previously logged time. 
 \end{enumerate}
 
-\subsubsection{Requirement 6.5.5}
+\subsubsection{Requirement}
 A user should be able to change their time report after it has been submitted to the system.
-\subsubsection{Requirement 6.5.6}
+\subsubsection{Requirement}
 A user should be able to delete a previously submitted time report.
-\subsubsection{Requirement 6.5.7}
-The following scenario should be supported by the system;\\
+\subsubsection{Requirement}
+The following scenario should be supported by the system.
 
 \textbf{Scenario:} A user wants to change or delete previously reported time.
 
@@ -242,7 +240,7 @@ A user should be able to change their password.
 A password should consist of at least one character of each type. [a-z][A-Z][1-9] with a minimum of 8 characters.
 
 \subsubsection{Requirement}
-The following scenario should be supported by the system;\\
+The following scenario should be supported by the system.
 
 \textbf{Scenario:} A user wants to change their password.
 
@@ -262,7 +260,7 @@ The following scenario should be supported by the system;\\
 
 
 \subsubsection{Requirement}
-The following scenario should be supported by the system;
+The following scenario should be supported by the system.
 
 \textbf{Scenario:} A user wants to change their password with invalid entry.
 
@@ -291,6 +289,19 @@ The following scenario should be supported by the system.
     \item A list with user’s name and the total reported time will be displayed,
     \item The project leader clicks on a user name and it displays the user’s time reports.
 \end{enumerate}
+
+\subsubsection{Requirement}
+The project leader can create and submit a time report.
+
+\subsubsection{Requirement}
+Project leader is able to view all project members and their individual roles.
+
+\subsubsection{Requirement}
+The project leader can change a project members role except themselves and other project leaders.
+
+\subsubsection{Requirement}
+The project leader can change a project members role except themselves and other project leaders.
+
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
 \textbf{Scenario:} Project leader tries to sign a weekly report
@@ -303,6 +314,19 @@ The following scenario should be supported by the system.
     \item The system sends the changes to the server.
     \item The system returns an updated list of unsigned reports, or an empty list if none exists
 \end{enumerate}
+
+\subsubsection{Requirement}
+The following scenario should be supported by the system.
+\textbf{Scenario:} Project leader tries to assign roles to members.
+\textbf{Prerequisites:} User has the role “Project leader”, members exists and the user is on the “User Management“ page.
+
+\begin{enumerate}
+    \item The project leader can change members' roles by clicking on the corresponding radio button.
+    \item Project leader confirms changes made by pressing “Confirm”.
+    \item The system sends the changes to the server.
+    
+\end{enumerate}
+
 \subsubsection{Requirement}
 
 \subsection{Administrator}
@@ -388,6 +412,7 @@ All users in the database should be shown as a list on the “Administration” 
 
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
+
 \textbf{Scenario:} The administrator tries to acquire a summary of reported time.
 \textbf{Prerequisites:} Time to be summarized exists.
 
@@ -429,13 +454,13 @@ See requirement 7.2.1 in PUSS12002.
 
 \section{Project requirements}
 \subsection{Development environment}
-\subsubsection{Requirement 9.1}
+\subsubsection{Requirement}
 The back end for the system should use Java JDK 11 as development environment.
 
-\subsubsection{Requirement 9.2}
+\subsubsection{Requirement}
 The front end for the system should use Bootstrap v.4.5.3.
 
-\subsubsection{Requirement 9.3}
+\subsubsection{Requirement}
 The database should be developed in MySQL.
 
 \end{document}
