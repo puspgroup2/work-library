@@ -111,30 +111,28 @@ The system can be used and administrated by following actors;
    \item \textbf{Administrator:} The administrator has the authority to add and remove users from the system along with creating and removing project groups. The admin is the only role that can assign the role “Project leader” to a user. The main goal of this role is to be able to administrate creation and removal of users.
 \end{itemize}
 
-\begin{figure}[placement specifier]
-\centering
-\includegraphics[width=0.5\textwidth]{Flowchart_6.jpg}
-\caption{Context diagram}
-\end{figure}
 
-\caption{Image is to complex to understand}
+
 
 \section{Terminology}
 
 
 
 \section{Context diagram}
+\begin{figure}[placement specifier]
+\centering
+\includegraphics[width=0.5\textwidth]{Flowchart_6.jpg}
+\caption{Context diagram}
+\end{figure}
 
 \section{Functional requirements}
 \subsection{Login and logout}
 \subsubsection{Requirement}
-Scenario 6.1.3 should be supported by the system.
+Scenario 6.1.3 in the base system should be supported by the system.
 
 \subsubsection{Requirement}
  When  a  user  reaches  the  system  and  is  not  logged  in he/she should be asked to provide a username and a password.  No other information should be provided to the user.
 
-\subsubsection{Requirement}
-The user should not be able to change their passwords to their previous one.
 
 \subsubsection{Requirement}
 If the user has forgotten their password, they should be able to get a newly generated password from the server by email.
@@ -188,7 +186,7 @@ The following scenario should be supported by the system.
 \item The user navigates to the page “Time Report”. 
 \item The user is presented with an overview of their previously reported time. 
 \item The user presses the button “Create New Time Report”
-\item The user fills in the blank textboxes with the time they have spent on the different activities.
+\item The user fills in the blank textboxes with the time in minutes they have spent on the different activities.
 \item The user presses the button for “Submit”.
 \item The user is presented with a popup window confirming that the changes have been made.
 \item An updated view of the page is displayed.
@@ -207,7 +205,7 @@ The following scenario should be supported by the system.
 
 
 \item The user navigates to the page “Time report”.
-\item A page is displayed which includes the option to report time, edit old time reports but also a summarized view of their previously logged time. 
+\item A page is displayed which includes the option to report time, edit old time reports but also review a summarized view of their previously logged time. 
 \end{enumerate}
 
 \subsubsection{Requirement}
@@ -234,10 +232,7 @@ The following scenario should be supported by the system.
 \item An updated view of the page is displayed.
 
 \end{enumerate}
-\subsubsection{Requirement}
-A user should be able to change their password.
-\subsubsection{Requirement}
-A password should consist of at least one character of each type. [a-z][A-Z][1-9] with a minimum of 8 characters.
+
 
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
@@ -280,7 +275,9 @@ The following scenario should be supported by the system.
 \subsection{Project Leader}
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
+
 \textbf{Scenario:} The project leader tries to acquire a summary of reported time.
+
 \textbf{Prerequisites:} Time to be summarized exists, user has the role "Project leader" and the user is on the "Time Reporting" page.
 
 \begin{enumerate}
@@ -296,16 +293,16 @@ The project leader can create and submit a time report.
 \subsubsection{Requirement}
 Project leader is able to view all project members and their individual roles.
 
-\subsubsection{Requirement}
-The project leader can change a project members role except themselves and other project leaders.
 
 \subsubsection{Requirement}
 The project leader can change a project members role except themselves and other project leaders.
 
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
+
 \textbf{Scenario:} Project leader tries to sign a weekly report
-\textbf{Prerequisites:} User has the role ”Project leader”, weekly reports exist, and the user has clicked on the “Sign Time Reports” button.
+
+\textbf{Prerequisites:} User has the role ”Project leader”, weekly reports exists, and the project leader has clicked on the “Sign Time Reports” button.
 
 \begin{enumerate}
     \item A list of all the unsigned weekly reports is shown to the project leader.
@@ -317,7 +314,9 @@ The following scenario should be supported by the system.
 
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
+
 \textbf{Scenario:} Project leader tries to assign roles to members.
+
 \textbf{Prerequisites:} User has the role “Project leader”, members exists and the user is on the “User Management“ page.
 
 \begin{enumerate}
@@ -326,8 +325,6 @@ The following scenario should be supported by the system.
     \item The system sends the changes to the server.
     
 \end{enumerate}
-
-\subsubsection{Requirement}
 
 \subsection{Administrator}
 \subsubsection{Requirement}
@@ -419,7 +416,7 @@ The following scenario should be supported by the system.
 \begin{enumerate}
     \item The administrator clicks on the administration page 
     \item The administrator clicks on the “SHOW SIGNED REPORTS” button.
-    \item A list with user’s name and the total reported time will be displayed,
+    \item A list with the names of all the users and their total reported time will be displayed,
     \item The admin clicks on a user name and it displays the user’s time reports.
 \end{enumerate}
 
