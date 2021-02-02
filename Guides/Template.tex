@@ -9,15 +9,9 @@
     \LARGE  \textbf{ PUSS2142{#1} } \\
     \medskip
 }
-\newcommand{\documentVersion}[0]{
-    v.    
-    \newread\file
-        \openin\file=next_version
-        \loop\unless\ifeof\file
-            \read\file to\versionnumber
-            {\versionnumber}
-        \repeat
-    \closein\file
+\newcommand{\documentVersion}[1]{
+    v. {0.1}
+
     \medskip
 }
 \newcommand{\documentTitle}[1]{
@@ -64,7 +58,8 @@
     % Must be 2 digits
     \documentNumber {01}    
     
-    \documentVersion
+    % BASELINE.VERSION
+    \documentVersion {0.1}
     
     % Full name - SHORTNAME
     \documentTitle {Template}

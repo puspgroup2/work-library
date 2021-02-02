@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+
+% ---- Commands ------- %
+
+\newcommand{\createTitle}[2]{
+    \centering
+    \LARGE Git \& {\LaTeX} introduction  \\
+    \medskip
+    
+    \begin{flushleft}
+        \small Date: {#1} \\ \smallskip
+        \small By: {#2} \\ \smallskip
+    \end{flushleft}
+    \centerline{\rule{13cm}{0.4pt}}
+}
+
+\newenvironment{subs}
+  {\adjustwidth{3em}{0pt}}
+  {\endadjustwidth}
+
+
+% ------------------------------------------------ #
+
+\begin{document} 
+
+ \createTitle 
+    {2021-01-28}            % Date
+    {Assar Orpana, Victor Krook}          % President
+\begin{flushleft}    
+
+% --- Agenda starts --- #
+
+\section{Git}
+    \subsection{Kort introduktion av git}
+    \subsection{Genomgång av projektbiblioteket}
+    \subsection{Eclipse och git}
+    \subsection{Arbetsflödet under projektet}
+    \subsection{Frågor \& diskussion}
+
+\section{Latex}
+    \subsection{Genomgång av dokumentstrukturen}
+    \subsection{Eclipse och latex}
+    \subsection{Genomgång av templaten}
+    \subsection{Frågor \& diskussion}
+
+
+% --- Agenda ends --- #
+
+\end{flushleft}
+\end{document}
