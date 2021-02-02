@@ -12,7 +12,7 @@
     \medskip
 }
 \newcommand{\documentVersion}[1]{
-    v. {0.1}
+    v. {#1}
 
     \medskip
 }
@@ -55,12 +55,12 @@
 
 \title {
     \documentNumber {01}    % Must be 2 digits
-    \documentVersion {0.1}
+    \documentVersion {0.2}
     \documentTitle {Software Development Plan}
     \documentGroup {2}
     \documentResponsible {(PG) Project Management Group}
     \documentAuthors {(PG) Project Management Group}
-    \documentDate {2021-02-01}
+    \documentDate {2021-02-02}
 }
 
 \begin{document}
@@ -75,9 +75,9 @@
 \newpage
 
 \section{Introduction}
-    This document describes the development model and the development plan for !!NAME!!, 
+    This document describes the development model and the development plan for TimeMate, 
     which will be a system for time reporting and is based on \textit{Baseblock System}.
-    !!NAME!! will be developed by students at LTH in the course 
+    TimeMate will be developed by students at LTH in the course 
     \textit{ETSF20 Programvaruutveckling för stora projekt}.
 
 \section{Terminology}
@@ -124,7 +124,7 @@
 
 \section{Referenced Documents}
     \begin{itemize}
-        \item Baseblock system,  this is the base system that is used in !!NAME!!.
+        \item Baseblock system,  this is the base system that is used in TimeMate.
         \item \href{https://docs.oracle.com/javase/specs/jls/se11/html/index.html}{The Java Language Specification}, describes the code convetion that is followed in this project.
         \item \label{PH} Project Tutorial, contains all details of how the project is structured.
         \item CML, consists of all configuration units in the project.
@@ -175,7 +175,7 @@
         \textbf{Resposibilites}
         \begin{itemize}
             \item Designing the software architecture.
-            \item Delegating work to DG and QG.
+            \item Delegating work to DG and TG.
             \item Coordinating and co-authoring of the following documents.
                 \begin{itemize}
                     \item SRS
@@ -203,6 +203,7 @@
         \begin{itemize}
             \item Design the UI for the software.
             \item Develop the architecture that SG designed.
+            \item Develop the code for the system.
             \item Co-author the following documents.
                 \begin{itemize}
                     \item SRS
@@ -248,7 +249,6 @@
             \item Coordinate work efforts between the groups. 
             \item Report progress to PG.
             \item Organize work shifts for their respective groups. 
-            \item This group consists of 3 members, one from TG, SG and UG. 
         \end{itemize}
         
     \subsection{Error control group}
@@ -395,7 +395,7 @@
     \\ \\
     The standards should be followed by every group member and consists of the following:
     \begin{itemize}
-        \item The source code should follow the The Java Language Specification.
+        \item The source code should follow Oracles ``The Java Language Specification".
         \item All comments, commits and pull-requests should be in english.
     \end{itemize}
     
