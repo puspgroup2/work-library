@@ -74,7 +74,7 @@
     \documentAuthors {Test Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-02-01}
+    \documentDate {2021-02-02}
 }
 
 \begin{document}
@@ -92,13 +92,13 @@
 
 \section{Introduction}
 
-	This document describes how (insert system name here) system should be verified. 
+	This document describes how the "TimeMate" system should be verified. 
 
 \section{Reference Documents}
 
 \begin{enumerate}
   \item Projekthandledning 
-  \item Software Requirements Specification: (insert system name here), v. 0.1, Doc. number: PUSP214201
+  \item Software Requirements Specification: "TimeMate", v. 0.2, Doc. number: PUSP214201
 \end{enumerate}
 
 \section{Overview}
@@ -160,6 +160,10 @@ These are the types of tests that will be carried out throughout the project
 \section{Requirements Checked in Reviews}
 In reviews all requirements should be checked by the reviewers.
 
+The following requirements (according to Ref. 2) are only verified through
+reviews: EDIT HERE.
+
+
 \section{Appendices}
 	\begin{itemize}
 		\item \textbf{A.} Function Test Specification 
@@ -175,63 +179,77 @@ In reviews all requirements should be checked by the reviewers.
 		\subsection{Login and Logout}
 		
 		\begin{itemize}
-  			\item \textbf{FT1:} Can login and out of the system using username and password. [SRS req. 6.1.1, 6.1.2, 6.1.6]
+  			\item \textbf{FT1:} Can login with right username and password (JUint). [SRS req. 6.1.1, 6.1.2, 6.1.6]	
+	
+			\item \textbf{FT2:} Can't login, right username and wrong password (JUint).
+			
+			\item \textbf{FT3:} Can't login with non existing user (JUint).
+			
+			\item \textbf{FT4:} Can't login with other users passwords. 
+			
+			\item \textbf{FT5:} Can't login with previous password.
+				
+			\item \textbf{FT6:} Can logout. 
 
-  			\item \textbf{FT2:} Gets a new password from the server by e-mail on account creation or if requested. [SRS req. 6.1.3, 6.1.4]
+  			\item \textbf{FT7:} Gets a new password from the server by e-mail on account creation. [SRS req. 6.1.3, 6.1.4]
+  			
+  			\item \textbf{FT8:} Gets a new password from the server by e-mail if requested.
 
-  			\item \textbf{FT3:} Can change password from logged-in state. [SRS req. 6.1.5, 6.1.8]
+  			\item \textbf{FT9:} Can change password from logged-in state. [SRS req. 6.1.5, 6.1.8]
 
-  			\item \textbf{FT4:} Relevant error message is displayed on failed login. [SRS req. 6.1.9] 
+  			\item \textbf{FT10:} Relevant error message is displayed on failed login. [SRS req. 6.1.9] 
 		\end{itemize}
 		
 		\subsection{Data}
 		
 		\begin{itemize}
-  			\item \textbf{FT5:} Can only enter valid password when changing password. [SRS req.6.2.1]
+  			\item \textbf{FT11:} Can only enter valid password when changing password. [SRS req.6.2.1]
 
 		\end{itemize}
 		
 		\subsection{User}
 		
 		\begin{itemize}
-  			\item \textbf{FT6:} Can submit a time report. [SRS req. 6.3.1]
-  			\item \textbf{FT7:} Can see a summarized view of current user time reports. [SRS req. 6.3.3]
-  			\item \textbf{FT8:} Can edit a submitted report if it is not signed by Project leader. [SRS req. 6.3.5]
+  			\item \textbf{FT12:} Can submit a time report. [SRS req. 6.3.1]
+  			
+  			\item \textbf{F137:} Can see a summarized view of current user time reports. [SRS req. 6.3.3]
+  			
+  			\item \textbf{FT14:} Can edit a submitted report if it is not signed by Project leader. [SRS req. 6.3.5]
 
 		\end{itemize}
 		
 		\subsection{Project Leader}
 		
 			\begin{itemize}
-  			\item \textbf{FT9:} Can see all users and their roles. [SRS req. 6.4.3]
+  			\item \textbf{FT15:} Can see all users and their roles. [SRS req. 6.4.3]
 
-  			\item \textbf{FT10:} Can change roles on other users but not themself. [SRS req. 6.4.4]
+  			\item \textbf{FT16:} Can change roles on other users but not themself. [SRS req. 6.4.4]
   			
-  			\item \textbf{FT11:} Can’t change other project leaders' roles.
+  			\item \textbf{FT17:} Can’t change other project leaders' roles.
   			
-  			\item \textbf{FT12:} Can sign reports. [SRS req. 6.4.5]
+  			\item \textbf{FT18:} Can sign reports. [SRS req. 6.4.5]
 
-  			\item \textbf{FT13:} Can see a summarized view of users time reports. [SRS req. 6.4.1]
+  			\item \textbf{FT19:} Can see a summarized view of users time reports. [SRS req. 6.4.1]
 
 		\end{itemize}
 		
 		\subsection{Administrator}
 		
 			\begin{itemize}
-  			\item \textbf{FT14:} Can add a new user. [SRS req. 6.5.3, 6.5.4]
+  			\item \textbf{FT20:} Can add a new user. [SRS req. 6.5.3, 6.5.4]
 
-  			\item \textbf{FT15:} Can remove a user. [SRS req.6.5.3]
+  			\item \textbf{FT21:} Can remove a user. [SRS req.6.5.3]
   			
-  			\item \textbf{FT16:} Can change the roles of all users. [SRS req. 6.5.4].
+  			\item \textbf{FT22:} Can change the roles of all users. [SRS req. 6.5.4].
   			
-  			\item \textbf{FT17:} Can view all users as a list. [SRS req. 6.5.5]
+  			\item \textbf{FT23:} Can view all users as a list. [SRS req. 6.5.5]
 
 		\end{itemize}
 		
 		\subsection{System Requirements }
 		
 		\begin{itemize}
-  			\item \textbf{FT18:} All error messages should follow the format. [
+  			\item \textbf{FT24:} All error messages should follow the format. [
 
 		\end{itemize}
 		
@@ -244,29 +262,38 @@ In reviews all requirements should be checked by the reviewers.
 		
 		\begin{itemize}
 		
-  			\item \textbf{ST1:} Random access to different pages and URL:s
+  			\item \textbf{ST1:} Works in following browsers: Chrome, Firefox, Microsoft Edge.  
+  			
+  			\item \textbf{ST2:} Works on following OS: Windows.	 			
+  			
+  			\item \textbf{ST3:} System works for all different user roles. 
 
+  			
 		\end{itemize}
 		
 		\newpage
 		\begin{flushleft}
 		{\large \textbf{C Regression Test Specification}}
 		\end{flushleft}
-		
-		**EDIT HERE**
+			
+		\begin{flushleft}
+		All relevant function tests are redone if an update is made to a specific function as well as following tests:
+		\end{flushleft}
 		
 		\begin{itemize}
 		
   			\item \textbf{RT1:} FT1
   			
-  			\item \textbf{RT2:} FT1
+			  					
+		\end{itemize}
+		
+		\begin{flushleft}
+			If major changes are made to the system then the following regression test shall be done:
+			\end{flushleft}	
+		
+		\begin{itemize}			
   			
-  			\item \textbf{RT2:} FT1
-  			
-  			\item \textbf{RT2:} FT1
-  			
-  			\item \textbf{RT2:} FT1
-  			
+  			\item \textbf{RT2:} FT1 To FT24			
 
 		\end{itemize}
 		
