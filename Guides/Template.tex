@@ -2,14 +2,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
+\usepackage{geometry}
 
 % ---- Commands ------- %
 \newcommand{\documentNumber}[1]{
-    \LARGE  \textbf{ PUSP2142{#1} } \\
+    \LARGE  \textbf{ PUSS2142{#1} } \\
     \medskip
 }
 \newcommand{\documentVersion}[1]{
-    v.{#1} \\
+    v. {#1}
+
     \medskip
 }
 \newcommand{\documentTitle}[1]{
@@ -21,7 +23,7 @@
 }
 \newcommand{\documentGroup}[1]{
     \bigskip \bigskip
-    \LARGE Group {#1} \\
+    \LARGE Group {#1} \\P
     \bigskip
 }
 \newcommand{\documentResponsible}[1]{
@@ -36,7 +38,9 @@
     \date {#1} 
 }
 
-\graphicspath{{./images/}} %Defines a path to file images
+\graphicspath{{./images/}} % Defines a path to file images
+\renewcommand{\arraystretch}{1.7}  % Vertical padding for tables
+
 
 % --- Header & Footer ---- %
 \pagestyle{fancy}
@@ -54,18 +58,19 @@
     % Must be 2 digits
     \documentNumber {01}    
     
+    % BASELINE.VERSION
     \documentVersion {0.1}
     
     % Full name - SHORTNAME
     \documentTitle {Template}
     \documentGroup {2}
     
-    % Options: - Project management Group
-    %          - System architecture Group
+    % Options: - Project Management Group
+    %          - System Architecture Group
     %          - Developer Group
     %          - Test Group
-    \documentResponsible {Project management Group}
-    \documentAuthors {Project management group}
+    \documentResponsible {Project Management Group}
+    \documentAuthors {Project Management group}
     
     % Format: YYYY-MM-DD
     \documentDate {2021-01-25}
@@ -85,5 +90,7 @@
 %---------Document begins here-----------
 
 \section{Introduction}
+
+%---------Document ends here-----------
 
 \end{document}

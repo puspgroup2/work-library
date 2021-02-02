@@ -1,0 +1,321 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumerate}
+
+% ---- Commands ------- %
+\newcommand{\documentNumber}[1]{
+    \LARGE  \textbf{ PUSS214202{#1} } \\
+    \medskip
+}
+\newcommand{\documentVersion}[1]{
+    v. {0.2}
+
+    \medskip
+}
+\newcommand{\documentTitle}[1]{
+    \centerline{\rule{13cm}{0.4pt}}
+    \bigskip \bigskip
+    \LARGE {#1} \\
+    \bigskip \bigskip
+    \centerline{\rule{13cm}{0.4pt}}
+}
+\newcommand{\documentGroup}[1]{
+    \bigskip \bigskip
+    \LARGE Group {#1} 
+    \bigskip
+}
+\newcommand{\documentResponsible}[1]{
+    \LARGE Responsible: {#1} \\
+    \medskip
+}
+\newcommand{\documentAuthors}[1]{
+    \LARGE Authors: {#1} \\
+    \medskip    
+}
+\newcommand{\documentDate}[1]{
+    \date {#1} 
+}
+
+\graphicspath{{./images/}} % Defines a path to file images
+\renewcommand{\arraystretch}{1.7}  % Vertical padding for tables
+
+
+% --- Header & Footer ---- %
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{}
+\rfoot{\thepage}
+\cfoot{}
+\lfoot{}
+
+
+% ------------------------------------------------ #
+
+% ----- FILL THIS ----- %
+\title {
+    % Must be 2 digits
+    \documentNumber {02}    
+    
+    % BASELINE.VERSION
+    \documentVersion {0.2}
+    
+    % Full name - SHORTNAME
+    \documentTitle {Software Verification and Validation Specification}
+    \documentGroup {2}
+    
+    % Options: - Project Management Group
+    %          - System Architecture Group
+    %          - Developer Group
+    %          - Test Group
+    \documentResponsible {Test Group (TG)}
+    \documentAuthors {Test Group (TG)}
+    
+    % Format: YYYY-MM-DD
+    \documentDate {2021-02-02}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%---------Document begins here-----------
+
+\section{Introduction}
+
+	This document describes how the "TimeMate" system should be verified. 
+
+\section{Reference Documents}
+
+\begin{enumerate}
+  \item Projekthandledning 
+  \item Software Requirements Specification: "TimeMate", v. 0.2, Doc. number: PUSP214201
+  \item Software Requirements Specification: "BaseBlockSystem", v. 1.0, Doc. number: PUSS12002
+
+\end{enumerate}
+
+\section{Overview}
+During the project, three formal reviews are carried out.
+
+
+\begin{enumerate}
+	\item Software Specification Review (SSR)
+		\begin{enumerate}[a.] 
+			\item SDP
+			\item SRS 
+			\item SVVS 
+		\end{enumerate}
+	\item Preliminary Design Review (PDR) 
+		\begin{enumerate}[a.]
+			\item SVVI
+			\item STLDD
+		\end{enumerate}
+	\item Product Review (PR) 
+		\begin{enumerate}[a.]
+			\item SVVR 
+			\item SSD 
+			\item PFR 
+		\end{enumerate}
+\end{enumerate}
+
+\noindent
+These formal reviews are carried out as described in Ref. 1. At least three days before a formal review an informal review will be carried out, without any customer representative involved. The informal reviews are scheduled so that updated material can be altered to be delivered to the formal review. In addition to the informal reviews listed above the SDDD should also be reviewed in an informal review. 
+
+\section{Test Cases}
+	\subsection{Test Environments}
+	All tests will be run in one or more of the following environments. 
+		\begin{enumerate}
+			\item JUnit 5.
+
+			\item Webbrowser (Chrome, Firefox, Microsoft Edge).
+
+			\item Operating System (Windows).
+
+			\item Database system (MySQL).
+
+			\item IDE (Eclipse).	
+		\end{enumerate}
+		
+		\subsection{Test Types}
+		
+These are the types of tests that will be carried out throughout the project
+
+
+\begin{itemize}
+  \item \textbf{Unit test:} This is carried out by individual developers while they are coding and before the code is pushed to Github. This is done informally, and no documentation is needed.
+  \item \textbf{Function test:} Each function are tested by the test group, whom notes the test outcome in a spreadsheet.The results of the tests are then sent back to the developers.
+   \item \textbf{System test:} General tests for the whole system and are carried out by the test group.
+      \item \textbf{Regression test:} All relevant tests are redone if an update is made to the system.
+         \item \textbf{Acceptance test:} These tests are performed by the customer and is a combination of the tests stated above and the customer's own tests.
+\end{itemize}
+
+
+\section{Requirements Checked in Reviews}
+In reviews all requirements should be checked by the reviewers.
+
+The following requirements (according to Ref. 2) are only verified through
+reviews: 6.2.2, 6.5.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.8, 8.1.1, 8.1.2, 8.1.3.
+
+
+\section{Appendices}
+	\begin{itemize}
+		\item \textbf{A.} Function Test Specification 
+		\item \textbf{B.} System Test Specification 	
+		\item \textbf{C.} Regression Test Specification 
+		\end{itemize}
+	
+	\newpage
+		\begin{flushleft}
+		{\large \textbf{A Function Test Specification}}
+		\end{flushleft}
+		
+		\subsection{Login and Logout}
+		
+		\begin{itemize}
+  			\item \textbf{FT1:} Can login with right username and password (JUint). [Ref. 3. req. 6.1.1]	
+	
+			\item \textbf{FT2:} Can't login, right username and wrong password (JUint). [Ref. 3. req.6.1.5]
+			
+			\item \textbf{FT3:} Can't login with non existing user (JUint). [Ref. 3. req. 6.1.5]
+			
+			\item \textbf{FT4:} Can't login with other users passwords. [Ref. 3. req. 6.1.5]
+			
+			\item \textbf{FT5:} Can't login with previous password. [Ref. 3. req. 6.1.5]
+				
+			\item \textbf{FT6:} Can logout. [Ref. 3. req. 6.1.4 ]
+
+  			\item \textbf{FT7:} Gets a new password from the server by e-mail on account creation. [Ref. 2. req. 6.1.2]
+  			
+  			\item \textbf{FT8:} Gets a new password from the server by e-mail if requested. [Ref. 2. req. 6.1.1]
+  			
+  			\item \textbf{FT9:} Can change password from logged-in state. [Res. 2. req. 6.3.7, 6.3.9]
+
+  			\item \textbf{FT10:} Relevant error message is displayed on failed login. [Ref. 3. req. 6.1.5] 
+		\end{itemize}
+		
+		\subsection{Data}
+		
+		\begin{itemize}
+		
+  			\item \textbf{FT11:} Can only enter valid password when changing password. [Ref. 2. req.6.2.1, 6.3.8, 6.3.10]
+
+		\end{itemize}
+		
+		\subsection{User}
+		
+		\begin{itemize}
+  			\item \textbf{FT12:} Can submit a time report. [Ref. 2. req. 6.3.1. 6.3.2, 6.4.2]
+  			
+  			\item \textbf{FT13:} Can see a summarized view of current user time reports. [Ref. 2. req. 6.3.3, 6.3.4]
+  			
+  			\item \textbf{FT14:} Can edit a submitted report if it is not signed by Project leader. [Ref. 2. req. 6.3.5, 6.3.6]
+  			
+  			 \item \textbf{FT15:} Can't edit a submitted report if it is signed by Project leader. [Ref. 2. req. 6.3.11]
+
+
+		\end{itemize}
+		
+		\subsection{Project Leader}
+		
+			\begin{itemize}
+  			\item \textbf{FT16:} Can see all users and their roles. [Ref. 2. req. 6.4.1, 6.4.3]
+
+  			\item \textbf{FT17:} Can change roles on other users but not themself. [Ref. 2. req. 6.4.4, 6.4.7]
+  			
+  			\item \textbf{FT18:} Can’t change other project leaders' roles. [Ref. 2. req. 6.4.4]
+  			
+  			\item \textbf{FT19:} Can sign reports. [Ref. 2. req. 6.4.5, 6.4.6]
+
+  			\item \textbf{FT20:} Can see a summarized view of users time reports. [Ref. 2. req. 6.4.1]
+
+		\end{itemize}
+		
+		\subsection{Administrator}
+		
+			\begin{itemize}
+			
+			\item \textbf{FT21:} Can access administration page. [Ref. 2. req. 6.5.1]			
+			
+  			\item \textbf{FT22:} Can add a new user. [Ref. 2. req. 6.5.3]
+  			
+  			\item \textbf{FT23:} Can't add a new user with existing username. [Ref. 2. req. 6.5.4]
+
+  			\item \textbf{FT24:} Can remove a user. [Ref. 2. req. 6.5.5]
+  			
+  			\item \textbf{FT25:} Can change the roles of all users. [Ref. 2. req. 6.5.7].
+  			
+  			\item \textbf{FT26:} Can view all users as a list. [Ref. 2. req. 6.5.6]
+
+		\end{itemize}
+		
+		\subsection{Design Requirements}
+		
+		\begin{itemize}
+  			
+  			\item \textbf{FT27:} Button is always visible. [Ref. 2. req. 7.0.9]
+
+		\end{itemize}
+		
+		\newpage
+		\begin{flushleft}
+		{\large \textbf{B System Test Specification}}
+		\end{flushleft}
+		
+		
+		
+		\begin{itemize}
+		
+  			\item \textbf{ST1:} Works in following browsers: Chrome, Firefox, Microsoft Edge.  
+  			
+  			\item \textbf{ST2:} Works on following OS: Windows.	 			
+  			
+  			\item \textbf{ST3:} System works for all different user roles. 
+  			
+  			\item \textbf{ST4:} All error messages should follow the format. [Ref. 2. req. 8.1.4]
+
+  			
+		\end{itemize}
+		
+		\newpage
+		\begin{flushleft}
+		{\large \textbf{C Regression Test Specification}}
+		\end{flushleft}
+			
+		\begin{flushleft}
+		All relevant function tests are redone if an update is made to a specific function as well as following tests:
+		\end{flushleft}
+		
+		\begin{itemize}
+		
+  			\item \textbf{RT1:} FT1
+  			
+			  					
+		\end{itemize}
+		
+		\begin{flushleft}
+			If major changes are made to the system then the following regression test shall be done:
+			\end{flushleft}	
+		
+		\begin{itemize}			
+  			
+  			\item \textbf{RT2:} FT1 To FT27			
+
+		\end{itemize}
+		
+		
+			
+		
+
+
+%---------Document ends here-----------
+
+\end{document}
