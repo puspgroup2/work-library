@@ -11,7 +11,7 @@
     \medskip
 }
 \newcommand{\documentVersion}[1]{
-    v. {0.1}
+    v. {0.2}
 
     \medskip
 }
@@ -60,7 +60,7 @@
     \documentNumber {02}    
     
     % BASELINE.VERSION
-    \documentVersion {0.1}
+    \documentVersion {0.2}
     
     % Full name - SHORTNAME
     \documentTitle {Software Verification and Validation Specification}
@@ -70,8 +70,8 @@
     %          - System Architecture Group
     %          - Developer Group
     %          - Test Group
-    \documentResponsible {Test Group}
-    \documentAuthors {Test Group}
+    \documentResponsible {Test Group (TG)}
+    \documentAuthors {Test Group (TG)}
     
     % Format: YYYY-MM-DD
     \documentDate {2021-02-02}
@@ -99,6 +99,8 @@
 \begin{enumerate}
   \item Projekthandledning 
   \item Software Requirements Specification: "TimeMate", v. 0.2, Doc. number: PUSP214201
+  \item Software Requirements Specification: "BaseBlockSystem", v. 1.0, Doc. number: PUSS12002
+
 \end{enumerate}
 
 \section{Overview}
@@ -161,7 +163,7 @@ These are the types of tests that will be carried out throughout the project
 In reviews all requirements should be checked by the reviewers.
 
 The following requirements (according to Ref. 2) are only verified through
-reviews: EDIT HERE.
+reviews: 6.2.2, 6.5.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.8, 8.1.1, 8.1.2, 8.1.3.
 
 
 \section{Appendices}
@@ -179,77 +181,87 @@ reviews: EDIT HERE.
 		\subsection{Login and Logout}
 		
 		\begin{itemize}
-  			\item \textbf{FT1:} Can login with right username and password (JUint). [SRS req. 6.1.1, 6.1.2, 6.1.6]	
+  			\item \textbf{FT1:} Can login with right username and password (JUint). [Ref. 3. req. 6.1.1]	
 	
-			\item \textbf{FT2:} Can't login, right username and wrong password (JUint).
+			\item \textbf{FT2:} Can't login, right username and wrong password (JUint). [Ref. 3. req.6.1.5]
 			
-			\item \textbf{FT3:} Can't login with non existing user (JUint).
+			\item \textbf{FT3:} Can't login with non existing user (JUint). [Ref. 3. req. 6.1.5]
 			
-			\item \textbf{FT4:} Can't login with other users passwords. 
+			\item \textbf{FT4:} Can't login with other users passwords. [Ref. 3. req. 6.1.5]
 			
-			\item \textbf{FT5:} Can't login with previous password.
+			\item \textbf{FT5:} Can't login with previous password. [Ref. 3. req. 6.1.5]
 				
-			\item \textbf{FT6:} Can logout. 
+			\item \textbf{FT6:} Can logout. [Ref. 3. req. 6.1.4 ]
 
-  			\item \textbf{FT7:} Gets a new password from the server by e-mail on account creation. [SRS req. 6.1.3, 6.1.4]
+  			\item \textbf{FT7:} Gets a new password from the server by e-mail on account creation. [Ref. 2. req. 6.1.2]
   			
-  			\item \textbf{FT8:} Gets a new password from the server by e-mail if requested.
+  			\item \textbf{FT8:} Gets a new password from the server by e-mail if requested. [Ref. 2. req. 6.1.1]
+  			
+  			\item \textbf{FT9:} Can change password from logged-in state. [Res. 2. req. 6.3.7, 6.3.9]
 
-  			\item \textbf{FT9:} Can change password from logged-in state. [SRS req. 6.1.5, 6.1.8]
-
-  			\item \textbf{FT10:} Relevant error message is displayed on failed login. [SRS req. 6.1.9] 
+  			\item \textbf{FT10:} Relevant error message is displayed on failed login. [Ref. 3. req. 6.1.5] 
 		\end{itemize}
 		
 		\subsection{Data}
 		
 		\begin{itemize}
-  			\item \textbf{FT11:} Can only enter valid password when changing password. [SRS req.6.2.1]
+		
+  			\item \textbf{FT11:} Can only enter valid password when changing password. [Ref. 2. req.6.2.1, 6.3.8, 6.3.10]
 
 		\end{itemize}
 		
 		\subsection{User}
 		
 		\begin{itemize}
-  			\item \textbf{FT12:} Can submit a time report. [SRS req. 6.3.1]
+  			\item \textbf{FT12:} Can submit a time report. [Ref. 2. req. 6.3.1. 6.3.2, 6.4.2]
   			
-  			\item \textbf{F137:} Can see a summarized view of current user time reports. [SRS req. 6.3.3]
+  			\item \textbf{FT13:} Can see a summarized view of current user time reports. [Ref. 2. req. 6.3.3, 6.3.4]
   			
-  			\item \textbf{FT14:} Can edit a submitted report if it is not signed by Project leader. [SRS req. 6.3.5]
+  			\item \textbf{FT14:} Can edit a submitted report if it is not signed by Project leader. [Ref. 2. req. 6.3.5, 6.3.6]
+  			
+  			 \item \textbf{FT15:} Can't edit a submitted report if it is signed by Project leader. [Ref. 2. req. 6.3.11]
+
 
 		\end{itemize}
 		
 		\subsection{Project Leader}
 		
 			\begin{itemize}
-  			\item \textbf{FT15:} Can see all users and their roles. [SRS req. 6.4.3]
+  			\item \textbf{FT16:} Can see all users and their roles. [Ref. 2. req. 6.4.1, 6.4.3]
 
-  			\item \textbf{FT16:} Can change roles on other users but not themself. [SRS req. 6.4.4]
+  			\item \textbf{FT17:} Can change roles on other users but not themself. [Ref. 2. req. 6.4.4, 6.4.7]
   			
-  			\item \textbf{FT17:} Can’t change other project leaders' roles.
+  			\item \textbf{FT18:} Can’t change other project leaders' roles. [Ref. 2. req. 6.4.4]
   			
-  			\item \textbf{FT18:} Can sign reports. [SRS req. 6.4.5]
+  			\item \textbf{FT19:} Can sign reports. [Ref. 2. req. 6.4.5, 6.4.6]
 
-  			\item \textbf{FT19:} Can see a summarized view of users time reports. [SRS req. 6.4.1]
+  			\item \textbf{FT20:} Can see a summarized view of users time reports. [Ref. 2. req. 6.4.1]
 
 		\end{itemize}
 		
 		\subsection{Administrator}
 		
 			\begin{itemize}
-  			\item \textbf{FT20:} Can add a new user. [SRS req. 6.5.3, 6.5.4]
+			
+			\item \textbf{FT21:} Can access administration page. [Ref. 2. req. 6.5.1]			
+			
+  			\item \textbf{FT22:} Can add a new user. [Ref. 2. req. 6.5.3]
+  			
+  			\item \textbf{FT23:} Can't add a new user with existing username. [Ref. 2. req. 6.5.4]
 
-  			\item \textbf{FT21:} Can remove a user. [SRS req.6.5.3]
+  			\item \textbf{FT24:} Can remove a user. [Ref. 2. req. 6.5.5]
   			
-  			\item \textbf{FT22:} Can change the roles of all users. [SRS req. 6.5.4].
+  			\item \textbf{FT25:} Can change the roles of all users. [Ref. 2. req. 6.5.7].
   			
-  			\item \textbf{FT23:} Can view all users as a list. [SRS req. 6.5.5]
+  			\item \textbf{FT26:} Can view all users as a list. [Ref. 2. req. 6.5.6]
 
 		\end{itemize}
 		
-		\subsection{System Requirements }
+		\subsection{Design Requirements}
 		
 		\begin{itemize}
-  			\item \textbf{FT24:} All error messages should follow the format. [
+  			
+  			\item \textbf{FT27:} Button is always visible. [Ref. 2. req. 7.0.9]
 
 		\end{itemize}
 		
@@ -267,6 +279,8 @@ reviews: EDIT HERE.
   			\item \textbf{ST2:} Works on following OS: Windows.	 			
   			
   			\item \textbf{ST3:} System works for all different user roles. 
+  			
+  			\item \textbf{ST4:} All error messages should follow the format. [Ref. 2. req. 8.1.4]
 
   			
 		\end{itemize}
@@ -293,7 +307,7 @@ reviews: EDIT HERE.
 		
 		\begin{itemize}			
   			
-  			\item \textbf{RT2:} FT1 To FT24			
+  			\item \textbf{RT2:} FT1 To FT27			
 
 		\end{itemize}
 		
