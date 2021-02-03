@@ -11,8 +11,7 @@
     \medskip
 }
 \newcommand{\documentVersion}[1]{
-    v. {0.2}
-
+    v. {0.3}
     \medskip
 }
 \newcommand{\documentTitle}[1]{
@@ -70,11 +69,11 @@
     %          - System Architecture Group
     %          - Developer Group
     %          - Test Group
-    \documentResponsible {Test Group (TG)}
-    \documentAuthors {Test Group (TG)}
+    \documentResponsible {Test Group}
+    \documentAuthors {Test Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-02-02}
+    \documentDate {2021-02-03}
 }
 
 \begin{document}
@@ -98,7 +97,7 @@
 
 \begin{enumerate}
   \item Projekthandledning 
-  \item Software Requirements Specification: "TimeMate", v. 0.2, Doc. number: PUSP214201
+  \item Software Requirements Specification: "TimeMate", v. 0.3, Doc. number: PUSP214201
   \item Software Requirements Specification: "BaseBlockSystem", v. 1.0, Doc. number: PUSS12002
 
 \end{enumerate}
@@ -136,7 +135,7 @@ These formal reviews are carried out as described in Ref. 1. At least three days
 		\begin{enumerate}
 			\item JUnit 5.
 
-			\item Webbrowser (Chrome, Firefox, Microsoft Edge).
+			\item Web browser (Chrome, Firefox, Microsoft Edge).
 
 			\item Operating System (Windows).
 
@@ -152,18 +151,22 @@ These are the types of tests that will be carried out throughout the project
 
 \begin{itemize}
   \item \textbf{Unit test:} This is carried out by individual developers while they are coding and before the code is pushed to Github. This is done informally, and no documentation is needed.
-  \item \textbf{Function test:} Each function are tested by the test group, whom notes the test outcome in a spreadsheet.The results of the tests are then sent back to the developers.
-   \item \textbf{System test:} General tests for the whole system and are carried out by the test group.
+  
+  \item \textbf{Function test:} When a new function is implemented into the system it is tested by the test group, whom notes the test outcome in a spreadsheet. The results of the tests are then sent back to the developers.
+  
+   \item \textbf{System test:} General tests for the whole system and are carried out by the test group whom notes the test outcome in a spreadsheet. These are carried out before baseline three and four.
+   
       \item \textbf{Regression test:} All relevant tests are redone if an update is made to the system.
+      
          \item \textbf{Acceptance test:} These tests are performed by the customer and is a combination of the tests stated above and the customer's own tests.
 \end{itemize}
 
 
 \section{Requirements Checked in Reviews}
-In reviews all requirements should be checked by the reviewers.
+In reviews all requirements should be checked by the reviewers. The results of the review are then sent back to the respective group responsible for the document.
 
 The following requirements (according to Ref. 2) are only verified through
-reviews: 6.2.2, 6.5.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.8, 8.1.1, 8.1.2, 8.1.3.
+reviews: 6.2.2, 6.5.3, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.8, 8.1.1, 8.1.2, 8.1.3.
 
 
 \section{Appendices}
@@ -181,45 +184,42 @@ reviews: 6.2.2, 6.5.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.8, 8
 		\subsection{Login and Logout}
 		
 		\begin{itemize}
-  			\item \textbf{FT1:} Can login with right username and password (JUint). [Ref. 3. req. 6.1.1]	
-	
-			\item \textbf{FT2:} Can't login, right username and wrong password (JUint). [Ref. 3. req.6.1.5]
+  			\item \textbf{FT1:} Can login with correct username and password (JUint). [Ref. 3. req. 6.1.1]	
 			
-			\item \textbf{FT3:} Can't login with non existing user (JUint). [Ref. 3. req. 6.1.5]
+			\item \textbf{FT2:} Cannot login with non existing user (JUint). [Ref. 3. req. 6.1.5]
 			
-			\item \textbf{FT4:} Can't login with other users passwords. [Ref. 3. req. 6.1.5]
+			\item \textbf{FT3:} Cannot login with other users passwords. [Ref. 3. req. 6.1.5]
 			
-			\item \textbf{FT5:} Can't login with previous password. [Ref. 3. req. 6.1.5]
+			\item \textbf{FT4:} Cannot login with foregoing password. [Ref. 3. req. 6.1.5]
 				
-			\item \textbf{FT6:} Can logout. [Ref. 3. req. 6.1.4 ]
-
+			\item \textbf{FT5:} Can logout. [Ref. 3. req. 6.1.4 ]
+			
+  			\item \textbf{FT6:} Gets a new password from the server by e-mail if requested. [Ref. 2. req. 6.1.1]
   			\item \textbf{FT7:} Gets a new password from the server by e-mail on account creation. [Ref. 2. req. 6.1.2]
-  			
-  			\item \textbf{FT8:} Gets a new password from the server by e-mail if requested. [Ref. 2. req. 6.1.1]
-  			
-  			\item \textbf{FT9:} Can change password from logged-in state. [Res. 2. req. 6.3.7, 6.3.9]
+  					
+  			\item \textbf{FT8:} Can change password from logged-in state. [Ref. 2. req. 6.3.7, 6.3.9]
 
-  			\item \textbf{FT10:} Relevant error message is displayed on failed login. [Ref. 3. req. 6.1.5] 
+  			\item \textbf{FT9:} Relevant error message is displayed on failed login. [Ref. 3. req. 6.1.5] 
 		\end{itemize}
 		
 		\subsection{Data}
 		
 		\begin{itemize}
 		
-  			\item \textbf{FT11:} Can only enter valid password when changing password. [Ref. 2. req.6.2.1, 6.3.8, 6.3.10]
+  			\item \textbf{FT10:}  When changing password, it must adhere to password ruleset. [Ref. 2. req.6.2.1, 6.3.8, 6.3.10]
 
 		\end{itemize}
 		
 		\subsection{User}
 		
 		\begin{itemize}
-  			\item \textbf{FT12:} Can submit a time report. [Ref. 2. req. 6.3.1. 6.3.2, 6.4.2]
+  			\item \textbf{FT11:} Can submit a time report. [Ref. 2. req. 6.3.1. 6.3.2, 6.4.2]
   			
-  			\item \textbf{FT13:} Can see a summarized view of current user time reports. [Ref. 2. req. 6.3.3, 6.3.4]
+  			\item \textbf{FT12:} Can see a summarized view of current user time reports. [Ref. 2. req. 6.3.3, 6.3.4]
   			
-  			\item \textbf{FT14:} Can edit a submitted report if it is not signed by Project leader. [Ref. 2. req. 6.3.5, 6.3.6]
+  			\item \textbf{FT13:} Can edit a submitted report if it is not signed by Project leader. [Ref. 2. req. 6.3.5, 6.3.6]
   			
-  			 \item \textbf{FT15:} Can't edit a submitted report if it is signed by Project leader. [Ref. 2. req. 6.3.11]
+  			 \item \textbf{FT14:} Can't edit a submitted report if it is signed by Project leader. [Ref. 2. req. 6.3.11]
 
 
 		\end{itemize}
@@ -227,15 +227,15 @@ reviews: 6.2.2, 6.5.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.8, 8
 		\subsection{Project Leader}
 		
 			\begin{itemize}
-  			\item \textbf{FT16:} Can see all users and their roles. [Ref. 2. req. 6.4.1, 6.4.3]
+  			\item \textbf{FT15:} Can see all users and their roles. [Ref. 2. req. 6.4.3]
 
-  			\item \textbf{FT17:} Can change roles on other users but not themself. [Ref. 2. req. 6.4.4, 6.4.7]
+  			\item \textbf{FT16:} Can change roles on other users but not themselves. [Ref. 2. req. 6.4.4, 6.4.7]
   			
-  			\item \textbf{FT18:} Can’t change other project leaders' roles. [Ref. 2. req. 6.4.4]
+  			\item \textbf{FT17:} Can’t change other project leaders' roles. [Ref. 2. req. 6.4.4]
   			
-  			\item \textbf{FT19:} Can sign reports. [Ref. 2. req. 6.4.5, 6.4.6]
+  			\item \textbf{FT18:} Can sign reports. [Ref. 2. req. 6.4.5, 6.4.6]
 
-  			\item \textbf{FT20:} Can see a summarized view of users time reports. [Ref. 2. req. 6.4.1]
+  			\item \textbf{FT19:} Can see a summarized view of users time reports. [Ref. 2. req. 6.4.1, 6.5.6]
 
 		\end{itemize}
 		
@@ -243,17 +243,17 @@ reviews: 6.2.2, 6.5.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.8, 8
 		
 			\begin{itemize}
 			
-			\item \textbf{FT21:} Can access administration page. [Ref. 2. req. 6.5.1]			
+			\item \textbf{FT20:} Can access administration page. [Ref. 2. req. 6.5.1]			
 			
-  			\item \textbf{FT22:} Can add a new user. [Ref. 2. req. 6.5.3]
+  			\item \textbf{FT21:} Can add a new user. [Ref. 2. req. 6.5.3]
   			
-  			\item \textbf{FT23:} Can't add a new user with existing username. [Ref. 2. req. 6.5.4]
+  			\item \textbf{FT22:} Can't add a new user with existing username. [Ref. 2. req. 6.5.4]
 
-  			\item \textbf{FT24:} Can remove a user. [Ref. 2. req. 6.5.5]
+  			\item \textbf{FT23:} Can remove a user. [Ref. 2. req. 6.5.5]
   			
-  			\item \textbf{FT25:} Can change the roles of all users. [Ref. 2. req. 6.5.7].
+  			\item \textbf{FT24:} Can change the roles of all users. [Ref. 2. req. 6.5.7]
   			
-  			\item \textbf{FT26:} Can view all users as a list. [Ref. 2. req. 6.5.6]
+  			\item \textbf{FT25:} Can view all users as a list. [Ref. 3. req. 6.3.5]
 
 		\end{itemize}
 		
@@ -261,7 +261,7 @@ reviews: 6.2.2, 6.5.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.8, 8
 		
 		\begin{itemize}
   			
-  			\item \textbf{FT27:} Button is always visible. [Ref. 2. req. 7.0.9]
+  			\item \textbf{FT26:} Logout button is always visible. [Ref. 2. req. 7.0.9]
 
 		\end{itemize}
 		
@@ -307,7 +307,7 @@ reviews: 6.2.2, 6.5.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.8, 8
 		
 		\begin{itemize}			
   			
-  			\item \textbf{RT2:} FT1 To FT27			
+  			\item \textbf{RT2:} FT1 To FT26			
 
 		\end{itemize}
 		
