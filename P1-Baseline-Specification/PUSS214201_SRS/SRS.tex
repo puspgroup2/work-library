@@ -16,6 +16,8 @@
 \newcommand{\documentTitle}[1]{
     \centerline{\rule{13cm}{0.4pt}}
     \bigskip \bigskip
+    \LARGE \textbf{TimeMate} \\
+    \bigskip
     \LARGE {#1} \\
     \bigskip \bigskip
     \centerline{\rule{13cm}{0.4pt}}
@@ -57,10 +59,10 @@
     % Must be 2 digits
     \documentNumber {01}    
     
-    \documentVersion {0.2}
+    \documentVersion {0.3}
     
     % Full name - SHORTNAME
-    \documentTitle {SRS - Software Requirements Specification}
+    \documentTitle {Software Requirements Specification}
     \documentGroup {2}
     
     % Options: - Project management Group
@@ -68,10 +70,10 @@
     %          - Developer Group
     %          - Test Group
     \documentResponsible {System Group}
-    \documentAuthors {System Group, UG}
+    \documentAuthors {System Group, Development Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-02-02}
+    \documentDate {2021-02-04}
 }
 
 \begin{document}
@@ -85,42 +87,48 @@
 
 \newpage
 
-
+\section{Document History}
+\begin{tabular}{ l | l | l | l }
+    Version & Date & Responsible & Description \\
+    \hline
+    0.1 & 2021-01-25 & SG & Document created. \\
+    0.2 & 2021-02-02 & SG & Ready for informal review. \\
+    0.3 & 2021-02-04 & SG & Fixed gramatical changes and typos. \\
+\end{tabular}
 
 \section{Introduction}
 
-This document presents requirements for the \emph {TimeMate}. \emph {TimeMate} is a system which purpose and main functionality is to administer time reporting with web-usage capabilities. 
+This document presents the requirements for TimeMate. TimeMate is a system whose purpose and main functionality is to administer time reporting with web-usage capabilities. 
 
 
-\section{Reference documents}
+\section{Reference Documents}
 
 \begin{enumerate}
-  \item Software Requirements Specification: BaseBlockSystem, v. 1.0, Doc. number: PUSS12002
-  \item The requirements on the usability of the system applies to this document and are therefore implemented in \emph {TimeMate}, following requirements are \emph{not} implemented; 6.2.3, 6.3.4
+  \item Software Requirements Specification: \emph{BaseBlockSystem}, v. 1.0, Doc. number: PUSS12002
+  \item The requirements of \emph{BaseBlockSystem} applies to this document and are therefore implemented in TimeMate. The following requirements will \emph{not} be implemented; 6.2.3, 6.3.4
   
 \end{enumerate}
 
-\section{Background and goals}
-\subsection{Main goals}
+\section{Background and Goals}
+\subsection{Main Goals}
 
 The goal is to develop and distribute a web-based system where the user can report time and administrate the system according to their roles.
 
-\subsection{Actors and their objectives}
-The system can be used and administrated by following actors;
+\subsection{Actors and their Objectives}
+The system can be used and administrated by the following actors:
 
 \begin{itemize}
-  \item \textbf{User:} The user has the authority to log in to the system to report and  change past reported time as well as review their reported times. The user also inherits roles as either "PG", "SG", "UG", and "TG".
+  \item \textbf{User:} The user has the authority to log in to the system to report and  change past reported time as well as review their reported times. The user also inherits roles as either "PG", "SG", "UG" or "TG".
   \item \textbf{Project Leader:}
-  The project leaders main objective is to administer groups within the project, this implies that the project leader has the authority to add and remove as well as assign users from/to designated roles.
+  The project leaders' main objective is to administer groups within the project. This implies that the project leader has the authority to add and remove as well as assign users from/to designated roles.
    \item \textbf{Administrator:} The administrator has the authority to add and remove users from the system along with creating and removing project groups. The admin is the only role that can assign the role “Project leader” to a user. The main goal of this role is to be able to administrate creation and removal of users.
 \end{itemize}
 
 
-
-
 \section{Terminology}
 
-\item \textbf{UG, SG & TG} These roles are only name tags for  users and grants no special permissions or rights.
+\begin{itemize}
+\item \textbf{UG, SG \& TG} These roles are only name tags for  users and grants no special permissions or rights.
 \item \textbf{Administrator:} 
   Has access to all functions of the system.
 \item \textbf{Time report:}
@@ -129,43 +137,41 @@ The system can be used and administrated by following actors;
   A set of cryptographic hash functions used to protect users passwords.
 \item \textbf{Salt string:}
   A salt string is a random string that is used in conjunction with SHA-2 to create safer passwords and protect against attacks.
+\end{itemize}
 
 
 
-\section{Context diagram}
+
+\section{Context Diagram}
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{Flowchart_6.jpg}
 \caption{Context diagram}
 \end{figure}
 
-\section{Functional requirements}
-\subsection{Login and logout}
+\section{Functional Requirements}
+\subsection{Login and Logout}
 
 
 \subsubsection{Requirement}
-If the user has forgotten their password, they should be able to get a newly generated password from the server by email.
+If the user has forgotten their password, they should receive a newly generated password from the server to the email connected to their username.
+
+Users who have forgotten their passwords should be able to receive from the server a newly generated password to the email connected to their username. The users current password is then overwritten with the new password.
 
 \subsubsection{Requirement}
-New users should be assigned passwords generated by the server according to the password ruleset and receive it by email.
-
-
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{PUSPERdiagram.png}
-\caption{ER-diagram}
-\end{figure}
-
-
-
-
+New users should be assigned newly generated passwords by the server and receive them by email.
 
 \subsection{Data}
 \subsubsection{Requirement}
 A password should consist of at least one character of each type. [a-z][A-Z][1-9] with a minimum of 8 characters.
 \subsubsection{Requirement}
 Passwords should be encrypted using SHA-2 and include a randomly generated salt string in the encryption process.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{PUSPERdiagram.png}
+\caption{ER-diagram}
+\end{figure}
 
 \subsection{User}
 \subsubsection{Requirement}
@@ -174,9 +180,9 @@ Users should be able to create and submit time reports
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
 
-\textbf{Scenario:} The user wants to submit a time report
+\textbf{Scenario:} The user wants to submit a time report.
 
-\textbf{Prerequisites:} The user is logged in to the system
+\textbf{Prerequisites:} The user is logged in to the system.
 
 \begin{enumerate}
 
@@ -214,16 +220,16 @@ The following scenario should be supported by the system.
 
 \textbf{Scenario:} A user wants to change previously reported time.
 
-\textbf{Prerequisites:} The user is logged in to the system
+\textbf{Prerequisites:} The user is logged in to the system.
 
 \begin{enumerate}
 
 \item The user navigates to the page “Time report”.
 \item The user is presented with an overview of their previously reported time. 
 \item The user chooses a time report.
-\item The user presses the button “Edit time report”
+\item The user presses the button “Edit time report”.
 \item The user is presented with a new page which includes the previously reported time table. 
-\item The user fills in the new time
+\item The user fills in the new time.
 \item The user clicks on the button “Submit Change”.
 \item The system confirms that the changes have been made.  
 \item An updated view of the page is displayed.
@@ -233,7 +239,7 @@ The following scenario should be supported by the system.
 \subsubsection{Requirement}
 Users should be able to change their password on the “My profile” page.
 \subsubsection{Requirement}
-Users changing their passwords should not be able to set their new password to be the same as their current password.
+Users who change their password should not be able to set their new password to be the same as their current password.
 
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
@@ -324,7 +330,7 @@ The following scenario should be supported by the system.
 
 \textbf{Scenario:} Project leader tries to assign roles to members.
 
-\textbf{Prerequisites:} User has the role “Project leader”, members exists and the user is on the “User Management“ page.
+\textbf{Prerequisites:} User has the role “Project leader”, members exist and the user is on the “User Management“ page.
 
 \begin{enumerate}
     \item The project leader can change members' roles by clicking on the corresponding radio button.
@@ -344,11 +350,11 @@ Only the administrator should have access to the administration page.
 All requirements and scenarios listed for "Users" and "Project Leaders" should also apply to the administrator.
 
 \subsubsection{Requirement}
-The following scenario should be supported by the system.
+The following scenarios should be supported by the system.
 
 \textbf{Scenario:} The administrator tries to add a user.
 
-\textbf{Prerequisites:} The administrator is on the “Administration” page
+\textbf{Prerequisites:} The administrator is on the “Administration” page.
 
 \begin{enumerate}
     \item Administrator clicks on the button to add a user.
@@ -365,14 +371,14 @@ The following scenario should be supported by the system.
 
 \textbf{Scenario:} The Administrator tries to add a user with the same name.
 
-\textbf{Prerequisites:} The administrator is on the “Administration” page
+\textbf{Prerequisites:} The administrator is on the “Administration” page.
 
 \begin{enumerate}
     \item Administrator clicks on the button to add a user.
     \item Administrator inputs the name of the user.
     \item The inputs are sent to the server, which notices that the name already exists in the database.
     \item The server does not accept the inputted name.
-    \item Administrator is told that the user already exists with a message.
+    \item Administrator is told that the user already exists with a message that shows up.
 \end{enumerate}
 
 \subsubsection{Requirement}
@@ -380,7 +386,7 @@ The following scenario should be supported by the system.
 
 \textbf{Scenario:} The administrator tries to remove a user.
 
-\textbf{Prerequisites:} The administrator is on the “Administration” page
+\textbf{Prerequisites:} The administrator is on the “Administration” page.
 
 \begin{enumerate}
     \item Administrator clicks on the button to remove the user.
@@ -394,13 +400,14 @@ The following scenario should be supported by the system.
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
 
-\textbf{Scenario:} The administrator tries to acquire a summary of reported time.
+\textbf{Scenario:} The administrator tries to acquire a summary of all reported time.
+
 \textbf{Prerequisites:} Time to be summarized exists.
 
 \begin{enumerate}
     \item Administrator clicks on the “SHOW SIGNED REPORTS” button.
-    \item A list with the names of all the users and their total reported time will be displayed,
-    \item Administrator clicks on a user name and it displays the user’s time reports.
+    \item A list with the names of all the users and their total reported time will be displayed.
+    \item Administrator clicks on a username and it displays the user’s time reports.
 \end{enumerate}
 
 \subsubsection{Requirement}
@@ -418,7 +425,7 @@ The following scenario should be supported by the system.
 \end{enumerate}
 
 
-\section{Design requirements}
+\section{Design Requirements}
 
 \subsubsection{Requirement}
 The main font should be web safe and belong to one of the following font
@@ -436,21 +443,20 @@ The background should consist of a lighter color and the main text should
 consist of a darker shade.
 \subsubsection{Requirement}
 The content of the web page should be centered in the browser window.
-The content should keep its centered position when the window is ex-
-tended.
+The content should keep its centered position when the window is extended.
 \subsubsection{Requirement}
 A fixed navigation/menu bar shall be placed horizontally at the very top
 of the page.
 \subsubsection{Requirement}
-Selections Main-page, Administration, User Management, Time Reporting
-and My profile should be included in the menu bar. Other menu selections
+Selections \textit{Main-page}, \textit{Administration},\textit{User Management}, \textit{Time Reporting}
+and \textit{My profile} should be included in the menu bar. Other menu selections
 should be categorized as subheadings belonging to one of the primary
 menu choices and should not be visible or clickable by default.
-The administration page should only be visible to the administrator
+The administration page should only be visible to the administrator.
 \subsubsection{Requirement}
-When a menu selection containing at least one subheading is selected a
+When a menu selection containing at least one subheading is selected, a
 vertical menu bar containing its subheadings should be revealed.
-A downward pointing arrowhead, should be placed next all menu selections containing at least one subheading. 
+A downward pointing arrowhead,$\vee$ , should be placed beside all menu selections containing at least one subheading. 
 When a menu selection containing one or more subheadings is selected, the arrowhead should point
 upwards.
 
@@ -461,14 +467,14 @@ of the menu bar.
 \subsubsection{Requirement}
 The logout button should always be visible.
 
-\section{Project requirements}
-\subsection{Development environment}
+\section{Project Requirements}
+\subsection{Development Environment}
 
 \subsubsection{Requirement}
-The back end for the system should use Java JDK 11 as development environment.
+The back end of the system should use Java JDK 11 as a development environment.
 
 \subsubsection{Requirement}
-The front end for the system should use Bootstrap v.4.5.3.
+The front end of the system should use Bootstrap v.4.5.3.
 
 \subsubsection{Requirement}
 The database should be developed in MySQL.
