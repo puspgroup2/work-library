@@ -1,6 +1,7 @@
-# Project
+# TimeMate
 
 ## Development model
+**TimeMate** is a system for time reporting and is developed in Java.
 This project is divided into **four** phases, following the waterfall model. A phase is not officially started until the previous one is completed.
 
 At the end of every phase several documents must be produced and to complete the current phase, all of the documents required must pass an informal review, followed by a formal review.
