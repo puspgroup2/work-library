@@ -49,3 +49,7 @@ Once the documents pass **formal** review, they are merged into the *master* bra
 - Create branch: `git checkout -b BRANCHNAME`
 - Show latest commits: `git log`
 - Show latest commits as graoh: `git log --graph`
+
+## Final dates
+- Project hand-in Monday 22/3 12:00
+- Accept Meeting Thrusday 25/3 11:00

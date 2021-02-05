@@ -1,0 +1,132 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+% ---- Commands ------- %
+\newcommand{\documentNumber}[1]{
+    \LARGE  \textbf{ PUSS2142{#1} } \\
+    \medskip
+}
+\newcommand{\documentVersion}[0]{
+    v.    
+    \newread\file
+        \openin\file=newfile
+        \loop\unless\ifeof\file
+            \read\file to\fileline
+            {\fileline}
+        \repeat
+    \closein\file
+    \medskip
+}
+\newcommand{\documentTitle}[1]{
+    \centerline{\rule{13cm}{0.4pt}}
+    \bigskip \bigskip
+    \LARGE {#1} \\
+    \bigskip \bigskip
+    \centerline{\rule{13cm}{0.4pt}}
+}
+\newcommand{\documentGroup}[1]{
+    \bigskip \bigskip
+    \LARGE Group {#1} \\
+    \bigskip
+}
+\newcommand{\documentResponsible}[1]{
+    \LARGE Responsible: {#1} \\
+    \medskip
+}
+\newcommand{\documentAuthors}[1]{
+    \LARGE Authors: {#1} \\
+    \medskip    
+}
+\newcommand{\documentDate}[1]{
+    \date {#1} 
+}
+
+\renewcommand{\arraystretch}{1.7}  % Vertical padding for tables
+
+\graphicspath{{./images/}} %Defines a path to file images
+
+% --- Header & Footer ---- %
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{}
+\rfoot{\thepage}
+\cfoot{}
+\lfoot{}
+
+
+% ------------------------------------------------ #
+
+% ----- FILL THIS ----- %
+\title {
+    % Must be 2 digits
+    \documentNumber {09}    
+    
+    \documentVersion
+    
+    % Full name - SHORTNAME
+    \documentTitle {Configuration Unit List}
+    \documentGroup {2}
+    
+    % Options: - Project Management Group
+    %          - System Architecture Group
+    %          - Developer Group
+    %          - Test Group
+    \documentResponsible {Project Management Group}
+    \documentAuthors {Project Management group}
+    
+    % Format: YYYY-MM-DD
+    \documentDate {2021-01-31}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%---------Document begins here-----------
+
+\section{Units}
+    \begin{table}[h] 
+        \centering
+        \begin{tabular}{|l|l|l|} 
+        \hline 
+            \textbf{Unit} & \textbf{Abbreviation} & \textbf{Name} \\ 
+        \hline
+            PUSS214200 & SDP & Software Development Plan \\
+        \hline
+            PUSS214201 & SRS & Software Requirements Specification \\
+        \hline
+            PUSS214202 & SVVS & Software Verification and Validation Specifcation \\
+        \hline
+            PUSS214203 & SVVI & Software Verification and Validation Instruction \\
+        \hline
+            PUSS214204 & STLDD & Software Top Level Design Document \\
+        \hline
+            PUSS214205 & SDDD & Software Detailed Design Document \\
+        \hline
+            PUSS214206 & SVVR & Software Verification and Validation Report \\
+        \hline
+            PUSS214207 & SSD & System Specification Document \\
+        \hline
+            PUSS214208 & PFR & Project Final Report \\
+        \hline
+            PUSS214209 & CML & Configuration Management List \\
+        \hline
+            PUSS214210 & IRP & Informal Review Protocol \\
+        \hline
+        \end{tabular} 
+        \caption{Configuration Unit List} 
+    \end{table}
+
+%---------Document ends here-----------
+
+\end{document}
