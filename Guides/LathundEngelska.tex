@@ -1,0 +1,201 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+% ---- Commands ------- %
+\newcommand{\documentNumber}[1]{
+    \LARGE  \textbf{ PUSS2142{#1} } \\
+    \medskip
+}
+\newcommand{\documentVersion}[1]{
+    v. {#1}
+
+    \medskip
+}
+\newcommand{\documentTitle}[1]{
+    \centerline{\rule{13cm}{0.4pt}}
+    \bigskip \bigskip
+    \LARGE {#1} \\
+    \bigskip \bigskip
+    \centerline{\rule{13cm}{0.4pt}}
+}
+\newcommand{\documentGroup}[1]{
+    \bigskip \bigskip
+    \LARGE Group {#1} \\
+    \bigskip
+}
+\newcommand{\documentResponsible}[1]{
+    \LARGE Responsible: {Anna Bergvall} \\
+    \medskip
+}
+\newcommand{\documentAuthors}[1]{
+    \LARGE Authors: {Anna Bergvall} \\
+    \medskip    
+}
+\newcommand{\documentDate}[1]{
+    \date {#1} 
+}
+
+\graphicspath{{./images/}} % Defines a path to file images
+\renewcommand{\arraystretch}{1.7}  % Vertical padding for tables
+
+
+% --- Header & Footer ---- %
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{}
+\rfoot{\thepage}
+\cfoot{}
+\lfoot{}
+
+
+% ------------------------------------------------ #
+
+% ----- FILL THIS ----- %
+\title {
+    % Must be 2 digits
+    \documentNumber {01}    
+    
+    % BASELINE.VERSION
+    \documentVersion {0.1}
+    
+    % Full name - SHORTNAME
+    \documentTitle {Writing in English - A Small Formatting Guide}
+    \documentGroup {2}
+    
+    % Options: - Project Management Group
+    %          - System Architecture Group
+    %          - Developer Group
+    %          - Test Group
+    \documentResponsible {Project Management Group}
+    \documentAuthors {Project Management group}
+    
+    % Format: YYYY-MM-DD
+    \documentDate {2021-02-03}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%---------Document begins here-----------
+
+\section{Introduction}
+The purpose of this text is to serve as a guide when writing the project documents. 
+
+\section{Capital Letters... When?!}
+\subsection{Headers}
+The first letter of each word in a header should be capitalised \textbf{except} articles (\textit{a}, \textit{an}, \textit{the}, \textit{that}, and so on), short prepositions (e.g., \textit{on}, \textit{to}), conjunctions (like \textit{and}, \textit{or}, \textit{neither... nor}).
+\begin{itemize}
+    \item Rule of thumb: Capitalise words that have lexical meaning. Compare the words \textit{cat} and \textit{a}.
+\end{itemize}
+
+\subsection{Commas} 
+Moreover, capitalise the first letter of the first word after a colon:
+
+\begin{itemize}
+\item Like this: There was more work to be done.
+\end{itemize}
+
+\subsection{Days and Months}
+All weekdays and months begin with a capital letter:
+
+\begin{itemize}
+    \item The project plan is due Friday.
+    \item See you in April.
+\end{itemize}
+\section{Is It \textit{It Is} or \textit{It's}?}
+Contractions are not used in formal writing in English. One writes \textit{we are}, \textit{there is}, \textit{it is}, \textit{how is}, \textit{and so on}. 
+
+
+
+\section{Punctuation and Quotes}
+
+\subsection{Commas and Full Stops}
+Commas and full stops (\textit{period} in American English) are put \textit{within} the quotation marks.
+
+\begin{itemize}
+    \item Christine says that "Group 2 is doing really well so far." 
+    \item "That was really nice of her," she said.
+\end{itemize}
+
+\subsection{Colons and Semicolons}
+
+Colons and semicolons are put \textit{outside} the quotation marks:
+
+\begin{itemize}
+    \item There were "many problems": First, there was the...
+\end{itemize}
+
+\subsubsection{The Oxford Comma}
+I like apples, oranges, and pears. The last comma is called the Oxford Comma and is grammatically correct and should be used.
+
+\section{American or British English?}
+
+The project group have decided that British spelling and grammar be used in the project documents. Some important differences are listed below:
+
+\subsection{Spelling}
+\begin{tabular}{c|c|c}
+    British Spelling & American Spelling \\
+    \hline
+    neighbour, behaviour, colour & neighbor, behavior, color \\
+    cancelled, cancelling & canceled, canceling \\
+    traveller, travelling & traveler, traveling \\
+    theatre, centre & theater, center \\
+    analyse, paralyse & analyze, paralyze \\
+
+\end{tabular}
+
+
+\subsection{Grammar}
+
+    Collective nouns, like \textit{Project Group} or \textit{Manchester United}, take either a singular or a plural verb agreement in British English, whereas in American English they only take the singular agreement (they see the group as one unit). 
+    
+\begin{itemize}
+    \item Example: Manchester United were okay today (BrE). 
+     \item Example: The Development Team was excited to get going (AmE).
+\end{itemize}
+
+\subsection{Dates and Time}
+
+\begin{tabular}{c|c}
+    British English & American English \\
+    \hline
+    3 February 2021 & February 3, 2021 \textit{or} 3 February 2021 \\
+    03/02/21 & 02/03/21 \\
+\end{tabular}
+
+
+\section{Looking Forward to See You... or Seeing You?}
+When should the -ing form (the progressive form) be used? It is used after prepositions (to, from, on, and so on) and 
+When the word or phrase following \textit{to} could be replaced with \textit{it} - use the -ing form:
+
+\begin{itemize}
+    \item I am looking forward to seeing you. 
+     \newline \textit{Seeing you} can be replaced with \textit{it}. The correct form is \textit{seeing you} and not \textit{see you.}
+    \item I am very excited to see you.
+    \newline I am very excited to it does sound weird. Conclusion: \textit{See} is the correct verb form.
+\end{itemize}
+
+Note that the progressive verb form is always used after all forms of the verb \textit{be} (\textit{am, are, is}):
+
+\begin{itemize}
+    \item I am going to bed.
+    \item He is singing.
+\end{itemize}
+
+
+
+
+%---------Document ends here-----------
+
+\end{document}
