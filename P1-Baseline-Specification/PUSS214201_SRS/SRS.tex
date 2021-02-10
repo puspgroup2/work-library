@@ -305,7 +305,7 @@ The following scenario should be supported by the system.
     \item A list of all the unsigned weekly reports is shown to the project leader.
     \item The project leader can sign the reports by clicking on the corresponding checkbox.
     \item The project leader confirms their selection by pressing on the “Confirm” button
-    \item The system sends the changes to the server.
+    \item The system sends an update to the database, changing the “Signature” column in the “Time Report” table to "signed".
     \item The system returns an updated list of unsigned reports, or an empty list if none exists
 \end{enumerate}
 
@@ -319,7 +319,7 @@ The following scenario should be supported by the system.
 \begin{enumerate}
     \item The project leader can change members' roles by clicking on the corresponding radio button.
     \item Project leader confirms changes made by pressing “Confirm”.
-    \item The system sends the changes to the server.
+    \item The system updates the "role" field in the database for the selected user.
     
 \end{enumerate}
 
@@ -406,7 +406,7 @@ The following scenario should be supported by the system.
 \begin{enumerate}
     \item Administrator can change members' roles by clicking on the corresponding radio button.
     \item Administrator confirms changes made by pressing “Confirm”.
-    \item The system sends the changes to the server.
+    \item The system updates the "role" field in the database for the selected user.
     
 \end{enumerate}
 
