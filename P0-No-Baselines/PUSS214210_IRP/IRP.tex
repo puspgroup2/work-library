@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+% ---- Commands ------- %
+\newcommand{\documentNumber}[1]{
+    \LARGE  \textbf{ PUSS2142{#1} } \\
+    \medskip
+}
+\newcommand{\documentVersion}[1]{
+    v. {#1} \\
+    \medskip
+}
+\newcommand{\documentTitle}[1]{
+    \centerline{\rule{13cm}{0.4pt}}
+    \bigskip \bigskip
+    \LARGE {#1} \\
+    \bigskip \bigskip
+    \centerline{\rule{13cm}{0.4pt}}
+}
+\newcommand{\documentGroup}[1]{
+    \bigskip \bigskip
+    \LARGE Group {#1} \\
+    \bigskip
+}
+\newcommand{\documentResponsible}[1]{
+    \LARGE Responsible: {#1} \\
+    \medskip
+}
+\newcommand{\documentAuthors}[1]{
+    \LARGE Authors: {#1} \\
+    \medskip    
+}
+\newcommand{\documentDate}[1]{
+    \date {#1} 
+}
+
+\graphicspath{{./images/}} %Defines a path to file images
+
+% --- Header & Footer ---- %
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{}
+\rfoot{\thepage}
+\cfoot{}
+\lfoot{}
+
+
+% ------------------------------------------------ #
+
+% ----- FILL THIS ----- %
+\title {
+    % Must be 2 digits
+        \documentNumber {10}    
+    
+    \documentVersion {0.1}
+    
+    % Full name - SHORTNAME
+    \documentTitle {Informal Review Protocol}
+    \documentGroup {2}
+    
+    % Options: - Project management Group
+    %          - System architecture Group
+    %          - Developer Group
+    %          - Test Group
+    \documentResponsible {Project management group}
+    \documentAuthors {Project management group}
+    
+    % Format: YYYY-MM-DD
+    \documentDate {2021-01-31}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%---------Document begins here-----------
+
+\section{Introduction}
+    The goal of the informal review is to identfiy discrepencies between documents, grammatical errors and ambiguities. A documents does \emph{not} pass an informal review, it is only a system for detecting errors that would cause it to fail a formal review.  
+    Since most of the documents that are produced during a phase are dependant on other documents, the informal review covers every docuemnt written during the phase.
+
+\section{Preparation}
+    \subsection{Picking reviewers}
+        PG is resposible for picking a set of reviewers from the subgroups. Documents should be reviewed by 3 people from a group that has not authored the document. The reviewers are to do their reviews independently. Reviewers should be rotated for an even work distribution.
+
+    \subsection{Submitting a document for review}
+        Every group makes sure that an up to date verison of their docuemnt
+        available at latest 17:00 the day before the informal review meeting. Should the document be in an unfinished state at this time, authors will make a note covering what parts are unfinished. Unfinished parts of the document will be ignored by reviewers. 
+
+\newpage
+\section{Exectuion}
+    Documents and code have different criteria and should therefor be reviewed differently. Be sure to take notes whilst reading so that the authors can go over it later. 
+    
+    \subsection{Document Criteria}
+    \begin{itemize}
+        \item Is the docuemnt grammatically correct and adheres to the our document standards?
+        \item Does the document cover all the necessery points defined in the project tutorial?
+        \item If the document is dependant on another document, do the contents of the document match? Meaning, is there any confusion as to how they relate to one and other.
+    \end{itemize}
+    
+    \subsection{Code Criteria}
+    \begin{itemize}
+        \item Does the code follow the high level architecture defined by the System architecture group?
+        \item Does the code adhere to our coding standard?
+        \item Do comments follow the javadoc-convention?
+        \item Does the software behave as expected?
+        \item Is it possible to 'break' the software?
+    \end{itemize}
+    
+    
+\newpage
+\section{Reporting results and correcting}
+    \subsection{Informal Review Meeting}
+        The result will be reported in a group-wide meeting. Every document gets 10-20 minutes of time. If the results warrant further discussion, the parties involved will continue the discussion after the meeting.
+
+    \subsection{Correcting Eventual Errors}
+        Informal reviews are scheduled to give authors enough time to correct errors before the hand in-deadline for formal reviews.
+
+\end{document}

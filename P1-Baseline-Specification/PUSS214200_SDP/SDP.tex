@@ -19,8 +19,6 @@
 \newcommand{\documentTitle}[1]{
     \centerline{\rule{13cm}{0.4pt}}
     \bigskip \bigskip
-    \LARGE \textbf{TimeMate} \\
-    \bigskip
     \LARGE {#1} \\
     \bigskip \bigskip
     \centerline{\rule{13cm}{0.4pt}}
@@ -59,12 +57,12 @@
 
 \title {
     \documentNumber {00}    % Must be 2 digits
-    \documentVersion {0.3}
+    \documentVersion {0.4}
     \documentTitle {Software Development Plan}
     \documentGroup {2}
     \documentResponsible {Project Management Group}
     \documentAuthors {Project Management Group}
-    \documentDate {2021-02-04}
+    \documentDate {2021-02-10}
 }
 
 \begin{document}
@@ -85,11 +83,12 @@
     0.1 & 2021-01-25 & PG & Document created. \\
     0.2 & 2021-02-02 & PG & Ready for informal review. \\
     0.3 & 2021-02-04 & PG & Fixed gramatical changes and typos. \\
+    0.4 & 2021-02-10 & PG & Fixed typos and clarified the usage of E-PUSS. \\
 \end{tabular}
 
 \section{Introduction}
     This document describes the development model and the development plan for TimeMate.
-    TimeMate and is a system for time reporting and is based on \textit{Baseblock System} and will be developed by students at LTH for the course 
+    TimeMate is a system for time reporting and is based on \textit{Baseblock System} and will be developed by students at LTH for the course
     \textit{ETSF20 Programvaruutveckling för stora projekt}.
 
 \section{Terminology}
@@ -108,7 +107,7 @@
             \hline
                 PG & Project Management Group \\
             \hline 
-                CML & Configuration unit Management List \\
+                CML & Configuration item Management List \\
             \hline            
                 ECG & Error Control Group \\
             \hline
@@ -137,12 +136,13 @@
         \label{Terminology}
     \end{table}
 
-\section{Referenced Documents}
+\section{Referenced Documents \label{refs}}
     \begin{itemize}
-        \item Baseblock system, is the base system used in TimeMate.
-        \item \href{https://docs.oracle.com/javase/specs/jls/se11/html/index.html}{The Java Language Specification}, describes the code convetion that is followed in this project.
-        \item \label{PH} Project Instruction (Projekthandledningen), contains all details on how the project is structured.
-        \item CML, consists of all configuration units in the project.
+        \item Software Requirements Specification: BaseBlockSystem, v. 1.0, Doc. number: PUSS12002
+        \item \href{https://docs.oracle.com/javase/specs/jls/se11/html/index.html}{The Java Language Specification, Java SE 11 Edition}.
+        \item \label{PH} Project Instruction (Projekthandledningen).
+        \item Informal Review Protocol, v. 0.1, Doc. number: PUSS214210.
+        \item Configuration item Management List, v. 0.1, Doc. number: PUSS214209.
     \end{itemize}
     
 
@@ -279,7 +279,7 @@
         \textbf{Responsibilities: }
         \begin{itemize}
             \item Managing error reports.
-            \item Handling configuration management. 
+            \item Handling Configuration management.
             \item Updating baseline documents.  
         \end{itemize}
 
@@ -294,7 +294,6 @@
 
 \section{Schedule}
     The project starts in week 3 and ends in week 12, which means there are 9 weeks available. In every phase, several documents shall be produced and table \ref{documenttable} illustrates which documents should be produced for each phase. Figure \ref{schedule} illustrates the estimated time for each phase and the estimated days scheduled for meetings, informal reviews and formal reviews (see section \ref{informalreview}).
-    
     \begin{table}[h]
         \centering
         \begin{tabular}{| c | p{0.2\textwidth} |}
@@ -344,11 +343,11 @@
         \caption{Estimated project schedule}
         \label{schedule}
     \end{figure}
-    \noindent
-    \\
-    Project Group Meetings will be held on Tuesdays and these meetings will be mandatory for each member in the group.
-    These meetings will be used to discuss the project and take general decisions. This is an important step in the development model, to ensure that everyone is on the same page and that the time plan is being kept.
     
+    \subsection{Project Group Meetings \label{PM}}
+        Project Group Meetings will be held on Tuesdays and these meetings will be mandatory for each member in the group.
+        These meetings will be used to discuss the project and take general decisions. This is an important step in the development model, to ensure that everyone is on the same page and that the time plan is being kept.
+
     \subsection{Estimated Work Load}
         PG holds a one hour long meeting every week and has scheduled for a two hour time slot every Wednesday during which every group works on their respective task. To supplement this, the groups are expected to manage their own planning meetings and work sessions. Since the workload of each group varies between phases, it seems more fitting to allow groups the flexibility of managing their own time. Group leaders are tasked with making sure that coordination between groups is constant throughout the project. PG also estimates that approximately an hour every week will be spent on general discussions in the discord channel.
         \\ \\
@@ -445,13 +444,13 @@
         as possible for the formal review. The result of the review is \emph{not} pass or
         not pass, but its purpose is rather to improve the documents.
         \\ \\
-        An informal review is carried out at least 3 days before the following formal review and the documents that
-        are up for review be reviewed should ready no later than 17:00 the day before the review.    PG is responsible
+        An informal review is carried out at least 3 days before the following formal review and the documents
+        should ready no later than 17:00 the day before the review. PG is responsible
         for coordinating the meetings as well as documenting them.
         There are at least three reviewers assigned for each document to be reviewed, and these
         are assigned by PG. During the review, the reviewers will mention and discuss what they have
-        found and then the reviewees will get an opportunity to reply and have a discussion
-        if needed. A detailed guide for the informal reviews are found in the IRP. 
+        found and then the reviewees will get an opportitemy to reply and have a discussion
+        if needed. For a detailed description of how informal reviews are structured see IRP.
         \\ \\
         To emphasize, the informal review is \emph{not} ment to criticize or judge, but rather
         to make the documents as good as possible. 
@@ -476,43 +475,40 @@
         to do a new review after certain modifications have been made.
             
     \subsection{Following the Timeplan}
-        If the project is unable to follow timeplan for some reason, the following steps should be:
+        If the project is unable to follow timeplan for some reason, the following steps should be taken:
         \begin{enumerate}
-            \item \textbf{Identify the problem} - This is the most critical step of the            procedure because the cause could be anything from a bad timeplan to
+            \item \textbf{Identify the problem}: This is the most critical step of the            procedure because the cause could be anything from a bad timeplan to
                     members of the team being sick and unable to work.
-            \item \textbf{Explore possible solutions} - Depending on what kind of problem has occured, there might be several different solutions and therefore it important to identify and weigh the different ones.
+            \item \textbf{Explore possible solutions}: Depending on what kind of problem has occured, there might be several different solutions and therefore it is important to identify and weigh the different ones.
             \item \textbf{Pick a solution}. 
             \item \textbf{Take an action}. 
-            \item \textbf{Prevent the problem from happening again} - 
+            \item \textbf{Prevent the problem from happening again}:
                     To prevent the problem from happening again, there must be some
                     type of follow-up routine. Depending on what the problem scenario is,
                     this follow-up could be a personal meeting between PG and the persons
                     involved, or re-creating a timeplan using a different technique.
-                    The take-away here is to note the problem, the action and the result of the action. 
         \end{enumerate}
 
 \section{Configuration Management}   % Victor
-    All changes to units in the CML must follow a certain procedure once the documents
-    have reached baseline. Git and Github are the main tools used to handle configuration management in this project.
+    All changes to items in the CML must follow a certain procedure once the documents
+    have reached baseline. Git and Github are the main tools used for version control in this project.
 
     \subsection{Project Library \label{project_library}}
         The project library consists of two seperate libraries: Document libray and Work library.
     
-        \subsubsection{Document Library \label{doclibrary}}
+        \subsubsection{Document Library \label{doclibrary}} %10.1.1
             The document library consists of the following:
             
             \begin{itemize}
-                \item All configuration units that have reached baseline.
-                \item All documents that invloves version control and change management (see section \ref{versioncontrol}).
+                \item All configuration items that have reached baselines.
                 \item Protocols from informal reviews (see section \ref{informalreview}).
                 \item Protocols from formal reviews (see section \ref{formalreview}).
                 \item Protocols and agendas from Project Group Meetings (see section \ref{PM}).
             \end{itemize}
             \noindent
             The purpose of this library is that the customer or a reviewer at any point should be able to access the forementioned. 
-            This means that this library is initially almost empty, and documents are added as the project proceeds. In the end of phase 4, all units listed in CML can be found in this library.
+            This means that this library is initially almost empty, and documents are added as the project proceeds. In the end of phase 4, all items listed in CML can be found in this library.
 
-            
         \subsubsection{Work Library}
             The work library contains all the files that are required during the project.
             The library is divided into three different branches where each branch has its unique purpose.
@@ -532,7 +528,6 @@
                 \textit{master} branch, which consists only of files that have reached baseline.
                 Once new documents are added to this branch, they are also placed in the document library (see section \ref{doclibrary}).
                 Note that not all files are copied to the document library, but only the documents specified in the CML.
-                
             \end{itemize}
             
             \begin{figure}[h]
@@ -542,33 +537,51 @@
                 \label{workflow}
             \end{figure}
         
-    \subsection{Version Control \label{versioncontrol}}
-        Before a configuration unit has reached baseline, changes to the unit
+    \subsection{Change Management \label{versioncontrol}} %10.2
+        \subsubsection{E-PUSS}
+             E-PUSS is an electronic reporting tool which is used to track and handle
+             change management in the project. Details of the tool can be found in appendix B
+             in Project Instruction (see section \ref{refs}).
+
+        \subsubsection{Error Reports}
+            When a document that has reached baseline requires a change, an error report
+            is created in E-PUSS. Exact details of the error report can be found in
+            appendix A, under \textit{Problemrapport} in Project Instruction (see section \ref{refs}).
+
+        \subsubsection{Status Reports}
+            Status reports will be created in E-PUSS for every configuration item. All changes made to a configuration will be documented in the status report. The following information will be stored:
+            \begin{itemize}
+                \item Problem ID
+                \item Who is resposible for the change
+                \item Deadline for the change
+                \item The version number of the document \emph{after} the change
+                \item Comment
+            \end{itemize}
+            \noindent *\emph{Optional. Used to match changes with error reports. }
+
+        \subsection{Making Changes To Baseline Documents}
+        Before a configuration item has reached baseline, changes to the item
         may occur freely, without any restrictions.
-        However, once a configuration unit has reached baseline there are several steps
+        However, once a configuration item has reached baseline, there are several steps
         that must be taken in order to make changes to it.
         These steps consist of the following:
         \begin{enumerate}
-            \item Creating an error report that states what the
-                    error is with the unit, in its current state.
-            \item The error report is handed to the ECG who then decides if the error is              legitimate.
+            \item Create an error report.
+            \item ECG evalutes the report and decides if it warrants a fix.
                 \begin{enumerate}
-                    \item If the error is deemed legitimate, then they
-                    propose a solution and
-                    decides who shall be responsible to fix the problem.
-                    Once the error is corrected, ECG must approve it
-                    and then the version number for the unit must be updated.
-                    \item If ECG decides that the error is to be discarded.
+                    \item If the error is deemed legitimate, ECG proposes a solution and decides who shall be responsible to fix the problem. Once the error is corrected, ECG signs it and the version number is incremented.
+                    \item If the error is found to ilegitimate, e.g it occured during an outdated test, the report is discarded.
                 \end{enumerate}
         \end{enumerate}
         The exact details of this procedure can be found in the Project Instruction (see section \ref{PH}).
 
+
     \subsection{Version Naming \& Update}
         The version number is in the format of $X.Y$ where $X$ refers to the baseline
-        of the unit (in this project, $X$ will be either $0$ or $1$). $Y$ refers
+        of the item (in this project, $X$ will be either $0$ or $1$). $Y$ refers
         to which version at the given baseline.
         \\ \\
-        How the version number is decided depends on if the unit has reached baseline or not.
+        How the version number is decided depends on if the item has reached baseline or not.
         \begin{table}[h]
             \centering
             \begin{tabular}{|c|l|}
@@ -576,16 +589,16 @@
                     \textbf{Baseline} & \textbf{How $Y$ is decided.} \\
                 \hline
                     Before & \parbox{.8\textwidth} { \vspace{.2cm}
-                            Once a unit has been created, the $Y$
-                            starts at 1, which results in version $0.1$. When the unit is ready for informal
-                            review, the $Y$ is incremented to 2. Then, the $Y$ is incremented once for every change to the unit until it passes a formal review. This means that before reaching baseline, a unit will have a version of at least $0.2$.
+                            Once a item has been created, the $Y$
+                            starts at 1, which results in version $0.1$. When the item is ready for informal
+                            review, the $Y$ is incremented to 2. Then, the $Y$ is incremented once for every change to the item until it passes a formal review. This means that before reaching baseline, a item will have a version of at least $0.2$.
                             \vspace{.2cm} } \\
                 \hline
                     After & \parbox{.8\textwidth} { \vspace{.2cm}
                         If and only if the procedure described in \ref{versioncontrol}, when a document has reached baseline, results in a modification of the
-                        configuration unit, the $Y$ is incremented. This means that
-                        it is significantly harder to modify a configration unit once
-                        is has reached baseline. This should make sense since units
+                        configuration item, the $Y$ is incremented. This means that
+                        it is significantly harder to modify a configration item once
+                        is has reached baseline. This should make sense since items
                         that have reached baseline have passed formal reviews, which means
                         that they can be seen as valid and reliable.
                         \vspace{.2cm}} \\
@@ -599,10 +612,10 @@
     To ensure clear communcation and efficiency PG has set up a series of rules and guidelines. If these rules are not followed, there will be a meeting with the involved parties to determine cause and future actions. 
     
     \begin{itemize}
-        \item \textbf{React to information} - Discord has a feature that allows users to react to messages with an emoji. This is a good way to let the sender know that their message has been acknowledged.
-        \item \textbf{Mandatory attendance for group meetings and work sessions} - If a group member is unable to attend a meeting they are expected to contact PG and get the information shared during the meeting another way.  
-        \item \textbf{Weekly time report in epuss every Sunday 17:00}
-        \item \textbf{Official project language is English}
+        \item \textbf{React to information}: Discord has a feature that allows users to react to messages with an emoji. This is a good way to let the sender know that their message has been acknowledged.
+        \item \textbf{Mandatory attendance for group meetings and work sessions}: If a group member is unable to attend a meeting they are expected to contact PG and get the information shared during the meeting another way.
+        \item \textbf{Weekly time report in E-PUSS every Sunday 17:00}
+        \item \textbf{Official project language is English}: Due to english being the dominant language in software development PG has chosen that the project be done in english. This avoids ambigous translations or mixing of languages.
         \item \textbf{Be on time}
     \end{itemize}
 
@@ -661,7 +674,7 @@
                         \item Be very clear \emph{where} we communicate, ask questions.
                         \item Everyone will pay extra attention to all communication channels
                             in use.
-                        \item Ensure that the other part of the communcation has recieved
+                        \item Ensure that the other party of the communcation has recieved
                             and understood the information.
                         \item Practice active listening, ask for confirmation. \\
                      \end{itemize}
@@ -722,7 +735,7 @@
                 \begin{minipage}[t]{0.4\textwidth}
                 \begin{itemize}
                     \item Tension during meetings. 
-                    \item Group members are withdrawn out of fear of judgement. 
+                    \item Group members are silent during meetings due to fear of judgement.
                  \end{itemize}
                  \end{minipage}
             & \begin{minipage}[t]{0.4\textwidth}
@@ -735,7 +748,7 @@
                  \end{minipage} \\
             \hline
         \end{tabular}
-        \caption{Warning signs and solutions}
+        \caption{Warning signs and solutions.}
     \end{table}
     
 \end{document}
