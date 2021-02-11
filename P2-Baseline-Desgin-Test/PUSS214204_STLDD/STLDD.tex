@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+% ---- Commands ------- %
+\newcommand{\documentNumber}[1]{
+    \LARGE  \textbf{ PUSS21420{#4} } \\
+    \medskip
+}
+\newcommand{\documentVersion}[1]{
+    v. {#1}
+
+    \medskip
+}
+\newcommand{\documentTitle}[1]{
+    \centerline{\rule{13cm}{0.4pt}}
+    \bigskip \bigskip
+    \LARGE \textbf{TimeMate} \\
+    \bigskip
+    \LARGE {#1} \\
+    \bigskip \bigskip
+    \centerline{\rule{13cm}{0.4pt}}
+}
+\newcommand{\documentGroup}[1]{
+    \bigskip \bigskip
+    \LARGE Group {#1} \\
+    \bigskip
+}
+\newcommand{\documentResponsible}[1]{
+    \LARGE Responsible: {#1} \\
+    \medskip
+}
+\newcommand{\documentAuthors}[1]{
+    \LARGE Authors: {#1} \\
+    \medskip    
+}
+\newcommand{\documentDate}[1]{
+    \date {#1} 
+}
+
+\graphicspath{{./images/}} % Defines a path to file images
+\renewcommand{\arraystretch}{1.7}  % Vertical padding for tables
+
+
+% --- Header & Footer ---- %
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{}
+\rfoot{\thepage}
+\cfoot{}
+\lfoot{}
+
+
+% ------------------------------------------------ #
+
+% ----- FILL THIS ----- %
+\title {
+    % Must be 2 digits
+    \documentNumber {01}    
+    
+    % BASELINE.VERSION
+    \documentVersion {0.1}
+    
+    % Full name - SHORTNAME
+    \documentTitle {Software Top Level Design Document}
+    \documentGroup {2}
+    
+    % Options: - Project Management Group
+    %          - System Architecture Group
+    %          - Developer Group
+    %          - Test Group
+    \documentResponsible {System Group}
+    \documentAuthors {Developer Group}
+    
+    % Format: YYYY-MM-DD
+    \documentDate {2021-02-11}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%---------Document begins here-----------
+
+% FILL IN CORRECT VERSION HISTORY!
+% Not sure? Refer to SDP how it works or ask someone!
+\section{Document History}
+\begin{tabular}{ l | l | l | l }
+    Version & Date & Responsible & Description \\
+    \hline
+    0.1 & 2021-02-11 & UG & Document created. \\
+\end{tabular}
+
+\section{Introduction}
+This document describes the design of "TimeMate". The system is a further development of the system "BaseBlockSystem". "TimeMate" hosts various functions related to the creating of time reports, getting a view of reported time and more.
+
+\section{Reference Documents}
+\begin{enumerate}
+    \item Software Requirements Specification: TimeMate, v. 0.5, Doc. number: PUSS214201
+    \item Software Top Level Design Document: BaseBlockSystem, v 1.0, Doc. number: PUSS12004
+\end{enumerate}
+
+\section{Overview}
+Overview of the system
+
+%---------Document ends here-----------
+
+\end{document}
