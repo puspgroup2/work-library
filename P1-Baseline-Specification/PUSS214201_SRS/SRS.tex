@@ -3,6 +3,7 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{geometry}
+\usepackage{float}
 
 % ---- Commands ------- %
 \newcommand{\documentNumber}[1]{
@@ -59,7 +60,7 @@
     % Must be 2 digits
     \documentNumber {01}    
     
-    \documentVersion {0.3}
+    \documentVersion {0.5}
     
     % Full name - SHORTNAME
     \documentTitle {Software Requirements Specification}
@@ -73,7 +74,7 @@
     \documentAuthors {System Group, Development Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-02-04}
+    \documentDate {2021-02-11}
 }
 
 \begin{document}
@@ -94,18 +95,19 @@
     0.1 & 2021-01-25 & SG & Document created. \\
     0.2 & 2021-02-02 & SG & Ready for informal review. \\
     0.3 & 2021-02-04 & SG & Fixed gramatical changes and typos. \\
+    0.4 & 2021-02-09 & SG & Requirements added, removed or changed after comments from formal review. \\
+    0.5 & 2021-02-11 & SG & Grammatical changes and fixes after comments from informal review. \\
 \end{tabular}
 
 \section{Introduction}
 
-This document presents the requirements for TimeMate. TimeMate is a system whose purpose and main functionality is to administer time reporting with web-usage capabilities. 
+This document presents the requirements for TimeMate. TimeMate is a system which purpose and main functionality is to administer time reporting with web-usage capabilities. Figure 1 shows how the system is supposed to interact with the database, the server and the client.
 
 
 \section{Reference Documents}
 
 \begin{enumerate}
-  \item Software Requirements Specification: \emph{BaseBlockSystem}, v. 1.0, Doc. number: PUSS12002
-  \item The requirements of \emph{BaseBlockSystem} applies to this document and are therefore implemented in TimeMate. The following requirements will \emph{not} be implemented; 6.2.3, 6.3.4
+  \item Software Requirements Specification: \emph{BaseBlockSystem}, v. 1.0, Doc. number: PUSS12002.
   
 \end{enumerate}
 
@@ -118,10 +120,10 @@ The goal is to develop and distribute a web-based system where the user can repo
 The system can be used and administrated by the following actors:
 
 \begin{itemize}
-  \item \textbf{User:} The user has the authority to log in to the system to report and  change past reported time as well as review their reported times. The user also inherits roles as either "PG", "SG", "UG" or "TG".
+  \item \textbf{User:} The user has the authority to log in to the system to report and  change past reported time as well as review their reported times. The users are assigned roles as either "PG", "SG", "UG" or "TG".
   \item \textbf{Project Leader:}
   The project leaders' main objective is to administer groups within the project. This implies that the project leader has the authority to add and remove as well as assign users from/to designated roles.
-   \item \textbf{Administrator:} The administrator has the authority to add and remove users from the system along with creating and removing project groups. The admin is the only role that can assign the role “Project leader” to a user. The main goal of this role is to be able to administrate creation and removal of users.
+   \item \textbf{Administrator:} The administrator has the authority to add and remove users from the system along with creating and removing project groups. The administrator is the only role that can assign the role “Project leader” to a user. The main goal of this role is to be able to administrate addition and removal of users.
 \end{itemize}
 
 
@@ -137,61 +139,45 @@ The system can be used and administrated by the following actors:
   A set of cryptographic hash functions used to protect users passwords.
 \item \textbf{Salt string:}
   A salt string is a random string that is used in conjunction with SHA-2 to create safer passwords and protect against attacks.
+\item \textbf{Sign}
+  An action available to the role "PG" which makes documents uneditable by users.
+\item \textbf{Unsign}
+  An action available to the role "PG" on signed documents which makes them editable again. 
 \end{itemize}
 
 
-
-
-\section{Context Diagram}
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{Flowchart_6.jpg}
-\caption{Context diagram}
-\end{figure}
-
 \section{Functional Requirements}
+\item The requirements of \emph{BaseBlockSystem} applies to this document and are therefore implemented in TimeMate. The following requirements will \emph{not} be implemented; 6.2.3, 6.3.4
+
 \subsection{Login and Logout}
 
 
 \subsubsection{Requirement}
-If the user has forgotten their password, they should receive a newly generated password from the server to the email connected to their username.
-
-Users who have forgotten their passwords should be able to receive from the server a newly generated password to the email connected to their username. The users current password is then overwritten with the new password.
-
-\subsubsection{Requirement}
-New users should be assigned newly generated passwords by the server and receive them by email.
+If the user requests a new password, they should receive a new, automatically generated password from the server to the email connected to their username. The user's former password is then deleted from the database and overwritten with the new password.
 
 \subsection{Data}
 \subsubsection{Requirement}
-A password should consist of at least one character of each type. [a-z][A-Z][1-9] with a minimum of 8 characters.
+A password should consist of at least one character of each type: [a-z][A-Z][0-9] with a minimum of 8 characters. This replaces requirement 6.2.3 in \emph{PUSS12002}, v1.0
+
 \subsubsection{Requirement}
 Passwords should be encrypted using SHA-2 and include a randomly generated salt string in the encryption process.
 
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.5\textwidth]{PUSPERdiagram.png}
-\caption{ER-diagram}
-\end{figure}
-
 \subsection{User}
-\subsubsection{Requirement}
-Users should be able to create and submit time reports
 
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
 
-\textbf{Scenario:} The user wants to submit a time report.
+\textbf{Scenario:} The user wants to create a new time report and submit it. 
 
 \textbf{Prerequisites:} The user is logged in to the system.
 
 \begin{enumerate}
 
-
 \item The user navigates to the page “Time Report”. 
 \item The user is presented with an overview of their previously reported time. 
 \item The user presses the button “Create New Time Report”
-\item The user fills in the blank textboxes with the time in minutes they have spent on the different activities.
-\item The user presses the button for “Submit”.
+\item The user fills in the blank text boxes with the time in minutes they have spent on their different time reports.
+\item The user presses the button “Submit”.
 \item The time report is saved to the server and the user is presented with a popup window confirming that the changes have been made.
 \item An updated view of the page is displayed.
 \end{enumerate}
@@ -205,7 +191,7 @@ The following scenario should be supported by the system.
 \begin{enumerate}
 
 
-\item The user navigates to the page “Time report”.
+\item The user navigates to the page “Time Report”.
 \item A page is displayed which includes the option to report time, edit old time reports but also review a summarized view of their previously logged time. 
 \end{enumerate}
 
@@ -225,15 +211,10 @@ The following scenario should be supported by the system.
 \item The user is presented with a new page which includes the previously reported time table. 
 \item The user fills in the new time.
 \item The user clicks on the button “Submit Change”.
-\item The old time report is replaced with the updated one and the system confirms that the changes have been made.  
+\item The system is updated with the new time report.
 \item An updated view of the page is displayed.
 
 \end{enumerate}
-
-\subsubsection{Requirement}
-Users should be able to change their password on the “My profile” page.
-\subsubsection{Requirement}
-Users who change their password should not be able to set their new password to be the same as their current password.
 
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
@@ -244,10 +225,10 @@ The following scenario should be supported by the system.
 
 \begin{enumerate}
     \item The user clicks on the “Change Password” button in the menu.
-    \item The user is presented with a page which includes three relevant textboxes.
-    \item The user fills in the first textbox with their current password.
-    \item The user fills in the second textbox with their new password.
-    \item The user repeats their new password in the third textbox.
+    \item The user is presented with a page which includes three relevant text boxes.
+    \item The user fills in the first text box with their current password.
+    \item The user fills in the second text box with their new password.
+    \item The user repeats their new password in the third text box.
     \item The user clicks the button “Change Password”.
     \item The user's password is changed in the system.
     \item The user is presented with a popup window confirming that the changes has been made.
@@ -258,23 +239,27 @@ The following scenario should be supported by the system.
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
 
-\textbf{Scenario:} A user wants to change their password with invalid entry.
+\textbf{Scenario:} A user wants to change their password with an invalid entry.
 
 \textbf{Prerequisites:} The user is logged in to the system
 
 \begin{enumerate}
     \item The user clicks on the “Change Password” button in the menu.
-    \item The user is presented with a page which includes three relevant textboxes.
-    \item The user fills in the first textbox with their current password.
-    \item The user fills in the second textbox with their new password which does not meet requirement 6.2.1.
-    \item The user repeats their new password in the third textbox.
+    \item The user is presented with a page which includes three relevant text boxes.
+    \item The user fills in the first text box with their current password.
+    \item The user fills in the second text box with their new password which does not meet requirement 7.2.1 from this document.
+    \item The user repeats their new password in the third text box.
     \item The user clicks the button “Change Password”.
     \item The user's password is not changed and a popup window with an error message is displayed.
-    \item The user is sent back to stage 3.
+    \item The user is sent back to stage 2.
 \end{enumerate}
 
 \subsubsection{Requirement}
-Users should not be able to edit signed time-reports.
+Users should be able to edit unsigned time reports submitted by them
+\subsubsection{Requirement}
+Users should not be able to edit signed time-reports submitted by them.
+
+
 
 \subsection{Project Leader}
 \subsubsection{Requirement}
@@ -290,23 +275,23 @@ The following scenario should be supported by the system.
     \item The project leader clicks on a user name and it displays the user’s time reports.
 \end{enumerate}
 
-\subsubsection{Requirement}
-Project leaders should be able to create and submit a time report.
 
 \subsubsection{Requirement}
-Project leader should be able to view all project members and their individual roles.
-
+Project leader should be able to view all project members and their individual roles on the "User Management" page in the form of a list.
 
 \subsubsection{Requirement}
 Project leaders should be able to change a project members role except themselves and other project leaders.
 
 \subsubsection{Requirement}
-Project leaders should be able to sign time reports, making them uneditable. This should be reversible.
+Project leaders should be able to \textit{sign} time reports by clicking on the corresponding checkbox on the page displaying time reports.
+
+\subsubsection{Requirement}
+Project leaders should be able to \textit{unsign} time reports by clicking on the corresponding checkbox on the page displaying time reports.
 
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
 
-\textbf{Scenario:} Project leader tries to sign a weekly report
+\textbf{Scenario:} Project leader signs a weekly report
 
 \textbf{Prerequisites:} User has the role ”Project leader”, weekly reports exists
 
@@ -315,21 +300,21 @@ The following scenario should be supported by the system.
     \item A list of all the unsigned weekly reports is shown to the project leader.
     \item The project leader can sign the reports by clicking on the corresponding checkbox.
     \item The project leader confirms their selection by pressing on the “Confirm” button
-    \item The system sends the changes to the server.
+    \item The system sends an update to the database, changing the “Signature” column in the “Time Report” table to "signed".
     \item The system returns an updated list of unsigned reports, or an empty list if none exists
 \end{enumerate}
 
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
 
-\textbf{Scenario:} Project leader tries to assign roles to members.
+\textbf{Scenario:} Project leader assigns roles to members.
 
 \textbf{Prerequisites:} User has the role “Project leader”, members exist and the user is on the “User Management“ page.
 
 \begin{enumerate}
     \item The project leader can change members' roles by clicking on the corresponding radio button.
     \item Project leader confirms changes made by pressing “Confirm”.
-    \item The system sends the changes to the server.
+    \item The system updates the "role" field in the database for the selected user.
     
 \end{enumerate}
 
@@ -340,24 +325,24 @@ The following scenario should be supported by the system.
 \subsubsection{Requirement}
 Only the administrator should have access to the administration page.
 
-\subsubsection{Requirement}
-All requirements and scenarios listed for "Users" and "Project Leaders" should also apply to the administrator.
 
 \subsubsection{Requirement}
 The following scenarios should be supported by the system.
 
-\textbf{Scenario:} The administrator tries to add a user.
+\textbf{Scenario:} The administrator adds a new user.
 
 \textbf{Prerequisites:} The administrator is on the “Administration” page.
 
 \begin{enumerate}
-    \item Administrator clicks on the button to add a user.
-    \item Administrator inputs the name of the user.
-    \item The inputs are sent to the server which adds it to the database and generates a password.
-    \item The system creates a new entry in the user list and inserts the inputted name.
-    \item The server returns the password to the corresponding field in the user list.
-    \item The user clicks the button “Change Password”.
-    \item The updated user list is shown to the administrator.
+    \item The administrator clicks on the button \emph{add a user}.
+    \item The administrator types in the username of the new user in an empty text field marked with the text \emph{User Name}.
+    \item The administrator types in the email address of the new user in an empty text field marked with the text \emph{Email Address}.
+    \item The inputs are sent to the server which adds it to the database.
+    \item A random password is generated automatically and gets associated with the new user.
+    \item The system creates a new entry in the user list and inserts the information about the new user.
+    \item The automatically generated password is returned to the corresponding entry in the user list, where it is saved.
+    \item The password is sent to the email address associated with the new user.
+    \item An updated view of the user list is displayed.
 \end{enumerate}
 
 \subsubsection{Requirement}
@@ -407,19 +392,22 @@ The following scenario should be supported by the system.
 \subsubsection{Requirement}
 The following scenario should be supported by the system.
 
-\textbf{Scenario:} The administrator tries to assign roles to members.
+\textbf{Scenario:} The administrator tries to assign roles to user.
 
-\textbf{Prerequisites:} The administrator is on the "User Management" page and members exist.
+\textbf{Prerequisites:} The administrator is on the "User Management" as defined in requirement 7.0.6. A page and user exist.
 
 \begin{enumerate}
-    \item Administrator can change members' roles by clicking on the corresponding radio button.
+    \item Administrator can change users' roles by clicking on the corresponding radio button.
     \item Administrator confirms changes made by pressing “Confirm”.
-    \item The system sends the changes to the server.
+    \item The system updates the "role" field in the database for the newly selected user.
     
 \end{enumerate}
 
+\subsubsection{Requirement}
+The administrator should be able to view all user information in the database in the form of a list on the administration page. 
 
 \section{Design Requirements}
+\item The requirements of \emph{BaseBlockSystem} applies to this document and are therefore implemented in TimeMate. The following requirements will \emph{not} be implemented; 6.2.3, 6.3.4.
 
 \subsubsection{Requirement}
 The main font should be web safe and belong to one of the following font
@@ -442,8 +430,8 @@ The content should keep its centered position when the window is extended.
 A fixed navigation/menu bar shall be placed horizontally at the very top
 of the page.
 \subsubsection{Requirement}
-Selections \textit{Main-page}, \textit{Administration},\textit{User Management}, \textit{Time Reporting}
-and \textit{My profile} should be included in the menu bar. Other menu selections
+Selections \textit{Main-page}, \textit{Administration},\textit{User Management} and \textit{Time Reporting} 
+should be included in the menu bar. Other menu selections
 should be categorized as subheadings belonging to one of the primary
 menu choices and should not be visible or clickable by default.
 The administration page should only be visible to the administrator.
@@ -455,23 +443,41 @@ When a menu selection containing one or more subheadings is selected, the arrowh
 upwards.
 
 \subsubsection{Requirement}
+The \textit{Main-page} should be the default page the user sees after logging into the system.
+
+\subsubsection{Requirement}
+The \textit{Administration} page should support the functionality of requirement 7.5.1, 7.5.2, 7.5.3, 7.5.4 , 7.5.5, 7.5.6 from this document.
+
+\subsubsection{Requirement}
+The \textit{User Management} page should support the functionality of requirement 7.4.2 and 7.4.7 from this document.
+
+\subsubsection{Requirement}
+The \textit{Time Reporting} page should support the functionality of requirement 7.3.1, 7.3.2, 7.3.3, 7.3.6, 7.3.7 and 7.4.1 from this document.
+
+\subsubsection{Requirement}
 The system logo and/or the system name should be placed on the far left
 of the menu bar.
 
 \subsubsection{Requirement}
-The logout button should always be visible.
+The logout button should always be visible when the user is logged into the system. 
 
 \section{Project Requirements}
 \subsection{Development Environment}
 
 \subsubsection{Requirement}
-The back end of the system should use Java JDK 11 as a development environment.
+The back end of the system should use Java JDK 11.0.10 as a development environment.
 
 \subsubsection{Requirement}
 The front end of the system should use Bootstrap v.4.5.3.
 
 \subsubsection{Requirement}
-The database should be developed in MySQL.
+The database should be developed in MySQL v.10.4.17 (MariaDB).
+
+\subsubsection{Requirement}
+The database should be accessed through a VPN connected to LTH's network.
+
+\subsubsection{Requirement}
+The system should use Apace Tomcat 9.0.33.
 
 \subsubsection{Requirement}
 Error messages should be in the following format: ”Error code – Reason”.
