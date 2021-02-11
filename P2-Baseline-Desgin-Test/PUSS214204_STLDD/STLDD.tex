@@ -113,6 +113,8 @@ This document describes the design of "TimeMate". The system is a further develo
 \begin{itemize}
 \item \textbf{Java Server Page (JSP):} Server-side technology that enables the creation of dynamic views.
 \item \textbf{Placeholder:} Placeholder
+\item \textbf{Servlets:}
+\item \textbf{Java Bean:}
 \end{itemize}
 
 \section{Overview}
@@ -126,6 +128,29 @@ The view that is shown when a user that is not logged tries to access the system
 
 \subsubsection{index.jsp}
 This file contains the view that is shown when an user has logged in. From here, the user can access the menu, which is dynamically updated depending on what group the user belong to.
+
+\subsubsection{report.jsp}
+This file contains the view that represents the creation of time reports.
+
+\subsubsection{usermanagement.jsp}
+This file contains the view of the usermanagement page. The view is used by the administrator and the project leaders.
+
+\subsubsection{Administration.jsp}
+This file contains the view of the administration page. Only the administrator has access to this view.
+
+\subsection{Servlets}
+The files below are the controllers for the system.
+
+\subsubsection{loginServlet}
+
+\subsubsection{indexServlet}
+
+\subsubsection{reportServlet}
+
+\subsubsection{usermanagementServlet}
+
+\subsubsection{administrationServlet}
+
 
 %---------Document ends here-----------
 
