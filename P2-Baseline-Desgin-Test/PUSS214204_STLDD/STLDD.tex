@@ -109,8 +109,23 @@ This document describes the design of "TimeMate". The system is a further develo
     \item Software Top Level Design Document: BaseBlockSystem, v 1.0, Doc. number: PUSS12004
 \end{enumerate}
 
+\section{Terminology}
+\begin{itemize}
+\item \textbf{Java Server Page (JSP):} Server-side technology that enables the creation of dynamic views.
+\item \textbf{Placeholder:} Placeholder
+\end{itemize}
+
 \section{Overview}
-Overview of the system
+Placeholder for the overview of the project
+
+\subsection{Java Server Pages}
+Below are the pages used for "TimeMate" and what their function is.
+
+\subsubsection{login.jsp}
+The view that is shown when a user that is not logged tries to access the system. This is the only page in the "TimeMate" system an user can access without having an account. The page consists of two fields, one for username and one for password, as well as an option to request a new password in case that the user has forgotten their password.
+
+\subsubsection{index.jsp}
+This file contains the view that is shown when an user has logged in. From here, the user can access the menu, which is dynamically updated depending on what group the user belong to.
 
 %---------Document ends here-----------
 
