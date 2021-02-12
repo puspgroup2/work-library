@@ -2,19 +2,23 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
+\usepackage{geometry}
 
 % ---- Commands ------- %
 \newcommand{\documentNumber}[1]{
-    \LARGE  \textbf{ PUSP2142{#1} } \\
+    \LARGE  \textbf{ PUSS2142{#1} } \\
     \medskip
 }
 \newcommand{\documentVersion}[1]{
-    v.{#1} \\
+    v. {#1}
+
     \medskip
 }
 \newcommand{\documentTitle}[1]{
     \centerline{\rule{13cm}{0.4pt}}
     \bigskip \bigskip
+    \LARGE \textbf{TimeMate} \\
+    \bigskip
     \LARGE {#1} \\
     \bigskip \bigskip
     \centerline{\rule{13cm}{0.4pt}}
@@ -36,7 +40,9 @@
     \date {#1} 
 }
 
-\graphicspath{{./images/}} %Defines a path to file images
+\graphicspath{{./images/}} % Defines a path to file images
+\renewcommand{\arraystretch}{1.7}  % Vertical padding for tables
+
 
 % --- Header & Footer ---- %
 \pagestyle{fancy}
@@ -54,18 +60,19 @@
     % Must be 2 digits
     \documentNumber {01}    
     
+    % BASELINE.VERSION
     \documentVersion {0.1}
     
     % Full name - SHORTNAME
     \documentTitle {Template}
     \documentGroup {2}
     
-    % Options: - Project management Group
-    %          - System architecture Group
+    % Options: - Project Management Group
+    %          - System Architecture Group
     %          - Developer Group
     %          - Test Group
-    \documentResponsible {Project management Group}
-    \documentAuthors {Project management group}
+    \documentResponsible {Project Management Group}
+    \documentAuthors {Project Management group}
     
     % Format: YYYY-MM-DD
     \documentDate {2021-01-25}
@@ -84,6 +91,19 @@
 
 %---------Document begins here-----------
 
+% FILL IN CORRECT VERSION HISTORY!
+% Not sure? Refer to SDP how it works or ask someone!
+\section{Document History}
+\begin{tabular}{ l | l | l | l }
+    Version & Date & Responsible & Description \\
+    \hline
+    0.1 & 2021-01-25 & PG & Document created. \\
+    0.2 & 2021-02-02 & PG & Ready for informal review. \\
+    0.3 & 2021-02-04 & PG & Fixed gramatical changes and typos. \\
+\end{tabular}
+
 \section{Introduction}
+
+%---------Document ends here-----------
 
 \end{document}
