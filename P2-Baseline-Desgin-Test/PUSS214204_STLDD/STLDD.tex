@@ -128,8 +128,17 @@ The view that is shown when a user that is not logged tries to access the system
 \subsubsection{index.jsp}
 This file contains the view that is shown when an user has logged in. From here, the user can access the menu, which is dynamically updated depending on what group the user belong to.
 
-\subsubsection{report.jsp}
-This file contains the view that represents the creation of time reports.
+\subsubsection{newReport.jsp}
+This file contains the view that represents the creation of a new time report.
+
+\subsubsection{editReport.jsp}
+This view is used by users that want to edit their previous reported time reports.
+
+\subsubsection{summaryReport.jsp}
+This view represents a summary of a users previous reported time reports.
+
+\subsubsection{signReport.jsp}
+This view is used by project leaders for signing and unsigning time reports.
 
 \subsubsection{usermanagement.jsp}
 This file contains the view of the usermanagement page. The view is used by the administrator and the project leaders.
@@ -142,9 +151,6 @@ The files below are the controllers for the system.
 
 \subsubsection{LoginServlet}
 Communication link between the view login.jsp and the bean LoginBean.
-
-\subsubsection{IndexServlet}
-Communication link between the view index.jsp and the bean IndexBean.
 
 \subsubsection{TimeReportServlet}
 Communication link between the view report.jsp and the bean ReportBean.
@@ -160,9 +166,6 @@ The files below are the Java Beans that are used to send information from the se
 
 \subsubsection{LoginBean}
 Get/set class which contains the data required to render the login.jsp view
-
-\subsubsection{IndexBean}
-Get/set class which contains the data required to render the index.jsp view
 
 \subsubsection{ReportBean}
 Get/set class which contains the data required to render the report.jsp view
