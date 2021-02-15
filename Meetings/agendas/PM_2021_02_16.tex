@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+
+% ---- Commands ------- %
+
+\newcommand{\createTitle}[4]{
+    \centering
+    \LARGE Project meeting {#1} \\
+    \medskip
+    
+    \begin{flushleft}
+        \small Date: {#2} \\ \smallskip
+        \small President: {#3} \\ \smallskip
+        \small Secretary: {#4} \\ \smallskip
+    \end{flushleft}
+    \centerline{\rule{13cm}{0.4pt}}
+}
+
+\newenvironment{subs}
+  {\adjustwidth{3em}{0pt}}
+  {\endadjustwidth}
+
+\titleformat{\section}
+  {\normalfont\small\bfseries}{\S\thesection}{1em}{}
+  
+\titleformat{\subsection}
+  {\normalfont\small\bfseries}{\hspace{0.5cm} - }{1em}{}
+
+% ------------------------------------------------ #
+
+\begin{document}
+
+ \createTitle 
+    {4}                     % PR Number
+    {2021-02-15}            % Date
+    {Victor Krook}          % President
+    {Assar Orpana}          % Secretary
+    
+\begin{flushleft}    
+
+% --- Agenda starts --- #
+
+\section{Welcome}
+\section{Approve agenda}
+\section{Informal Review 17/2 16:00}
+  \subsection{Informal Review plan}
+  \subsection{Checklists}
+  \subsection{Comments}
+\section{Formal Review 22/2}
+\section{Document history}
+\section{Change management after baseline}
+  \subsection{Problem report}
+  \subsection{Contact FKG}
+  \subsection{Decision}
+\section{Git - 1 change per commit}
+\section{Other}
+\section{Next meeting}
+
+
+% --- Agenda ends --- #
+
+\end{flushleft}
+\end{document}
