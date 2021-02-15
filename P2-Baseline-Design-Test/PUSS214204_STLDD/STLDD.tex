@@ -3,6 +3,11 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{geometry}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{caption}
+\captionsetup[figure]{font=small}
+\usepackage[justification=centering]{caption}
+\usepackage{courier}
 
 % ---- Commands ------- %
 \newcommand{\documentNumber}[1]{
@@ -201,7 +206,123 @@ Class used to encrypt passwords when needed.
 Class to establish connection between Tomcat and our database.
 
 \section{Database}
-Diagram etc. for database here
+In this project, there is one database that consists of the nine relations shown in Figure 1. Every relation has one primary key each, which are the following: \emph{userID}, \emph{projectID} and \emph{reportID}.
+
+\begin{figure}[h]
+     \centering
+     \includegraphics[width=10cm]{PUSPERdiagramVers3.png}
+     \renewcommand\figurename{Figure}
+     \caption{The database consists of the following relations: \emph{User}, \emph{ProjectGroup}, \emph{TimeReport}, \emph{ActivityReport} and \emph{DocumentTimeD/I/F/R}. \emph{Is member of} represents the relationship between User and ProjectGroup.}
+     \label{fig:my_label}
+ \end{figure}
+
+\subsection{User Relation}
+The User relation contains all registered users together with user specific information such as password, email and information about whether a user belongs to a project group or not. A user belonging to a group may be assigned a role under the role attribute. The username attribute is used as the primary key, making every username unique. A User table can be created using the following MySQL command:
+\newline
+
+\small
+\texttt{
+\noindent mysql> CREATE TABLE User (\newline
+\indent\indent\indent -> userID Integer NOT NULL,\newline
+\indent\indent\indent -> password varChar(50) NOT NULL,\newline
+\indent\indent\indent -> email varChar(100),\newline
+\indent\indent\indent -> role varChar(30),\newline
+\indent\indent\indent -> projectID Integer,\newline
+\indent\indent\indent -> PRIMARY KEY(userID),\newline
+\indent\indent\indent -> FOREIGN KEY(projectID) REFERENCES ProjectGroup(projectID)\newline
+\indent\indent\indent -> ON UPDATE CASCADE ON DELETE SET NULL\newline
+\indent\indent\indent -> );\newline
+}
+\normalsize
+
+\subsection{ProjectGroup Relation}
+The ProjectGroup relation contains all project group IDs and connects an ID to a project name. The projectID attribute is used as the primary key, enabling two or more project groups to be registered under the same name but still be distinguished from one another by their IDs.
+\newline
+
+\small
+\texttt{
+\noindent mysql> CREATE TABLE ProjectGroup (\newline
+\indent\indent\indent -> projectID Integer NOT NULL,\newline
+\indent\indent\indent -> projectName varChar(30) NOT NULL,\newline
+\indent\indent\indent -> PRIMARY KEY(projectID)\newline
+\indent\indent\indent -> );
+}
+\normalsize
+
+\subsection{TimeReport Relation}
+The time report to be filled out by each individual user on a weekly basis contains 55 columns, aiming to help the user specify the time spent on various activities. Four sections - \emph{D (Development)}, \emph{I (Informal review)}, \emph{F (Formal review)}, \emph{R (Rework, improvement or correction)}. However, there may be weeks where no time is spent on, e.g.,  formal reviews. In that case, a large number of columns would be wasted, as there will be no meaningful data added to the columns related to that section of the time report. 
+\newline
+
+\small
+\texttt{
+\noindent mysql> CREATE TABLE TimeReports (\newline
+\indent \indent \indent -> reportID Integer NOT NULL,\newline
+\indent \indent \indent -> userID Integer NOT NULL,\newline
+\indent \indent \indent -> totalMinutes Integer,\newline
+\indent \indent \indent -> signature Integer,\newline
+\indent \indent \indent -> week Integer NOT NULL,\newline
+\indent \indent \indent -> PRIMARY KEY(reportID),\newline
+\indent \indent \indent -> FOREIGN KEY(userID) REFERENCES User(userID)\newline
+\indent \indent \indent -> ON UPDATE CASCADE ON DELETE CASCADE\newline
+\indent \indent \indent -> FOREIGN KEY(signature) REFERENCES User(userID)\newline
+\indent \indent \indent -> ON UPDATE CASCADE ON DELETE SET NULL\newline
+\indent \indent \indent -> );
+}
+\normalsize
+\newline
+
+To avoid data redundancy, the time reports are being separated into several different relations. The reason for this is the fact that every single submitted time report is going to be represented in TimeReports: (here we can include the relation)
+
+\subsection{ActivityReport Relation}
+ActivityReport is the relation concerning the general activity types. As can be seen in Figure 1, these include the unique primary key: reportID and other attributes such as homeReading, meeting and various tests.
+\newline
+
+\small
+\texttt{
+\noindent mysql> CREATE TABLE ActivityReport (\newline
+\indent\indent\indent -> reportID Integer NOT NULL,\newline
+\indent\indent\indent -> totalMinutes Integer,\newline
+\indent\indent\indent -> functionalTest Integer,\newline
+\indent\indent\indent -> systemTest Integer,\newline
+\indent\indent\indent -> regressionTest Integer,\newline
+\indent\indent\indent -> meeting Integer,\newline
+\indent\indent\indent -> lecture Integer,\newline
+\indent\indent\indent -> exercise Integer,\newline
+\indent\indent\indent -> computerExercise Integer,\newline
+\indent\indent\indent -> homeReading Integer,\newline
+\indent\indent\indent -> other Integer,\newline
+\indent\indent\indent -> PRIMARY KEY(reportID),\newline
+\indent\indent\indent -> FOREIGN KEY(reportID) REFERENCES TimeReport(reportID)\newline
+\indent\indent\indent -> ON UPDATE CASCADE ON DELETE CASCADE\newline
+\indent\indent\indent -> );\newline
+}
+\normalsize
+
+
+\subsection{DocumentTimeD/I/F/R Relation}
+As mentioned earlier, there are four different activity types in the time documentation: \emph{Development and documentation (D)}, \emph{Informal review (I)}, \emph{Formal review (F)} and \emph{Rework, improvement or correction (R)}. All of these relations contain the same attributes mainly concerning the various documents. Besides these attributes, there is one attribute concerning the totalMinutes. The purpose of this attribute is to oversee the amount of minutes spent on each activity type. Since each document continuously is in a different stage, it was concluded to include different phases as activity types to ensure that the time reports are comprehensible. All of these tables can be created by using the same SQL statement:
+\newline
+
+\small
+\texttt{
+\noindent mysql> CREATE TABLE TimeDevelopments (\newline
+\indent\indent\indent -> reportID Integer NOT NULL,\newline
+\indent\indent\indent -> totalMinutes Integer,\newline
+\indent\indent\indent -> SDP Integer,\newline
+\indent\indent\indent -> SRS Integer,\newline
+\indent\indent\indent -> SVVS Integer,\newline
+\indent\indent\indent -> STLDD Integer,\newline
+\indent\indent\indent -> SVVI Integer,\newline
+\indent\indent\indent -> SDDD Integer,\newline
+\indent\indent\indent -> SVVR Integer,\newline
+\indent\indent\indent -> SSD Integer,\newline
+\indent\indent\indent -> finalReport Integer\newline
+\indent\indent\indent -> PRIMARY KEY(reportID),\newline
+\indent\indent\indent -> FOREIGN KEY(reportID) REFERENCES TimeReport(reportID)\newline
+\indent\indent\indent -> ON UPDATE CASCADE ON DELETE CASCADE\newline
+\indent\indent\indent -> );\newline
+}
+\normalsize
 
 \section{Information Stored in Sessions}
 
