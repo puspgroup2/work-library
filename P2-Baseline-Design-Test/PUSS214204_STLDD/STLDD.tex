@@ -126,7 +126,7 @@ This document describes the design of "TimeMate". The system is a further develo
 This system is developed using Apache Tomcat, wherein the controllers (Java Servlets) manipulates and sends data to the views (JavaServer Pages).
 
 \subsection{Java Server Pages}
-Below are the pages used for "TimeMate" and what their function is.
+Below are the pages used for "TimeMate" and what their functions are.
 
 \subsubsection{login.jsp}
 The view that is shown when a user that is not logged tries to access the system. This is the only page in the "TimeMate" system a user can get access to without having an account. The page consists of two fields,  one for username and one for password, as well as an option to request a new password in case the user has forgotten their password.  If the user chooses to reset their password, a pop up is shown where the user can enter their e-mail which the new password will be sent to.
@@ -180,16 +180,19 @@ Communication link between the view usermanagement.jsp and the bean UserManageme
 The files below are the Java Beans that are used to send information from the server to the client view. When created, beans are stored in the current session and discarded when the session ends.
 
 \subsubsection{UserBean}
-Get/set class which contains user information required to execute queries and updates related to the logged in user.
+Get/set class containing user information required to execute queries and updates related to the logged in user.
 
 \subsubsection{TimeReportBean}
-Get/set class which contains a list of users and their time reports which is required to render the report.jsp view.
+Get/set class containing a list of users and their time reports which is required to render the report.jsp view.
+
+\subsubsection{TimeReportManagementBean}
+Get/set class containing a list of signed time reports which is required to render signReport.jsp.
 
 \subsubsection{UserManagementBean}
-Get/set class which contains a list of users(Excluding project leaders) and their roles which is required to render the usermanagement.jsp view.
+Get/set class containing a list of users(Excluding project leaders) and their roles which is required to render the usermanagement.jsp view.
 
 \subsubsection{AdministrationBean}
-Get/set class which contains a list of users and their roles (Including project leaders) which is required to render the administration.jsp view.
+Get/set class containing a list of users and their roles (Including project leaders) which is required to render the administration.jsp view.
 
 \subsection{Other classes}
 The classes below are never accessed by the user in any way, but are instead helper classes to the servlets.
