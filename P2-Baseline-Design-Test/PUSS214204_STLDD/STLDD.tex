@@ -376,6 +376,99 @@ A DocumentTime table can be created using the following MySQL command:
 }
 \normalsize
 
+\section{Description of Classes}
+This section describes all classes and their public methods.
+
+\subsection{Database.java}
+\subsubsection{addUser();}
+
+Adds a user to the database.
+\subsubsection{removeUser()}
+Removes a user from the database.
+\subsubsection{retrieveTimereports()}
+Retrieves a list of all time reports from the database.
+\subsubsection{viewTimereport()}
+Retrieves a specific time report.
+\subsubsection{signTimereports()}
+Changes all timereports according to user input.
+\subsubsection{viewUsers()}
+Retrieves a list of all users.
+\subsubsection{setProjectLeader()}
+Changes a users role to PG.
+\subsubsection{newTimereport()}
+Adds a new time report to the database..
+\subsubsection{updateTimereport()}
+Changes an existing unsigned time report according to user input.
+\subsubsection{deleteTimereport()}
+Removes an unsigned time report from the database. 
+\subsubsection{setPassword()}
+Checks if the new password is valid. If it's valid, it replaces the old password. If not, the password remains unchanged.
+\subsubsection{getSummary()}
+Retrieves a summary of all reported time.
+\subsubsection{updateRole()}
+Changes a users role according to user input. Cannot change a users role to PG.
+\subsubsection{checkLogin()}
+Checks if the login credentials are correct.
+\subsubsection{getPassword()}
+Retrieves the users current password.
+\subsubsection{getEmail()}
+Retrieves the users email.
+
+\subsection{UserBean}
+\subsubsection{populateBean()}
+Sets all attributes in the bean according to user input.
+\subsubsection{getUserName()}
+Gets the username contained in the bean.
+\subsubsection{getEmail()}
+Gets the email contained in the bean.
+\subsubsection{getRole()}
+Gets the role contained in the bean.
+
+\subsection{UserManagementBean}
+\subsubsection{populateBean()}
+Sets all attributes in the bean according to the database.
+\subsubsection{getUserName()}
+Gets the username contained in the bean.
+\subsubsection{getUserList()}
+Gets the userlist contained in the bean.
+\subsubsection{getRole()}
+Gets the role contained in the bean.
+\subsection{timeReportBean}
+\subsubsection{populateBean()}
+Sets all attributes in the bean according to user input.
+\subsubsection{getUsername()}
+Gets the username contained in the bean.
+\subsubsection{getWeek()}
+Gets the week of the time report contained in the bean.
+\subsubsection{getReportValues()}
+Gets the values of the time report contained in the bean.
+
+\subsection{timeReportManagementBean}
+\subsubsection{populateBean()}
+Sets all attributes in the bean according to user input.
+\subsubsection{timeReportList}
+Gets a list of all time reports contained in the bean.
+\subsubsection{getUserName}
+Gets the username contained in the bean.
+
+\subsection{MailHandler}
+\subsubsection{sendPasswordMail()}
+Sends an email containing a randomly generated password to a newly created user.
+\subsection{PasswordHandler}
+\subsubsection{hashPassword()}
+Returns the hash of a given password.
+\subsubsection{generatePassword}
+Randomly generates a new password for a user.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/classDiagram.png}
+    \caption{Diagram containing an overview of all classes}
+    \label{fig:classDiagram}
+\end{figure}
+
+
 \section{Sequence Diagrams}
 \subsection{LoginServlet}
 
@@ -461,15 +554,7 @@ A DocumentTime table can be created using the following MySQL command:
     \label{fig:signunsign}
 \end{figure}
 
-\subsection{}
 
-\section{Class Diagram}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.6]{images/classDiagram.png}
-    \label{fig:signunsign}
-\end{figure}
 
 %---------Document ends here-----------
 
