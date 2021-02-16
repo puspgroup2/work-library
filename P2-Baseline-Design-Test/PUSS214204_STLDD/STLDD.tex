@@ -218,7 +218,17 @@ In this project, there is one database that consists of the nine relations shown
  \end{figure}
 
 \subsection{User Relation}
-The User relation contains all registered users together with user specific information such as password, email and information about whether a user belongs to a project group or not. A user belonging to a group may be assigned a role under the role attribute. The username attribute is used as the primary key, making every username unique. A User table can be created using the following MySQL command:
+The User relation contains all registered users together with user specific information such as password, email and information about whether a user belongs to a project group or not. A user belonging to a group may be assigned a role under the role attribute. The username attribute is used as the primary key, making every username unique. The appearance of the table can be viewed in Figure 2.
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[width=11cm]{images/SQL_tables/user.png}
+     \renewcommand\figurename{Figure}
+     \caption{A view of the User relation and its attributes.}
+     \label{fig:my_label}
+ \end{figure}
+
+A User table can be created using the following MySQL command:
 \newline
 
 \small
@@ -237,7 +247,18 @@ The User relation contains all registered users together with user specific info
 \normalsize
 
 \subsection{ProjectGroup Relation}
-The ProjectGroup relation contains all project group IDs and connects an ID to a project name. The projectID attribute is used as the primary key, enabling two or more project groups to be registered under the same name but still be distinguished from one another by their IDs.
+The ProjectGroup relation contains all project group IDs and connects an ID to a project name. The projectID attribute is used as the primary key, enabling two or more project groups to be registered under the same name but still be distinguished from one another by their IDs.  The appearance of the table can be viewed in Figure 3.
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[width=11cm]{images/SQL_tables/projectgroup.png}
+     \renewcommand\figurename{Figure}
+     \caption{A view of the ProjectGroup relation and its attributes.}
+     \label{fig:my_label}
+ \end{figure}
+\newline
+
+A ProjectGroup table can be created using the following MySQL command:
 \newline
 
 \small
@@ -251,12 +272,23 @@ The ProjectGroup relation contains all project group IDs and connects an ID to a
 \normalsize
 
 \subsection{TimeReport Relation}
-The time report to be filled out by each individual user on a weekly basis contains 55 columns, aiming to help the user specify the time spent on various activities. Four sections - \emph{D (Development)}, \emph{I (Informal review)}, \emph{F (Formal review)}, \emph{R (Rework, improvement or correction)}. However, there may be weeks where no time is spent on, e.g.,  formal reviews. In that case, a large number of columns would be wasted, as there will be no meaningful data added to the columns related to that section of the time report. 
+The time report to be filled out by each individual user on a weekly basis contains 55 columns, aiming to help the user specify the time spent on various activities. Four sections - \emph{D (Development)}, \emph{I (Informal review)}, \emph{F (Formal review)}, \emph{R (Rework, improvement or correction)}. However, there may be weeks where no time is spent on, e.g.,  formal reviews. In that case, a large number of columns would be wasted, as there will be no meaningful data added to the columns related to that section of the time report.  The appearance of the table can be viewed in Figure 4.
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[width=11cm]{images/SQL_tables/timereport.png}
+     \renewcommand\figurename{Figure}
+     \caption{A view of the TimeReport relation and its attributes.}
+     \label{fig:my_label}
+ \end{figure}
+\newline
+
+A TimeReport table can be created using the following MySQL command:
 \newline
 
 \small
 \texttt{
-\noindent mysql> CREATE TABLE TimeReports (\newline
+\noindent mysql> CREATE TABLE TimeReport (\newline
 \indent \indent \indent -> reportID Integer NOT NULL,\newline
 \indent \indent \indent -> userID Integer NOT NULL,\newline
 \indent \indent \indent -> totalMinutes Integer,\newline
@@ -264,7 +296,7 @@ The time report to be filled out by each individual user on a weekly basis conta
 \indent \indent \indent -> week Integer NOT NULL,\newline
 \indent \indent \indent -> PRIMARY KEY(reportID),\newline
 \indent \indent \indent -> FOREIGN KEY(userID) REFERENCES User(userID)\newline
-\indent \indent \indent -> ON UPDATE CASCADE ON DELETE CASCADE\newline
+\indent \indent \indent -> ON UPDATE CASCADE ON DELETE CASCADE,\newline
 \indent \indent \indent -> FOREIGN KEY(signature) REFERENCES User(userID)\newline
 \indent \indent \indent -> ON UPDATE CASCADE ON DELETE SET NULL\newline
 \indent \indent \indent -> );
@@ -275,7 +307,19 @@ The time report to be filled out by each individual user on a weekly basis conta
 To avoid data redundancy, the time reports are being separated into several different relations. The reason for this is the fact that every single submitted time report is going to be represented in TimeReports: (here we can include the relation)
 
 \subsection{ActivityReport Relation}
-ActivityReport is the relation concerning the general activity types. As can be seen in Figure 1, these include the unique primary key: reportID and other attributes such as homeReading, meeting and various tests.
+ActivityReport is the relation concerning the general activity types. As can be seen in Figure 1, these include the unique primary key: reportID and other attributes such as homeReading, meeting and various tests. The appearance of the table can be viewed in Figure 5.
+\newline
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[width=11cm]{images/SQL_tables/activityreport.png}
+     \renewcommand\figurename{Figure}
+     \caption{A view of the ActivityReport relation and its attributes.}
+     \label{fig:my_label}
+ \end{figure}
+\newline
+
+An ActivityReport table can be created using the following MySQL command:
 \newline
 
 \small
@@ -301,7 +345,18 @@ ActivityReport is the relation concerning the general activity types. As can be 
 
 
 \subsection{DocumentTimeD/I/F/R Relation}
-As mentioned earlier, there are four different activity types in the time documentation: \emph{Development and documentation (D)}, \emph{Informal review (I)}, \emph{Formal review (F)} and \emph{Rework, improvement or correction (R)}. All of these relations contain the same attributes mainly concerning the various documents. Besides these attributes, there is one attribute concerning the totalMinutes. The purpose of this attribute is to oversee the amount of minutes spent on each activity type. Since each document continuously is in a different stage, it was concluded to include different phases as activity types to ensure that the time reports are comprehensible. All of these tables can be created by using the same SQL statement:
+As mentioned earlier, there are four different activity types in the time documentation: \emph{Development and documentation (D)}, \emph{Informal review (I)}, \emph{Formal review (F)} and \emph{Rework, improvement or correction (R)}. All of these relations contain the same attributes mainly concerning the various documents. Besides these attributes, there is one attribute concerning the totalMinutes. The purpose of this attribute is to oversee the amount of minutes spent on each activity type. Since each document continuously is in a different stage, it was concluded to include different phases as activity types to ensure that the time reports are comprehensible. All of these tables can be created by using the same SQL statement. The appearance of each of these tables can be viewed in Figure 6.
+
+\begin{figure}[H]
+     \centering
+     \includegraphics[width=11cm]{images/SQL_tables/documenttime.png}
+     \renewcommand\figurename{Figure}
+     \caption{A view of a DocumentTime relation and its attributes.}
+     \label{fig:my_label}
+ \end{figure}
+\newline
+
+A DocumentTime table can be created using the following MySQL command:
 \newline
 
 \small
@@ -317,7 +372,7 @@ As mentioned earlier, there are four different activity types in the time docume
 \indent\indent\indent -> SDDD Integer,\newline
 \indent\indent\indent -> SVVR Integer,\newline
 \indent\indent\indent -> SSD Integer,\newline
-\indent\indent\indent -> finalReport Integer\newline
+\indent\indent\indent -> finalReport Integer,\newline
 \indent\indent\indent -> PRIMARY KEY(reportID),\newline
 \indent\indent\indent -> FOREIGN KEY(reportID) REFERENCES TimeReport(reportID)\newline
 \indent\indent\indent -> ON UPDATE CASCADE ON DELETE CASCADE\newline
