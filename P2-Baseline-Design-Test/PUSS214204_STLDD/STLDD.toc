@@ -37,5 +37,9 @@
 \contentsline {subsection}{\numberline {6.4}ActivityReport Relation}{9}{}%
 \contentsline {subsection}{\numberline {6.5}DocumentTimeD/I/F/R Relation}{9}{}%
 \contentsline {section}{\numberline {7}Information Stored in Sessions}{10}{}%
-\contentsline {section}{\numberline {8}Sequence Diagrams}{10}{}%
-\contentsline {subsection}{\numberline {8.1}}{10}{}%
+\contentsline {section}{\numberline {8}Sequence Diagrams}{11}{}%
+\contentsline {subsection}{\numberline {8.1}LoginServlet}{11}{}%
+\contentsline {subsection}{\numberline {8.2}UserManagementServlet}{12}{}%
+\contentsline {subsection}{\numberline {8.3}PasswordChangerServlet}{13}{}%
+\contentsline {subsection}{\numberline {8.4}TimeReportServlet}{14}{}%
+\contentsline {subsection}{\numberline {8.5}}{14}{}%

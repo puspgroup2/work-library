@@ -211,7 +211,7 @@ In this project, there is one database that consists of the nine relations shown
 
 \begin{figure}[h]
      \centering
-     \includegraphics[width=10cm]{PUSPERdiagramVers3.png}
+     \includegraphics[width=10cm]{images/PUSPERdiagramVers3.png}
      \renewcommand\figurename{Figure}
      \caption{The database consists of the following relations: \emph{User}, \emph{ProjectGroup}, \emph{TimeReport}, \emph{ActivityReport} and \emph{DocumentTimeD/I/F/R}. \emph{Is member of} represents the relationship between User and ProjectGroup.}
      \label{fig:my_label}
@@ -341,7 +341,90 @@ As mentioned earlier, there are four different activity types in the time docume
 
 \indent \textbf{4:} Administrator privileges.
 
+\pagebreak
 \section{Sequence Diagrams}
+\subsection{LoginServlet}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.4]{images/successfulLogin.jpeg}
+    \caption{Sequence diagram for a successful login.}
+    \label{fig:successfulLogin}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.4]{images/failedLogin.jpeg}
+    \caption{Sequence diagram for a failed attempt to login.}
+    \label{fig:failedLoginAttempt}
+\end{figure}
+
+\pagebreak
+\subsection{UserManagementServlet}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/updateRole.jpeg}
+    \caption{Sequence diagram for the process of updating the role of a project member.}
+    \label{fig:successfulLogin}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.4]{images/failedLogin.jpeg}
+    \caption{Sequence diagram for a failed attempt to login.}
+    \label{fig:failedLoginAttempt}
+\end{figure}
+
+\pagebreak
+\subsection{PasswordChangerServlet}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/successfulPasswordChange.jpeg}
+    \caption{A successful password change.}
+    \label{fig:sucessfulPasswordChange}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/unsuccessfulPasswordChange.jpeg}
+    \caption{A failed attempt to change password.}
+    \label{fig:failedPasswordChange}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/changePasswordFalseInput.jpeg}
+    \caption{A failed attempt to change password due to incorrect user input.}
+    \label{fig:failedPasswordChangeIncorrectInput}
+\end{figure}
+
+\pagebreak
+
+\subsection{TimeReportServlet}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/addNewTimeReport.jpeg}
+    \caption{Adding a new Time Report.}
+    \label{fig:newTimeReport}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/editTimeReport.jpeg}
+    \caption{Editing a Time Report.}
+    \label{fig:editTimeReport}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{images/signUnsignReports.jpeg}
+    \caption{Signing/unsigning a Time Report. This can only be done by the project leader.}
+    \label{fig:signunsign}
+\end{figure}
 
 \subsection{}
 
