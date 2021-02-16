@@ -211,7 +211,7 @@ In this project, there is one database that consists of the nine relations shown
 
 \begin{figure}[H]
      \centering
-     \includegraphics[width=11cm]{images/PUSPERdiagramVers3.png}
+     \includegraphics[width=11cm]{images/PUSPERdiagramVers3_2.png}
      \renewcommand\figurename{Figure}
      \caption{The database consists of the following relations: \emph{User}, \emph{ProjectGroup}, \emph{TimeReport}, \emph{ActivityReport} and \emph{DocumentTimeD/I/F/R}. \emph{Is member of} represents the relationship between User and ProjectGroup.}
      \label{fig:my_label}
@@ -304,7 +304,7 @@ A TimeReport table can be created using the following MySQL command:
 \normalsize
 \newline
 
-To avoid data redundancy, the time reports are being separated into several different relations. The reason for this is the fact that every single submitted time report is going to be represented in TimeReports: (here we can include the relation)
+To avoid data redundancy, the time reports are being separated into several different relations. The reason for this is the fact that every single submitted time report is going to be represented in TimeReports:
 
 \subsection{ActivityReport Relation}
 ActivityReport is the relation concerning the general activity types. As can be seen in Figure 1, these include the unique primary key: reportID and other attributes such as homeReading, meeting and various tests. The appearance of the table can be viewed in Figure 5.
@@ -461,7 +461,7 @@ A DocumentTime table can be created using the following MySQL command:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/newTimeReport.jpeg}
+    \includegraphics[scale=0.5]{images/newTimeReport.png}
     \caption{Adding a new Time Report.}
     \label{fig:newTimeReport}
 \end{figure}
