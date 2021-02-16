@@ -191,9 +191,6 @@ Get/set class containing a list of signed time reports which is required to rend
 \subsubsection{UserManagementBean}
 Get/set class containing a list of users(Excluding project leaders) and their roles which is required to render the usermanagement.jsp view.
 
-\subsubsection{AdministrationBean}
-Get/set class containing a list of users and their roles (Including project leaders) which is required to render the administration.jsp view.
-
 \subsection{Other classes}
 The classes below are never accessed by the user in any way, but are instead helper classes to the servlets.
 
@@ -455,6 +452,7 @@ A DocumentTime table can be created using the following MySQL command:
     \label{fig:editTimeReport}
 \end{figure}
 
+\subsection{TimeReportManagementServlet}
 
 \begin{figure}[H]
     \centering
@@ -464,6 +462,14 @@ A DocumentTime table can be created using the following MySQL command:
 \end{figure}
 
 \subsection{}
+
+\section{Class Diagram}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/classDiagram.png}
+    \label{fig:signunsign}
+\end{figure}
 
 %---------Document ends here-----------
 
