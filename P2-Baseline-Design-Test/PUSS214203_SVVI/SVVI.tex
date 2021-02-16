@@ -1,0 +1,502 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+% ---- Commands ------- %
+\newcommand{\documentNumber}[1]{
+    \LARGE  \textbf{ PUSS2142{#1} } \\
+    \medskip
+}
+\newcommand{\documentVersion}[1]{
+    v. {#1}
+
+    \medskip
+}
+\newcommand{\documentTitle}[1]{
+    \centerline{\rule{13cm}{0.4pt}}
+    \bigskip \bigskip
+    \LARGE \textbf{TimeMate} \\
+    \bigskip
+    \LARGE {#1} \\
+    \bigskip \bigskip
+    \centerline{\rule{13cm}{0.4pt}}
+}
+\newcommand{\documentGroup}[1]{
+    \bigskip \bigskip
+    \LARGE Group {#1} \\
+    \bigskip
+}
+\newcommand{\documentResponsible}[1]{
+    \LARGE Responsible: {#1} \\
+    \medskip
+}
+\newcommand{\documentAuthors}[1]{
+    \LARGE Authors: {#1} \\
+    \medskip    
+}
+\newcommand{\documentDate}[1]{
+    \date {#1} 
+}
+
+\graphicspath{{./images/}} % Defines a path to file images
+\renewcommand{\arraystretch}{1.7}  % Vertical padding for tables
+
+
+% --- Header & Footer ---- %
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{}
+\rfoot{\thepage}
+\cfoot{}
+\lfoot{}
+
+
+% ------------------------------------------------ #
+
+% ----- FILL THIS ----- %
+\title {
+    % Must be 2 digits
+    \documentNumber {03}    
+    
+    % BASELINE.VERSION
+    \documentVersion {0.2}
+    
+    % Full name - SHORTNAME
+    \documentTitle {Software Verification and Validation}
+    \documentGroup {2}
+ 
+    \documentResponsible {Test Group}
+    \documentAuthors {Test Group}
+    
+    % Format: YYYY-MM-DD
+    \documentDate {2021-02-15}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%---------Document begins here-----------
+
+% FILL IN CORRECT VERSION HISTORY!
+% Not sure? Refer to SDP how it works or ask someone!
+\section{Document History}
+\begin{tabular}{ l | l | l | l }
+    Version & Date & Responsible & Description \\
+    \hline
+   0.1 & 2021-02-10 & TG & Document created. \\
+   0.2 & 2021-02-15 & TG & Ready for informal review. \\
+   % 0.3 & 2021-02-04 & PG & Fixed gramatical changes and typos. \\
+\end{tabular}
+
+\section{Introduction}
+This document presents detailed test instructions of the  TimeMate system.
+
+\section{Reference Documents}
+\begin{enumerate}
+	\item Software Verification and validation Specification: 	TimeMate, v. 1.0, Doc. number: PUSS214202
+\end{enumerate}
+
+\section{Test Instructions}
+The detailed test instructions for the test cases introduced in ref. 1 are shown in appendices below. Test cases are documented in the form of steps that are carried out by the tester. Before a function test is carried out, the preconditions described in the “Start state” should be met. When steps are initiated with “Check that” they describe an expected result of the system, and the testers task is to make sure that the expected result is given.
+
+\section{Appendices}
+	\begin{itemize}
+		\item \textbf{A.} Function Test Instructions 
+		\item \textbf{B.} System Test Instructions  	
+	\end{itemize}
+
+
+\newpage
+\begin{flushleft}
+{\large \textbf{A Function Test Instructions}}
+\end{flushleft}
+		
+\subsection{Login and Logout}
+	\begin{itemize}
+		\item \textbf{FT1:  User can login with correct username and 			password. (JUnit)} \newline
+		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. \newline
+		\textbf{End state:} User “Alex” is logged in. 
+		\begin{enumerate}
+			\item Run JUnit test “testLogin”.
+			\item Check that the test passes.
+		\end{enumerate}
+		
+		\item \textbf{FT2:  User cannot login with non existing user. (JUnit)} \newline
+		\textbf{Start state:} User not logged in, User “Malte” does not exist in the database. \newline
+		\textbf{End state:} User “Malte” is not logged in.  
+		\begin{enumerate}
+			\item Run JUnit test “testLoginNoSuchUser”.
+			\item Check that the test passes.
+		\end{enumerate}
+		
+		\item \textbf{FT3: User cannot login with other users passwords.} \newline
+		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. User “Erik” also exists in the database and has password “deCBA321”. \newline
+		\textbf{End state:} User “Alex” is not logged in.   
+		\begin{enumerate}
+			\item  Access the login page. 
+			\item Login with username “Alex” and password “deCBA321”. 
+			\item Check that the user is not logged in and that an error message is given.
+		\end{enumerate}
+		
+		\item \textbf{FT4: User cannot login with foregoing password.} \newline
+		\textbf{Start state:} User not logged in, user “Alex” exists in database with password “123ABCde”.  \newline
+		\textbf{End state:} User “Alex” is not logged in.   
+		\begin{enumerate}
+			\item Access the login page. 
+			\item Login with username “Alex” and password “123ABCde”.
+			\item Change password for user “Alex” to “deCBA321”.
+			\item Click the “Logout” button.
+			\item Access the login page. 
+			\item Login with username “Alex” and password “123ABCde”.
+			\item Check that the user is not logged in and that an error message is given. 
+		\end{enumerate}
+		
+		\item \textbf{FT5: User can logout.} \newline
+		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”.  \newline
+		\textbf{End state:} User not logged in.   
+		\begin{enumerate}
+			\item Access the login page. 
+			\item Login with username “Alex” and password “123ABCde”. 
+			\item Check that a new page is shown. 
+			\item Press the “Logout” button. 
+			\item Check that “Alex” is not logged in. 
+		\end{enumerate}
+		
+		\item \textbf{FT6: User gets a new password from the server by email if requested.} \newline
+		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde” and email address “TimeMatePUSP2021@gmail.com” is registered in the database.\newline
+		\textbf{End state:}  User “Alex” is logged in.  
+		\begin{enumerate}
+			\item Access the login page. 
+			\item User requests a new password.
+			\item Access the inbox of “TimeMatePUSP2021@gmail.com” and copy the new password.
+			\item Access the login page.
+			\item Login using username “Alex” and the password received in the email.
+			\item Check that the user is logged in. 
+		\end{enumerate}
+		
+		\item \textbf{FT7: User gets a new password from the server by email on account creation. } \newline
+		\textbf{Start state:} Logged in with administrator account. User “Malte” does not exist in the database.  \newline
+		\textbf{End state:}  User “Malte” is logged in.  
+		\begin{enumerate}
+			\item Add a new user with username: “Malte” and email “TimeMatePUSP2021@gmail.com”.
+			\item Press the “Logout” button. 
+			\item Access the inbox of “TimeMatePUSP2021@gmail.com”and copy the new password.
+			\item Access the login page.
+			\item Login with username: “Malte” and the password received in the email.
+			\item Check that the user is logged in.
+		\end{enumerate}
+		
+		\item \textbf{FT8: User can change password from logged-in state.} \newline
+		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. \newline
+		\textbf{End state:} User “Alex” is logged in. 
+		\begin{enumerate}
+			\item Access the login page.
+			\item Login with username “Alex” and password “123ABCde”.
+			\item Click the “Change Password” button.
+			\item Choose the new password “deCBA321”.
+			\item Click the “Change Password” button.
+			\item Click the “Logout" button.
+			\item Access the login page.
+			\item Login with username “Alex” and password “deCBA321”.
+			\item Check that the user is logged in.
+		\end{enumerate}
+		
+		\item \textbf {FT9: User tries to change password from logged-in state but enters incorrect new password.} \newline
+		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. \newline
+		\textbf{End state:} The site displays a message informing that the entered password is invalid. 
+		\begin{enumerate}
+			\item Access the login page.
+			\item Login with username ’Alex’ and password “123ABCde”.
+			\item Click the “Change Password” button.
+			\item Choose the new password “abcABC\%”.
+			\item Click the “Change Password” button.
+			\item Checks that the site displays a message informing that the password has not been changed.
+		\end{enumerate}
+		
+		\item \textbf{F10: User is shown a relevant error message on failed login.} \newline
+		\textbf{Start state:} User is not logged in. User “Lazar” does not exist in the database. \newline
+		\textbf{End state:} User “Lazar” is not logged in.
+		\begin{enumerate}
+			\item Access login page.
+			\item Enter username “Lazar” and password “passwordnot”.
+			\item Click the “Login” button .
+			\item Check that the site displays a message informing that the login has failed.
+		\end{enumerate}
+		
+	\end{itemize}
+	
+\subsection{Data}
+\begin{itemize}
+		\item \textbf{FT11: When changing password, it must adhere to the password ruleset.} \newline
+		\textbf{Start state:} User is logged in. \newline
+		\textbf{End state:} The site displays a message informing that the password has been changed.
+		\begin{enumerate}
+			\item Click the “Change Password” button.
+			\item Try to change password to “\&aaaa”.
+			\item Click the “Change Password” button.
+			\item Check that an error message is displayed saying that the new password is invalid.
+			\item Try to change password to “ABCabc123”.
+			\item User clicks the “Change Password” button.
+			\item Check that the site displays a message informing that the password is changed.
+		\end{enumerate}
+\end{itemize}
+\subsection{User}
+\begin{itemize}
+		\item \textbf{FT12: Users can submit a time report.}\newline
+		\textbf{Start state:} User is logged in. \newline
+		\textbf{End state:} A new time report is submitted.
+		\begin{enumerate}
+			\item Click the “Time Report” button.
+			\item Click the “Create New Time Report” button.
+			\item Fill in information.
+			\item Click the “Submit” button.
+			\item Check that the newly submitted time report exists in the list.
+		\end{enumerate}
+		
+		\item \textbf{FT13: Can see a summarized view of current user time reports.}\newline
+		\textbf{Start state:} User is logged in.  \newline
+		\textbf{End state:} The site displays a summarized view of the current user time reports.
+		\begin{enumerate}
+			\item Click the “Time Report” button.
+			\item Check that a new page with a summary of time reports submitted by the current user is displayed.
+		\end{enumerate}
+		
+		\item \textbf{FT14: Can edit a submitted report if it is not signed by a Project Leader.}\newline
+		\textbf{Start state:} User is logged in. The user has an unsigned report. \newline
+		\textbf{End state:} The site displays a message informing that the time report is updated.
+		\begin{enumerate}
+			\item Click the “Time Report” button.
+			\item Click the “Edit Time Report” button.
+			\item Select a time report that hasn’t been signed by the Project Leader.
+			\item Check that a new page is shown with the corresponding time report.	
+			\item Change information.
+			\item Click “Submit Change”.
+			\item Checks that the site displays a message informing that the time report is updated.
+		\end{enumerate}
+		
+		\item \textbf{FT15: Cannot edit a submitted report if it is signed by a Project Leader.}\newline
+		\textbf{Start state:} User is logged in. The user has submitted a time report, and it has been signed by a Project Leader.    \newline
+		\textbf{End state:} The site displays a message informing that the report has not been updated.
+		\begin{enumerate}
+			\item Click the “Time reporting” button.
+			\item Click the “Edit TIme Report” button.
+			\item Select a time report that has been signed by the Project Leader.
+			\item Checks that the site displays a message informing that the user has failed to change the report. 
+		\end{enumerate}
+		
+\end{itemize}
+\subsection{Project Leader}
+\begin{itemize}
+		\item \textbf{FT16: Can see a summarized view of the users time reports}\newline
+		\textbf{Start state:} Project Leader is logged in. It exists users in the database.\newline
+		\textbf{End state:} The site displays a summarized view of all users time reports.
+		\begin{enumerate}
+			\item Click the “SHOW SIGNED REPORTS” button.
+			\item Check that a list of signed reports is displayed.
+		\end{enumerate}
+		
+		\item \textbf{FT17: Can see all users and their roles.}\newline
+		\textbf{Start state:} Project Leader is logged in. Users exist in the database.  \newline
+		\textbf{End state:} The site displays all users and their correspondent roles.
+		\begin{enumerate}
+			\item Access the User management page.
+			\item Check that the site displays a list of all the users and their correspondent roles. 
+		\end{enumerate}
+		
+		\item \textbf{FT18: Can change roles on other users.}\newline
+		\textbf{Start state:} Project Leader is logged in. A user “Malte” exist in the database and has a role.\newline
+		\textbf{End state:} User “Malte” role has been changed.
+		\begin{enumerate}
+			\item Access the User management page.
+			\item Check that the site displays a list of all the users and their correspondent roles.
+			\item Click a radio button with a different role for the user “Malte”.
+			\item Click the “Confirm” button.
+			\item Check that the role of “Malte” has changed. 
+		\end{enumerate}
+		
+		\item \textbf{FT19: Cannot change roles on themselves} \newline
+		\textbf{Start state:} Project Leader is logged in. \newline
+		\textbf{End state:} The site displays a message informing that the role has not been changed. 
+		\begin{enumerate}
+			\item Access the User management page.
+			\item Check that the site displays a list of all the users and their correspondent roles.
+			\item Click a radio button with a different role for the logged in Project Leader.
+			\item Click the “Confirm” button. 
+			\item Check that the site displays an error message, informing that their action has failed. 
+		\end{enumerate}
+		
+		\item \textbf{FT20: Cannot  change other Project Leaders roles.}\newline
+		\textbf{Start state:} Project Leader is logged in, another Project Leader exists in the database.  \newline
+		\textbf{End state:} The site displays a message informing that change is not allowed.
+		\begin{enumerate}
+			\item Access the User management page.
+			\item Check that the site displays a list of all the users and their correspondent roles.
+			\item Click a radio button with a different role for another Project Leader.
+			\item Click the “Confirm” button. 
+			\item Check that the site displays an error message, informing that their action has failed.
+		\end{enumerate}
+		
+		\item \textbf{FT21: Can sign time reports}\newline
+		\textbf{Start state:} Project Leader is logged in. A user has submitted a time report that is unsigned.  \newline
+		\textbf{End state:} A time report is signed and does not show up in the list of unsigned time reports.
+		\begin{enumerate}
+			\item Click the “Sign Time Reports” button.
+			\item Check that the site displays a list of all the unsigned time reports.
+			\item Select an unsigned time report.
+			\item Click the corresponding checkbox designated for signing the time report.
+			\item Click the “Confirm” button.
+			\item Check that the page is updated and that the time report which was signed does not exist in the list.
+		\end{enumerate}
+		
+		\item \textbf{FT22: Can reverse an signed time report making it editable again.}\newline
+		\textbf{Start state:} Project Leader is logged in. User “Alex” does exist in the database and has password “123ABCde”. The user has submitted a time report that has been signed.
+ \newline 
+		\textbf{End state:} The time report is now unsigned.
+		\begin{enumerate}
+			\item Click the “SHOW SIGNED REPORTS” button.
+			\item Check that a list of signed time reports is displayed.
+			\item Make the time report unsigned.
+			\item Click the “Logout” button.
+			\item Access the login page.
+			\item Login with username “Alex” and password “123ABCde”.
+			\item Click the “Time Report” button.
+			\item Select the time report that was unsigned by Project Leader.
+			\item Click the “Edit Time Report” button.
+			\item Make some changes to the time report and click the “Submit Change” button.
+			\item Check that the site displays a list of unsigned time reports and that the time report has been updated according to the changes.
+		\end{enumerate}
+\end{itemize}
+\subsection{Administrator}
+\begin{itemize}
+		\item \textbf{FT23: Can access administration page.} \newline
+		\textbf{Start state:} User not logged in. administrator accounts exist in the database.
+ \newline
+		\textbf{End state:} Administration page is shown.
+		\begin{enumerate}
+			\item Access the login page.
+			\item Login using the administrator account.
+			\item Access the Administration Page.
+			\item Check that the Administration Page is shown.
+		\end{enumerate}
+		
+		\item \textbf{FT24: Can add a new user.} \newline
+		\textbf{Start state:} Logged in with the administrator account and on the Administration Page. User “Max” is not in the database. \newline
+		\textbf{End state:} User ”Max” is added to the database with a valid username and password.
+		\begin{enumerate}
+			\item Click the “add a user” button.
+			\item Locate the text field “User Name” and enter “Max”.
+			\item Locate the text field “Email Address” and enter “TimeMatePUSP2021@gmail.com”.
+			\item Check the “Max” is added to the database.
+		\end{enumerate}
+		
+		
+		\item \textbf{FT25: Cannot add a new user with existing username.} \newline
+		\textbf{Start state:}  Logged in with the administrator account and on the Administration Page. User “Alex” exists in the database.\newline
+		\textbf{End state:} The site displays a message informing that the use was not created.
+		\begin{enumerate}
+			\item Click the “add a user” button.
+			\item Locate the text field “User Name” and enter “Alex”.
+			\item Locate the text field “Email Address” and enter “TimeMatePUSP2021@gmail.com”.
+			\item Check that the site displays a message informing that user “Alex” already exists.
+			\item Check if there are two users with the same name in the database.
+		\end{enumerate}
+		
+		
+		\item \textbf{FT26: Can remove a user.} \newline
+		\textbf{Start state:} Logged in with the administrator account and on the Administration page. User “Alex” exists in the database. \newline
+		\textbf{End state:} User “Alex”  is removed from the database.
+		\begin{enumerate}
+			\item Click the “remove a user” button corresponding to the user “Alex”.
+			\item Enter the user name “Alex”.
+			\item Click the “confirm” button.
+			\item Check that the user ”Alex” is removed from the database.
+		\end{enumerate}
+		
+		
+		\item \textbf{FT27: Can see a summarized view of users time reports.} \newline
+		\textbf{Start state:} Logged in with the administrator account.  \newline
+		\textbf{End state:} The system displays a summarized view of all users time reports.
+		\begin{enumerate}
+			\item Click the “SHOW SIGNED REPORTS” button.
+			\item Check that a list of signed time reports is displayed.
+		\end{enumerate}
+		
+		
+		\item \textbf{FT28: Can change the roles of all users.} \newline
+		\textbf{Start state:} Logged in with the administrator account. User “Malte” exists in the database and has a role.  \newline
+		\textbf{End state:} User “Malte” now has the role of Project Leader.
+		\begin{enumerate}
+			\item Click the button “User Management”.
+			\item Check that the site displays a list of all the users and their correspondent roles.
+			\item Click a radio button with a different role for the user “Malte”.
+			\item Click the “Confirm” button. 
+			\item Check that the role of “Malte” has changed in the database.
+		\end{enumerate}
+		
+		
+		\item \textbf{FT29: Can change the roles of all Project Leaders.} \newline
+		\textbf{Start state:} Logged in with the administrator account. User “Malte” exists in the database and has the role of Project Leader.\newline
+		\textbf{End state:}  The role of a “Malte” is changed to another role.
+		\begin{enumerate}
+			\item Click the “User Management” button.
+			\item Click on a radio button with a different role corresponding to the user “Malte”.
+			\item Click the “Confirm“ button.
+			\item Check that the role of “Malte” has been changed in the database.
+		\end{enumerate}
+		
+		
+		\item \textbf{FT30: Can view all users as a list.} \newline
+		\textbf{Start state:} Logged in with the administrator account. Users exist in the database.  \newline
+		\textbf{End state:} The site displays a list of all the users.
+		\begin{enumerate}
+			\item Access the User management page.
+			\item Check that the site displays a list of all the users and their correspondent roles. 
+		\end{enumerate}
+		
+\end{itemize}
+
+\newpage
+\begin{flushleft}	
+{\large \textbf{B System Test Instructions}}
+\end{flushleft}
+
+\begin{itemize}
+		\item \textbf{ST1: Perform FT3-FT30 in Google Chrome on Windows 10} \newline
+		\textbf{Start state:} Empty tab in Google Chrome.  \newline
+		\textbf{End state:} The site displays a list of all the users.
+		\begin{enumerate}
+			\item Access the login page.
+			\item Perform Function Test FT3 to FT30 in order. 
+		\end{enumerate}
+		
+	\item \textbf{ST2: Perform FT3-FT30 in Mozilla Firefox on Windows 10} \newline
+		\textbf{Start state:} Empty tab in  Mozilla Firefox.  \newline
+		\textbf{End state:} The site displays a list of all the users.
+		\begin{enumerate}
+			\item Access the login page.
+			\item Perform Function Test FT3 to FT30 in order. 
+		\end{enumerate}
+		
+		\item \textbf{ST3: Perform FT3-FT30 in Microsoft Edge on Windows 10} \newline
+		\textbf{Start state:} Empty tab in Microsoft Edge.  \newline
+		\textbf{End state:} The site displays a list of all the users.
+		\begin{enumerate}
+			\item Access the login page.
+			\item Perform Function Test FT3 to FT30 in order. 
+		\end{enumerate}
+
+\end{itemize}
+		
+%---------Document ends here-----------
+
+\end{document}
