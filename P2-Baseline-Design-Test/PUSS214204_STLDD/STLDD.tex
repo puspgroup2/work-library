@@ -21,7 +21,7 @@
     \medskip
 }
 \newcommand{\documentTitle}[1]{
-    \centerline{\rule{13cm}{0.4pt}}
+    \centerline{\rule{12cm}{0.4pt}}
     \bigskip \bigskip
     \LARGE \textbf{TimeMate} \\
     \bigskip
@@ -209,9 +209,9 @@ Class to establish connection between Tomcat and the database.
 \section{Database}
 In this project, there is one database that consists of the nine relations shown in Figure 1. Every relation has one primary key each, which are the following: \emph{userID}, \emph{projectID} and \emph{reportID}.
 
-\begin{figure}[h]
+\begin{figure}[H]
      \centering
-     \includegraphics[width=10cm]{images/PUSPERdiagramVers3.png}
+     \includegraphics[width=11cm]{images/PUSPERdiagramVers3.png}
      \renewcommand\figurename{Figure}
      \caption{The database consists of the following relations: \emph{User}, \emph{ProjectGroup}, \emph{TimeReport}, \emph{ActivityReport} and \emph{DocumentTimeD/I/F/R}. \emph{Is member of} represents the relationship between User and ProjectGroup.}
      \label{fig:my_label}
@@ -345,14 +345,14 @@ As mentioned earlier, there are four different activity types in the time docume
 \section{Sequence Diagrams}
 \subsection{LoginServlet}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{images/successfulLogin.jpeg}
     \caption{Sequence diagram for a successful login.}
     \label{fig:successfulLogin}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{images/failedLogin.jpeg}
     \caption{Sequence diagram for a failed attempt to login.}
@@ -362,14 +362,14 @@ As mentioned earlier, there are four different activity types in the time docume
 \pagebreak
 \subsection{UserManagementServlet}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/updateRole.jpeg}
+    \includegraphics[scale=0.5]{images/updateRole.png}
     \caption{Sequence diagram for the process of updating the role of a project member.}
     \label{fig:successfulLogin}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{images/failedLogin.jpeg}
     \caption{Sequence diagram for a failed attempt to login.}
@@ -386,14 +386,14 @@ As mentioned earlier, there are four different activity types in the time docume
     \label{fig:sucessfulPasswordChange}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/unsuccessfulPasswordChange.jpeg}
     \caption{A failed attempt to change password.}
     \label{fig:failedPasswordChange}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/changePasswordFalseInput.jpeg}
     \caption{A failed attempt to change password due to incorrect user input.}
@@ -404,14 +404,14 @@ As mentioned earlier, there are four different activity types in the time docume
 
 \subsection{TimeReportServlet}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/addNewTimeReport.jpeg}
     \caption{Adding a new Time Report.}
     \label{fig:newTimeReport}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/editTimeReport.jpeg}
     \caption{Editing a Time Report.}
@@ -419,7 +419,7 @@ As mentioned earlier, there are four different activity types in the time docume
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/signUnsignReports.jpeg}
     \caption{Signing/unsigning a Time Report. This can only be done by the project leader.}
