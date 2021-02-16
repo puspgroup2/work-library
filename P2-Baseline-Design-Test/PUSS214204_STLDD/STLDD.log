@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.2.15)  15 FEB 2021 21:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.2.15)  16 FEB 2021 08:04
 entering extended mode
 **./STLDD.tex
 (STLDD.tex
@@ -130,7 +130,14 @@ tex.def
 File: l3backend-pdftex.def 2021-02-06 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count191
 \l__pdf_internal_box=\box49
-) (STLDD.aux)
+) (STLDD.aux
+
+LaTeX Warning: Label `fig:successfulLogin' multiply defined.
+
+
+LaTeX Warning: Label `fig:failedLoginAttempt' multiply defined.
+
+)
 \openout1 = `STLDD.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
@@ -246,18 +253,18 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout3 = `STLDD.toc'.
 
  [3] [4] [5] [6]
-<./images//PUSPERdiagramVers3.png, id=26, 740.7675pt x 710.05275pt>
-File: ./images//PUSPERdiagramVers3.png Graphic file (type png)
-<use ./images//PUSPERdiagramVers3.png>
-Package pdftex.def Info: ./images//PUSPERdiagramVers3.png  used on input line 2
-14.
+<images/PUSPERdiagramVers3.png, id=26, 740.7675pt x 710.05275pt>
+File: images/PUSPERdiagramVers3.png Graphic file (type png)
+<use images/PUSPERdiagramVers3.png>
+Package pdftex.def Info: images/PUSPERdiagramVers3.png  used on input line 214.
+
 (pdftex.def)             Requested size: 284.52756pt x 272.7265pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 221--223
 
  []
 
-[7 <./images//PUSPERdiagramVers3.png>]
+[7 <./images/PUSPERdiagramVers3.png>]
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 2
 36.
 
@@ -303,32 +310,108 @@ Underfull \hbox (badness 10000) in paragraph at lines 325--327
 
  []
 
-[9] [10] (STLDD.aux) ) 
+[9] [10]
+<images/successfulLogin.jpeg, id=46, 722.7pt x 442.65375pt>
+File: images/successfulLogin.jpeg Graphic file (type jpg)
+<use images/successfulLogin.jpeg>
+Package pdftex.def Info: images/successfulLogin.jpeg  used on input line 350.
+(pdftex.def)             Requested size: 289.07487pt x 177.05835pt.
+<images/failedLogin.jpeg, id=47, 722.7pt x 442.65375pt>
+File: images/failedLogin.jpeg Graphic file (type jpg)
+<use images/failedLogin.jpeg>
+Package pdftex.def Info: images/failedLogin.jpeg  used on input line 357.
+(pdftex.def)             Requested size: 289.07487pt x 177.05835pt.
+ [11 <./images/successfulLogin.jpeg> <./images/failedLogin.jpeg>]
+<images/updateRole.jpeg, id=51, 722.7pt x 352.76794pt>
+File: images/updateRole.jpeg Graphic file (type jpg)
+<use images/updateRole.jpeg>
+Package pdftex.def Info: images/updateRole.jpeg  used on input line 367.
+(pdftex.def)             Requested size: 361.3491pt x 176.38353pt.
+File: images/failedLogin.jpeg Graphic file (type jpg)
+<use images/failedLogin.jpeg>
+Package pdftex.def Info: images/failedLogin.jpeg  used on input line 374.
+(pdftex.def)             Requested size: 289.07487pt x 177.05835pt.
+
+[12 <./images/updateRole.jpeg>]
+<images/successfulPasswordChange.jpeg, id=55, 605.26125pt x 352.76794pt>
+File: images/successfulPasswordChange.jpeg Graphic file (type jpg)
+<use images/successfulPasswordChange.jpeg>
+Package pdftex.def Info: images/successfulPasswordChange.jpeg  used on input li
+ne 384.
+(pdftex.def)             Requested size: 302.62987pt x 176.38353pt.
+<images/unsuccessfulPasswordChange.jpeg, id=56, 605.26125pt x 352.76794pt>
+File: images/unsuccessfulPasswordChange.jpeg Graphic file (type jpg)
+<use images/unsuccessfulPasswordChange.jpeg>
+Package pdftex.def Info: images/unsuccessfulPasswordChange.jpeg  used on input 
+line 391.
+(pdftex.def)             Requested size: 302.62987pt x 176.38353pt.
+<images/changePasswordFalseInput.jpeg, id=57, 605.26125pt x 352.76794pt>
+File: images/changePasswordFalseInput.jpeg Graphic file (type jpg)
+<use images/changePasswordFalseInput.jpeg>
+Package pdftex.def Info: images/changePasswordFalseInput.jpeg  used on input li
+ne 398.
+(pdftex.def)             Requested size: 302.62987pt x 176.38353pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13 <./images/successfulPasswordChange.jpeg> <./images/unsuccessfulPasswordChan
+ge.jpeg>]
+<images/addNewTimeReport.jpeg, id=62, 722.7pt x 352.76794pt>
+File: images/addNewTimeReport.jpeg Graphic file (type jpg)
+<use images/addNewTimeReport.jpeg>
+Package pdftex.def Info: images/addNewTimeReport.jpeg  used on input line 409.
+(pdftex.def)             Requested size: 361.3491pt x 176.38353pt.
+<images/editTimeReport.jpeg, id=63, 722.7pt x 352.76794pt>
+File: images/editTimeReport.jpeg Graphic file (type jpg)
+<use images/editTimeReport.jpeg>
+Package pdftex.def Info: images/editTimeReport.jpeg  used on input line 416.
+(pdftex.def)             Requested size: 361.3491pt x 176.38353pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/signUnsignReports.jpeg, id=64, 722.7pt x 352.76794pt>
+File: images/signUnsignReports.jpeg Graphic file (type jpg)
+<use images/signUnsignReports.jpeg>
+Package pdftex.def Info: images/signUnsignReports.jpeg  used on input line 424.
+
+(pdftex.def)             Requested size: 361.3491pt x 176.38353pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14 <./images/changePasswordFalseInput.jpeg> <./images/addNewTimeReport.jpeg>]
+[15 <./images/editTimeReport.jpeg> <./images/signUnsignReports.jpeg>]
+(STLDD.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3299 strings out of 479616
- 55766 string characters out of 2865001
+ 3362 strings out of 479616
+ 57637 string characters out of 2865001
  345669 words of memory out of 3000000
- 20463 multiletter control sequences out of 15000+200000
+ 20516 multiletter control sequences out of 15000+200000
  410140 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  68i,11n,74p,769b,380s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/enc/d
-vips/base/8r.enc} <C:\Users\aaaan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen
-/ec/dpi600\tcrm1000.pk><C:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmbx10.pfb><C:/Users/aaaan/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/aaaan/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/aaaan/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/aaaan/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/aaaa
-n/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Us
-ers/aaaan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb
-><C:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mti10.pfb><C:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmti9.pfb><C:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/type1/urw
-/courier/ucrr8a.pfb>
-Output written on STLDD.pdf (10 pages, 212579 bytes).
+{C:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <C
+:\Users\aaaan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.
+pk><C:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmbx10.pfb><C:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb><C:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmbx9.pfb><C:/Users/aaaan/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/aaaan/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/aaaan/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/aaaan/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/aaaan/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/
+aaaan/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C
+:/Users/aaaan/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb>
+
+Output written on STLDD.pdf (15 pages, 920881 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
+ 108 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
