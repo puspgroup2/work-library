@@ -126,34 +126,31 @@ This document describes the design of "TimeMate". The system is a further develo
 This system is developed using Apache Tomcat, wherein the controllers (Java Servlets) manipulates and sends data to the views (JavaServer Pages).
 
 \subsection{Java Server Pages}
-Below are the pages used for "TimeMate" and what their functions are.
+Below are the pages used for TimeMate and what their functions are.
 
 \subsubsection{login.jsp}
-The view that is shown when a user that is not logged tries to access the system. This is the only page in the "TimeMate" system a user can get access to without having an account. The page consists of two fields,  one for username and one for password, as well as an option to request a new password in case the user has forgotten their password.  If the user chooses to reset their password, a pop up is shown where the user can enter their e-mail which the new password will be sent to.
+This view is shown when a user that is not logged in tries to access the system. This is the only page in the TimeMate system a user can get access to without having an account. The page consists of two fields,  one for username and one for password, as well as an option to request a new password in case the user has forgotten their password.  If the user chooses to reset their password, a pop up is shown where the user can enter their e-mail which the new password will be sent to.
 
 \subsubsection{index.jsp}
-This file contains the view that is shown when a user has logged in. From here,  the user can access the menu which is dynamically updated depending on what group the user belong to. The index page contains overview information about TimeMate.
+This view is shown when a user has logged in. From here,  the user can access the menu which is dynamically updated depending on what group the user belong to. The index page contains an overview of TimeMate.
 
-\subsubsection{viewReport.jsp}
-This file contains the view that shows a collection of the users submitted reports. When being here, the user can select a submitted report to show more information about.
+\subsubsection{newreport.jsp}
+This view shows an empty time report. The user can fill in the time report and submit it.
 
-\subsubsection{newReport.jsp}
-This file contains the view that represents the creation of a new time report.
-
-\subsubsection{editReport.jsp}
+\subsubsection{editreport.jsp}
 This view is used by users that want to edit their previously reported time reports. When being here, the user can select a submitted report to edit.
 
-\subsubsection{summaryReport.jsp}
-This view represents a summary of a user's previously reported time reports.
+\subsubsection{summaryreport.jsp}
+This view represents a summary of a user's previously reported time reports. The user can select a time report to show detailed information about it.
 
-\subsubsection{signReport.jsp}
+\subsubsection{signreport.jsp}
 This view is used by the project leaders for signing and unsigning time reports.
 
 \subsubsection{usermanagement.jsp}
-This file contains the view of the usermanagement page. The view is used by the administrator and the project leaders.
+This view shows the user management page. The view is used by the administrator and the project leaders. The view is used for assigning roles to project members.
 
 \subsubsection{administration.jsp}
-This file contains the view of the administration page. Only the administrator has access to this view.
+This view shows the administration page. Only the administrator has access to this view. The view is used for administration purposes such as adding and removing project members. 
 
 \subsubsection{changepassword.jsp}
 This view is used by all users to change their password. The page contains three fields, one for the user's current password, and two for the new password (in order to confirm it).
