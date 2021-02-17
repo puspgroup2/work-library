@@ -60,7 +60,7 @@
     % Must be 2 digits
     \documentNumber {01}    
     
-    \documentVersion {1.0}
+    \documentVersion {1.1}
     
     % Full name - SHORTNAME
     \documentTitle {Software Requirements Specification}
@@ -74,7 +74,7 @@
     \documentAuthors {System Group, Development Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-02-12}
+    \documentDate {2021-02-17}
 }
 
 \begin{document}
@@ -98,6 +98,7 @@
     0.4 & 2021-02-09 & SG & Requirements added, removed or changed after comments from formal review. \\
     0.5 & 2021-02-11 & SG & Grammatical changes and fixes after comments from informal review. \\
     1.0 & 2021-02-12 & SG & Reached baseline. \\
+    1.1 & 2021-02-17 & SG & Adjusted description of an actor due to not being a requirement. \\ 
 \end{tabular}
 
 \section{Introduction}
@@ -124,7 +125,7 @@ The system can be used and administrated by the following actors:
   \item \textbf{User:} The user has the authority to log in to the system to report and  change past reported time as well as review their reported times. The users are assigned roles as either "PG", "SG", "UG" or "TG".
   \item \textbf{Project Leader:}
   The project leaders' main objective is to administer groups within the project. This implies that the project leader has the authority to add and remove as well as assign users from/to designated roles.
-   \item \textbf{Administrator:} The administrator has the authority to add and remove users from the system along with creating and removing project groups. The administrator is the only role that can assign the role “Project leader” to a user. The main goal of this role is to be able to administrate addition and removal of users.
+   \item \textbf{Administrator:} The administrator has the authority to add and remove users from the system. The administrator is the only role that can assign the role “Project leader” to a user. The main goal of this role is to be able to administrate addition and removal of users.
 \end{itemize}
 
 
