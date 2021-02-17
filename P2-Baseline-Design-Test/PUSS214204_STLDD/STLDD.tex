@@ -67,7 +67,7 @@
     \documentNumber {01}    
     
     % BASELINE.VERSION
-    \documentVersion {0.1}
+    \documentVersion {0.3}
     
     % Full name - SHORTNAME
     \documentTitle {Software Top Level Design Document}
@@ -81,7 +81,7 @@
     \documentAuthors {Developer Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-02-11}
+    \documentDate {2021-02-18}
 }
 
 \begin{document}
@@ -107,11 +107,11 @@
 \end{tabular}
 
 \section{Introduction}
-This document describes the design of "TimeMate". The system is a further development of the system "BaseBlockSystem". "TimeMate" hosts various functions related to the creating of time reports, getting a view of reported time and more.
+This document describes the design of TimeMate. The system is a further development of the system BaseBlockSystem. TimeMate hosts various functions related to the creating of time reports, getting a view of reported time and more.
 
 \section{Reference Documents}
 \begin{enumerate}
-    \item Software Requirements Specification: TimeMate, v. 0.5, Doc. number: PUSS214201
+    \item Software Requirements Specification: TimeMate, v. 1.1, Doc. number: PUSS214201
     \item Software Top Level Design Document: BaseBlockSystem, v 1.0, Doc. number: PUSS12004
 \end{enumerate}
 
@@ -155,11 +155,26 @@ This view shows the administration page. Only the administrator has access to th
 \subsubsection{changepassword.jsp}
 This view is used by all users to change their password. The page contains three fields, one for the user's current password, and two for the new password (in order to confirm it).
 
+\subsection{Java Beans}
+The files below are the Java Beans that are used to send information from the server to the client view. When created, beans are stored in the current session and discarded when the session ends.
+
+\subsubsection{UserBean}
+This class contains user information required to execute queries and updates related to the logged in user.
+
+\subsubsection{TimeReportBean}
+This class contains a list of users and their time reports which is required to render the report.jsp view.
+
+\subsubsection{TimeReportManagementBean}
+This class contains a list of signed time reports which is required to render signReport.jsp.
+
+\subsubsection{UserManagementBean}
+This class contains a list of users (excluding project leaders) and their roles which is required to render the userManagement.jsp view.
+
 \subsection{Servlets}
-The files below are the controllers for the system.
+The servlets below are the controllers for the system.
 
 \subsubsection{LoginServlet}
-Communication link between the view login.jsp and the bean LoginBean.
+Communication link between the view login.jsp and the bean UserBean.
 
 \subsubsection{PasswordChangerServlet}
 Servlet used when a user changes their password.
@@ -168,25 +183,11 @@ Servlet used when a user changes their password.
 Communication link between the views viewReport.jsp, newReport.jsp and summaryReport.jsp and the bean ReportBean.
 
 \subsubsection{TimeReportManagementServlet}
-Communication link between the views editReport.jsp and signReport.jsp and the bean ReportBean
+Communication link between the views editReport.jsp and signReport.jsp and the bean TimeReportManagementBean
 
 \subsubsection{UserManagementServlet}
-Communication link between the view usermanagement.jsp and the bean UserManagementBean.
+Communication link between the view userManagement.jsp and the bean UserManagementBean.
 
-\subsection{Java Beans}
-The files below are the Java Beans that are used to send information from the server to the client view. When created, beans are stored in the current session and discarded when the session ends.
-
-\subsubsection{UserBean}
-Get/set class containing user information required to execute queries and updates related to the logged in user.
-
-\subsubsection{TimeReportBean}
-Get/set class containing a list of users and their time reports which is required to render the report.jsp view.
-
-\subsubsection{TimeReportManagementBean}
-Get/set class containing a list of signed time reports which is required to render signReport.jsp.
-
-\subsubsection{UserManagementBean}
-Get/set class containing a list of users(Excluding project leaders) and their roles which is required to render the usermanagement.jsp view.
 
 \subsection{Other classes}
 The classes below are never accessed by the user in any way, but are instead helper classes to the servlets.
@@ -195,10 +196,10 @@ The classes below are never accessed by the user in any way, but are instead hel
 Class used to send e-mails to users upon account creation and password changes.
 
 \subsubsection{PasswordHandler}
-Class used to encrypt passwords when needed.
+Class used to encrypt and generate new passwords.
 
 \subsubsection{Database}
-Class to establish connection between Tomcat and the database.
+Class used to establish connection between Tomcat and the database as well as executing all queries to the database.
 
 \section{Database}
 In this project, there is one database that consists of the nine relations shown in Figure 1. Every relation has one primary key each, which are the following: \emph{userID}, \emph{projectID} and \emph{reportID}.
@@ -376,38 +377,38 @@ A DocumentTime table can be created using the following MySQL command:
 \section{Description of Classes}
 This section describes all classes and their public methods.
 
-\subsection{Database.java}
-\subsubsection{addUser();}
-
+\subsection{Database}
+\subsubsection{addUser()}
 Adds a user to the database.
 \subsubsection{removeUser()}
-Removes a user from the database.
+Removes a user and all related time reports from the database.
 \subsubsection{retrieveTimereports()}
 Retrieves a list of all time reports from the database.
 \subsubsection{viewTimereport()}
-Retrieves a specific time report.
+Retrieves a specific time report from the database.
 \subsubsection{signTimereports()}
 Changes all timereports according to user input.
 \subsubsection{viewUsers()}
-Retrieves a list of all users.
+Retrieves a list of all users from the database.
 \subsubsection{setProjectLeader()}
-Changes a users role to PG.
+Changes a users role to project leader [1] in the database.
 \subsubsection{newTimereport()}
-Adds a new time report to the database..
+Adds a new time report to the database.
 \subsubsection{updateTimereport()}
 Changes an existing unsigned time report according to user input.
 \subsubsection{deleteTimereport()}
 Removes an unsigned time report from the database. 
-\subsubsection{setPassword()}
-Checks if the new password is valid. If it's valid, it replaces the old password. If not, the password remains unchanged.
+
 \subsubsection{getSummary()}
 Retrieves a summary of all reported time.
 \subsubsection{updateRole()}
-Changes a users role according to user input. Cannot change a users role to PG.
+Changes a users role according to user input. Cannot change a users role to PG [1].
 \subsubsection{checkLogin()}
 Checks if the login credentials are correct.
 \subsubsection{getPassword()}
 Retrieves the users current password.
+\subsubsection{setPassword()}
+Checks if the new password is valid by using getPassword(). If it's valid, it replaces the old password. If not, the password remains unchanged.
 \subsubsection{getEmail()}
 Retrieves the users email.
 
@@ -430,7 +431,7 @@ Gets the username contained in the bean.
 Gets the userlist contained in the bean.
 \subsubsection{getRole()}
 Gets the role contained in the bean.
-\subsection{timeReportBean}
+\subsection{TimeReportBean}
 \subsubsection{populateBean()}
 Sets all attributes in the bean according to user input.
 \subsubsection{getUsername()}
@@ -440,7 +441,7 @@ Gets the week of the time report contained in the bean.
 \subsubsection{getReportValues()}
 Gets the values of the time report contained in the bean.
 
-\subsection{timeReportManagementBean}
+\subsection{TimeReportManagementBean}
 \subsubsection{populateBean()}
 Sets all attributes in the bean according to user input.
 \subsubsection{timeReportList()}
@@ -449,19 +450,20 @@ Gets a list of all time reports contained in the bean.
 Gets the username contained in the bean.
 
 \subsection{MailHandler}
-\subsubsection{sendPasswordMail()}
+\subsubsection{private sendPasswordMail()}
 Sends an email containing a randomly generated password to a newly created user.
 \subsection{PasswordHandler}
-\subsubsection{hashPassword()}
+\subsubsection{private hashPassword()}
 Returns the hash of a given password.
-\subsubsection{generatePassword()}
+\subsubsection{private generatePassword()}
 Randomly generates a new password for a user.
 
+\section{Class Diagram}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/classDiagram.png}
-    \caption{Diagram containing an overview of all classes}
+    \caption{Diagram containing an overview of all classes.}
     \label{fig:classDiagram}
 \end{figure}
 
