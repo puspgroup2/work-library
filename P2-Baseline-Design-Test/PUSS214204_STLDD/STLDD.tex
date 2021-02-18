@@ -104,6 +104,10 @@
     Version & Date & Responsible & Description \\
     \hline
     0.1 & 2021-02-11 & UG & Document created. \\
+    \hline
+    0.2 & 2021-02-17 & UG & Ready for informal review. \\
+    \hline
+    0.3 & 2021-02-18 & UG & Corrected grammar and more after informal review \\
 \end{tabular}
 
 \section{Introduction}
@@ -239,7 +243,7 @@ A User table can be created using the following MySQL command:
 \indent\indent\indent -> );\newline
 }
 \normalsize
-
+\newpage
 \subsection{TimeReport Relation}
 The time report to be filled out by each individual user on a weekly basis contains 55 columns, aiming to help the user specify the time spent on various activities. Four sections - \emph{D (Development)}, \emph{I (Informal review)}, \emph{F (Formal review)}, \emph{R (Rework, improvement or correction)}. However, there may be weeks where no time is spent on, e.g.,  formal reviews. In that case, a large number of columns would be wasted, as there will be no meaningful data added to the columns related to that section of the time report.  The appearance of the table can be viewed in Figure 3.
 
@@ -347,7 +351,7 @@ A DocumentTime table can be created using the following MySQL command:
 \indent\indent\indent -> ON UPDATE CASCADE ON DELETE CASCADE );\newline
 }
 \normalsize
-
+\newpage
 \section{Description of Classes}
 This section describes all classes and their public methods.
 
@@ -423,14 +427,15 @@ Gets a list of all time reports contained in the bean.
 \subsubsection{getUserName()}
 Gets the username contained in the bean.
 
-\subsection{MailHandler}
-\subsubsection{private sendPasswordMail()}
-Sends an email containing a randomly generated password to a newly created user.
 \subsection{PasswordHandler}
-\subsubsection{private hashPassword()}
+\subsubsection{hashPassword()}
 Returns the hash of a given password.
-\subsubsection{private generatePassword()}
+\subsubsection{generatePassword()}
 Randomly generates a new password for a user.
+\subsection{MailHandler}
+\subsubsection{sendPasswordMail()}
+Sends an email containing a password generated from PasswordHandler.
+
 
 \section{Class Diagram}
 
