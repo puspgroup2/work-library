@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{enumerate}
+\usepackage{ulem}
 
 % ---- Commands ------- %
 \newcommand{\documentNumber}[1]{
@@ -61,7 +62,7 @@
     \documentNumber {02}    
     
     % BASELINE.VERSION
-    \documentVersion {1.0}
+    \documentVersion {1.2}
     
     % Full name - SHORTNAME
     \documentTitle {Software Verification and Validation Specification}
@@ -75,7 +76,7 @@
     \documentAuthors {Test Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-02-12}
+    \documentDate {2021-02-18}
 }
 
 \begin{document}
@@ -102,6 +103,8 @@
     0.4 & 2021-02-10 & TG & Edited references, typos and rephrased tests, after formal review. \\
     0.5 & 2021-02-11 & TG & Corrected references, typos, and more, after second infromal review. \\
 	1.0 & 2021-02-12 & TG & Reached baseline. \\
+	1.1 & 2021-02-18 & TG & Changed a test and added one test. \\
+	1.2 & 2021-02-18 & TG & Removed a test. \\
 \end{tabular}
 
 \section{Introduction}
@@ -224,20 +227,23 @@ reviews: 6.2.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.9, 7.0.10, 
 		
 		\begin{itemize}
 		
-  			\item \textbf{FT11:}  When changing password, it must adhere to password ruleset. [Ref. 2. req. 6.2.1, 6.3.4, 6.3.5]
+  			\item \textbf{FT11:} When changing password, it must adhere to the password ruleset. [Ref. 2. req. 6.2.1, 6.3.4, 6.3.5]
+  			
+  			\item \textbf{FT12:} When changing password, user cannot change password if it doesn't adhere to the password ruleset. [Ref. 2. req. 6.2.1, 6.3.4, 6.3.5]
+  			
 
 		\end{itemize}
 		
 		\subsection{User}
 		
 		\begin{itemize}
-  			\item \textbf{FT12:} Users can submit a time report. [Ref. 2. req. 6.3.1]
+  			\item \textbf{FT13:} Users can submit a time report. [Ref. 2. req. 6.3.1]
   			
-  			\item \textbf{FT13:} Can see a summarized view of current user time reports. [Ref. 2. req. 6.3.2]
+  			\item \textbf{FT14:} Can see a summarized view of current user time reports. [Ref. 2. req. 6.3.2]
   			
-  			\item \textbf{FT14:} Can edit a submitted report if it is not signed by Project leader. [Ref. 2. req. 6.3.3, 6.3.6]
+  			\item \textbf{FT15:} Can edit a submitted report if it is not signed by Project leader. [Ref. 2. req. 6.3.3, 6.3.6]
   			
-  			 \item \textbf{FT15:} Cannot edit a submitted report if it is signed by Project leader. [Ref. 2. req. 6.3.7]
+  			 \item \textbf{FT16:}\sout{ Cannot edit a submitted report if it is signed by Project leader. [Ref. 2. req. 6.3.7]}
 
 
 		\end{itemize}
@@ -246,19 +252,19 @@ reviews: 6.2.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.9, 7.0.10, 
 		
 			\begin{itemize}
 			
-			\item \textbf{FT16:} Can see a summarized view of users time reports. [Ref. 2. req. 6.4.1]
+			\item \textbf{FT17:} Can see a summarized view of users time reports. [Ref. 2. req. 6.4.1]
 			
-  			\item \textbf{FT17:} Can see all users and their roles. [Ref. 2. req. 6.4.2]
+  			\item \textbf{FT18:} Can see all users and their roles. [Ref. 2. req. 6.4.2]
 
-  			\item \textbf{FT18:} Can change roles on other users. [Ref. 2. req. 6.4.3, 6.4.7]
+  			\item \textbf{FT19:} Can change roles on other users. [Ref. 2. req. 6.4.3, 6.4.7]
   			
-  			\item \textbf{FT19:} Cannot change roles on themselves. [Ref. 2. req. 6.4.3]
+  			\item \textbf{FT21:} Cannot change roles on themselves. [Ref. 2. req. 6.4.3]
   			
-  			\item \textbf{FT20:} Cannot change other project leaders' roles. [Ref. 2. req. 6.4.3]
+  			\item \textbf{FT21:} Cannot change other project leaders' roles. [Ref. 2. req. 6.4.3]
   			
-  			\item \textbf{FT21:} Can sign time reports. [Ref. 2. req. 6.4.4, 6.4.6]
+  			\item \textbf{FT22:} Can sign time reports. [Ref. 2. req. 6.4.4, 6.4.6]
   			
-  			\item \textbf{FT22:} Can reverse a signed time report making it editable again. [Ref. 2. req. 6.4.5]
+  			\item \textbf{FT23:} Can reverse a signed time report making it editable again. [Ref. 2. req. 6.4.5]
 
 		\end{itemize}
 		
@@ -267,20 +273,20 @@ reviews: 6.2.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.9, 7.0.10, 
 			\begin{itemize}
 			
 	
-			\item \textbf{FT23:} Can access administration page. [Ref. 2. req. 6.5.1]			
+			\item \textbf{FT24:} Can access administration page. [Ref. 2. req. 6.5.1]			
 			
-  			\item \textbf{FT24:} Can add a new user. [Ref. 2. req. 6.5.2]
+  			\item \textbf{FT25:} Can add a new user. [Ref. 2. req. 6.5.2]
   		
-  			\item \textbf{FT25:} Cannot add a new user with existing username. [Ref. 2. req. 6.5.3]
+  			\item \textbf{FT26:} Cannot add a new user with existing username. [Ref. 2. req. 6.5.3]
 
-  			\item \textbf{FT26:} Can remove a user. [Ref. 2. req. 6.5.4]
+  			\item \textbf{FT27:} Can remove a user. [Ref. 2. req. 6.5.4]
   			
-  			\item \textbf{FT27:} Can see a summarized view of users time reports. [Ref. 2. req. 6.5.5]  		  			
-  			\item \textbf{FT28:} Can change the roles of all users. [Ref. 2. req. 6.5.6]
+  			\item \textbf{FT28:} Can see a summarized view of users time reports. [Ref. 2. req. 6.5.5]  		  			
+  			\item \textbf{FT29:} Can change the roles of all users. [Ref. 2. req. 6.5.6]
   			
-  			\item \textbf{FT29:} Can change the roles of all project leaders. [Ref. 2. req. 6.5.6]
+  			\item \textbf{FT30:} Can change the roles of all project leaders. [Ref. 2. req. 6.5.6]
   			
-  			\item \textbf{FT30:} Can view all users as a list. [Ref. 2. req. 6.5.7]
+  			\item \textbf{FT31:} Can view all users as a list. [Ref. 2. req. 6.5.7]
 
 		\end{itemize}
 		
@@ -294,11 +300,11 @@ reviews: 6.2.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.9, 7.0.10, 
 		
 		\begin{itemize}
 		
-  			\item \textbf{ST1:} Perform FT3 - FT30 in Google Chrome on Windows 10. 	
+  			\item \textbf{ST1:} Perform FT3 - FT31 in Google Chrome on Windows 10. 	
   			
-  			\item \textbf{ST2:} Perform FT3 - FT30 in Mozilla Firefox on Windows 10. 
+  			\item \textbf{ST2:} Perform FT3 - FT31 in Mozilla Firefox on Windows 10. 
   			
-  			\item \textbf{ST3:} Perform FT3 - FT30 in Microsoft Edge on Windows 10. 					
+  			\item \textbf{ST3:} Perform FT3 - FT31 in Microsoft Edge on Windows 10. 					
   			
   			
 		\end{itemize}
@@ -325,7 +331,7 @@ reviews: 6.2.2, 7.0.1, 7.0.2, 7.0.3, 7.0.4, 7.0.5, 7.0.6, 7.0.7, 7.0.9, 7.0.10, 
 		
 		\begin{itemize}			
   			
-  			\item \textbf{RT2:} FT1 - FT30		
+  			\item \textbf{RT2:} FT1 - FT31		
 
 		\end{itemize}
 		
