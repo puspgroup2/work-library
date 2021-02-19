@@ -217,7 +217,7 @@ In this project, there is one database that consists of the nine relations shown
  \end{figure}
 
 \subsection{User Relation}
-The User relation contains all registered users together with user specific information such as password, email and information about whether a user belongs to a project group or not. A user belonging to a group may be assigned a role under the role attribute. The userName attribute is used as the primary key, making every username unique. The appearance of the table can be viewed in Figure 2.
+The User relation contains all registered users together with user specific information such as password and email. A user belonging to the project may be assigned a role under the role attribute. The userName attribute is used as the primary key, making every username unique. The appearance of the table can be viewed in Figure 2.
 
 \begin{figure}[H]
      \centering
@@ -237,7 +237,6 @@ A User table can be created using the following MySQL command:
 \indent\indent\indent -> password varChar(50) NOT NULL,\newline
 \indent\indent\indent -> email varChar(100),\newline
 \indent\indent\indent -> role varChar(30),\newline
-\indent\indent\indent -> projectID Integer,\newline
 \indent\indent\indent -> PRIMARY KEY(userName)\newline
 \indent\indent\indent -> ON UPDATE CASCADE ON DELETE SET NULL\newline
 \indent\indent\indent -> );\newline
