@@ -116,7 +116,7 @@ This document describes the design of TimeMate. The system is a further developm
 \section{Reference Documents}
 \begin{enumerate}
     \item Software Requirements Specification: TimeMate, v. 1.1, Doc. number: PUSS214201
-    \item Software Top Level Design Document: BaseBlockSystem, v 1.0, Doc. number: PUSS12004
+    \item Software Top Level Design Document: BaseBlockSystem, v 1.0, Doc. number: PUSS12002
 \end{enumerate}
 
 \section{Terminology}
@@ -126,7 +126,7 @@ This document describes the design of TimeMate. The system is a further developm
 \item \textbf{Java Beans:} A Java class that only contains set/get methods with private attributes. Moreover, a Java Bean must implement the Serializable interface.
 \end{itemize}
 
-\section{Overview}
+\section{File Overview}
 This system is developed using Apache Tomcat, wherein the controllers (Java Servlets) manipulates and sends data to the views (JavaServer Pages).
 
 \subsection{Java Server Pages}
@@ -430,7 +430,7 @@ Gets the username contained in the bean.
 \subsubsection{hashPassword()}
 Returns the hash of a given password.
 \subsubsection{generatePassword()}
-Randomly generates a new password for a user.
+Generates a new random password according to requirement 6.2.1 in [1].
 \subsection{MailHandler}
 \subsubsection{sendPasswordMail()}
 Sends an email containing a password generated from PasswordHandler.
