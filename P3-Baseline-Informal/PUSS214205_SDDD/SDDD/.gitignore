@@ -1,3 +1,6 @@
 /build/
 /.metadata/
 .classpath
+/bin/
+/.settings/
+.project
