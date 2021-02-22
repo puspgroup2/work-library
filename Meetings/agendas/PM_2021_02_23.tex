@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+
+% ---- Commands ------- %
+
+\newcommand{\createTitle}[5]{
+    \centering
+    \LARGE Project meeting {#1} \\
+    \medskip
+    
+    \begin{flushleft}
+        \small Date: {#2} \\ \smallskip
+        \small Time: {#3} \\ \smallskip
+        \small President: {#4} \\ \smallskip
+        \small Secretary: {#5} \\ \smallskip
+    \end{flushleft}
+    \centerline{\rule{13cm}{0.4pt}}
+}
+
+\newenvironment{subs}
+  {\adjustwidth{3em}{0pt}}
+  {\endadjustwidth}
+
+\titleformat{\section}
+  {\normalfont\small\bfseries}{\S\thesection}{1em}{}
+  
+\titleformat{\subsection}
+  {\normalfont\small\bfseries}{\hspace{0.5cm} - }{1em}{}
+
+% ------------------------------------------------ #
+
+\begin{document}
+
+ \createTitle 
+    {5}                     % PR Number
+    {2021-02-23}            % Date
+    {08:15}                 % Time
+    {Victor Krook}          % President
+    {Assar Orpana}          % Secretary
+    
+\begin{flushleft}    
+
+% --- Agenda starts --- #
+
+\section{Welcome}
+\section{Approve agenda}
+\section{Formal review Phase 2}
+\section{Start Phase 3}
+    \subsection{27 days to hand-in}
+    \subsection{UG}
+    \subsection{SG}
+    \subsection{TG}
+\section{End Phase 3}
+    \subsection{Informal Review Wednesday 3/3}
+    \subsection{"Formal" Review Friday 5/3}
+\section{SDP}
+\section{TG informs}
+\section{Status report \& commit descriptions}
+\section{SDP}
+\section{Reported time week 7}
+\section{Other}
+\section{Next meeting}
+
+
+% --- Agenda ends --- #
+
+\end{flushleft}
+\end{document}
