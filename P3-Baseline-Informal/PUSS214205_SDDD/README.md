@@ -1,4 +1,6 @@
-# Cheat sheet
+# Get the system running locally
+
+## 1. First steps
 To get the project going follow these steps:
 1. Pull the latest version of the `work-library` repository to your local machine.
 2. Open Eclipse EE
@@ -24,8 +26,8 @@ To get the project going follow these steps:
 10. Open a browser, navigate to `http://localhost:8080/SDDD/LogIn`
 11. Be happy in massive success.
 
-## Unknown issue
-If Eclipse fails to find some of the classes, you might try the following
+## 2. Unknown issues
+### 1. If Eclipse fails to find some of the classes, you might try the following
 1. Right click on project
 2. Click "Properties"
 3. Click "Project Facets"
@@ -34,3 +36,7 @@ If Eclipse fails to find some of the classes, you might try the following
 6. Add `Apache Tomcat v9.0`
 7. Click the checkbox
 8. Click "Apply and close"
+
+## 3. Still doesn't work??
+1. Delete the folders from the eclipse workspace. (*SDDD* and *servers*)
+2. Follow the steps on **1. First steps**.
