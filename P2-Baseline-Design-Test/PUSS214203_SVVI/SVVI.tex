@@ -63,7 +63,7 @@
     \documentNumber {03}    
     
     % BASELINE.VERSION
-    \documentVersion {0.3}
+    \documentVersion {0.4}
     
     % Full name - SHORTNAME
     \documentTitle {Software Verification and Validation Instructions}
@@ -98,6 +98,8 @@
    0.1 & 2021-02-10 & TG & Document created. \\
    0.2 & 2021-02-15 & TG & Ready for informal review. \\
     0.3 & 2021-02-18 & TG & Removed a test. Fixed grammatics. \\
+    0.4 & 2021-02-24 & TG & Corrected reference error, changed descriptions for testcases,  \\
+         &            &   &   removed paragraph in chapter 4. \\
 \end{tabular}
 
 \section{Introduction}
@@ -105,17 +107,12 @@ This document presents detailed test instructions of the  TimeMate system.
 
 \section{Reference Documents}
 \begin{enumerate}
-	\item Software Verification and Validation Specification: 	TimeMate, v. 1.0, Doc. number: PUSS214202
+	\item Software Verification and Validation Specification: 	TimeMate, v. 1.2, Doc. number: PUSS214202
 \end{enumerate}
 
 \section{Test Instructions}
 The detailed test instructions for the test cases introduced in ref. 1 are shown in appendices below. Test cases are a set of instructions that are carried out by the tester in numerical order. Before a function test is carried out, the preconditions described in the “Start state” should be met. When steps are initiated with “Check that” they describe an expected result of the system, and the testers' task' is to make sure that the expected result is given. FT16 is crossed since it has been removed from ref. 1.
-\begin{itemize}
-\item \textbf{System Test:} All system tests are done in a review manner. 
-\item \textbf{Function Test:} Function test FT1 and FT2 are executable tests. FT3-FT31 are done in a review manner. 
-\item \textbf{Regression Test:} All regression tests are done in a review manner. 
 
-\end{itemize}
 \section{Appendices}
 	\begin{itemize}
 		\item \textbf{A.} Function Test Instructions 
@@ -134,7 +131,8 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. \newline
 		\textbf{End state:} User “Alex” is logged in. 
 		\begin{enumerate}
-			\item Run JUnit test “testLogin”.
+			\item Create a Database-object called “Alex”.
+			\item assertTrue(Alex.checkLogin(“Alex”,“123ABCde”)).
 			\item Check that the test passes.
 		\end{enumerate}
 		
@@ -142,7 +140,8 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 		\textbf{Start state:} User not logged in, User “Malte” does not exist in the database. \newline
 		\textbf{End state:} User “Malte” is not logged in.  
 		\begin{enumerate}
-			\item Run JUnit test “testLoginNoSuchUser”.
+			\item Create a Database-object called “Malte”.
+			\item assertFalse(Malte.checkLogin(“Malte”,“123ABCde”)). 
 			\item Check that the test passes.
 		\end{enumerate}
 		
@@ -333,7 +332,7 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 			\item Check that the site displays a list of all the users and their correspondent roles.
 			\item Click a radio button with a different role for the user “Malte”.
 			\item Click the “Confirm” button.
-			\item Check that the role of “Malte” has changed. 
+			\item Check that the role of “Malte” has changed in the database with MySql workbench.
 		\end{enumerate}
 		
 		\item \textbf{FT20: Cannot change roles on themselves.} \newline
@@ -408,7 +407,7 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 			\item Click the “add a user” button.
 			\item Locate the text field “User Name” and enter “Max”.
 			\item Locate the text field “Email Address” and enter “TimeMatePUSP2021@gmail.com”.
-			\item Check the “Max” is added to the database.
+			\item Check the “Max” is added to the database with MySql workbench.
 		\end{enumerate}
 		
 		
@@ -420,7 +419,7 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 			\item Locate the text field “User Name” and enter “Alex”.
 			\item Locate the text field “Email Address” and enter “TimeMatePUSP2021@gmail.com”.
 			\item Check that the site displays a message informing that user “Alex” already exists.
-			\item Check if there are two users with the same name in the database.
+			\item Check if there are two users with the same name in the database with MySql workbench.
 		\end{enumerate}
 		
 		
@@ -431,7 +430,7 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 			\item Click the “remove a user” button corresponding to the user “Alex”.
 			\item Enter the user name “Alex”.
 			\item Click the “confirm” button.
-			\item Check that the user ”Alex” is removed from the database.
+			\item Check that the user ”Alex” is removed from the database with MySql workbench.
 		\end{enumerate}
 		
 		
@@ -452,7 +451,7 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 			\item Check that the site displays a list of all the users and their correspondent roles.
 			\item Click a radio button with a different role for the user “Malte”.
 			\item Click the “Confirm” button. 
-			\item Check that the role of “Malte” has changed in the database.
+			\item Check that the role of “Malte” has changed in the database with MySql workbench.
 		\end{enumerate}
 		
 		
@@ -463,7 +462,7 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 			\item Click the “User Management” button.
 			\item Click on a radio button with a different role corresponding to the user “Malte”.
 			\item Click the “Confirm“ button.
-			\item Check that the role of “Malte” has been changed in the database.
+			\item Check that the role of “Malte” has been changed in the database with MySql workbench.
 		\end{enumerate}
 		
 		
