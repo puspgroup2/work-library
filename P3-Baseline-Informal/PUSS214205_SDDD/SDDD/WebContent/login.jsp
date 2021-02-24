@@ -24,7 +24,7 @@
 
                     <!-- form card login -->
                     <div class="card rounded shadow shadow-sm text-center">
-                        <div class="card-header"><h5>Enter username and password</h5></div>
+                        <div class="card-header"><h5>Log in</h5></div>
 
                         <div class="card-body">
                             <form class="form" role="form" autocomplete="off" id="formLogin" action="LogIn">
