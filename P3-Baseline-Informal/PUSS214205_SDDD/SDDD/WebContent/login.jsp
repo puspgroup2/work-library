@@ -17,34 +17,37 @@
 </head>
 
 <body>
+  <!--Log in card-->
   <div>
     <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:50px; margin-bottom:50px;">
+      <!--Log in header-->
       <div class="card-header">
         <h5>Log in</h5>
       </div>
+      <!--Log in body-->
       <div class="card-body">
-      <form action="LogIn">
-        <!--Username input-->
-        <div class="input-group">
-          <div class="input-group-append">
-            <div class="input-group-text"><i class="fa fa-user"></i></div>
+        <form action="LogIn">
+          <!--Username input-->
+          <div class="input-group">
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-user"></i></div>
+            </div>
+            <input class="form-control" type="text" placeholder="Username" name="username">
           </div>
-          <input class="form-control" type="text" placeholder="Username" name="username">
-        </div>
 
-        <!--Password input-->
-        <div class="input-group" style="margin-top:10px">
-          <div class="input-group-append">
-            <div class="input-group-text"><i class="fa fa-lock"></i></div>
+          <!--Password input-->
+          <div class="input-group" style="margin-top:10px">
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-lock"></i></div>
+            </div>
+            <input class="form-control" type="password" placeholder="Password" name="password">
           </div>
-          <input class="form-control" type="password" placeholder="Password" name="password">
-        </div>
 
-        <!--Log in button-->
-        <div class="row justify-content-center" style="margin-top:20px">
-          <button type="submit" class="btn btn-success justify-content-center" id="btnLogin">Log in</button>
-        </div>
-      </form>
+          <!--Log in button-->
+          <div class="row justify-content-center" style="margin-top:20px">
+            <button type="submit" class="btn btn-success justify-content-center" id="btnLogin">Log in</button>
+          </div>
+        </form>
       </div>
 
       <!--Forgot password modal-->
