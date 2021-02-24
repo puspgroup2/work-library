@@ -97,40 +97,22 @@ public class LogIn extends servletBase {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Get the session
-		HttpSession session = request.getSession(true);
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		
-		int state;
-
-		PrintWriter out = response.getWriter();
-		out.println(getPageIntro());
-		
-		if (loggedIn(request)) {
-			session.setAttribute("state", LOGIN_FALSE);
-			out.println("<p>You are now logged out</p>");
+		if (username == null || password == null) {
+			response.sendRedirect("login.jsp");
+		} else if(username.equals("user") && password.equals("pass")) {
+			HttpSession session = request.getSession();
+			session.setAttribute("username", username);
+			response.sendRedirect("index.jsp");
+		} else if (username.equals("admin") && password.equals("pass")){
+			HttpSession session = request.getSession();
+			session.setAttribute("username", username);
+			response.sendRedirect("index.jsp");
+		} else {
+			response.sendRedirect("login.jsp");
 		}
-		
-		String name;
-		String password;
-				
-        name = request.getParameter("user"); // get the string that the user entered in the form
-        password = request.getParameter("password"); // get the entered password
-        if (name != null && password != null) {
-        	if (checkUser(name, password)) {
-        		state = LOGIN_TRUE;
-       			session.setAttribute("state", state);  // save the state in the session
-       			session.setAttribute("name", name);  // save the name in the session
-       			response.sendRedirect("functionality.html");
-       		}
-       		else {
-       			out.println("<p>That was not a valid user name / password. </p>");
-       			out.println(loginRequestForm());
-       		}
-       	}else{ // name was null, probably because no form has been filled out yet. Display form.
-       		out.println(loginRequestForm());
-       	}
-		
-		out.println("</body></html>");
 	}
 
 	/**
