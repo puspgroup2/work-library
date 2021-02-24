@@ -52,34 +52,41 @@
 
       <!--Forgot password modal-->
       <div class="card-footer text-muted">
-        <a data-target="#exampleModal" data-toggle="modal" href="#">Forgot password?</a>
+        <a data-target="#forgotPassword" data-toggle="modal" href="#">Forgot password?</a>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
+      <!--Modal content-->
       <div class="modal-content">
+        <!--Modal header-->
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Reset password</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
-            <div class="input-group">
-                <div class="input-group-append">
-              <div class="input-group-text"><i class="fa fa-user"></i></div>
-          </div>
-          <input class="form-control" type="text" placeholder="Enter your e-mail" name="mail">
+      
+        <!--Modal body-->
+        <form action=""> 
+          <div class="modal-body">
+              <!--Email icon-->
+              <div class="input-group">
+                  <div class="input-group-append">
+                <div class="input-group-text"><i class="fa fa-envelope"></i></div>
               </div>
+              <!--Email text field-->
+              <input class="form-control" type="text" placeholder="Enter your e-mail" name="mail"></div>
+          </div>
+
+          <!--Modal footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Request new password</button>
+          </div>
         </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Request new password</button>
-        </div>
       </div>
     </div>
   </div>
