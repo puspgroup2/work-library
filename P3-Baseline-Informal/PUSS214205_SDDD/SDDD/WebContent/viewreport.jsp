@@ -86,30 +86,7 @@
     </tr>
   </thead>
   <tbody>
-  <%
-  try { 
-	 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lab3", "root", "abc");
-	 Statement st = conn.createStatement();
-	 ResultSet rs = st.executeQuery("SELECT * FROM timereport");
-     while(rs.next()) {%>
-      	<tr>
-	     	<td><input type="radio" name="radioGroup"></td>
-			<td><%=rs.getString("user")%></td>
-			<td><%=rs.getDate("lastupdate")%></td>
-			<td><%=rs.getInt("week")%></td>
-			<td><%=rs.getInt("development")%></td>
-			<td><%=rs.getInt("informal")%></td>
-			<td><%=rs.getInt("formal")%></td>
-			<td><%=rs.getInt("rework")%></td>
-			<td><%=rs.getInt("other")%></td>
-			<td><%=rs.getInt("total")%></td>
-			<td><%=(rs.getInt("signed") == 0 ? "No" : "Yes")%></td>
-		</tr>
-    <% } 
-  	} catch (SQLException e) {
 
-	}%>
-    
   </tbody>
 </table>
 </div>
