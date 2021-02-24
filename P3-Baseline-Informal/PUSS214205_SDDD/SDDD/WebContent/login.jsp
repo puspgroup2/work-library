@@ -50,14 +50,15 @@
         </form>
       </div>
 
-      <!--Forgot password modal-->
+      <!--Open password modal-->
       <div class="card-footer text-muted">
         <a data-target="#forgotPassword" data-toggle="modal" href="#">Forgot password?</a>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!--Forgot password modal-->
+  <div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <!--Modal content-->
       <div class="modal-content">
