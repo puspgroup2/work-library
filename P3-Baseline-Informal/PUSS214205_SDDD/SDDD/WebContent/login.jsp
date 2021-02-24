@@ -17,67 +17,67 @@
 </head>
 
 <body>
-<div>
-  <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:50px; margin-bottom:50px;">
-    <div class="card-header">
-      <h5>Log in</h5>
-    </div>
-    <div class="card-body">
-    <form action="LogIn">
-      <!--Username input-->
-      <div class="input-group">
-        <div class="input-group-append">
-          <div class="input-group-text"><i class="fa fa-user"></i></div>
+  <div>
+    <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:50px; margin-bottom:50px;">
+      <div class="card-header">
+        <h5>Log in</h5>
+      </div>
+      <div class="card-body">
+      <form action="LogIn">
+        <!--Username input-->
+        <div class="input-group">
+          <div class="input-group-append">
+            <div class="input-group-text"><i class="fa fa-user"></i></div>
+          </div>
+          <input class="form-control" type="text" placeholder="Username" name="username">
         </div>
-        <input class="form-control" type="text" placeholder="Username" name="username">
-      </div>
 
-      <!--Password input-->
-      <div class="input-group" style="margin-top:10px">
-        <div class="input-group-append">
-          <div class="input-group-text"><i class="fa fa-lock"></i></div>
+        <!--Password input-->
+        <div class="input-group" style="margin-top:10px">
+          <div class="input-group-append">
+            <div class="input-group-text"><i class="fa fa-lock"></i></div>
+          </div>
+          <input class="form-control" type="password" placeholder="Password" name="password">
         </div>
-        <input class="form-control" type="password" placeholder="Password" name="password">
+
+        <!--Log in button-->
+        <div class="row justify-content-center" style="margin-top:20px">
+          <button type="submit" class="btn btn-success justify-content-center" id="btnLogin">Log in</button>
+        </div>
+      </form>
       </div>
 
-      <!--Log in button-->
-      <div class="row justify-content-center" style="margin-top:20px">
-        <button type="submit" class="btn btn-success justify-content-center" id="btnLogin">Log in</button>
-      </div>
-    </form>
-    </div>
-
-    <!--Forgot password modal-->
-    <div class="card-footer text-muted">
-      <a data-target="#exampleModal" data-toggle="modal" href="#">Forgot password?</a>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Reset password</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
-           <div class="input-group">
-               <div class="input-group-append">
-  					<div class="input-group-text"><i class="fa fa-user"></i></div>
-				</div>
-				<input class="form-control" type="text" placeholder="Enter your e-mail" name="mail">
-            </div>
-       </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Request new password</button>
+      <!--Forgot password modal-->
+      <div class="card-footer text-muted">
+        <a data-target="#exampleModal" data-toggle="modal" href="#">Forgot password?</a>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reset password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
+            <div class="input-group">
+                <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-user"></i></div>
+          </div>
+          <input class="form-control" type="text" placeholder="Enter your e-mail" name="mail">
+              </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Request new password</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
