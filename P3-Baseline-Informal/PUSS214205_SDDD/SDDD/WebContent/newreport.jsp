@@ -71,7 +71,7 @@
 </nav>
 
 <div>
-<div class="card mx-auto" style="max-width: 50rem; margin-top:50px;">
+<div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:50px; margin-bottom:50px;">
   <div class="card-header">
   New Time Report
   </div>
