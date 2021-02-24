@@ -39,7 +39,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="viewreport.jsp">View time reports</a>
                 <a class="dropdown-item active" href="updatereport.jsp">Update time reports</a>
-                <a class="dropdown-item" href="#">New time report</a>
+                <a class="dropdown-item" href="newreport.jsp">New time report</a>
                 <a class="dropdown-item" href="#">View summaries</a>
               </div>
             </li>
