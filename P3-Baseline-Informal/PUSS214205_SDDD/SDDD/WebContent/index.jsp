@@ -69,7 +69,7 @@
       </div>
   </nav>
 
-  <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 30+rem; margin-top:50px; margin-bottom:50px;">
+  <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 30rem; margin-top:50px; margin-bottom:50px;">
     <div class="card-header">
       <h5>Welcome to TimeMate ${username}</h5>
     </div>
