@@ -1,5 +1,13 @@
 # TimeMate
 
+## Git checklist
+1. Säkerställ att det är rätt filer som du vill pusha. Pusha **inte** skräpfiler som .DS_Store eller dylikt.
+2. Gör en `git pull` för att få den **nyaste** versionen.
+3. Om du får `merge request` när du gör pull **måste** du se till att mergen blir rätt, dvs: Skall **din lokala** ändring vara kvar, eller skall **den på github** vara kvar?
+Här kan du behöva gå in i filen som har konflikt och ta bort `>>>>>` vid rätt ställe.
+4. Är du osäker? **FRÅGA**
+
+
 ## Development model
 **TimeMate** is a system for time reporting and is developed in Java.
 This project is divided into **four** phases, following the waterfall model. A phase is not officially started until the previous one is completed.
