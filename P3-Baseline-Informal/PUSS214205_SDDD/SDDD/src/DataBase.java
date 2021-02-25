@@ -26,8 +26,20 @@ public class DataBase {
 		return true;
 	}
 	
-	public boolean disconnect() {
-		return false;
+	/**
+	 * 
+	 * @return true is the connection was successfully closed.
+	 * @throws SQLException if the connection could not be closed.
+	 */
+	public boolean disconnect() throws SQLException {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	// Methods only the admin has access to.
@@ -45,15 +57,6 @@ public class DataBase {
 	 * @return true if the user was successfully removed from the database.
 	 */
 	public boolean removeUser() {
-		return false;
-	}
-	
-	/**
-	 * Associates the role of "project leader" to one user. Only the admin has
-	 * authority to perform this action.
-	 * @return true if a project leader was successfully assigned.
-	 */
-	public boolean setProjectLeader() {
 		return false;
 	}
 	
@@ -91,4 +94,32 @@ public class DataBase {
 	public boolean updateTimeReport(Map<String, String> timeReport) {
 		return false;
 	}
+	
+	/**
+	 * Deletes the specified Time Report.
+	 * @param reportID the Time Report to be deleted.
+	 * @return true if deletion was successful.
+	 */
+	public boolean deleteTimeReport(String reportID) {
+		return false;
+	}
+	
+	
+	// admin??
+	
+	public String getPassword(String userID) {
+		String pw = null;
+		return pw;
+	}
+	
+	public String getEmail(String userID) {
+		String email = null;
+		return email;
+	}
+	
+	public boolean checkLogin(String userID) {
+		return false;
+	}
+	
+	
 }
