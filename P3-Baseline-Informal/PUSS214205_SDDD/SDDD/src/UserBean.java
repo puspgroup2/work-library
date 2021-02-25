@@ -8,29 +8,13 @@ public class UserBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
     private String userName;
+    private String password;
     private String email;
     private String role;
     
-    public void populateBean(String userName, String email, String role) {
+    public void populateBean(String userName, String password) {
     	this.userName = userName;
-    	this.email = email;
-    	this.role = role;
-    }
-
-    /*
-      Fetches the user name of the user that is logged in.
-      @return userName.
-     */
-    public String getUserName() {
-        return userName;
-    }
-
-    /*
-      Sets the user name of the user that is logged in.
-      @param userName.
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    	this.password = password;
     }
 
     /*
