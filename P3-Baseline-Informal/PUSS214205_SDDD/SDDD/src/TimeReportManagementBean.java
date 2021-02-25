@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /*This class is the bean for the web page "signreport.jsp".*/
-public class TimeREportManagementBean implements Serializable {
+public class TimeReportManagementBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
     private List<Integer> timeReportList = new ArrayList<Integer>();
