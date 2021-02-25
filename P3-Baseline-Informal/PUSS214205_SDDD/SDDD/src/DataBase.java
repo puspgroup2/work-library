@@ -136,8 +136,19 @@ public class DataBase {
 	
 	// admin??
 	
-	public String getPassword(String userID) {
+	public String getPassword(String userName) throws SQLException {
 		String pw = null;
+		String sql = "select password from Users where userName = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, userName);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				pw = rs.getString("password");
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
 		return pw;
 	}
 	
@@ -146,7 +157,7 @@ public class DataBase {
 		return email;
 	}
 	
-	public boolean checkLogin(String userID) {
+	public boolean checkLogin(String userName, String password) {
 		
 	}
 	
