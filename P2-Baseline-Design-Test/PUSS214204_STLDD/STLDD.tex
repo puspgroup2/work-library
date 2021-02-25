@@ -67,7 +67,7 @@
     \documentNumber {01}    
     
     % BASELINE.VERSION
-    \documentVersion {0.3}
+    \documentVersion {0.4}
     
     % Full name - SHORTNAME
     \documentTitle {Software Top Level Design Document}
@@ -81,7 +81,7 @@
     \documentAuthors {Developer Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-02-18}
+    \documentDate {2021-02-25}
 }
 
 \begin{document}
@@ -108,10 +108,12 @@
     0.2 & 2021-02-17 & UG & Ready for informal review. \\
     
     0.3 & 2021-02-18 & UG & Corrected grammar and more after informal review \\
+    
+    0.4 & 2021-02-25 & UG & Made corrections after formal review.  \\
 \end{tabular}
 
 \section{Introduction}
-This document describes the design of TimeMate. The system is a further development of the system BaseBlockSystem. TimeMate hosts various functions related to the creating of time reports, getting a view of reported time and more.
+This document describes the design of TimeMate [1.1]. The system is a further development of the system BaseBlockSystem [1]. TimeMate hosts various functions related to the creating of time reports, getting a view of reported time and more.
 
 \section{Reference Documents}
 \begin{enumerate}
@@ -125,9 +127,16 @@ This document describes the design of TimeMate. The system is a further developm
 \item \textbf{Servlets:} Java programs that run on the server side.
 \item \textbf{Java Beans:} A Java class that only contains set/get methods with private attributes. Moreover, a Java Bean must implement the Serializable interface.
 \end{itemize}
-
-\section{File Overview}
+\newline
+\section{Class Overview}
 This system is developed using Apache Tomcat, wherein the controllers (Java Servlets) manipulates and sends data to the views (JavaServer Pages).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/UML_Diagram.png}
+    \caption{Diagram showing an overview of the classes involved in the system}
+    \label{fig:Class Overview}
+\end{figure}
 
 \subsection{Java Server Pages}
 Below are the pages used for TimeMate and what their functions are.
@@ -217,7 +226,7 @@ In this project, there is one database that consists of the nine relations shown
  \end{figure}
 
 \subsection{User Relation}
-The User relation contains all registered users together with user specific information such as password and email. A user belonging to the project may be assigned a role under the role attribute. The userName attribute is used as the primary key, making every username unique. The appearance of the table can be viewed in Figure 2.
+The User relation contains all registered users together with user specific information such as password and email. A user belonging to the project may be assigned a role under the role attribute. The userName attribute is used as the primary key, making every username unique. The appearance of the table can be viewed in Figure 3.
 
 \begin{figure}[H]
      \centering
@@ -244,7 +253,7 @@ A User table can be created using the following MySQL command:
 \normalsize
 \newpage
 \subsection{TimeReport Relation}
-The time report to be filled out by each individual user on a weekly basis contains 55 columns, aiming to help the user specify the time spent on various activities. Four sections - \emph{D (Development)}, \emph{I (Informal review)}, \emph{F (Formal review)}, \emph{R (Rework, improvement or correction)}. However, there may be weeks where no time is spent on, e.g.,  formal reviews. In that case, a large number of columns would be wasted, as there will be no meaningful data added to the columns related to that section of the time report.  The appearance of the table can be viewed in Figure 3.
+The time report to be filled out by each individual user on a weekly basis contains 55 columns, aiming to help the user specify the time spent on various activities. Four sections - \emph{D (Development)}, \emph{I (Informal review)}, \emph{F (Formal review)}, \emph{R (Rework, improvement or correction)}. However, there may be weeks where no time is spent on, e.g.,  formal reviews. In that case, a large number of columns would be wasted, as there will be no meaningful data added to the columns related to that section of the time report.  The appearance of the table can be viewed in Figure 4.
 
 \begin{figure}[H]
      \centering
@@ -279,7 +288,7 @@ A TimeReport table can be created using the following MySQL command:
 To avoid data redundancy, the time reports are being separated into several different relations. The reason for this is the fact that every single submitted time report is going to be represented in TimeReports.
 
 \subsection{ActivityReport Relation}
-ActivityReport is the relation concerning the general activity types. As can be seen in Figure 1, these include the unique primary key: reportID and other attributes such as homeReading, meeting and various tests. The appearance of the table can be viewed in Figure 4.
+ActivityReport is the relation concerning the general activity types. As can be seen in Figure 1, these include the unique primary key: reportID and other attributes such as homeReading, meeting and various tests. The appearance of the table can be viewed in Figure 5.
 \newline
 
 \begin{figure}[H]
@@ -317,7 +326,7 @@ An ActivityReport table can be created using the following MySQL command:
 
 
 \subsection{DocumentTimeD/I/F/R Relation}
-As mentioned earlier, there are four different activity types in the time documentation: \emph{Development and documentation (D)}, \emph{Informal review (I)}, \emph{Formal review (F)} and \emph{Rework, improvement or correction (R)}. All of these relations contain the same attributes mainly concerning the various documents. Besides these attributes, there is one attribute concerning the totalMinutes. The purpose of this attribute is to oversee the amount of minutes spent on each activity type. Since each document continuously is in a different stage, it was concluded to include different phases as activity types to ensure that the time reports are comprehensible. All of these tables can be created by using the same SQL statement. The appearance of each of these tables can be viewed in Figure 5.
+As mentioned earlier, there are four different activity types in the time documentation: \emph{Development and documentation (D)}, \emph{Informal review (I)}, \emph{Formal review (F)} and \emph{Rework, improvement or correction (R)}. All of these relations contain the same attributes mainly concerning the various documents. Besides these attributes, there is one attribute concerning the totalMinutes. The purpose of this attribute is to oversee the amount of minutes spent on each activity type. Since each document continuously is in a different stage, it was concluded to include different phases as activity types to ensure that the time reports are comprehensible. All of these tables can be created by using the same SQL statement. The appearance of each of these tables can be viewed in Figure 6.
 
 \begin{figure}[H]
      \centering
@@ -352,7 +361,7 @@ A DocumentTime table can be created using the following MySQL command:
 \normalsize
 \newpage
 \section{Description of Classes}
-This section describes all classes and their public methods.
+This section describes all classes and their public methods. The classes along with their methods and attributes can be viewed in Figure 7.
 
 \subsection{Database}
 \subsubsection{addUser()}
@@ -398,6 +407,11 @@ Gets the username contained in the bean.
 Gets the email contained in the bean.
 \subsubsection{getRole()}
 Gets the role contained in the bean.
+\subsubsection{setEmail()}
+Sets the email attribute in the bean.
+\subsubsection{setRole()}
+Sets the role attribute in the bean.
+
 
 \subsection{UserManagementBean}
 \subsubsection{populateBean()}
