@@ -73,7 +73,50 @@
     </div>
 </nav>
       
-      <div>
-      	Administration page
+
+<div>
+  <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:50px; margin-bottom:50px;">
+    <div class="card-header">
+    Add user
+    </div>
+    <div class="card-body">
+  
+   <form>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+          <td>
+            <div class="form-group row">
+              <label for="text" class="col-4 col-form-label">Username:</label> 
+              <div class="col-8">
+                <input id="text" name="text" type="text" class="form-control">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="form-group row">
+              <label for="text1" class="col-4 col-form-label">E-mail:</label> 
+              <div class="col-8">
+                <input id="text1" name="text1" type="text" class="form-control">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="7">
+            A password will be randomly generated and sent along with the username to the mail.
+          </td>
+        </tr>
+      </table>
+      <div class="form-group row">
+        <div class="offset-0 col-8">
+          <button name="submit" type="submit" class="btn btn-success">Add user</button>
+        </div>
       </div>
+    </form>
+  
+    </div>
+  </div>
+</div>
+
 </body>
