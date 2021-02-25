@@ -220,12 +220,24 @@ public class DataBase {
 		return pw;
 	}
 	
-	public String getEmail(String userID) {
+	public String getEmail(String userName) throws SQLException {
 		String email = null;
+		String sql = "SELECT email from Users where userName = ?";
+		
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, userName);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				email = rs.getString("email");
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
 		return email;
 	}
 	
-	// använd username "Ulla" and pw "ulla123!"
+	// anvï¿½nd username "Ulla" and pw "ulla123!"
 	public boolean checkLogin(String userName, String password) throws SQLException {
         String sql = "SELECT * FROM Users where userName = ? AND password = ?";
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
