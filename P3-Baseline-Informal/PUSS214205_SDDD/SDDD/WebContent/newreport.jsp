@@ -11,8 +11,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
   <%@page import="java.sql.*"%>
   <title>TimeMate - New Time Report</title>
 </head>
@@ -23,6 +21,8 @@
 		response.sendRedirect("login.jsp");
 	}
 %>
+
+<!--Start navbar-->
 <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand abs">TimeMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -69,13 +69,14 @@
         </ul>
     </div>
 </nav>
+<!--End navbar-->
 
 <div>
-<div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:50px; margin-bottom:50px;">
-  <div class="card-header">
-  New Time Report
-  </div>
-  <div class="card-body">
+  <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:50px; margin-bottom:50px;">
+    <div class="card-header">
+    New Time Report
+    </div>
+    <div class="card-body">
   
    <form>
       <table class="table table-bordered">
@@ -86,7 +87,7 @@
             <div class="form-group row">
               <label for="text" class="col-4 col-form-label">Name:</label> 
               <div class="col-8">
-                <input id="text" name="text" type="text" class="form-control">
+                <input id="text" name="text" type="text" class="form-control" placeholder="${username}">
               </div>
             </div>
           </fieldset>
@@ -96,7 +97,7 @@
             <div class="form-group row">
               <label for="text1" class="col-4 col-form-label">Date</label> 
               <div class="col-8">
-                <input id="text1" name="text1" type="text" class="form-control">
+                <input id="text1" name="text1" type="text" class="form-control" placeholder="${curday}">
               </div>
             </div>
           </fieldset> 
