@@ -36,52 +36,7 @@ public class LogIn extends servletBase {
         super();
         // TODO Auto-generated constructor stub
     }
-    
-    /**
-     * Generates a form for login. 
-     * @return HTML code for the form
-     */
-    protected String loginRequestForm() {
-    	String html = "<p>Please enter your name and password in order to log in:</p>";
-    	html += "<p> <form name=" + formElement("input");
-    	html += " method=" + formElement("post");
-    	html += "<p> Name: <input type=" + formElement("text") + " name=" + formElement("user") + '>'; 
-    	html += "<p> Password: <input type=" + formElement("password") + " name=" + formElement("password") + '>';  
-    	html += "<p> <input type=" + formElement("submit") + "value=" + formElement("Submit") + '>';
-    	return html;
-    }
-    
-    
-    /**
-     * Checks with the database if the user should be accepted
-     * @param name The name of the user
-     * @param password The password of the user
-     * @return true if the user should be accepted
-     */
-    private boolean checkUser(String name, String password) {
-		
-		boolean userOk = false;
-		boolean userChecked = false;
-		
-		try{
-			Statement stmt = conn.createStatement();		    
-		    ResultSet rs = stmt.executeQuery("select * from users"); 
-		    while (rs.next( ) && !userChecked) {
-		    	String nameSaved = rs.getString("name"); 
-		    	String passwordSaved = rs.getString("password");
-		    	if (name.equals(nameSaved)) {
-		    		userChecked = true;
-		    		userOk = password.equals(passwordSaved);
-		    	}
-		    }
-		    stmt.close();
-		} catch (SQLException ex) {
-		    System.out.println("SQLException: " + ex.getMessage());
-		    System.out.println("SQLState: " + ex.getSQLState());
-		    System.out.println("VendorError: " + ex.getErrorCode());
-		}
-		return userOk;
-	}
+
 
     
     
@@ -96,23 +51,32 @@ public class LogIn extends servletBase {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		DataBase db = new DataBase();
+		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
 		if (username == null || password == null) {
-			response.sendRedirect("login.jsp");
+			response.sendError(LOGIN_FALSE);
 		} else if(username.equals("user") && password.equals("pass")) {
-			HttpSession session = request.getSession();
 			session.setAttribute("username", username);
 			response.sendRedirect("index.jsp");
-		} else if (username.equals("admin") && password.equals("pass")){
-			HttpSession session = request.getSession();
-			session.setAttribute("username", username);
+		}
+		
+		UserBean ub = new UserBean();
+		ub.populateBean(username, password);
+		if (db.checkLogin(ub)) {
+			ub.setRole(db.getRole(username));
+			session.setAttribute("username", ub.getName());
+			session.setAttribute("role", ub.getRole());
+			session.setAttribute("state", LOGIN_TRUE);
 			response.sendRedirect("index.jsp");
 		} else {
-			response.sendRedirect("login.jsp");
+			//failed login
+			session.setAttribute("state", LOGIN_FALSE);
+			request.setAttribute("errorMessage", LOGIN_FALSE);
 		}
+		
 	}
 
 	/**
