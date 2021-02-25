@@ -205,25 +205,53 @@ public class DataBase {
 	
 	// admin??
 	
+	/**
+	 * Returns a map containing all time values in the DocumentTimeD table.
+	 * @param reportID the Time Report to be returned.
+	 * @return a map of time values if Time Report exists, else null.
+	 */
 	public Map<String, Integer> getDocumentTimeD(String reportID) {
 		return getDocumentTime(reportID, 'D');
 	}
 	
+	
+	/**
+	 * Returns a map containing all time values in the DocumentTimeI table.
+	 * @param reportID the Time Report to be returned.
+	 * @return a map of time values if Time Report exists, else null.
+	 */
 	public Map<String, Integer> getDocumentTimeI(String reportID) {
 		return getDocumentTime(reportID, 'I');
 	}
 	
+	
+	/**
+	 * Returns a map containing all time values in the DocumentTimeR table.
+	 * @param reportID the Time Report to be returned.
+	 * @return a map of time values if Time Report exists, else null.
+	 */
 	public Map<String, Integer> getDocumentTimeR(String reportID) {
 		return getDocumentTime(reportID, 'R');
 	}
 	
+	
+	/**
+	 * Returns a map containing all time values in the DocumentTimeF table.
+	 * @param reportID the Time Report to be returned.
+	 * @return a map of time values if Time Report exists, else null.
+	 */
 	public Map<String, Integer> getDocumentTimeF(String reportID) {
 		return getDocumentTime(reportID, 'F');
 	}
 	
-	private Map<String, Integer> getDocumentTime(String reportID, char timedoc) {
-		String getActivityReport = "SELECT * FROM DocumentTime" + timedoc + " WHERE reportID = ?";
-		try(PreparedStatement ps = connection.prepareStatement(getActivityReport)) {
+	/**
+	 * Returns a map containing all time values in the ActivityReport table.
+	 * @param reportID the Time Report to be returned.
+	 * @return a map of time values if Time Report exists, else null.
+	 */
+	private Map<String, Integer> getDocumentTime(String reportID, char doctype) {
+		String getDocumentTime = "SELECT * FROM DocumentTime" + doctype + " WHERE reportID = ?";
+		try(PreparedStatement ps = connection.prepareStatement(getDocumentTime)) {
 			ps.setInt(1, Integer.valueOf(reportID));
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) {
@@ -242,6 +270,41 @@ public class DataBase {
 				documentTime.put("SSD", rs.getInt("SSD"));
 				documentTime.put("finalReport", rs.getInt("finalReport"));	
 				return documentTime;
+			}
+		} catch(SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return null;
+		}
+	}
+	
+	
+	/**
+	 * Returns a map containing all time values in the ActivityReport table.
+	 * @param reportID the Time Report to be returned.
+	 * @return a map of time values if Time Report exists, else null.
+	 */
+	public Map<String, Integer> getActivityReport(String reportID) {
+		String getActivityReport = "SELECT * FROM DocumentTime WHERE reportID = ?";
+		try(PreparedStatement ps = connection.prepareStatement(getActivityReport)) {
+			ps.setInt(1, Integer.valueOf(reportID));
+			ResultSet rs = ps.executeQuery();
+			if (!rs.next()) {
+				//report does not exist does not exist
+				return null;
+			} else {
+				HashMap<String, Integer> activityReport = new HashMap<String, Integer>();
+				activityReport.put("totalMinutes", rs.getInt("totalMinutes"));
+				activityReport.put("functionalTest", rs.getInt("functionalTest"));
+				activityReport.put("systemTest", rs.getInt("systemTest"));
+				activityReport.put("regressionTest", rs.getInt("regressionTest"));
+				activityReport.put("meeting", rs.getInt("meeting"));
+				activityReport.put("lecture", rs.getInt("lecture"));
+				activityReport.put("exercise", rs.getInt("exercise"));
+				activityReport.put("computerExercise", rs.getInt("computerExercise"));
+				activityReport.put("homeReading", rs.getInt("homeReading"));
+				activityReport.put("other", rs.getInt("other"));	
+				return activityReport;
 			}
 		} catch(SQLException e) {
 			System.err.println(e);
