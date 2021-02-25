@@ -160,8 +160,19 @@ public class DataBase {
 	
 	// admin??
 	
-	public String getPassword(String userID) {
+	public String getPassword(String userName) throws SQLException {
 		String pw = null;
+		String sql = "select password from Users where userName = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, userName);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				pw = rs.getString("password");
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
 		return pw;
 	}
 	
@@ -170,9 +181,29 @@ public class DataBase {
 		return email;
 	}
 	
-	public boolean checkLogin(String userID) {
-		
-	}
+	// använd username "Ulla" and pw "ulla123!"
+	public boolean checkLogin(String userName, String password) throws SQLException {
+        String sql = "SELECT * FROM Users where userName = ? AND password = ?";
+        try(PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, userName);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+            	String name = rs.getString("userName");
+            	String pw = rs.getString("password");
+            	return name.equals(userName) && pw.equals(password);
+            }
+        } catch (SQLException e) {
+        	System.out.println(e);
+            e.printStackTrace();
+
+        }
+
+        return false;
+    }
 	
 	
 }
