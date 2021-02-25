@@ -26,9 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  * 
  */
 @WebServlet("/LogIn")
-public class LogIn extends servletBase {
+public class LogIn extends servletBase 
+{
 	private static final long serialVersionUID = 1L;
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,9 +37,6 @@ public class LogIn extends servletBase {
         // TODO Auto-generated constructor stub
     }
 
-
-    
-    
 	/**
 	 * Implementation of all input to the servlet. All post-messages are forwarded to this method. 
 	 * 
@@ -67,7 +64,7 @@ public class LogIn extends servletBase {
 		ub.populateBean(username, password);
 		if (db.checkLogin(ub)) {
 			ub.setRole(db.getRole(username));
-			session.setAttribute("username", ub.getName());
+			session.setAttribute("username", ub.getUserName());
 			session.setAttribute("role", ub.getRole());
 			session.setAttribute("state", LOGIN_TRUE);
 			response.sendRedirect("index.jsp");
@@ -76,7 +73,6 @@ public class LogIn extends servletBase {
 			session.setAttribute("state", LOGIN_FALSE);
 			request.setAttribute("errorMessage", LOGIN_FALSE);
 		}
-		
 	}
 
 	/**
