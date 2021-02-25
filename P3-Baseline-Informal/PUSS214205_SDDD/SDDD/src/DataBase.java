@@ -1,14 +1,28 @@
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DataBase {
-	private DriverManager connection;
+	private Connection connection;
+	private static String databaseServerAddress = "vm23.cs.lth.se";
+	private static String database = "pusp2102hbg";
+	private static String databaseUser = "pusp2102hbg";
+	private static String databasePassword = "s9hg34sf";
 	
-	public DataBase() {
-		
+	public DataBase(){
+		connection = null;
 	}
 	
-	public boolean connect() {
-		return false;
+	public boolean connect() throws SQLException {
+		try {
+			connection = DriverManager.getConnection("jdbc:mysql://" + databaseServerAddress + 
+					"/" + database, databaseUser, databasePassword);
+		} catch (SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return false;
+		}
+		return true;
 	}
 	
 	public boolean disconnect() {
@@ -43,6 +57,18 @@ public class DataBase {
 	}
 	
 	// Methods only the project leader has access to
+	
+	public String getRole() {
+		return " ";
+	}
+	
+	public boolean updateRole() {
+		return false;
+	}
+	
+	public boolean signTimeReport() {
+		return false;
+	}
 	
 	// Methods every user has access to
 }
