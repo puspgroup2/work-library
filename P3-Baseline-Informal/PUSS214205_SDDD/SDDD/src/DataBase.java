@@ -164,8 +164,23 @@ public class DataBase {
 		return "Jag heter Anna";
 	}
 	
-	public boolean updateRole() {
-		return false;
+	public boolean updateRole(String userName, String role) {
+		String sql = "UPDATE Users + SET role = ? + WHERE userName = ?";
+		
+		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, role);
+			ps.setString(2, userName);
+			
+			ps.executeUpdate();
+			return true;
+			
+		}
+        catch (SQLException e) {
+    	System.out.println(e);
+        e.printStackTrace();
+        return false;
+    }
+		
 	}
 	
 	public boolean signTimeReport() {
