@@ -51,9 +51,8 @@ public class DataBase {
 	 * @return true if the user was successfully added to the database.
 	 */
 	public boolean addUser(String username, String password, String email) {
-		
-		// checks if user already exists
-		String getUser = "SELECT * FROM User WHERE userName = ?";
+		// checks if user exists
+		String getUser = "SELECT * FROM Users WHERE userName = ?";
 		try(PreparedStatement ps = connection.prepareStatement(getUser)) {
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
@@ -67,7 +66,7 @@ public class DataBase {
 		}
 		
 		// Adds user
-		String addUser = "INSERT INTO User(userName, password, email) VALUES (?, ?, ?)";
+		String addUser = "INSERT INTO Users(userName, password, email) VALUES (?, ?, ?)";
 		try(PreparedStatement ps = connection.prepareStatement(addUser)) {
 			ps.setString(1, username);
 			ps.setString(2, password);
@@ -85,8 +84,33 @@ public class DataBase {
 	 * Only the admin can perform this action.
 	 * @return true if the user was successfully removed from the database.
 	 */
-	public boolean removeUser() {
-		return false;
+	public boolean removeUser(String username) {
+		// checks if user exists
+		String getUser = "SELECT * FROM Users WHERE userName = ?";
+		try(PreparedStatement ps = connection.prepareStatement(getUser)) {
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			if (!rs.next()) {
+				return false;
+			}
+		} catch(SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return false;
+		}
+		
+		// Removes user
+		String removeUser = "DELETE FROM Users WHERE userName = ?";
+		try(PreparedStatement ps = connection.prepareStatement(removeUser)) {
+			ps.setString(1, username);
+			ps.executeUpdate();
+			return true;
+		} catch(SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return false;
+		}
+		
 	}
 	
 	// Methods only the project leader has access to
