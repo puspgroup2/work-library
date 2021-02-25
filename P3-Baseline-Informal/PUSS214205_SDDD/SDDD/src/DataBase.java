@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Map;
 
 public class DataBase {
 	private Connection connection;
@@ -71,4 +72,23 @@ public class DataBase {
 	}
 	
 	// Methods every user has access to
+	
+	/**
+	 * Creates a new Time Report.
+	 * @return the Time Report ID.
+	 */
+	public String newTimeReport() {
+		String reportID = null;
+		return reportID;
+	}
+	
+	/**
+	 * Updates a Time Report according to the values contained in the map.
+	 * @param timeReport A map with key-value pairs consisting of the tuple's 
+	 * columns and the values associated with these.
+	 * @return true if the Time Report was successfully updated.
+	 */
+	public boolean updateTimeReport(Map<String, String> timeReport) {
+		return false;
+	}
 }
