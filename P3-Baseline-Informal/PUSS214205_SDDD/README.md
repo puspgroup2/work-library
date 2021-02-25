@@ -23,7 +23,7 @@ To get the project going follow these steps:
    8. Click "Apply and close"
 8. Right click *Servers* tab in the bottom. 
 9. Click "Start"
-10. Open a browser, navigate to `http://localhost:8080/SDDD/LogIn`
+10. Open a browser, navigate to `http://localhost:8080
 11. Be happy in massive success.
 
 ## 2. Unknown issues
