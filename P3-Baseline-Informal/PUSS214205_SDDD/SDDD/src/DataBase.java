@@ -63,7 +63,7 @@ public class DataBase {
 	// Methods only the project leader has access to
 	
 	public String getRole() {
-		return " ";
+		return "Jag heter ";
 	}
 	
 	public boolean updateRole() {
