@@ -1,5 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
@@ -48,8 +50,35 @@ public class DataBase {
 	 * Only the admin can perform this action.
 	 * @return true if the user was successfully added to the database.
 	 */
-	public boolean addUser() {
-		return false;
+	public boolean addUser(String username, String password, String email) {
+		
+		// checks if user already exists
+		String getUser = "SELECT * FROM User WHERE userName = ?";
+		try(PreparedStatement ps = connection.prepareStatement(getUser)) {
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return false;
+			}
+		} catch(SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return false;
+		}
+		
+		// Adds user
+		String addUser = "INSERT INTO User(userName, password, email) VALUES (?, ?, ?)";
+		try(PreparedStatement ps = connection.prepareStatement(addUser)) {
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ps.setString(3, email);
+			ps.executeUpdate();
+			return true;
+		} catch(SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return false;
+		}
 	}
 	
 	/**
