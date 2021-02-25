@@ -3,6 +3,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class DataBase {
@@ -114,6 +116,48 @@ public class DataBase {
 	}
 	
 	// Methods only the project leader has access to
+	
+	/**
+	 * Returns a list containing a user's Time Report ID's.
+	 * @param username
+	 * @return list of Time Report IDs.
+	 */
+	public List<String> getTimeReportIDs(String username) {
+		String getIDs = "SELECT reportID FROM TimeReports WHERE userName = ?";
+		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+			}
+			return timeReportIDs;
+		} catch(SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return timeReportIDs;
+		}
+	}
+	
+	/**
+	 * Returns a list containing ID's of all unsigned Time Reports.
+	 * @return list of Time Report IDs.
+	 */
+	public List<String> getUnsignedTimeReportIDs() {
+		String getIDs = "SELECT reportID FROM TimeReports WHERE signature = NULL";
+		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+			}
+			return timeReportIDs;
+		} catch(SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return timeReportIDs;
+		}
+	}
 	
 	public String getRole() {
 		return "Jag heter Anna";
