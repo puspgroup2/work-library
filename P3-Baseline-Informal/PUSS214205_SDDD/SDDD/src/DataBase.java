@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -203,6 +204,52 @@ public class DataBase {
 	
 	
 	// admin??
+	
+	public Map<String, Integer> getDocumentTimeD(String reportID) {
+		return getDocumentTime(reportID, 'D');
+	}
+	
+	public Map<String, Integer> getDocumentTimeI(String reportID) {
+		return getDocumentTime(reportID, 'I');
+	}
+	
+	public Map<String, Integer> getDocumentTimeR(String reportID) {
+		return getDocumentTime(reportID, 'R');
+	}
+	
+	public Map<String, Integer> getDocumentTimeF(String reportID) {
+		return getDocumentTime(reportID, 'F');
+	}
+	
+	private Map<String, Integer> getDocumentTime(String reportID, char timedoc) {
+		String getActivityReport = "SELECT * FROM DocumentTime" + timedoc + " WHERE reportID = ?";
+		try(PreparedStatement ps = connection.prepareStatement(getActivityReport)) {
+			ps.setInt(1, Integer.valueOf(reportID));
+			ResultSet rs = ps.executeQuery();
+			if (!rs.next()) {
+				//report does not exist does not exist
+				return null;
+			} else {
+				HashMap<String, Integer> documentTime = new HashMap<String, Integer>();
+				documentTime.put("totalMinutes", rs.getInt("totalMinutes"));
+				documentTime.put("SDP", rs.getInt("SDP"));
+				documentTime.put("SRS", rs.getInt("SRS"));
+				documentTime.put("SVVS", rs.getInt("SVVS"));
+				documentTime.put("STLDD", rs.getInt("STLDD"));
+				documentTime.put("SVVI", rs.getInt("SVVI"));
+				documentTime.put("SDDD", rs.getInt("SDDD"));
+				documentTime.put("SVVR", rs.getInt("SVVR"));
+				documentTime.put("SSD", rs.getInt("SSD"));
+				documentTime.put("finalReport", rs.getInt("finalReport"));	
+				return documentTime;
+			}
+		} catch(SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return null;
+		}
+	}
+	
 	
 	public String getPassword(String userName) throws SQLException {
 		String pw = null;
