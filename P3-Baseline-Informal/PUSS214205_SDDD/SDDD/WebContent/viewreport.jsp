@@ -70,7 +70,7 @@
         </ul>
     </div>
 </nav>
- <div>
+ <div style="background-color:white">
   <table class="table table-striped">
   <thead>
     <tr>
