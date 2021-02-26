@@ -71,33 +71,58 @@
     </div>
 </nav>
 
-<div style="background-color:white">
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col" data-field="state">Selection</th>
-      <th scope="col">User</th>
-      <th scope="col">Last update</th>
-      <th scope="col">Week</th>
-      <th scope="col">Development</th>
-      <th scope="col">Informal review</th>
-      <th scope="col">Formal review</th>
-      <th scope="col">Rework</th>
-      <th scope="col">Other</th>
-      <th scope="col">Total time</th>
-      <th scope="col">Signed</th>
-      
-    </tr>
-  </thead>
-  <tbody>
+<div class="d-flex" id="wrapper">
 
-  </tbody>
-</table>
+  <!-- Sidebar -->
+  <div>
+      <div class="bg-light border-right" id="sidebar-wrapper">
+          <div class="sidebar-heading">Options</div>
+          <div class="list-group list-group-flush">
+          <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
+          <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
+          <a href="editreport.jsp" class="list-group-item list-group-item-action bg-light">Edit Time Report</a>
+          </div>
+      </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+
+    <div class="container-fluid">
+      <div style="background-color:white">
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" data-field="state">Selection</th>
+            <th scope="col">User</th>
+            <th scope="col">Last update</th>
+            <th scope="col">Week</th>
+            <th scope="col">Development</th>
+            <th scope="col">Informal review</th>
+            <th scope="col">Formal review</th>
+            <th scope="col">Rework</th>
+            <th scope="col">Other</th>
+            <th scope="col">Total time</th>
+            <th scope="col">Signed</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+      
+        </tbody>
+      </table>
+      </div>
+      <div class="d-flex justify-content-center">
+      <form class="form-inline my-2 my-lg-0" action="GetReport">
+           <input type="submit" value="Update selected report" class="btn btn-success">
+         </form>
+      </div>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
 </div>
-<div class="d-flex justify-content-center">
-<form class="form-inline my-2 my-lg-0" action="GetReport">
-     <input type="submit" value="Update selected report" class="btn btn-success">
-   </form>
-</div>
+
   	
 </body>

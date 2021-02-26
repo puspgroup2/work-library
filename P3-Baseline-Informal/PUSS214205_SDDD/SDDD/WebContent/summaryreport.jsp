@@ -62,18 +62,31 @@
         </ul>
     </div>
 </nav>
-<div>
-    <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">Options</div>
-        <div class="list-group list-group-flush">
-        <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
-        <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
-        <a href="editreport.jsp" class="list-group-item list-group-item-action bg-light">Edit Time Report</a>
+
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div>
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">Options</div>
+            <div class="list-group list-group-flush">
+            <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
+            <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
+            <a href="editreport.jsp" class="list-group-item list-group-item-action bg-light">Edit Time Report</a>
+            </div>
         </div>
     </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <div class="container-fluid">
+        Page content here
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
 </div>
 
-<div>
-    testasddddddddasdasd
-</div>
 </body>
