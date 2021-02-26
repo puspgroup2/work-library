@@ -158,7 +158,7 @@
               <tr>
                 <td colspan="7">
                   <b>Part B: Number of minutes per activity</b><br>
-                  (The sum of all seperrate activities are automatically summed up and entered above)
+                  (The sum of all seperate activities are automatically summed up and entered above)
                 </td>
               </tr>
               <tr>
