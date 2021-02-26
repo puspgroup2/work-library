@@ -152,7 +152,7 @@
                 <td colspan="4">
                   <fieldset disabled>
                   <div class="form-group row">
-                    <label for="text" class="col-4 col-form-label">Project group:</label> 
+                    <label for="text" class="col-4 col-form-label">Role:</label> 
                     <div class="col-8">
                       <input id="projectgroup" name="projectgroup" type="text" class="form-control" placeholder="${role}">
                     </div>
