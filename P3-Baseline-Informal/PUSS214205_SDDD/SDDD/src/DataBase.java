@@ -19,7 +19,7 @@ public class DataBase {
 		connection = null;
 	}
 	
-	public boolean connect() throws SQLException {
+	public boolean connect() {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://" + databaseServerAddress + 
 					"/" + database, databaseUser, databasePassword);
@@ -435,11 +435,15 @@ public class DataBase {
         } catch (SQLException e) {
         	System.out.println(e);
             e.printStackTrace();
-
         }
-
         return false;
     }
 	
+	public static void main(String[] args) {
+		DataBase db = new DataBase();
+		db.connect();
+		
+		System.out.println(db.addUser("Victor", "pw", "mail"));
+	}
 	
 }
