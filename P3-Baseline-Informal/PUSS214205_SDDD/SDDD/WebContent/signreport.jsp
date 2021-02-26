@@ -94,10 +94,10 @@
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Options</div>
             <div class="list-group list-group-flush">
-            <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Time Report Summary</b></a>
+            <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
             <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light">Sign Reports</a>
+                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Sign Reports</b></a>
             </c:if>
             </div>
         </div>
@@ -110,7 +110,7 @@
           <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col" data-field="state">Selection</th>
+              <th scope="col" data-field="state">Signed</th>
               <th scope="col">User</th>
               <th scope="col">Last update</th>
               <th scope="col">Week</th>
@@ -125,7 +125,11 @@
           </thead>
           <tbody>
             <tr>
-              <td><input type="radio" name="radioGroup"></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </div>
+              </td>
               <td>${username}</td>
               <td>date</td>
               <td>week</td>
@@ -138,7 +142,11 @@
               <td>signed</td>
             </tr>
             <tr>
-              <td><input type="radio" name="radioGroup"></td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </div>
+              </td>
               <td>${username}</td>
               <td>date</td>
               <td>week</td>
@@ -155,8 +163,8 @@
         </div>
         <div class="d-flex justify-content-center">
             <form class="form-inline my-2 my-lg-0" action="GetReport" style="margin-right:2.5px">
-                <input type="submit" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
-                <input type="submit" value="View selected report" class="btn btn-success" style="margin-left:3px">
+                <input type="submit" value="Submit" class="btn btn-success" style="margin-right:3px">
+                
             </form>
         </div>
     </div>

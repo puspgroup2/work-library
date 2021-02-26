@@ -43,30 +43,53 @@
           <li class="nav-item active">
               <a class="nav-link" href="summaryreport.jsp">Time Report</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="usermanagement.jsp">User Management</a>
-          </li>
-          <c:if test = "${sessionScope.username eq 'admin'}">
-            <li class="nav-item">
-                <a class="nav-link" href="administration.jsp">Administration</a>
-            </li>
+          <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+            	<li class="nav-item">
+              		<a class="nav-link" href="usermanagement.jsp">User Management</a>
+            	</li>
           </c:if>
+          <c:if test = "${sessionScope.role eq 'ADMIN'}">
+            	<li class="nav-item">
+              		<a class="nav-link" href="administration.jsp">Administration</a>
+            	</li>
+            </c:if>
       </ul>
 
       <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
-              <input type="submit" value="Change Password" class="btn btn-primary" style="margin-right:7px">
+              <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
+                  <input type="submit" value="Change Password" class="btn btn-primary" style="margin-right:7px">
+                </form>
+              </li>
+              <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0">
+                  <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#logoutModal">Log out</a>
+                </form>
+              </li> 
+          </ul>
+      </div>
+  </nav>
+  
+  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+        <h4>Log Out <i class="fa fa-lock"></i></h4>
+      </div>
+      <div class="modal-body">
+        <p><i class="fa fa-question-circle"></i> Are you sure you want to log-off? <br /></p>
+        <div class="actionsBtns">
+            <form action="login.jsp">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <input type="submit" class="btn btn-default btn-primary" value="Logout" />
+	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
             </form>
-          </li>
-          <li class="nav-item">
-            <form class="form-inline my-2 my-lg-0" action="Logout">
-              <input type="submit" value="Log out" class="btn btn-danger">
-            </form>
-          </li>
-      </ul>
+        </div>
+      </div>
+    </div>
   </div>
-</nav>
+</div>
 <!--End navbar-->
 
 <div class="d-flex" id="wrapper">
@@ -78,7 +101,9 @@
           <div class="list-group list-group-flush">
           <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
           <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Create New Time Report</b></a>
-          <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Show Signed Reports (PG)</a>
+          <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light">Sign Reports</a>
+            </c:if>
         </div>
       </div>
   </div>
@@ -104,7 +129,7 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Name:</label> 
                     <div class="col-8">
-                      <input id="text" name="text" type="text" class="form-control" placeholder="${username}">
+                      <input id="username" name="username" type="text" class="form-control" placeholder="${username}">
                     </div>
                   </div>
                 </fieldset>
@@ -116,7 +141,7 @@
                     <div class="col-8">
                       
                       <fmt:formatDate var="fmtDate" value="<%=new java.util.Date()%>" pattern="dd/MM/yyyy HH:mm:ss"/>  
-              <input type="text" name="bean.dateProperty" class="form-control" value="${fmtDate}" placeholder="${fmtDate}"/>
+                      <input type="text" name="bean.dateProperty" class="form-control" value="${fmtDate}" placeholder="${fmtDate}"/>
                       
                     </div>
                   </div>
@@ -129,7 +154,7 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Project group:</label> 
                     <div class="col-8">
-                      <input id="text" name="text" type="text" class="form-control">
+                      <input id="projectgroup" name="projectgroup" type="text" class="form-control">
                     </div>
                   </div>
                   </fieldset>
@@ -138,7 +163,7 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Week:</label> 
                     <div class="col-8">
-                      <input id="text" name="text" type="text" class="form-control">
+                      <input id="week" name="week" type="text" class="form-control">
                     </div>
                   </div>
                 </td>
@@ -149,7 +174,7 @@
                     <div class="form-group row">
                       <label for="text" class="col-5 col-form-label"><b>Part A: Total time this week (minutes):</b></label> 
                       <div class="col-7">
-                        <input id="text" name="text" type="text" class="form-control">
+                        <input id="totaltime" name="totaltime" type="text" class="form-control">
                       </div>
                     </div>
                     </fieldset>
@@ -174,20 +199,20 @@
                 <td>11</td>
                 <td>SDP</td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sdp_d" name="sdp_d" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sdp_i" name="sdp_i" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sdp_f" name="sdp_f" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sdp_r" name="sdp_r" type="text" class="form-control">
                 </td>
                 <td>
                   <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sdp_total" name="sdp_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -195,20 +220,20 @@
                 <td>12</td>
                 <td>SRS</td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="srs_d" name="srs_d" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="srs_i" name="srs_i" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="srs_f" name="srs_f" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="srs_r" name="srs_r" type="text" class="form-control">
                 </td>
                 <td>
                   <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="srs_total" name="srs_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -216,20 +241,20 @@
                 <td>13</td>
                 <td>SVVS</td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvs_d" name="svvs_d" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvs_i" name="svvs_i" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvs_f" name="svvs_f" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvs_r" name="svvs_r" type="text" class="form-control">
                 </td>
                 <td>
                   <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="srs_total" name="srs_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -237,20 +262,20 @@
                 <td>14</td>
                 <td>STLDD</td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="stldd_d" name="stldd_d" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="stldd_i" name="stldd_i" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="stldd_f" name="stldd_f" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="stldd_r" name="stldd_r" type="text" class="form-control">
                 </td>
                 <td>
                   <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="stldd_total" name="stldd_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -258,20 +283,20 @@
                 <td>15</td>
                 <td>SVVI</td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvi_d" name="svvi_d" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvi_i" name="svvi_i" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvi_f" name="svvi_f" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvi_r" name="svvi_r" type="text" class="form-control">
                 </td>
                 <td>
                   <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvi_total" name="svvi_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -279,20 +304,20 @@
                 <td>16</td>
                 <td>SDDD</td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sddd_d" name="sddd_d" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sddd_i" name="sddd_i" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sddd_f" name="sddd_f" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sddd_r" name="sddd_r" type="text" class="form-control">
                 </td>
                 <td>
                   <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="sddd_total" name="sddd_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -300,20 +325,20 @@
                 <td>17</td>
                 <td>SVVR</td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvr_d" name="svvr_d" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvr_i" name="svvr_i" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvr_f" name="svvr_f" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvr_r" name="svvr_r" type="text" class="form-control">
                 </td>
                 <td>
                   <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="svvr_total" name="svvr_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -321,20 +346,20 @@
                 <td>18</td>
                 <td>SSD</td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="ssd_d" name="ssd_d" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="ssd_i" name="ssd_i" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="ssd_f" name="ssd_f" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="ssd_r" name="ssd_r" type="text" class="form-control">
                 </td>
                 <td>
                   <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="ssd_total" name="ssd_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -342,20 +367,20 @@
                 <td>19</td>
                 <td>Final Report</td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="final_d" name="final_d" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="final_i" name="final_i" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="final_f" name="final_f" type="text" class="form-control">
                 </td>
                 <td>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="final_r" name="final_r" type="text" class="form-control">
                 </td>
                 <td>
                   <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="final_total" name="final_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -363,74 +388,74 @@
                 <td colspan="2"><b>Sum</b></td>
                 <td>
                   <fieldset disabled>
-                    <input id="text" name="text" type="text" class="form-control">
+                    <input id="total_d" name="total_d" type="text" class="form-control">
                   </fieldset>
                 </td>
                 <td>
                   <fieldset disabled>
-                    <input id="text" name="text" type="text" class="form-control">
+                    <input id="total_i" name="total_i" type="text" class="form-control">
                   </fieldset>
                 </td>
                 <td>
                   <fieldset disabled>
-                    <input id="text" name="text" type="text" class="form-control">
+                    <input id="total_f" name="total_f" type="text" class="form-control">
                   </fieldset>
                 </td>
                 <td>
                   <fieldset disabled>
-                    <input id="text" name="text" type="text" class="form-control">
+                    <input id="total_r" name="total_r" type="text" class="form-control">
                   </fieldset>
                 </td>
                 <td>
                   <fieldset disabled>
-                    <input id="text" name="text" type="text" class="form-control">
+                    <input id="total_total" name="total_total" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
               <tr>
                 <td colspan="2">21</td>
                 <td colspan="4">Functional test</td>
-                <td><input id="text" name="text" type="text" class="form-control"></td>
+                <td><input id="functional_test" name="functional_test" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input id="text" name="text" type="text" class="form-control"></td>
+                <td><input id="system_test" name="system_test" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input id="text" name="text" type="text" class="form-control"></td>
+                <td><input id="regression_test" name="regression_test" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
                 <td colspan="4">Meeting</td>
-                <td><input id="text" name="text" type="text" class="form-control"></td>
+                <td><input id="meeting" name="meeting" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">41</td>
                 <td colspan="4">Lecture</td>
-                <td><input id="text" name="text" type="text" class="form-control"></td>
+                <td><input id="lecture" name="lecture" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">42</td>
                 <td colspan="4">Exercise</td>
-                <td><input id="text" name="text" type="text" class="form-control"></td>
+                <td><input id="exercise" name="exercise" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input id="text" name="text" type="text" class="form-control"></td>
+                <td><input id="computer_exercise" name="computer_exercise" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input id="text" name="text" type="text" class="form-control"></td>
+                <td><input id="home_reading" name="home_reading" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
                 <td colspan="4">Other</td>
-                <td><input id="text" name="text" type="text" class="form-control"></td>
+                <td><input id="other" name="other" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="7">
@@ -451,7 +476,7 @@
                 <td colspan="3">Developing new code, test cases and documentation including documentation of the system</td>
                 <td>
                   <fieldset disabled>
-                    <input id="text" name="text" type="text" class="form-control">
+                    <input id="total_d" name="total_d" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -461,7 +486,7 @@
                 <td colspan="3">Time spent preparing and at meeting for informal reviews</td>
                 <td>
                   <fieldset disabled>
-                    <input id="text" name="text" type="text" class="form-control">
+                    <input id="total_i" name="total_i" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -471,7 +496,7 @@
                 <td colspan="3">Time spent preparing and at meeting for formal reviews</td>
                 <td>
                   <fieldset disabled>
-                    <input id="text" name="text" type="text" class="form-control">
+                    <input id="total_f" name="total_f" type="text" class="form-control">
                   </fieldset>
                 </td>
               </tr>
@@ -481,7 +506,7 @@
                 <td colspan="3">Time spent improving, revising or correction documents and design objects</td>
                 <td>
                   <fieldset disabled>
-                    <input id="text" name="text" type="text" class="form-control">
+                    <input id="total_r" name="total_r" type="text" class="form-control">
                   </fieldset>  
                 </td>
               </tr>
@@ -492,7 +517,7 @@
                 <td colspan="6"><b>Signed by manager</b></td>
                 <td>
                 <fieldset disabled>
-                  <input id="text" name="text" type="text" class="form-control">
+                  <input id="signature" name="signature" type="text" class="form-control">
                 </fieldset>
               </td>
               </tr>
@@ -510,8 +535,5 @@
     </div>
   </div>
   <!-- /#page-content-wrapper -->
-
 </div>
-
-
 </body>
