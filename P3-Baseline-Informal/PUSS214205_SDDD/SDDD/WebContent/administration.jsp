@@ -21,7 +21,7 @@
     <%
 		if(session.getAttribute("username") == null) {
 			response.sendRedirect("login.jsp");
-		} else if (!session.getAttribute("username").equals("admin")) {
+		} else if (!session.getAttribute("role").equals("ADMIN")) {
 			response.sendRedirect("index.jsp");
 		}
 	%>
@@ -43,8 +43,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="usermanagement.jsp">User Management</a>
             </li>
-            <c:if test = "${sessionScope.username eq 'admin'}">
-            	<li class="nav-item active">
+            <c:if test = "${sessionScope.role eq 'ADMIN'}">
+            	<li class="nav-item">
               		<a class="nav-link" href="administration.jsp">Administration</a>
             	</li>
             </c:if>
