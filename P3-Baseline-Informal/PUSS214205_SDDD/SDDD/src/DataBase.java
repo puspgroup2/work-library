@@ -123,14 +123,14 @@ public class DataBase {
 	 * @param username
 	 * @return list of Time Report IDs.
 	 */
-	public List<String> getTimeReportIDs(String username) {
+	public List<Integer> getTimeReportIDs(String username) {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE userName = ?";
-		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
@@ -144,13 +144,13 @@ public class DataBase {
 	 * Returns a list containing ID's of all unsigned Time Reports.
 	 * @return list of Time Report IDs.
 	 */
-	public List<String> getUnsignedTimeReportIDs() {
+	public List<Integer> getUnsignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NULL";
-		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
@@ -163,13 +163,13 @@ public class DataBase {
 	 * Returns a list containing ID's of all signed Time Reports.
 	 * @return list of Time Report IDs.
 	 */
-	public List<String> getSignedTimeReportIDs() {
+	public List<Integer> getSignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NOT NULL";
-		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
