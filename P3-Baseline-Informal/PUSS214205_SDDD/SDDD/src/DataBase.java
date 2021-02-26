@@ -159,7 +159,10 @@ public class DataBase {
             return timeReportIDs;
 		}
 	}
-	
+	/**
+	 * Returns a list containing ID's of all signed Time Reports.
+	 * @return list of Time Report IDs.
+	 */
 	public List<String> getSignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NOT NULL";
 		ArrayList<String> timeReportIDs = new ArrayList<String>();
@@ -179,7 +182,12 @@ public class DataBase {
 	public String getRole() {
 		return "Jag heter Anna";
 	}
-	
+	/**
+	 * Updated the user's role.
+	 * @param userName The userName of the user.
+	 * @param role The role of the user.
+	 * @return true and updates the user's role, returns false if it wasn't possible.
+	 */
 	public boolean updateRole(String userName, String role) {
 		String sql = "UPDATE Users SET role = ? + WHERE userName = ?";
 		
@@ -343,9 +351,12 @@ public class DataBase {
             return null;
 		}
 	}
-	
-	
-	public String getPassword(String userName) throws SQLException {
+	/**
+	 * Retrieves a user's password with the help of their userName.
+	 * @param userName The userName of the user.
+	 * @return password of the user, null will be returned if it's wrong.
+	 */
+	public String getPassword(String userName) {
 		String pw = null;
 		String sql = "select password from Users where userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -360,8 +371,12 @@ public class DataBase {
 		}
 		return pw;
 	}
-	
-	public String getEmail(String userName) throws SQLException {
+	/**
+	 * Retrieves a user's e-mail with the help of their userName.
+	 * @param userName The userName of the user.
+	 * @return e-mail if it exists, otherwise null will be returned.
+	 */
+	public String getEmail(String userName) {
 		String email = null;
 		String sql = "SELECT email from Users where userName = ?";
 		
@@ -377,9 +392,14 @@ public class DataBase {
 		}
 		return email;
 	}
-	
+	/**
+	 * Checks if the password for a specific user is correct.
+	 * @param userName The userName of the user.
+	 * @param password The password of the user.
+	 * @return true if they were correct, otherwise false will be returned.
+	 */
 	// anv�nd username "Ulla" and pw "ulla123!"
-	public boolean checkLogin(String userName, String password) throws SQLException {
+	public boolean checkLogin(String userName, String password) {
         String sql = "SELECT * FROM Users where userName = ? AND password = ?";
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
 
