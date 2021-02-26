@@ -624,10 +624,13 @@ public class DataBase {
 	 * @return true if they were correct, otherwise false will be returned.
 	 */
 	// anvï¿½nd username "Ulla" and pw "ulla123!"
-	public boolean checkLogin(String userName, String password) {
+	public boolean checkLogin(UserBean bajsböna) {
         String sql = "SELECT * FROM Users where userName = ? AND password = ?";
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
-
+        	
+        	String userName = bajsböna.getUserName();
+        	String password = bajsböna.getPassword();
+        	
             ps.setString(1, userName);
             ps.setString(2, password);
 
