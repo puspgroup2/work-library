@@ -14,6 +14,9 @@ public class TimeReportManagementBean implements Serializable {
     private List<Integer> timeReportList = new ArrayList<Integer>();
     private String userName;
     
+    private final int signed = 1;
+    private final int unsigned = 0;
+    
     /*
       Sets list of time reports and signs(1)/unsigns(0) them. Requires "Project leader" role.
       @param request, response
