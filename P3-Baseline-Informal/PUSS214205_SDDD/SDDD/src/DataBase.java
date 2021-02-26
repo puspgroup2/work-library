@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class DataBase {
 	private Connection connection;
@@ -123,14 +124,14 @@ public class DataBase {
 	 * @param username
 	 * @return list of Time Report IDs.
 	 */
-	public List<Integer> getTimeReportIDs(String username) {
+	public List<String> getTimeReportIDs(String username) {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE userName = ?";
-		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
+		ArrayList<String> timeReportIDs = new ArrayList<String>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(rs.getInt(1));
+				timeReportIDs.add(String.valueOf(rs.getInt(1)));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
@@ -144,13 +145,13 @@ public class DataBase {
 	 * Returns a list containing ID's of all unsigned Time Reports.
 	 * @return list of Time Report IDs.
 	 */
-	public List<Integer> getUnsignedTimeReportIDs() {
+	public List<String> getUnsignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NULL";
-		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
+		ArrayList<String> timeReportIDs = new ArrayList<String>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(rs.getInt(1));
+				timeReportIDs.add(String.valueOf(rs.getInt(1)));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
@@ -163,13 +164,13 @@ public class DataBase {
 	 * Returns a list containing ID's of all signed Time Reports.
 	 * @return list of Time Report IDs.
 	 */
-	public List<Integer> getSignedTimeReportIDs() {
+	public List<String> getSignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NOT NULL";
-		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
+		ArrayList<String> timeReportIDs = new ArrayList<String>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(rs.getInt(1));
+				timeReportIDs.add(String.valueOf(rs.getInt(1)));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
@@ -278,8 +279,22 @@ public class DataBase {
 	 * columns and the values associated with these.
 	 * @return true if the Time Report was successfully updated.
 	 */
-	public boolean updateTimeReport(Map<String, String> timeReport) {
-		return false;
+	public boolean updateTimeReport(int reportID, Map<String, Integer> timeReport) {
+		String sql = "UPDATE TimeReports"
+				+ "set ? = ?"
+				+ "where reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			for(String s : timeReport.keySet()) {
+				ps.setString(1, s);
+				ps.setInt(2, timeReport.get(s));
+				ps.setInt(3, reportID);
+				ps.execute();
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -428,7 +443,7 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getDocumentTimeD(int reportID) {
+	public Map<String, Integer> getDocumentTimeD(String reportID) {
 		return getDocumentTime(reportID, 'D');
 	}
 	
@@ -438,7 +453,7 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getDocumentTimeI(int reportID) {
+	public Map<String, Integer> getDocumentTimeI(String reportID) {
 		return getDocumentTime(reportID, 'I');
 	}
 	
@@ -448,7 +463,7 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getDocumentTimeR(int reportID) {
+	public Map<String, Integer> getDocumentTimeR(String reportID) {
 		return getDocumentTime(reportID, 'R');
 	}
 	
@@ -458,7 +473,7 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getDocumentTimeF(int reportID) {
+	public Map<String, Integer> getDocumentTimeF(String reportID) {
 		return getDocumentTime(reportID, 'F');
 	}
 	
@@ -467,10 +482,10 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	private Map<String, Integer> getDocumentTime(int reportID, char doctype) {
+	private Map<String, Integer> getDocumentTime(String reportID, char doctype) {
 		String getDocumentTime = "SELECT * FROM DocumentTime" + doctype + " WHERE reportID = ?";
 		try(PreparedStatement ps = connection.prepareStatement(getDocumentTime)) {
-			ps.setInt(1, reportID);
+			ps.setInt(1, Integer.valueOf(reportID));
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) {
 				//report does not exist does not exist
@@ -502,10 +517,10 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getActivityReport(int reportID) {
+	public Map<String, Integer> getActivityReport(String reportID) {
 		String getActivityReport = "SELECT * FROM DocumentTime WHERE reportID = ?";
 		try(PreparedStatement ps = connection.prepareStatement(getActivityReport)) {
-			ps.setInt(1, reportID);
+			ps.setInt(1, Integer.valueOf(reportID));
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) {
 				//report does not exist does not exist
@@ -603,12 +618,9 @@ public class DataBase {
 	 * @return true if they were correct, otherwise false will be returned.
 	 */
 	// anv�nd username "Ulla" and pw "ulla123!"
-	public boolean checkLogin(UserBean ub) {
+	public boolean checkLogin(String userName, String password) {
         String sql = "SELECT * FROM Users where userName = ? AND password = ?";
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
-        	
-        	String userName = ub.getUserName();
-        	String password = ub.getPassword();
 
             ps.setString(1, userName);
             ps.setString(2, password);
@@ -626,6 +638,11 @@ public class DataBase {
         }
         return false;
     }
+	
+	private void handleSQLException(SQLException e) {
+		System.out.println(e);
+		e.printStackTrace();
+	}
 	
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
