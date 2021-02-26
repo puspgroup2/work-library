@@ -43,9 +43,11 @@
           <li class="nav-item active">
               <a class="nav-link" href="summaryreport.jsp">Time Report</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="usermanagement.jsp">User Management</a>
-          </li>
+          <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+            	<li class="nav-item">
+              		<a class="nav-link" href="usermanagement.jsp">User Management</a>
+            	</li>
+          </c:if>
           <c:if test = "${sessionScope.role eq 'ADMIN'}">
             	<li class="nav-item">
               		<a class="nav-link" href="administration.jsp">Administration</a>
