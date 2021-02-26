@@ -236,10 +236,26 @@ public class DataBase {
 	 * Creates a new Time Report.
 	 * @return the Time Report ID.
 	 */
-	public String newTimeReport() {
-		String reportID = null;
-		return reportID;
-	}
+	public String newTimeReport(String userName, int totalMinutes, String signature, int week) {
+        String sql = "INSERT into TimeReports(userName, +"
+                + " totalMinutes, signature, week +"
+                + "values(?, ?, ?, ?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, userName);
+            ps.setInt(2, totalMinutes);
+            ps.setString(3, signature);
+            ps.setInt(4, week);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String reportID = rs.getString("reportID");
+                return reportID;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+        return null;
+    }
 	
 	/**
 	 * Updates a Time Report according to the values contained in the map.
@@ -299,6 +315,98 @@ public class DataBase {
 	
 	
 	// admin??
+	
+	/**
+	 * Returns the username connected to a Time Report.
+	 * @param reportID the reportID of a specific Time Report.
+	 * @return the username connected to the reportID.
+	 */
+	public String getUserNameFromTimeReport(int reportID) {
+		String username = null;
+		String sql = "SELECT userName from TimeReports where reportID = ?";
+		
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				username = rs.getString("userName");
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return username;
+	}
+	
+	
+	/**
+	 * Returns the totalMinutes stored in a Time Report.
+	 * @param reportID the reportID of a specific Time Report.
+	 * @return the totalMinutes connected to the reportID.
+	 */
+	public int getTotalMinutesFromTimeReport(int reportID) {
+		int totalminutes = 0;
+		String sql = "SELECT totalMinutes from TimeReports where reportID = ?";
+		
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				totalminutes = rs.getInt("totalMinutes");
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return totalminutes;
+	}
+	
+	
+	/**
+	 * Returns the username of a  Time Report.
+	 * @param reportID the reportID of a specific Time Report.
+	 * @return the totalMinutes connected to the reportID.
+	 */
+	public String getSignatureFromTimeReport(int reportID) {
+		String signature = null;
+		String sql = "SELECT signature from TimeReports where reportID = ?";
+		
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				signature = rs.getString("signature");
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return signature;
+	}
+	
+	
+	/**
+	 * Returns the week of a  Time Report.
+	 * @param reportID the reportID of a specific Time Report.
+	 * @return the week connected to the reportID.
+	 */
+	public int getWeekFromTimeReport(int reportID) {
+		int week = -1;
+		String sql = "SELECT week from TimeReports where reportID = ?";
+		
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				week = rs.getInt("week");
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return week;
+	}
+	
 	
 	/**
 	 * Returns a map containing all time values in the DocumentTimeD table.
