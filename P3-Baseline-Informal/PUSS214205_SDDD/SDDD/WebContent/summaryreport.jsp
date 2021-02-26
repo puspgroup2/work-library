@@ -73,7 +73,6 @@
             <div class="list-group list-group-flush">
             <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Time Report Summary</b></a>
             <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
-            <a href="updatereport.jsp" class="list-group-item list-group-item-action bg-light">Edit Time Report</a>
             </div>
         </div>
     </div>
@@ -82,28 +81,58 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <div style="background-color:white">
-        <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col" data-field="state">Selection</th>
-            <th scope="col">User</th>
-            <th scope="col">Last update</th>
-            <th scope="col">Week</th>
-            <th scope="col">Development</th>
-            <th scope="col">Informal review</th>
-            <th scope="col">Formal review</th>
-            <th scope="col">Rework</th>
-            <th scope="col">Other</th>
-            <th scope="col">Total time</th>
-            <th scope="col">Signed</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-      
-        </tbody>
-      </table>
-      </div>
+          <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col" data-field="state">Selection</th>
+              <th scope="col">User</th>
+              <th scope="col">Last update</th>
+              <th scope="col">Week</th>
+              <th scope="col">Development</th>
+              <th scope="col">Informal review</th>
+              <th scope="col">Formal review</th>
+              <th scope="col">Rework</th>
+              <th scope="col">Other</th>
+              <th scope="col">Total time</th>
+              <th scope="col">Signed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="radio" name="radioGroup"></td>
+              <td>${username}</td>
+              <td>date</td>
+              <td>week</td>
+              <td>dev</td>
+              <td>inf</td>
+              <td>for</td>
+              <td>rew</td>
+              <td>other</td>
+              <td>total</td>
+              <td>signed</td>
+            </tr>
+            <tr>
+              <td><input type="radio" name="radioGroup"></td>
+              <td>${username}</td>
+              <td>date</td>
+              <td>week</td>
+              <td>dev</td>
+              <td>inf</td>
+              <td>for</td>
+              <td>rew</td>
+              <td>other</td>
+              <td>total</td>
+              <td>signed</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            <form class="form-inline my-2 my-lg-0" action="GetReport" style="margin-right:2.5px">
+                <input type="submit" value="Update selected report" class="btn btn-success" style="margin-right:3px">
+                <input type="submit" value="Edit selected report" class="btn btn-success" style="margin-left:3px">
+            </form>
+        </div>
     </div>
     <!-- /#page-content-wrapper -->
 

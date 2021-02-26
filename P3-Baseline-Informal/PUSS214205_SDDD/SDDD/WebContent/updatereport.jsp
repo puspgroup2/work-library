@@ -72,7 +72,6 @@
           <div class="list-group list-group-flush">
           <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
           <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
-          <a href="updatereport.jsp" class="list-group-item list-group-item-action bg-light"><b>Edit Time Report</b></a>
           </div>
       </div>
   </div>
@@ -95,11 +94,35 @@
             <th scope="col">Other</th>
             <th scope="col">Total time</th>
             <th scope="col">Signed</th>
-            
           </tr>
         </thead>
         <tbody>
-      
+          <tr>
+            <td><input type="radio" name="radioGroup"></td>
+            <td>${username}</td>
+            <td>date</td>
+            <td>week</td>
+            <td>dev</td>
+            <td>inf</td>
+            <td>for</td>
+            <td>rew</td>
+            <td>other</td>
+            <td>total</td>
+            <td>signed</td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="radioGroup"></td>
+            <td>${username}</td>
+            <td>date</td>
+            <td>week</td>
+            <td>dev</td>
+            <td>inf</td>
+            <td>for</td>
+            <td>rew</td>
+            <td>other</td>
+            <td>total</td>
+            <td>signed</td>
+          </tr>
         </tbody>
       </table>
       </div>
