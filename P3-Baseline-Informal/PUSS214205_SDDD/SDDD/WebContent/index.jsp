@@ -40,11 +40,11 @@
               <li class="nav-item">
                   <a class="nav-link" href="usermanagement.jsp">User Management</a>
               </li>
-              <c:if test = "${sessionScope.username eq 'admin'}">
-                <li class="nav-item">
-                    <a class="nav-link" href="administration.jsp">Administration</a>
-                </li>
-              </c:if>
+              <c:if test = "${sessionScope.role eq 'ADMIN'}">
+            	<li class="nav-item">
+              		<a class="nav-link" href="administration.jsp">Administration</a>
+            	</li>
+            </c:if>
           </ul>
 
           <ul class="navbar-nav ml-auto">
