@@ -25,6 +25,7 @@ public class TimeReportManagementServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		TimeReportManagementBean trmb = new TimeReportManagementBean();		
 		trmb.populateBean(db.signedUnsignedTimeReports());
+		session.setAttribute("TimeReportManagementBean", trmb);
 		TimeReportManagementBean trmb1 = new TimeReportManagementBean();
 		trmb1 = (TimeReportManagementBean) request.getAttribute("TimeReportManagementBean");
 		
