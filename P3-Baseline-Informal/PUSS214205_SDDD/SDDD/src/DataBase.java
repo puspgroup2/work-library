@@ -418,9 +418,7 @@ public class DataBase {
 	 * @return true if they were correct, otherwise false will be returned.
 	 */
 	// anv�nd username "Ulla" and pw "ulla123!"
-	public boolean checkLogin(UserBean ub) {
-		String userName = ub.getUserName();
-		String password = ub.getPassword();
+	public boolean checkLogin(String userName, String password) {
         String sql = "SELECT * FROM Users where userName = ? AND password = ?";
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
 
