@@ -60,23 +60,20 @@ public class LogIn extends servletBase
 		
 		if (username == null || password == null) {
 			response.sendError(LOGIN_FALSE);
-		} else if(username.equals("user") && password.equals("pass")) {
-			session.setAttribute("username", username);
-			response.sendRedirect("index.jsp");
-		}
-		
-		UserBean ub = new UserBean();
-		ub.populateBean(username, password);
-		if (db.checkLogin(ub)) {
-			ub.setRole(db.getRole(username));
-			session.setAttribute("username", ub.getUserName());
-			session.setAttribute("role", ub.getRole());
-			session.setAttribute("state", LOGIN_TRUE);
-			response.sendRedirect("index.jsp");
 		} else {
-			//failed login
-			session.setAttribute("state", LOGIN_FALSE);
-			request.setAttribute("errorMessage", LOGIN_FALSE);
+			UserBean ub = new UserBean();
+			ub.populateBean(username, password);
+			if (db.checkLogin(ub)) {
+				ub.setRole(db.getRole(username));
+				session.setAttribute("username", ub.getUserName());
+				session.setAttribute("role", ub.getRole());
+				session.setAttribute("state", LOGIN_TRUE);
+				response.sendRedirect("index.jsp");
+			} else {
+				//failed login
+				session.setAttribute("state", LOGIN_FALSE);
+				request.setAttribute("errorMessage", LOGIN_FALSE);
+			}
 		}
 	}
 			
