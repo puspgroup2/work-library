@@ -428,6 +428,31 @@ public class DataBase {
 		return pw;
 	}
 	/**
+	 * Changes the user's password.
+	 * @param userName The user's userName.
+	 * @param password The user's password.
+	 * @return true if the change was successful, otherwise false.
+	 */
+	public boolean changePassword(String userName, String password) {
+		String sql = "UPDATE Users SET password = ? + WHERE userName = ?";
+		
+		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, password);
+			ps.setString(2, userName);
+			
+			ps.executeUpdate();
+			return true;
+			
+		}
+        catch (SQLException e) {
+    	System.out.println(e);
+        e.printStackTrace();
+        return false;
+    }
+		
+	}
+	
+	/**
 	 * Retrieves a user's e-mail with the help of their userName.
 	 * @param userName The userName of the user.
 	 * @return e-mail if it exists, otherwise null will be returned.
