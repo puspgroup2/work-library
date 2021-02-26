@@ -70,8 +70,7 @@ public class DataBase {
 				return false;
 			}
 		} catch(SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return false;
 		}
 		
@@ -84,8 +83,7 @@ public class DataBase {
 			ps.executeUpdate();
 			return true;
 		} catch(SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return false;
 		}
 	}
@@ -104,8 +102,7 @@ public class DataBase {
 				return false;
 			}
 		} catch(SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return false;
 		}
 		
@@ -116,8 +113,7 @@ public class DataBase {
 			ps.executeUpdate();
 			return true;
 		} catch(SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return false;
 		}
 		
@@ -141,8 +137,7 @@ public class DataBase {
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return timeReportIDs;
 		}
 	}
@@ -161,8 +156,7 @@ public class DataBase {
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return timeReportIDs;
 		}
 	}
@@ -180,8 +174,7 @@ public class DataBase {
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return timeReportIDs;
 		}
 	}
@@ -202,8 +195,7 @@ public class DataBase {
 				role = rs.getString("role");
 			}
 		} catch (SQLException e) {
-			System.err.println(e);
-			e.printStackTrace();
+		  handleSQLException(e);
 		}
 		return role;
 	}
@@ -226,8 +218,7 @@ public class DataBase {
 			
 		}
         catch (SQLException e) {
-    	System.out.println(e);
-        e.printStackTrace();
+        handleSQLException(e);
         return false;
     }
 		
@@ -246,8 +237,7 @@ public class DataBase {
 				return rs.getInt("reportID") == reportID;
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			handleSQLException(e);
 		}
 		return false;
 	}
@@ -273,8 +263,7 @@ public class DataBase {
                 return reportID;
             }
         } catch (SQLException e) {
-            System.out.println(e);
-            e.printStackTrace();
+        	handleSQLException(e);
         }
         return -1;
     }
@@ -319,8 +308,7 @@ public class DataBase {
 			
 		}
         catch (SQLException e) {
-    	System.out.println(e);
-        e.printStackTrace();
+        handleSQLException(e);
         return false;
     }
 	}
@@ -342,8 +330,7 @@ public class DataBase {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			handleSQLException(e);
 		}
 		 return members;
 	}
@@ -368,8 +355,7 @@ public class DataBase {
 				username = rs.getString("userName");
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			handleSQLException(e);
 		}
 		return username;
 	}
@@ -391,8 +377,7 @@ public class DataBase {
 				totalminutes = rs.getInt("totalMinutes");
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			handleSQLException(e);
 		}
 		return totalminutes;
 	}
@@ -414,8 +399,7 @@ public class DataBase {
 				signature = rs.getString("signature");
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			handleSQLException(e);
 		}
 		return signature;
 	}
@@ -437,8 +421,7 @@ public class DataBase {
 				week = rs.getInt("week");
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			handleSQLException(e);
 		}
 		return week;
 	}
@@ -511,8 +494,7 @@ public class DataBase {
 				return documentTime;
 			}
 		} catch(SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return null;
 		}
 	}
@@ -546,8 +528,7 @@ public class DataBase {
 				return activityReport;
 			}
 		} catch(SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return null;
 		}
 	}
@@ -566,8 +547,7 @@ public class DataBase {
 				pw = rs.getString("password");
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			handleSQLException(e);
 		}
 		return pw;
 	}
@@ -589,8 +569,7 @@ public class DataBase {
 			
 		}
         catch (SQLException e) {
-    	System.out.println(e);
-        e.printStackTrace();
+        handleSQLException(e);
         return false;
     }
 		
@@ -612,8 +591,7 @@ public class DataBase {
 				email = rs.getString("email");
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			handleSQLException(e);
 		}
 		return email;
 	}
@@ -624,12 +602,11 @@ public class DataBase {
 	 * @return true if they were correct, otherwise false will be returned.
 	 */
 	// anvï¿½nd username "Ulla" and pw "ulla123!"
-	public boolean checkLogin(UserBean bajsböna) {
+	public boolean checkLogin(UserBean bajsbÃ¶na) {
         String sql = "SELECT * FROM Users where userName = ? AND password = ?";
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
-        	
-        	String userName = bajsböna.getUserName();
-        	String password = bajsböna.getPassword();
+        	String userName = bajsbÃ¶na.getUserName();
+        	String password = bajsbÃ¶na.getPassword();
         	
             ps.setString(1, userName);
             ps.setString(2, password);
@@ -642,8 +619,7 @@ public class DataBase {
             	return name.equals(userName) && pw.equals(password);
             }
         } catch (SQLException e) {
-        	System.out.println(e);
-            e.printStackTrace();
+        	handleSQLException(e);
         }
         return false;
     }
