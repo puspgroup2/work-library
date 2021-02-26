@@ -78,7 +78,8 @@
           <div class="list-group list-group-flush">
           <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
           <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Create New Time Report</b></a>
-          </div>
+          <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Show Signed Reports (PG)</a>
+        </div>
       </div>
   </div>
   <!-- /#sidebar-wrapper -->
