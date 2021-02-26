@@ -24,7 +24,7 @@
 			response.sendRedirect("login.jsp");
 		}
 	%>
-    
+
 <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand abs">TimeMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -83,7 +83,29 @@
     <div id="page-content-wrapper">
 
       <div class="container-fluid">
-        Page content here
+        <div style="background-color:white">
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" data-field="state">Selection</th>
+            <th scope="col">User</th>
+            <th scope="col">Last update</th>
+            <th scope="col">Week</th>
+            <th scope="col">Development</th>
+            <th scope="col">Informal review</th>
+            <th scope="col">Formal review</th>
+            <th scope="col">Rework</th>
+            <th scope="col">Other</th>
+            <th scope="col">Total time</th>
+            <th scope="col">Signed</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+      
+        </tbody>
+      </table>
+      </div>
       </div>
     </div>
     <!-- /#page-content-wrapper -->
