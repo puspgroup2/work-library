@@ -106,7 +106,10 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <div style="background-color:white">
+    
+     <div class="collapse multi-collapse show"  id="collapseExample">
+  <div class="card card-body">
+   <div style="background-color:white">
           <table class="table table-striped">
           <thead>
             <tr>
@@ -153,16 +156,107 @@
           </tbody>
         </table>
         </div>
+   
+  </div>
+ </div> 
+ 
+ <div class="collapse multi-collapse"  id="collapseExample2">
+  <div class="card card-body">
+   <div style="background-color:white">
+          <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col" data-field="state">Selection</th>
+              <th scope="col">User</th>
+              <th scope="col">Last update</th>
+              <th scope="col">Week</th>
+              <th scope="col">Development</th>
+              <th scope="col">Informal review</th>
+              <th scope="col">Formal review</th>
+              <th scope="col">Rework</th>
+              <th scope="col">Other</th>
+              <th scope="col">Total time</th>
+              <th scope="col">Signed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="radio" name="radioGroup"></td>
+              <td>${username}</td>
+              <td>date</td>
+              <td>week</td>
+              <td>dev</td>
+              <td>inf</td>
+              <td>for</td>
+              <td>rew</td>
+              <td>other</td>
+              <td>total</td>
+              <td>signed</td>
+            </tr>
+            <tr>
+              <td><input type="radio" name="radioGroup"></td>
+              <td>${username}</td>
+              <td>date</td>
+              <td>week</td>
+              <td>dev</td>
+              <td>inf</td>
+              <td>for</td>
+              <td>rew</td>
+              <td>other</td>
+              <td>total</td>
+              <td>signed</td>
+            </tr>
+             <tr>
+              <td><input type="radio" name="radioGroup"></td>
+              <td>${username}</td>
+              <td>date</td>
+              <td>week</td>
+              <td>dev</td>
+              <td>inf</td>
+              <td>for</td>
+              <td>rew</td>
+              <td>other</td>
+              <td>total</td>
+              <td>signed</td>
+            </tr>
+             <tr>
+              <td><input type="radio" name="radioGroup"></td>
+              <td>${username}</td>
+              <td>date</td>
+              <td>week</td>
+              <td>dev</td>
+              <td>inf</td>
+              <td>for</td>
+              <td>rew</td>
+              <td>other</td>
+              <td>total</td>
+              <td>signed</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+   
+  </div>
+ </div> 
+    
+    
+    
+       
         <div class="d-flex justify-content-center">
-            <form class="form-inline my-2 my-lg-0" action="GetReport" style="margin-right:2.5px">
+            <form class="form-inline my-2 my-lg-0" style="margin-right:2.5px">
                 <input type="submit" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
                 <input type="submit" value="View selected report" class="btn btn-success" style="margin-left:3px; margin-right:3px">
                 <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-                  <input type="submit" value="Show signed reports" class="btn btn-success" style="margin-left:3px">
-                </c:if>
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample collapseExample2">
+  						 Show signed reports
+ 			 </button>                
+  </c:if>
             </form>
         </div>
     </div>
+    
+   
+    
     <!-- /#page-content-wrapper -->
 
 </div>
