@@ -62,7 +62,44 @@
     </div>
 </nav>
       
-<div>
-	User Management
+<div class="card mx-auto rounded shadow shadow-sm" style="max-width: 30rem; margin-top:50px; margin-bottom:50px;">
+  <div class="card-header">
+  User Management
+  </div>
+  <div class="card-body">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">PG</th>
+        <th scope="col">UG</th>
+        <th scope="col">TG</th>
+        <th scope="col">SG</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>user1</td>
+        <td><input type="radio" name="radioGroup1"></td>
+        <td><input type="radio" name="radioGroup1"></td>
+        <td><input type="radio" name="radioGroup1"></td>
+        <td><input type="radio" name="radioGroup1"></td>
+      </tr>
+      <tr>
+        <td>user2</td>
+        <td><input type="radio" name="radioGroup2"></td>
+        <td><input type="radio" name="radioGroup2"></td>
+        <td><input type="radio" name="radioGroup2"></td>
+        <td><input type="radio" name="radioGroup2"></td>
+      </tr>
+    </tbody>
+  </table>
+    <div class="form-group row">
+      <div class="offset-0 col-8">
+        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 </body>
