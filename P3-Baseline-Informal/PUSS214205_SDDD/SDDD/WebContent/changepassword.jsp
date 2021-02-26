@@ -76,7 +76,7 @@
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-key"></i></div>
         </div>
-        <input class="form-control" type="text" placeholder="Current password" name="username">
+        <input class="form-control" type="password" placeholder="Current password" name="username">
       </div>
 
       <!--New password input-->
