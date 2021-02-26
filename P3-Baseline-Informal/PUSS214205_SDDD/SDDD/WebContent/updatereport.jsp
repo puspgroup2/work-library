@@ -65,7 +65,6 @@
 </nav>
 
 <div class="d-flex" id="wrapper">
-
   <!-- Sidebar -->
   <div>
       <div class="bg-light border-right" id="sidebar-wrapper">
@@ -81,8 +80,6 @@
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
-
-    <div class="container-fluid">
       <div style="background-color:white">
         <table class="table table-striped">
         <thead>
@@ -111,7 +108,6 @@
            <input type="submit" value="Update selected report" class="btn btn-success">
          </form>
       </div>
-    </div>
   </div>
   <!-- /#page-content-wrapper -->
 

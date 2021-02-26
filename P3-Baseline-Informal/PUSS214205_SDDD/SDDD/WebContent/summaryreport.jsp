@@ -81,7 +81,6 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-      <div class="container-fluid">
         <div style="background-color:white">
         <table class="table table-striped">
         <thead>
@@ -104,7 +103,6 @@
       
         </tbody>
       </table>
-      </div>
       </div>
     </div>
     <!-- /#page-content-wrapper -->
