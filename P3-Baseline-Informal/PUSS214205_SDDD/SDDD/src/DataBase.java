@@ -259,6 +259,29 @@ public class DataBase {
 	public boolean deleteTimeReport(String reportID) {
 		return false;
 	}
+	/**
+	 * Retrieves the list of all the members.
+	 * @return a list of all the members.
+	 */
+	public List<String> getMembers() {
+		String sql = "SELECT * FROM Users";
+		List<String> members = new ArrayList<>();
+		
+		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				members.add(rs.getString("userName"));
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		 return members;
+	}
+	
 	
 	
 	// admin??
