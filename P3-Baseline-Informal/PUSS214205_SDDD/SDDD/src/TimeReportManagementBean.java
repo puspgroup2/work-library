@@ -1,53 +1,30 @@
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
+
+import java.util.HashMap;
+
+import java.util.Map;
+
 
 /*This class is the bean for the web page "signreport.jsp".*/
 public class TimeReportManagementBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-    private List<Integer> timeReportList = new ArrayList<Integer>();
-    private String userName;
-    
-    private final int signed = 1;
-    private final int unsigned = 0;
+    private Map<String, Boolean> timeReportList = new HashMap<String, Boolean>();
     
     /*
       Sets list of time reports and signs(1)/unsigns(0) them. Requires "Project leader" role.
       @param request, response
      */
-    public void populateBean(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	Integer Input = request.getIntHeader("sign/unsign"); // get the check box results that the user entered in the form
-    	timeReportList.add(Input);
+    public void populateBean(Map<String, Boolean> map){ // get the check box results that the user entered in the form
+    	timeReportList.putAll(map);
     }
 
     /*
       Fetches a list of time reports. Requires "Project leader" role.
       @return List timeReportList
      */
-    public List<Integer> getTimeReportList() {
+    public Map<String, Boolean> getTimeReportList() {
         return timeReportList;
     }
-    
-    /*
-      Fetches the user name of the project member. Requires "Project leader" role.
-      @return userName
-     */
-    public String getUserName() {
-    	return userName;
-    }
-    
-    /*
-      Sets the user name of the project member. Requires "Project leader" role.
-      @return userName
-     */
-    public void setUserName(String userName) {
-    	this.userName = userName;
-    }
-
 }
