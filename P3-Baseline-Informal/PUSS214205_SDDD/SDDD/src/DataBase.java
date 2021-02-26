@@ -256,9 +256,23 @@ public class DataBase {
 	 * @param reportID the Time Report to be deleted.
 	 * @return true if deletion was successful.
 	 */
-	public boolean deleteTimeReport(String reportID) {
-		return false;
+	public boolean deleteTimeReport(int reportID) {
+		String sql = "DELETE FROM TimeReports WHERE reportID = ?";
+		
+		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
+			
+			ps.executeUpdate();
+			return true;
+			
+		}
+        catch (SQLException e) {
+    	System.out.println(e);
+        e.printStackTrace();
+        return false;
+    }
 	}
+	
 	/**
 	 * Retrieves the list of all the members.
 	 * @return a list of all the members.
