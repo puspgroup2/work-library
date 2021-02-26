@@ -3,8 +3,8 @@ body {
 }
 
 #wrapper {
-    overflow-x: hidden;
- }
+  overflow-x: hidden;
+}
 
 #sidebar-wrapper {
   min-height: 100vh;
@@ -16,7 +16,6 @@ body {
 }
 
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
 }
 
@@ -26,6 +25,7 @@ body {
 
 #page-content-wrapper {
   min-width: 100vw;
+  margin-left: 0;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -45,3 +45,4 @@ body {
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -15rem;
   }
+}
