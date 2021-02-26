@@ -24,80 +24,98 @@
 		response.sendRedirect("login.jsp");
 	}
 %>
+
 <nav class="navbar navbar-light navbar-expand-md bg-light">
-    <a class="navbar-brand abs">TimeMate</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand abs">TimeMate</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+      <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="navbar-collapse collapse" id="collapsingNavbar">
-        <ul class="navbar-nav">
+  <div class="navbar-collapse collapse" id="collapsingNavbar">
+      <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link" href="index.jsp">Home</a>
+          </li>
+          <li class="nav-item active">
+              <a class="nav-link" href="summaryreport.jsp">Time Report</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="usermanagement.jsp">User Management</a>
+          </li>
+          <c:if test = "${sessionScope.username eq 'admin'}">
             <li class="nav-item">
-                <a class="nav-link" href="index.jsp">Home</a>
+                <a class="nav-link" href="administration.jsp">Administration</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Time reports
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="viewreport.jsp">View time reports</a>
-                <a class="dropdown-item active" href="updatereport.jsp">Update time reports</a>
-                <a class="dropdown-item" href="newreport.jsp">New time report</a>
-                <a class="dropdown-item" href="#">View summaries</a>
-              </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="usermanagement.jsp">User Management</a>
-            </li>
-            <c:if test = "${sessionScope.username eq 'admin'}">
-            	<li class="nav-item">
-              		<a class="nav-link" href="administration.jsp">Administration</a>
-            	</li>
-            </c:if>
-        </ul>
+          </c:if>
+      </ul>
 
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
-              	<input type="submit" value="Change Password" class="btn btn-primary" style="margin-right:7px">
-              </form>
-            </li>
-            <li class="nav-item">
-              <form class="form-inline my-2 my-lg-0" action="Logout">
-                <input type="submit" value="Log out" class="btn btn-danger">
-              </form>
-            </li>
-        </ul>
-    </div>
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
+              <input type="submit" value="Change Password" class="btn btn-primary" style="margin-right:7px">
+            </form>
+          </li>
+          <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0" action="Logout">
+              <input type="submit" value="Log out" class="btn btn-danger">
+            </form>
+          </li>
+      </ul>
+  </div>
 </nav>
 
-<div style="background-color:white">
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col" data-field="state">Selection</th>
-      <th scope="col">User</th>
-      <th scope="col">Last update</th>
-      <th scope="col">Week</th>
-      <th scope="col">Development</th>
-      <th scope="col">Informal review</th>
-      <th scope="col">Formal review</th>
-      <th scope="col">Rework</th>
-      <th scope="col">Other</th>
-      <th scope="col">Total time</th>
-      <th scope="col">Signed</th>
-      
-    </tr>
-  </thead>
-  <tbody>
+<div class="d-flex" id="wrapper">
 
-  </tbody>
-</table>
+  <!-- Sidebar -->
+  <div>
+      <div class="bg-light border-right" id="sidebar-wrapper">
+          <div class="sidebar-heading">Options</div>
+          <div class="list-group list-group-flush">
+          <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
+          <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
+          <a href="editreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Edit Time Report</b></a>
+          </div>
+      </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+
+    <div class="container-fluid">
+      <div style="background-color:white">
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" data-field="state">Selection</th>
+            <th scope="col">User</th>
+            <th scope="col">Last update</th>
+            <th scope="col">Week</th>
+            <th scope="col">Development</th>
+            <th scope="col">Informal review</th>
+            <th scope="col">Formal review</th>
+            <th scope="col">Rework</th>
+            <th scope="col">Other</th>
+            <th scope="col">Total time</th>
+            <th scope="col">Signed</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+      
+        </tbody>
+      </table>
+      </div>
+      <div class="d-flex justify-content-center">
+      <form class="form-inline my-2 my-lg-0" action="GetReport">
+           <input type="submit" value="Update selected report" class="btn btn-success">
+         </form>
+      </div>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+
 </div>
-<div class="d-flex justify-content-center">
-<form class="form-inline my-2 my-lg-0" action="GetReport">
-     <input type="submit" value="Update selected report" class="btn btn-success">
-   </form>
-</div>
+
   	
 </body>
