@@ -7,8 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+/**
+ * A database used by the time reporting system TimeMate.
+ * @author Anna, Alexandra, Annelie
+ *
+ */
 public class DataBase {
 	private Connection connection;
 	private static String databaseServerAddress = "vm23.cs.lth.se";
@@ -20,13 +24,16 @@ public class DataBase {
 		connection = null;
 	}
 	
+	/**
+	 * Establishes a connection to the MySQL database.
+	 * @return true if the connection was established
+	 */
 	public boolean connect() {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://" + databaseServerAddress + 
 					"/" + database, databaseUser, databasePassword);
 		} catch (SQLException e) {
-			System.err.println(e);
-            e.printStackTrace();
+			handleSQLException(e);
             return false;
 		}
 		return true;
@@ -41,8 +48,7 @@ public class DataBase {
 		try {
 			connection.close();
 		} catch (SQLException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			handleSQLException(e);
 			return false;
 		}
 		return true;
@@ -196,7 +202,7 @@ public class DataBase {
 				role = rs.getString("role");
 			}
 		} catch (SQLException e) {
-			System.out.println(e);
+			System.err.println(e);
 			e.printStackTrace();
 		}
 		return role;
@@ -640,7 +646,7 @@ public class DataBase {
     }
 	
 	private void handleSQLException(SQLException e) {
-		System.out.println(e);
+		System.err.println(e);
 		e.printStackTrace();
 	}
 	
