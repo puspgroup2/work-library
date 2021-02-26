@@ -39,9 +39,11 @@
             <li class="nav-item active">
                 <a class="nav-link" href="summaryreport.jsp">Time Report</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="usermanagement.jsp">User Management</a>
-            </li>
+            <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+            	<li class="nav-item">
+              		<a class="nav-link" href="usermanagement.jsp">User Management</a>
+            	</li>
+            </c:if>
             <c:if test = "${sessionScope.role eq 'ADMIN'}">
             	<li class="nav-item">
               		<a class="nav-link" href="administration.jsp">Administration</a>
@@ -50,19 +52,40 @@
         </ul>
 
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
-              	<input type="submit" value="Change Password" class="btn btn-primary" style="margin-right:7px">
-              </form>
-            </li>
-            <li class="nav-item">
-              <form class="form-inline my-2 my-lg-0" action="Logout">
-                <input type="submit" value="Log out" class="btn btn-danger">
-              </form>
-            </li>
-        </ul>
+              <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
+                  <input type="submit" value="Change Password" class="btn btn-primary" style="margin-right:7px">
+                </form>
+              </li>
+              <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0">
+                  <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#logoutModal">Log out</a>
+                </form>
+              </li> 
+          </ul>
+      </div>
+  </nav>
+  
+  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+        <h4>Log Out <i class="fa fa-lock"></i></h4>
+      </div>
+      <div class="modal-body">
+        <p><i class="fa fa-question-circle"></i> Are you sure you want to log-off? <br /></p>
+        <div class="actionsBtns">
+            <form action="login.jsp">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <input type="submit" class="btn btn-default btn-primary" value="Logout" />
+	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </form>
+        </div>
+      </div>
     </div>
-</nav>
+  </div>
+</div>
 
 <div class="d-flex" id="wrapper">
 
@@ -73,7 +96,9 @@
             <div class="list-group list-group-flush">
             <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Time Report Summary</b></a>
             <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
-            <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Show Signed Reports (PG)</a>
+            <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+                <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Show Signed Reports</a>
+            </c:if>
             </div>
         </div>
     </div>
