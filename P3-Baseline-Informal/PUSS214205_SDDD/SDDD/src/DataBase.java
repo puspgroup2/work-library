@@ -227,7 +227,21 @@ public class DataBase {
 	}
 	
 	// under construction
-	public boolean signTimeReport(int reportID) {
+	public boolean signTimeReport(String userName, int reportID) {
+		String sql = "UPDATE TimeReports "
+				+ "set signature = ?"
+				+ "where reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, userName);
+			ps.setInt(2, reportID);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return rs.getInt("reportID") == reportID;
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
 		return false;
 	}
 	
