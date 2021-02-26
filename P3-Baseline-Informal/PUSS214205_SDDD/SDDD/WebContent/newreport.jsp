@@ -63,7 +63,7 @@
               </li>
               <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0">
-                  <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#logoutModal">logout</a>
+                  <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#logoutModal">Log out</a>
                 </form>
               </li> 
           </ul>
@@ -74,7 +74,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">ï¿½</span></button>
         <h4>Log Out <i class="fa fa-lock"></i></h4>
       </div>
       <div class="modal-body">
