@@ -18,10 +18,12 @@
 </head>
 
 <body>
-<%
-	if(session.getAttribute("username") == null) {
-		response.sendRedirect("login.jsp");
-	}
+  <%
+  if(session.getAttribute("username") == null) {
+    response.sendRedirect("login.jsp");
+  } else if (!session.getAttribute("role").equals("ADMIN") || !session.getAttribute("role").equals("PG")) {
+    response.sendRedirect("index.jsp");
+  }
 %>
 <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand abs">TimeMate</a>
