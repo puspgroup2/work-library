@@ -129,8 +129,8 @@
         </div>
         <div class="d-flex justify-content-center">
             <form class="form-inline my-2 my-lg-0" action="GetReport" style="margin-right:2.5px">
-                <input type="submit" value="Update selected report" class="btn btn-success" style="margin-right:3px">
-                <input type="submit" value="Edit selected report" class="btn btn-success" style="margin-left:3px">
+                <input type="submit" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
+                <input type="submit" value="View selected report" class="btn btn-success" style="margin-left:3px">
             </form>
         </div>
     </div>
