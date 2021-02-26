@@ -59,7 +59,7 @@ public class LogIn extends servletBase
 			session.setAttribute("username", username);
 			response.sendRedirect("index.jsp");
 		}
-		/**
+		
 		UserBean ub = new UserBean();
 		ub.populateBean(username, password);
 		if (db.checkLogin(ub)) {
@@ -72,7 +72,7 @@ public class LogIn extends servletBase
 			//failed login
 			session.setAttribute("state", LOGIN_FALSE);
 			request.setAttribute("errorMessage", LOGIN_FALSE);
-		}*/
+		}
 	}
 			
 
