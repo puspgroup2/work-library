@@ -7,7 +7,7 @@ PRIMARY KEY(userName)
 );
 
 CREATE TABLE TimeReports (
-reportID Integer NOT NULL,
+reportID Integer AUTO_INCREMENT NOT NULL,
 userName varChar(20) NOT NULL,
 totalMinutes Integer,
 signature varChar(20),
