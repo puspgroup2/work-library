@@ -21,7 +21,8 @@
   <%
   if(session.getAttribute("username") == null) {
     response.sendRedirect("login.jsp");
-  } else if (!session.getAttribute("role").equals("ADMIN") || !session.getAttribute("role").equals("PG")) {
+  } else if (!(session.getAttribute("role").equals("ADMIN"))) {
+    System.out.println(session.getAttribute("role"));
     response.sendRedirect("index.jsp");
   }
 %>
