@@ -116,7 +116,7 @@
                     <div class="col-8">
                       
                       <fmt:formatDate var="fmtDate" value="<%=new java.util.Date()%>" pattern="dd/MM/yyyy HH:mm:ss"/>  
-              <input type="text" name="bean.dateProperty" value="${fmtDate}" placeholder="${fmtDate}"/>
+              <input type="text" name="bean.dateProperty" class="form-control" value="${fmtDate}" placeholder="${fmtDate}"/>
                       
                     </div>
                   </div>
