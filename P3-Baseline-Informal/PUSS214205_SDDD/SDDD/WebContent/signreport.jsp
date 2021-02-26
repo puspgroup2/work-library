@@ -14,17 +14,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>TimeMate - User Management</title>
+  <%@page import="java.sql.*"%>
+  <title>TimeMate - View Time Reports</title>
 </head>
 
 <body>
-  <%
-  if(session.getAttribute("username") == null) {
-    response.sendRedirect("login.jsp");
-  } else if (!(session.getAttribute("role").equals("PG"))) {
-    response.sendRedirect("index.jsp");
-  }
-%>
+    <%
+		if(session.getAttribute("username") == null) {
+			response.sendRedirect("login.jsp");
+		}
+	%>
+
 <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand abs">TimeMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -36,11 +36,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.jsp">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="summaryreport.jsp">Time Report</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="summaryreport.jsp">Time Report</a>
             </li>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-            	<li class="nav-item active">
+            	<li class="nav-item">
               		<a class="nav-link" href="usermanagement.jsp">User Management</a>
             	</li>
             </c:if>
@@ -86,45 +86,90 @@
     </div>
   </div>
 </div>
-      
-<div class="card mx-auto rounded shadow shadow-sm" style="max-width: 30rem; margin-top:50px; margin-bottom:50px;">
-  <div class="card-header">
-  User Management
-  </div>
-  <div class="card-body">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">User</th>
-        <th scope="col">PG</th>
-        <th scope="col">UG</th>
-        <th scope="col">TG</th>
-        <th scope="col">SG</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>user1</td>
-        <td><input type="radio" name="radioGroup1"></td>
-        <td><input type="radio" name="radioGroup1"></td>
-        <td><input type="radio" name="radioGroup1"></td>
-        <td><input type="radio" name="radioGroup1"></td>
-      </tr>
-      <tr>
-        <td>user2</td>
-        <td><input type="radio" name="radioGroup2"></td>
-        <td><input type="radio" name="radioGroup2"></td>
-        <td><input type="radio" name="radioGroup2"></td>
-        <td><input type="radio" name="radioGroup2"></td>
-      </tr>
-    </tbody>
-  </table>
-    <div class="form-group row">
-      <div class="offset-0 col-8">
-        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
 
-  </div>
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div>
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">Options</div>
+            <div class="list-group list-group-flush">
+            <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
+            <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
+            <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Sign Reports</b></a>
+            </c:if>
+            </div>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div style="background-color:white">
+          <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col" data-field="state">Signed</th>
+              <th scope="col">User</th>
+              <th scope="col">Last update</th>
+              <th scope="col">Week</th>
+              <th scope="col">Development</th>
+              <th scope="col">Informal review</th>
+              <th scope="col">Formal review</th>
+              <th scope="col">Rework</th>
+              <th scope="col">Other</th>
+              <th scope="col">Total time</th>
+              <th scope="col">Signed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </div>
+              </td>
+              <td>${username}</td>
+              <td>date</td>
+              <td>week</td>
+              <td>dev</td>
+              <td>inf</td>
+              <td>for</td>
+              <td>rew</td>
+              <td>other</td>
+              <td>total</td>
+              <td>signed</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </div>
+              </td>
+              <td>${username}</td>
+              <td>date</td>
+              <td>week</td>
+              <td>dev</td>
+              <td>inf</td>
+              <td>for</td>
+              <td>rew</td>
+              <td>other</td>
+              <td>total</td>
+              <td>signed</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            <form class="form-inline my-2 my-lg-0" action="GetReport" style="margin-right:2.5px">
+                <input type="submit" value="Submit" class="btn btn-success" style="margin-right:3px">
+                
+            </form>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
 </div>
+
 </body>

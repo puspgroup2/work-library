@@ -256,9 +256,46 @@ public class DataBase {
 	 * @param reportID the Time Report to be deleted.
 	 * @return true if deletion was successful.
 	 */
-	public boolean deleteTimeReport(String reportID) {
-		return false;
+	public boolean deleteTimeReport(int reportID) {
+		String sql = "DELETE FROM TimeReports WHERE reportID = ?";
+		
+		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
+			
+			ps.executeUpdate();
+			return true;
+			
+		}
+        catch (SQLException e) {
+    	System.out.println(e);
+        e.printStackTrace();
+        return false;
+    }
 	}
+	
+	/**
+	 * Retrieves the list of all the members.
+	 * @return a list of all the members.
+	 */
+	public List<String> getMembers() {
+		String sql = "SELECT * FROM Users";
+		List<String> members = new ArrayList<>();
+		
+		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				members.add(rs.getString("userName"));
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		 return members;
+	}
+	
 	
 	
 	// admin??
@@ -390,6 +427,31 @@ public class DataBase {
 		}
 		return pw;
 	}
+	/**
+	 * Changes the user's password.
+	 * @param userName The user's userName.
+	 * @param password The user's password.
+	 * @return true if the change was successful, otherwise false.
+	 */
+	public boolean changePassword(String userName, String password) {
+		String sql = "UPDATE Users SET password = ? + WHERE userName = ?";
+		
+		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, password);
+			ps.setString(2, userName);
+			
+			ps.executeUpdate();
+			return true;
+			
+		}
+        catch (SQLException e) {
+    	System.out.println(e);
+        e.printStackTrace();
+        return false;
+    }
+		
+	}
+	
 	/**
 	 * Retrieves a user's e-mail with the help of their userName.
 	 * @param userName The userName of the user.

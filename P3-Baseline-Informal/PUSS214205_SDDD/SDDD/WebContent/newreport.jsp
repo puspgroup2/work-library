@@ -102,7 +102,7 @@
           <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
           <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Create New Time Report</b></a>
           <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-                <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Show Signed Reports</a>
+                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light">Sign Reports</a>
             </c:if>
         </div>
       </div>
@@ -154,7 +154,7 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Project group:</label> 
                     <div class="col-8">
-                      <input id="projectgroup" name="projectgroup" type="text" class="form-control">
+                      <input id="projectgroup" name="projectgroup" type="text" class="form-control" placeholder="${role}">
                     </div>
                   </div>
                   </fieldset>
