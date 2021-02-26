@@ -156,7 +156,10 @@
         <div class="d-flex justify-content-center">
             <form class="form-inline my-2 my-lg-0" action="GetReport" style="margin-right:2.5px">
                 <input type="submit" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
-                <input type="submit" value="View selected report" class="btn btn-success" style="margin-left:3px">
+                <input type="submit" value="View selected report" class="btn btn-success" style="margin-left:3px; margin-right:3px">
+                <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+                  <input type="submit" value="Show signed reports" class="btn btn-success" style="margin-left:3px">
+                </c:if>
             </form>
         </div>
     </div>
