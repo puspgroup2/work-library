@@ -24,6 +24,8 @@ public class TimeReportServlet extends servletBase {
 		
 		switch (request.getParameter("action")) {
 		case "edit":
+			request.getParameter("reportID");
+			populateBean(db.getTimeReport("reportID"));
 			TimeReportBean tb1 = new TimeReportBean();
 			tb1.populateBean(request, response);
 			db.updateTimeReport(tb1.getReportValues());
