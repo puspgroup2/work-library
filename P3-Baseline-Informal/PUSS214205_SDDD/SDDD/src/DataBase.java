@@ -226,7 +226,8 @@ public class DataBase {
 		
 	}
 	
-	public boolean signTimeReport() {
+	// under construction
+	public boolean signTimeReport(int reportID) {
 		return false;
 	}
 	
@@ -236,7 +237,7 @@ public class DataBase {
 	 * Creates a new Time Report.
 	 * @return the Time Report ID.
 	 */
-	public String newTimeReport(String userName, int totalMinutes, String signature, int week) {
+	public int newTimeReport(String userName, int totalMinutes, String signature, int week) {
         String sql = "INSERT into TimeReports(userName, +"
                 + " totalMinutes, signature, week +"
                 + "values(?, ?, ?, ?)";
@@ -247,14 +248,14 @@ public class DataBase {
             ps.setInt(4, week);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String reportID = rs.getString("reportID");
+                int reportID = rs.getInt("reportID");
                 return reportID;
             }
         } catch (SQLException e) {
             System.out.println(e);
             e.printStackTrace();
         }
-        return null;
+        return -1;
     }
 	
 	/**
