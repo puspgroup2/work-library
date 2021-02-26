@@ -26,6 +26,7 @@ public class UserMangementServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
 		umb.populateBean(db.getMembers());
+		session.setAttribute("UserManagementBean", umb);
 		UserManagementBean umb1 = new UserManagementBean();
 		umb1 = (UserManagementBean) request.getAttribute("userManagementBean");
 		
