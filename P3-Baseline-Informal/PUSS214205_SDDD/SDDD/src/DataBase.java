@@ -145,7 +145,7 @@ public class DataBase {
 	 * @return list of Time Report IDs.
 	 */
 	public List<String> getUnsignedTimeReportIDs() {
-		String getIDs = "SELECT reportID FROM TimeReports WHERE signature = NULL";
+		String getIDs = "SELECT reportID FROM TimeReports WHERE signature NOT NULL";
 		ArrayList<String> timeReportIDs = new ArrayList<String>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
