@@ -101,7 +101,9 @@
           <div class="list-group list-group-flush">
           <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
           <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Create New Time Report</b></a>
-          <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Show Signed Reports (PG)</a>
+          <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+                <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Show Signed Reports</a>
+            </c:if>
         </div>
       </div>
   </div>
