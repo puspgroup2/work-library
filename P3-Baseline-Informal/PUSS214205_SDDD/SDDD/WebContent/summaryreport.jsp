@@ -24,6 +24,7 @@
 			response.sendRedirect("login.jsp");
 		}
 	%>
+    
 <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand abs">TimeMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
