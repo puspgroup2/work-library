@@ -77,7 +77,7 @@
           <div class="sidebar-heading">Options</div>
           <div class="list-group list-group-flush">
           <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
-          <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
+          <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Create New Time Report</b></a>
           <a href="editreport.jsp" class="list-group-item list-group-item-action bg-light">Edit Time Report</a>
           </div>
       </div>
