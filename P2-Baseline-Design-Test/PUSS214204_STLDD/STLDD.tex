@@ -128,15 +128,17 @@ This document describes the design of TimeMate [1.1]. The system is a further de
 \item \textbf{Java Beans:} A Java class that only contains set/get methods with private attributes. Moreover, a Java Bean must implement the Serializable interface.
 \end{itemize}
 \newline
-\section{Class Overview}
-This system is developed using Apache Tomcat, wherein the controllers (Java Servlets) manipulates and sends data to the views (JavaServer Pages).
 
+\section{Architecture}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{images/UML_Diagram.png}
-    \caption{Diagram showing an overview of the classes involved in the system}
+    \caption{Diagram showing the overal architecture of the system}
     \label{fig:Class Overview}
 \end{figure}
+
+\section{Class Overview}
+This system is developed using Apache Tomcat, wherein the controllers (Java Servlets) manipulates and sends data to the views (JavaServer Pages).
 
 \subsection{Java Server Pages}
 Below are the pages used for TimeMate and what their functions are.
@@ -454,7 +456,7 @@ Sends an email containing a password generated from PasswordHandler.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{images/ClassDiagram.png}
+    \includegraphics[scale=0.5]{images/classDiagram.png}
     \caption{Diagram containing an overview of all classes.}
     \label{fig:classDiagram}
 \end{figure}
