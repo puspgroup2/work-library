@@ -145,7 +145,23 @@ public class DataBase {
 	 * @return list of Time Report IDs.
 	 */
 	public List<String> getUnsignedTimeReportIDs() {
-		String getIDs = "SELECT reportID FROM TimeReports WHERE signature NOT NULL";
+		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NULL";
+		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+			}
+			return timeReportIDs;
+		} catch(SQLException e) {
+			System.err.println(e);
+            e.printStackTrace();
+            return timeReportIDs;
+		}
+	}
+	
+	public List<String> getSignedTimeReportIDs() {
+		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NOT NULL";
 		ArrayList<String> timeReportIDs = new ArrayList<String>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
