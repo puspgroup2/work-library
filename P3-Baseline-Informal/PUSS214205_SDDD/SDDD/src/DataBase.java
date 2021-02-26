@@ -178,12 +178,31 @@ public class DataBase {
             return timeReportIDs;
 		}
 	}
-	
-	public String getRole() {
-		return "Jag heter Anna";
-	}
+
 	/**
-	 * Updated the user's role.
+	 * Retrieves a user's role with the help of their userName.
+	 * @param userName The userName of the user.
+	 * @return the role of the user, null will otherwise be returned.
+	 */
+	public String getRole(String userName) {
+		String role = null;
+		String sql = "SELECT role from Users where userName = ?";
+		
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, userName);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				role = rs.getString("role");
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		return role;
+	}
+
+	/**
+	 * Updates the user's role.
 	 * @param userName The userName of the user.
 	 * @param role The role of the user.
 	 * @return true and updates the user's role, returns false if it wasn't possible.
