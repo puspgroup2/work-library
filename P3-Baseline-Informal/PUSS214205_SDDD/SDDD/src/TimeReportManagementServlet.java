@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,11 +23,16 @@ public class TimeReportManagementServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
 		HttpSession session = request.getSession();
-		TimeReportManagementBean trmb = new TimeReportManagementBean();
+		TimeReportManagementBean trmb = new TimeReportManagementBean();		
+		trmb.populateBean(db.signedUnsignedTimeReports());
+		TimeReportManagementBean trmb1 = new TimeReportManagementBean();
+		trmb1 = (TimeReportManagementBean) request.getAttribute("TimeReportManagementBean");
 		
-		trmb.populateBean(request, response);
-		db.signTimeReport(trmb.getTimeReportList());
-		response.sendRedirect("summaryreport.jsp");
+		for(Map.Entry<String, Boolean> entry : trmb1.getTimeReportList().entrySet()){
+			db.signUnsignTimeReport(entry.getKey(), entry.getValue());
+		}
+		
+		response.sendRedirect("signreport.jsp");
 	}
 
 	/**
