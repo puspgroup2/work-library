@@ -154,7 +154,7 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Project group:</label> 
                     <div class="col-8">
-                      <input id="projectgroup" name="projectgroup" type="text" class="form-control">
+                      <input id="projectgroup" name="projectgroup" type="text" class="form-control" placeholder="${role}">
                     </div>
                   </div>
                   </fieldset>
