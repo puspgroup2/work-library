@@ -49,11 +49,8 @@ public class LogIn extends servletBase
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
-		try {
-			db.connect();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		db.connect();
+		
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
