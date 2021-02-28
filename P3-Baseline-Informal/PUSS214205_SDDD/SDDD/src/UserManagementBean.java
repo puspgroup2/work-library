@@ -27,6 +27,4 @@ public class UserManagementBean implements Serializable {
     public void populateBean(Map<String, String> map){
     	userList.putAll(map); // get the string that the user entered in the form  	
     }
-    
-
 }
