@@ -97,7 +97,7 @@
             <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
             <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Sign Reports</b></a>
+                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Sign Time Reports</b></a>
             </c:if>
             </div>
         </div>
