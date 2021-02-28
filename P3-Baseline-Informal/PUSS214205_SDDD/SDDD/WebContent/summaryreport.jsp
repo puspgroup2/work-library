@@ -165,7 +165,7 @@
          <table class="table table-striped">
          <thead>
            <tr>
-             <th scope="col" data-field="state">Selection</th>
+             <th scope="col" data-field="state">Signed</th>
              <th scope="col">User</th>
              <th scope="col">Last update</th>
              <th scope="col">Week</th>
@@ -180,7 +180,7 @@
          </thead>
          <tbody>
            <tr>
-             <td><input type="radio" name="radioGroup"></td>
+             <td><input type="checkbox" name="radioGroup"></td>
              <td>${username}</td>
              <td>date</td>
              <td>week</td>
@@ -193,7 +193,7 @@
              <td>signed</td>
            </tr>
            <tr>
-             <td><input type="radio" name="radioGroup"></td>
+            <td><input type="checkbox" name="radioGroup"></td>
              <td>${username}</td>
              <td>date</td>
              <td>week</td>
@@ -206,7 +206,7 @@
              <td>signed</td>
            </tr>
            <tr>
-            <td><input type="radio" name="radioGroup"></td>
+            <td><input type="checkbox" name="radioGroup"></td>
             <td>${username}</td>
             <td>date</td>
             <td>week</td>
@@ -219,7 +219,7 @@
             <td>signed</td>
           </tr>
           <tr>
-            <td><input type="radio" name="radioGroup"></td>
+            <td><input type="checkbox" name="radioGroup"></td>
             <td>${username}</td>
             <td>date</td>
             <td>week</td>
@@ -232,7 +232,7 @@
             <td>signed</td>
           </tr>
           <tr>
-            <td><input type="radio" name="radioGroup"></td>
+            <td><input type="checkbox" name="radioGroup"></td>
             <td>${username}</td>
             <td>date</td>
             <td>week</td>
