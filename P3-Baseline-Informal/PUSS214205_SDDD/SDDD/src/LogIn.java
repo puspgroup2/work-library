@@ -69,7 +69,7 @@ public class LogIn extends servletBase
 			} else {
 				//failed login
 				session.setAttribute("state", LOGIN_FALSE);
-				request.setAttribute("errorMessage", LOGIN_FALSE);
+				session.setAttribute("errorMessage", LOGIN_FALSE);
 				response.sendRedirect("login.jsp");
 			}
 		}

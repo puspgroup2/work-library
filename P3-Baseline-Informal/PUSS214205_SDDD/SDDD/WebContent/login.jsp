@@ -16,6 +16,11 @@
   <meta name="author" content="">
   <title>TimeMate - Log in</title>
 </head>
+<c:if test="${sessionScope.errorMessage eq 0}">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:5px; max-width: 25rem" role="alert">
+        You have entered wrong username and/or password
+    </div>
+</c:if>
 
 <body>
   <!--Log in card-->
