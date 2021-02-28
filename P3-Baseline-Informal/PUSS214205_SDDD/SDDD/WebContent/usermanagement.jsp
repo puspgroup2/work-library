@@ -92,6 +92,7 @@
   User Management
   </div>
   <div class="card-body">
+  <form>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -120,5 +121,6 @@
       </div>
     </div>
   </div>
+  </form>
 </div>
 </body>
