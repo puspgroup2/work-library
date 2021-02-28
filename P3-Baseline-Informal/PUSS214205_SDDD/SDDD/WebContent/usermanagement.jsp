@@ -103,20 +103,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>user1</td>
-        <td><input type="radio" name="radioGroup1"></td>
-        <td><input type="radio" name="radioGroup1"></td>
-        <td><input type="radio" name="radioGroup1"></td>
-        <td><input type="radio" name="radioGroup1"></td>
-      </tr>
-      <tr>
-        <td>user2</td>
-        <td><input type="radio" name="radioGroup2"></td>
-        <td><input type="radio" name="radioGroup2"></td>
-        <td><input type="radio" name="radioGroup2"></td>
-        <td><input type="radio" name="radioGroup2"></td>
-      </tr>
+      <c:forEach var="user" items="${UserManagementBean}">
+        <tr>
+          <td>${user.key}</td>
+          <td><input type="radio" name="${user.key}PG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
+          <td><input type="radio" name="${user.key}UG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
+          <td><input type="radio" name="${user.key}TG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
+          <td><input type="radio" name="${user.key}SG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
+        </tr>
+      </c:forEach>
     </tbody>
   </table>
     <div class="form-group row">
@@ -124,7 +119,6 @@
         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
-
   </div>
 </div>
 </body>
