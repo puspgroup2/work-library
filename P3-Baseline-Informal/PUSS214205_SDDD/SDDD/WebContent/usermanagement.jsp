@@ -19,10 +19,16 @@
 
 <body>
   <%
+  Object role = session.getAttribute("role");
+
   if(session.getAttribute("username") == null) {
     response.sendRedirect("login.jsp");
-  } else if (!(session.getAttribute("role").equals("PG"))) {
-    response.sendRedirect("index.jsp");
+  } else if (role.equals("PG")) {
+    
+  } else if (role.equals("ADMIN")) {
+	  
+  } else {
+	  response.sendRedirect("index.jsp");
   }
 %>
 <nav class="navbar navbar-light navbar-expand-md bg-light">
