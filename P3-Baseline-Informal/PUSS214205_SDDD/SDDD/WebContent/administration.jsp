@@ -129,9 +129,67 @@
         </div>
       </div>
     </form>
-  
     </div>
   </div>
+</div>
+
+<div class="card mx-auto rounded shadow shadow-sm" style="max-width:50rem; margin-top:50px; margin-bottom:50px;">
+  <div class="card-header">
+  Remove users
+  </div>
+  <div class="card-body">
+  <form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Selection</th>
+        <th scope="col">User</th>
+        <th scope="col">Mail</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        </div>
+        </td>
+        <td>placeholder</td>
+        <td>placeholder@gmail.com</td>
+        <td>UG</td>
+      </tr>
+      <tr>
+        <td>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        </div>
+        </td>
+        <td>placeholder</td>
+        <td>placeholder@gmail.com</td>
+        <td>UG</td>
+      </tr>
+      <tr>
+        <td>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        </div>
+        </td>
+        <td>placeholder</td>
+        <td>placeholder@gmail.com</td>
+        <td>UG</td>
+      </tr>
+    </tbody>
+  </table>
+  <div><b>When clicking confirm, you will remove all checked users</b></div>
+  <br>
+    <div class="form-group row">
+      <div class="offset-0 col-8">
+        <button name="submit" type="submit" class="btn btn-danger">Confirm</button>
+      </div>
+    </div>
+  </div>
+  </form>
 </div>
 
 </body>
