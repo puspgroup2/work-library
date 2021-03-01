@@ -99,28 +99,28 @@
   </div>
   <div class="card-body">
   <form>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">User</th>
-        <th scope="col">PG</th>
-        <th scope="col">UG</th>
-        <th scope="col">TG</th>
-        <th scope="col">SG</th>
-      </tr>
-    </thead>
-    <tbody>
-      <c:forEach var="user" items="${UserManagementBean}">
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td>${user.key}</td>
-          <td><input type="radio" name="${user.key}PG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
-          <td><input type="radio" name="${user.key}UG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
-          <td><input type="radio" name="${user.key}TG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
-          <td><input type="radio" name="${user.key}SG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
+          <th scope="col">User</th>
+          <th scope="col">PG</th>
+          <th scope="col">UG</th>
+          <th scope="col">TG</th>
+          <th scope="col">SG</th>
         </tr>
-      </c:forEach>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <c:forEach var="user" items="${UserManagementBean}">
+          <tr>
+            <td>${user.key}</td>
+            <td><input type="radio" name="${user.key}PG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
+            <td><input type="radio" name="${user.key}UG" ${user.value eq 'UG' ? 'checked="checked"':''}></td>
+            <td><input type="radio" name="${user.key}TG" ${user.value eq 'TG' ? 'checked="checked"':''}></td>
+            <td><input type="radio" name="${user.key}SG" ${user.value eq 'SG' ? 'checked="checked"':''}></td>
+          </tr>
+        </c:forEach>
+      </tbody>
+    </table>
     <div class="form-group row">
       <div class="offset-0 col-8">
         <button name="submit" type="submit" class="btn btn-primary">Confirm</button>

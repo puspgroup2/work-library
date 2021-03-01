@@ -57,6 +57,7 @@ public class LogIn extends servletBase
 		
 		if (username == null || password == null) {
 			response.sendError(LOGIN_FALSE);
+			session.setAttribute("errorMessage", LOGIN_FALSE);
 		} else {
 			UserBean ub = new UserBean();
 			ub.populateBean(username, password);

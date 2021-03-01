@@ -17,7 +17,7 @@
   <title>TimeMate - Log in</title>
 </head>
 <c:if test="${sessionScope.errorMessage eq 0}">
-    <div class="alert alert-danger p-1 mx-auto" style="margin-top:5px; max-width: 25rem" role="alert">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
         You have entered wrong username and/or password
     </div>
 </c:if>
@@ -25,7 +25,7 @@
 <body>
   <!--Log in card-->
   <div>
-    <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:50px; margin-bottom:50px;">
+    <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:1rem; margin-bottom:50px;">
       <!--Log in header-->
       <div class="card-header">
         <h5>Log in</h5>
