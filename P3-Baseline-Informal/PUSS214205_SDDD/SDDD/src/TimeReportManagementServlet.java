@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -23,9 +25,29 @@ public class TimeReportManagementServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
 		HttpSession session = request.getSession();
-		TimeReportManagementBean trmb = new TimeReportManagementBean();		
-		trmb.populateBean(db.signedUnsignedTimeReports());
+		TimeReportManagementBean trmb = new TimeReportManagementBean();
+		
+		
+		//trmb.populateBean(db.signedUnsignedTimeReports());
+		ArrayList<String> signedReportIDs = (ArrayList<String>) db.getUnsignedTimeReportIDs();
+		ArrayList<String> unsignedReportIDs = (ArrayList<String>) db.getSignedTimeReportIDs();
+		signedReportIDs.addAll(unsignedReportIDs); // All timereport ID:s
+		HashMap<String, Integer> allTimeReports = new HashMap<>();
+		
+		for(String s : signedReportIDs) {
+			int week = db.getWeekFromTimeReport(s);
+			String name = db.getUserNameFromTimeReport(s);
+			
+			allTimeReports.put(name, week);
+		}
+		trmb.populateBean(allTimeReports);
+		
+		
+		
+		
 		session.setAttribute("TimeReportManagementBean", trmb);
+		
+		//När någon klickar submit
 		TimeReportManagementBean trmb1 = new TimeReportManagementBean();
 		trmb1 = (TimeReportManagementBean) request.getAttribute("TimeReportManagementBean");
 		
