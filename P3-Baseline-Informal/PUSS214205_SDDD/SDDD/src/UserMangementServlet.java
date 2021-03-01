@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -25,17 +27,21 @@ public class UserMangementServlet extends HttpServlet {
 		DataBase db = new DataBase();
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
-		umb.populateBean(db.getMembers());
-		session.setAttribute("UserManagementBean", umb);
-		UserManagementBean umb1 = new UserManagementBean();
-		umb1 = (UserManagementBean) request.getAttribute("userManagementBean");
+		HashMap<String, String> memberMap = new HashMap<>();
+		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
+		for (String s : memberNames) {
+			memberMap.put(s, db.getRole(s));
+		}
+		umb.populateBean(memberMap);
 		
+		
+		//When someone presses the "Submit"-button.
+		session.setAttribute("UserManagementBean", umb);
+		UserManagementBean umb1 = (UserManagementBean) request.getAttribute("userManagementBean");
 		for(Map.Entry<String, String> entry : umb1.getUserList().entrySet()){
 			db.updateRole(entry.getKey(), entry.getValue());
 		}
-		
 		response.sendRedirect("usermanagement.jsp");
-		
 	}
 
 	/**
