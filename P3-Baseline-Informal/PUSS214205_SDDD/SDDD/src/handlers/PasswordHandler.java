@@ -42,26 +42,21 @@ public class PasswordHandler {
 	 * @return password as a String
 	 */
 	public String generatePassword() {
-        ArrayList<Character> passwordChars = new ArrayList<>();
+		ArrayList<Character> passwordChars = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
 		final char[] lowerCase = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		final char[] upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 		final char[] numbers = "1234567890".toCharArray();
 		
-		passwordChars.add(0, lowerCase[rand.nextInt(lowerCase.length)]);
-		passwordChars.add(1, lowerCase[rand.nextInt(lowerCase.length)]);
-		passwordChars.add(2, lowerCase[rand.nextInt(lowerCase.length)]);
-
-		passwordChars.add(3, upperCase[rand.nextInt(upperCase.length)]);
-		passwordChars.add(4, upperCase[rand.nextInt(upperCase.length)]);
-		passwordChars.add(5, upperCase[rand.nextInt(upperCase.length)]);
-
-		passwordChars.add(6, numbers[rand.nextInt(numbers.length)]);
-		passwordChars.add(7, numbers[rand.nextInt(numbers.length)]);
-
-		Collections.shuffle(passwordChars);
+		for(int i = 0; i < 3; i++)
+			passwordChars.add(i, lowerCase[rand.nextInt(lowerCase.length)]);
+		for(int i = 0; i < 3; i++) 
+			passwordChars.add(i, upperCase[rand.nextInt(upperCase.length)]);
+		for(int i = 0; i < 2; i++)
+			passwordChars.add(i, numbers[rand.nextInt(numbers.length)]);
 		
-		 for(Character c : passwordChars) {
+		Collections.shuffle(passwordChars);
+		for(Character c : passwordChars) {
 		 	sb.append(c);
 		 }
 		return sb.toString();
