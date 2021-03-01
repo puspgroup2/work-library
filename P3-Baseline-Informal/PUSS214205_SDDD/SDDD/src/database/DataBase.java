@@ -173,16 +173,13 @@ public class DataBase {
 	 * @param reportID the number of the Time Report in question.
 	 */
 	public void setSigned(boolean yes, String userName, int reportID) {
-		String sql = "UPDATE TABLE TimeReports "
+		String sql = "UPDATE TimeReports "
 				+ "set signature = ? "
 				+ "where reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			if (yes) {
-				ps.setString(1, userName);
-			} else {
-				ps.setString(1, null);
-			}
-			ps.setInt(1, reportID);
+			String result = yes ? userName : null;
+			ps.setString(1, result);
+			ps.setInt(2, reportID);	
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			handleSQLException(e);
@@ -709,8 +706,9 @@ public class DataBase {
 		DataBase db = new DataBase();
 		db.connect();
 		
-		System.out.println(db.addUser("Victor", "pw", "mail"));
-		System.out.println(db.newTimeReport("Victor", 500, 8));
+		System.out.println(db.addUser("Elvis", "pw", "mail"));
+		System.out.println(db.newTimeReport("Elvis", 8));
+		db.setSigned(false, "Ulla", 9);
 	}
 	
 }
