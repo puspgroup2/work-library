@@ -214,21 +214,17 @@ public class DataBase {
 	 * @return true and updates the user's role, returns false if it wasn't possible.
 	 */
 	public boolean updateRole(String userName, String role) {
-		String sql = "UPDATE Users SET role = ? + WHERE userName = ?";
+		String sql = "UPDATE Users SET role = ? WHERE userName = ?";
 		
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, role);
 			ps.setString(2, userName);
-			
-			ps.executeUpdate();
-			return true;
-			
+			return ps.executeUpdate() > 0;
 		}
         catch (SQLException e) {
         handleSQLException(e);
         return false;
-    }
-		
+        }
 	}
 	
 	// under construction
