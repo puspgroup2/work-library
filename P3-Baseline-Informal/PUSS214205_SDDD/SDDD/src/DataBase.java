@@ -178,6 +178,8 @@ public class DataBase {
             return timeReportIDs;
 		}
 	}
+	
+	public void setSigned(boolean answer,  )
 
 	/**
 	 * Retrieves a user's role with the help of their userName.
@@ -248,20 +250,18 @@ public class DataBase {
 	 * Creates a new Time Report.
 	 * @return the Time Report ID.
 	 */
-	public int newTimeReport(String userName, int totalMinutes, String signature, int week) {
+	public int newTimeReport(String userName, int totalMinutes, int week) {
         String sql = "INSERT into TimeReports(userName, +"
                 + " totalMinutes, signature, week +"
-                + "values(?, ?, ?, ?)";
+                + "values(?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, userName);
             ps.setInt(2, totalMinutes);
-            ps.setString(3, signature);
-            ps.setInt(4, week);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int reportID = rs.getInt("reportID");
-                return reportID;
-            }
+            ps.setInt(3, week);
+            ps.executeUpdate();
+          
+            return getReportID(userName, week);
+            
         } catch (SQLException e) {
         	handleSQLException(e);
         }
@@ -499,6 +499,21 @@ public class DataBase {
 		}
 	}
 	
+	public int getReportID(String userName, int week) {
+		String sql = "SELECT reportID from TimeReports"
+				+ " where userName = ?"
+				+ " and week = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, userName);
+			ps.setInt(2, week);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return rs.getInt("reportID");
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+	}
 	
 	/**
 	 * Returns a map containing all time values in the ActivityReport table.
