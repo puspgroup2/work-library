@@ -558,7 +558,7 @@ public class DataBase {
 	 * @return true if the change was successful, otherwise false.
 	 */
 	public boolean changePassword(String userName, String password) {
-		String sql = "UPDATE Users SET password = ? + WHERE userName = ?";
+		String sql = "UPDATE Users SET password = ? WHERE userName = ?";
 		
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, password);
