@@ -43,7 +43,7 @@ public class UserMangementServlet extends HttpServlet {
 		session.setAttribute("UserManagementBean", umb);
 		UserManagementBean umb1 = (UserManagementBean) request.getAttribute("userManagementBean");
 		for(Map.Entry<String, String> entry : umb1.getUserList().entrySet()){
-			db.updateRole(entry.getKey(), entry.getValue());
+			//db.updateRole(entry.getKey(), entry.getValue());
 		}
 		response.sendRedirect("usermanagement.jsp");
 	}
