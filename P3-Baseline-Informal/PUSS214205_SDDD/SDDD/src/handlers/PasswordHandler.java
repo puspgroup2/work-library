@@ -10,10 +10,14 @@ import java.util.Random;
 
 public class PasswordHandler {
 	
+	private static final Random rand = new SecureRandom();
+	
+	
 	/**
 	 * Hashes the provided password string with the provided salt string using SHA-256 
 	 * @param password
-	 * @return
+	 * @param salt
+	 * @return hashed password as a String
 	 * @throws NoSuchAlgorithmException if the given cryptographic algorithm is not available in the environment
 	 */
 	public String hashPassword(String password, String salt) {
@@ -35,7 +39,7 @@ public class PasswordHandler {
 	
 	/**
 	 * Generates a new random password according to requirement 6.2.1 in PUSS214201
-	 * @return
+	 * @return password as a String
 	 */
 	public String generatePassword() {
         ArrayList<Character> passwordChars = new ArrayList<>();
@@ -43,7 +47,6 @@ public class PasswordHandler {
 		final char[] lowerCase = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 		final char[] upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 		final char[] numbers = "1234567890".toCharArray();
-		Random rand = new SecureRandom();
 		
 		passwordChars.add(0, lowerCase[rand.nextInt(lowerCase.length)]);
 		passwordChars.add(1, lowerCase[rand.nextInt(lowerCase.length)]);
@@ -62,5 +65,14 @@ public class PasswordHandler {
 		 	sb.append(c);
 		 }
 		return sb.toString();
+	}
+	/**
+	 * Generates a new random salt String
+	 * @return salt as a String
+	 */
+	public String generateSalt() {
+		byte[] salt = new byte[32];
+		rand.nextBytes(salt);
+		return Base64.getEncoder().encodeToString(salt);
 	}
 }
