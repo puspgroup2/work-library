@@ -544,16 +544,12 @@ public class DataBase {
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, password);
 			ps.setString(2, userName);
-			
-			ps.executeUpdate();
-			return true;
-			
+			return ps.executeUpdate() > 0;
 		}
         catch (SQLException e) {
         handleSQLException(e);
         return false;
-    }
-		
+        }
 	}
 	
 	/**
