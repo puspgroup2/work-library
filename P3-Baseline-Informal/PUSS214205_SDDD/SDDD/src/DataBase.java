@@ -568,6 +568,27 @@ public class DataBase {
 		}
 		return pw;
 	}
+	
+	/**
+	 * 
+	 * @param userID The user whose salt are requested. 
+	 * @return the salt as a String
+	 */
+	public String getSalt(String userID) {
+		String sql = "SELECT salt "
+				+ "from Users "
+				+ "where userName = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, userID);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return rs.getString("salt");
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+		return null;
+	}
 	/**
 	 * Changes the user's password.
 	 * @param userName The user's userName.
