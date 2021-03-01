@@ -24,6 +24,7 @@ public class TimeReportServlet extends ServletBase {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
+		db.connect();
 		HttpSession session = request.getSession();
 		session.setAttribute("timeReports", db.getTimeReportIDs((String) session.getAttribute("username")));
 		
