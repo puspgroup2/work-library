@@ -40,7 +40,7 @@ public class TimeReportServlet extends servletBase {
 		case "add":
 			TimeReportBean tb3 = new TimeReportBean();
 			tb3.populateBean(request, response);
-			db.newTimeReport((String) session.getAttribute("userName"), 0, "", (Integer) session.getAttribute("week"));
+			db.newTimeReport((String) session.getAttribute("userName"), 0, (Integer) session.getAttribute("week"));
 			db.updateTimeReport((int) session.getAttribute("reportID"), tb3.getReportValues());
 			response.sendRedirect("summaryreport.jsp");
 			break;
