@@ -62,7 +62,7 @@ public class TimeReportManagementServlet extends HttpServlet {
 		trmb1 = (TimeReportManagementBean) request.getAttribute("TimeReportManagementBean");
 		
 		for(Map.Entry<Integer, Boolean> entry : trmb1.getTimeReportList().entrySet()){
-			db.setSigned(entry.getValue(), userName,  entry.getKey());
+			//db.setSigned(entry.getValue(), userName,  entry.getKey());
 		}
 		
 		response.sendRedirect("signreport.jsp");
