@@ -232,23 +232,17 @@ public class DataBase {
 
 	
 	// Methods every user has access to
-	
 	/**
 	 * Creates a new Time Report.
 	 * @return the Time Report ID.
 	 */
-	public int newTimeReport(String userName, int totalMinutes, int week) {
-        String sql = "INSERT into TimeReports(userName, +"
-                + " totalMinutes, signature, week +"
-                + "values(?, ?, ?)";
+	public int newTimeReport(String userName, int week) {
+        String sql = "INSERT into TimeReports(userName, week) values(?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, userName);
-            ps.setInt(2, totalMinutes);
-            ps.setInt(3, week);
+            ps.setInt(2, week);
             ps.executeUpdate();
-          
             return getReportID(userName, week);
-            
         } catch (SQLException e) {
         	handleSQLException(e);
         }
@@ -263,8 +257,8 @@ public class DataBase {
 	 */
 	public boolean updateTimeReport(int reportID, Map<String, Integer> timeReport) {
 		String sql = "UPDATE TimeReports"
-				+ "set ? = ?"
-				+ "where reportID = ?";
+				+ " SET ? = ?"
+				+ " WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			for(String s : timeReport.keySet()) {
 				ps.setString(1, s);
@@ -278,6 +272,66 @@ public class DataBase {
 		}
 		return true;
 	}
+	
+	
+	public boolean updateActivityReport(int reportID, Map<String, Integer> activityReport) {
+		String sql = "INSERT IGNORE INTO ActivityReports"
+				+ " SET ? = ?"
+				+ " WHERE reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			for(String s : activityReport.keySet()) {
+				ps.setString(1, s);
+				ps.setInt(2, activityReport.get(s));
+				ps.setInt(3, reportID);
+				ps.execute();
+			}
+			
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
+		}
+		return true;
+	}
+	
+	
+	public boolean updateDocumentTimeD(int reportID, Map<String, Integer> documentTimeD) {
+		return updateDocumentTime(reportID, documentTimeD, 'D');
+	}
+	
+	
+	public boolean updateDocumentTimeI(int reportID, Map<String, Integer> documentTimeI) {
+		return updateDocumentTime(reportID, documentTimeI, 'I');
+	}
+	
+	
+	public boolean updateDocumentTimeR(int reportID, Map<String, Integer> documentTimeR) {
+		return updateDocumentTime(reportID, documentTimeR, 'R');
+	}
+	
+	
+	public boolean updateDocumentTimeF(int reportID, Map<String, Integer> documentTimeF) {
+		return updateDocumentTime(reportID, documentTimeF, 'F');
+	}
+	
+	
+	private boolean updateDocumentTime(int reportID, Map<String, Integer> documentTime, char type) {
+		String sql = "INSERT IGNORE INTO DocumentTime" + type
+				+ " SET ? = ?"
+				+ " WHERE reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			for(String s : documentTime.keySet()) {
+				ps.setString(1, s);
+				ps.setInt(2, documentTime.get(s));
+				ps.setInt(3, reportID);
+				ps.execute();
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
+		}
+		return true;
+	}
+	
 	
 	/**
 	 * Deletes the specified Time Report.
