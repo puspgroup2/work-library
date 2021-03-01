@@ -96,11 +96,4 @@
       Please see the navigation bar at the top of the website in order to navigate.
     </div>
   </div>
-
-  <form action="UserMangementServlet">
-    <!--Log in button-->
-    <div class="row justify-content-center" style="margin-top:20px">
-      <button type="submit" class="btn btn-success justify-content-center" id="btnLogin">Log in</button>
-    </div>
-  </form>
 </body>
