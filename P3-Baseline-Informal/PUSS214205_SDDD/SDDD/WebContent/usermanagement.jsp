@@ -75,9 +75,10 @@
         <h4>Log Out <i class="fa fa-lock"></i></h4>
       </div>
       <div class="modal-body">
-        <p><i class="fa fa-question-circle"></i> Are you sure you want to log-off? <br /></p>
+        <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
         <div class="actionsBtns">
-            <form action="login.jsp">
+            <form action="LogOut">
+            
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input type="submit" class="btn btn-default btn-primary" value="Logout" />
 	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>

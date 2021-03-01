@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,7 @@ import javax.servlet.http.HttpServletResponse;
  * 
  */
 @WebServlet("/LogIn")
+		
 public class LogIn extends ServletBase 
 {
 	private static final long serialVersionUID = 1L;
@@ -59,6 +61,10 @@ public class LogIn extends ServletBase
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		
+		
+			
+		
 		
 		if (username == null || password == null) {
 			response.sendError(LOGIN_FALSE);
