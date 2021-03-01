@@ -28,6 +28,7 @@ public class TimeReportManagementServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
+		db.connect();
 		HttpSession session = request.getSession();
 		
 		//When the site is loaded

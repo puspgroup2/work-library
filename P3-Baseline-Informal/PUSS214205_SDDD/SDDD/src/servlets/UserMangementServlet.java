@@ -29,6 +29,7 @@ public class UserMangementServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
+		db.connect();
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
 		HashMap<String, String> memberMap = new HashMap<>();
