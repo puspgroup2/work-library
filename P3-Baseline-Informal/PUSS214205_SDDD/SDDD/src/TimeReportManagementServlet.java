@@ -27,8 +27,6 @@ public class TimeReportManagementServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		TimeReportManagementBean trmb = new TimeReportManagementBean();
 		
-		
-		//trmb.populateBean(db.signedUnsignedTimeReports());
 		ArrayList<String> signedReportIDs = (ArrayList<String>) db.getUnsignedTimeReportIDs();
 		ArrayList<String> unsignedReportIDs = (ArrayList<String>) db.getSignedTimeReportIDs();
 		signedReportIDs.addAll(unsignedReportIDs); // All timereport ID:s
@@ -41,8 +39,6 @@ public class TimeReportManagementServlet extends HttpServlet {
 			allTimeReports.put(name, week);
 		}
 		trmb.populateBean(allTimeReports);
-		
-		
 		
 		
 		session.setAttribute("TimeReportManagementBean", trmb);
