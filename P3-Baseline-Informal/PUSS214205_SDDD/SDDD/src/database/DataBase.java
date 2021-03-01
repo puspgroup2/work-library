@@ -229,24 +229,7 @@ public class DataBase {
         return false;
         }
 	}
-	
-	// under construction
-	public boolean signTimeReport(String userName, int reportID) {
-		String sql = "UPDATE TimeReports "
-				+ "set signature = ?"
-				+ "where reportID = ?";
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, userName);
-			ps.setInt(2, reportID);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				return rs.getInt("reportID") == reportID;
-			}
-		} catch (SQLException e) {
-			handleSQLException(e);
-		}
-		return false;
-	}
+
 	
 	// Methods every user has access to
 	
@@ -500,6 +483,12 @@ public class DataBase {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param userName The userName associated with the user.
+	 * @param week The week that the time report is referring to.
+	 * @return the report id.
+	 */
 	public int getReportID(String userName, int week) {
 		String sql = "SELECT reportID from TimeReports"
 				+ " where userName = ?"
@@ -514,6 +503,7 @@ public class DataBase {
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
+		return -1;
 	}
 	
 	/**
@@ -569,7 +559,6 @@ public class DataBase {
 	}
 	
 	/**
-	 * 
 	 * @param userID The user whose salt are requested. 
 	 * @return the salt as a String
 	 */
