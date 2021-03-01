@@ -21,22 +21,31 @@ public class TimeReportServlet extends servletBase {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
 		HttpSession session = request.getSession();
+		session.setAttribute("timeReports", db.getTimeReportIDs((String) session.getAttribute("userName")));
 		
+		TimeReportBean tb1 = new TimeReportBean();
+		tb1.populateBean(db.getActivityReport((String) session.getAttribute("reportID")));
+		session.setAttribute("timeReport", tb1.getReportValues());
+			
 		switch (request.getParameter("action")) {
 		case "edit":
-			TimeReportBean tb1 = new TimeReportBean();
-			tb1.populateBean(request, response);
-			db.updateTimeReport(tb1.getReportValues());
+			TimeReportBean tb2 = new TimeReportBean();
+			tb1.populateBean(db.getActivityReport((String) session.getAttribute("reportID")));
+			session.setAttribute("timeReport", tb1.getReportValues());
+
+			tb2.populateBean(request, response);			
+			db.updateTimeReport((int) session.getAttribute("reportID"), tb2.getReportValues());
 			response.sendRedirect("summaryreport.jsp");
 			break;
 		case "add":
-			TimeReportBean tb2 = new TimeReportBean();
-			tb2.populateBean(request, response);
-			db.newTimeReport(tb2.getReportValues());
+			TimeReportBean tb3 = new TimeReportBean();
+			tb3.populateBean(request, response);
+			db.newTimeReport((String) session.getAttribute("userName"), 0, (Integer) session.getAttribute("week"));
+			db.updateTimeReport((int) session.getAttribute("reportID"), tb3.getReportValues());
 			response.sendRedirect("summaryreport.jsp");
 			break;
 		case "remove":
-			db.deleteTimeReport("someID");
+			db.deleteTimeReport((int) session.getAttribute("someID"));
 			response.sendRedirect("summaryreport.jsp");
 			break;
 		}
