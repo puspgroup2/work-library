@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,19 +20,10 @@
 </head>
 
 <body>
-  <%
-  Object role = session.getAttribute("role");
 
-  if(session.getAttribute("username") == null) {
-    response.sendRedirect("login.jsp");
-  } else if (role.equals("PG")) {
-    
-  } else if (role.equals("ADMIN")) {
-	  
-  } else {
-	  response.sendRedirect("index.jsp");
-  }
-%>
+<jsp:useBean id="UserManagementBean" class="UserManagementBean"></jsp:useBean>
+<jsp:getProperty name="UserManagementBean" property="userList"/>
+
 <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand abs">TimeMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -71,7 +64,9 @@
           </ul>
       </div>
   </nav>
+
   
+
   <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -92,7 +87,13 @@
     </div>
   </div>
 </div>
-      
+
+  <% 
+    HashMap<String, String> userMap = (HashMap<String, String>)session.getAttribute("UserManagementBean").getUserList();
+
+  %>
+
+
 <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 30rem; margin-top:50px; margin-bottom:50px;">
   <div class="card-header">
   User Management
