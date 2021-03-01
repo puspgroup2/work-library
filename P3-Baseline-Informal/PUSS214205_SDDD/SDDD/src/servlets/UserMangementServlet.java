@@ -29,22 +29,23 @@ public class UserMangementServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
+		db.connect();
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
 		HashMap<String, String> memberMap = new HashMap<>();
 		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
 		for (String s : memberNames) {
-			memberMap.put(s, db.getRole(s));
+			if(!s.equals("admin")) {
+				memberMap.put(s, db.getRole(s));
+			}
 		}
 		umb.populateBean(memberMap);
 		
 		
 		//When someone presses the "Submit"-button.
 		session.setAttribute("UserManagementBean", umb);
-		UserManagementBean umb1 = (UserManagementBean) request.getAttribute("userManagementBean");
-		for(Map.Entry<String, String> entry : umb1.getUserList().entrySet()){
-			db.updateRole(entry.getKey(), entry.getValue());
-		}
+		
+		
 		response.sendRedirect("usermanagement.jsp");
 	}
 
@@ -53,6 +54,18 @@ public class UserMangementServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		DataBase db = new DataBase();
+		db.connect();
+		
+		HashMap<String, String> memberMap = new HashMap<>();
+		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
+		
+		for (String name : memberNames) {
+			if(!name.equals("admin")) {
+				db.updateRole(name, request.getParameter(name+"role"));
+			}
+		}
+
 		doGet(request, response);
 	}
 

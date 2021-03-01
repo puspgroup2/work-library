@@ -173,16 +173,13 @@ public class DataBase {
 	 * @param reportID the number of the Time Report in question.
 	 */
 	public void setSigned(boolean yes, String userName, int reportID) {
-		String sql = "UPDATE TABLE TimeReports "
+		String sql = "UPDATE TimeReports "
 				+ "set signature = ? "
 				+ "where reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			if (yes) {
-				ps.setString(1, userName);
-			} else {
-				ps.setString(1, null);
-			}
-			ps.setInt(1, reportID);
+			String result = yes ? userName : null;
+			ps.setString(1, result);
+			ps.setInt(2, reportID);	
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			handleSQLException(e);
@@ -218,7 +215,6 @@ public class DataBase {
 	 */
 	public boolean updateRole(String userName, String role) {
 		String sql = "UPDATE Users SET role = ? WHERE userName = ?";
-		
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, role);
 			ps.setString(2, userName);
@@ -229,43 +225,20 @@ public class DataBase {
         return false;
         }
 	}
-	
-	// under construction
-	public boolean signTimeReport(String userName, int reportID) {
-		String sql = "UPDATE TimeReports "
-				+ "set signature = ?"
-				+ "where reportID = ?";
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, userName);
-			ps.setInt(2, reportID);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				return rs.getInt("reportID") == reportID;
-			}
-		} catch (SQLException e) {
-			handleSQLException(e);
-		}
-		return false;
-	}
+
 	
 	// Methods every user has access to
-	
 	/**
 	 * Creates a new Time Report.
 	 * @return the Time Report ID.
 	 */
-	public int newTimeReport(String userName, int totalMinutes, int week) {
-        String sql = "INSERT into TimeReports(userName, +"
-                + " totalMinutes, signature, week +"
-                + "values(?, ?, ?)";
+	public int newTimeReport(String userName, int week) {
+        String sql = "INSERT into TimeReports(userName, week) values(?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, userName);
-            ps.setInt(2, totalMinutes);
-            ps.setInt(3, week);
+            ps.setInt(2, week);
             ps.executeUpdate();
-          
             return getReportID(userName, week);
-            
         } catch (SQLException e) {
         	handleSQLException(e);
         }
@@ -280,8 +253,8 @@ public class DataBase {
 	 */
 	public boolean updateTimeReport(int reportID, Map<String, Integer> timeReport) {
 		String sql = "UPDATE TimeReports"
-				+ "set ? = ?"
-				+ "where reportID = ?";
+				+ " SET ? = ?"
+				+ " WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			for(String s : timeReport.keySet()) {
 				ps.setString(1, s);
@@ -295,6 +268,88 @@ public class DataBase {
 		}
 		return true;
 	}
+	
+	
+	public boolean updateActivityReport(int reportID, Map<String, Integer> activityReport) {
+		String sql;
+		String check = "SELECT * FROM ActivityReports WHERE reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(check)) {
+			ps.setInt(1, reportID);
+			if (ps.executeQuery().next()) {
+				 sql = "UPDATE ActivityReports SET ? = ? WHERE reportID = ?";
+			} else {
+				 sql = "INSERT INTO ActivityReports SET ? = ? WHERE reportID = ?";
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
+		}
+		
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			for(String s : activityReport.keySet()) {
+				ps.setString(1, s);
+				ps.setInt(2, activityReport.get(s));
+				ps.setInt(3, reportID);
+				ps.execute();
+			}
+			
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
+		}
+		return true;
+	}
+	
+	
+	public boolean updateDocumentTimeD(int reportID, Map<String, Integer> documentTimeD) {
+		return updateDocumentTime(reportID, documentTimeD, 'D');
+	}
+	
+	
+	public boolean updateDocumentTimeI(int reportID, Map<String, Integer> documentTimeI) {
+		return updateDocumentTime(reportID, documentTimeI, 'I');
+	}
+	
+	
+	public boolean updateDocumentTimeR(int reportID, Map<String, Integer> documentTimeR) {
+		return updateDocumentTime(reportID, documentTimeR, 'R');
+	}
+	
+	
+	public boolean updateDocumentTimeF(int reportID, Map<String, Integer> documentTimeF) {
+		return updateDocumentTime(reportID, documentTimeF, 'F');
+	}
+	
+	
+	private boolean updateDocumentTime(int reportID, Map<String, Integer> documentTime, char type) {
+		String sql;
+		String check = "SELECT * FROM DocumentTime" + type + " WHERE reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(check)) {
+			ps.setInt(1, reportID);
+			if (ps.executeQuery().next()) {
+				 sql = "UPDATE DocumentTime" + type + " SET ? = ? WHERE reportID = ?";
+			} else {
+				 sql = "INSERT INTO DocumentTime" + type + " SET ? = ? WHERE reportID = ?";
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
+		}
+		
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			for(String s : documentTime.keySet()) {
+				ps.setString(1, s);
+				ps.setInt(2, documentTime.get(s));
+				ps.setInt(3, reportID);
+				ps.execute();
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
+		}
+		return true;
+	}
+	
 	
 	/**
 	 * Deletes the specified Time Report.
@@ -500,7 +555,14 @@ public class DataBase {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param userName The userName associated with the user.
+	 * @param week The week that the time report is referring to.
+	 * @return the report id.
+	 */
 	public int getReportID(String userName, int week) {
+		int reportID = 0;
 		String sql = "SELECT reportID from TimeReports"
 				+ " where userName = ?"
 				+ " and week = ?";
@@ -509,11 +571,12 @@ public class DataBase {
 			ps.setInt(2, week);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				return rs.getInt("reportID");
+				reportID = rs.getInt("reportID");
 			}
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
+		return reportID;
 	}
 	
 	/**
@@ -569,7 +632,6 @@ public class DataBase {
 	}
 	
 	/**
-	 * 
 	 * @param userID The user whose salt are requested. 
 	 * @return the salt as a String
 	 */
@@ -666,7 +728,9 @@ public class DataBase {
 		DataBase db = new DataBase();
 		db.connect();
 		
-		System.out.println(db.addUser("Victor", "pw", "mail"));
+		System.out.println(db.addUser("Elvis", "pw", "mail"));
+		System.out.println(db.newTimeReport("Elvis", 8));
+		db.setSigned(false, "Ulla", 9);
 	}
 	
 }

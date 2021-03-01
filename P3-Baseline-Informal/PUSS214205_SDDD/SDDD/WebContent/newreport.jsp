@@ -44,9 +44,9 @@
               <a class="nav-link" href="summaryreport.jsp">Time Report</a>
           </li>
           <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-            	<li class="nav-item">
-              		<a class="nav-link" href="usermanagement.jsp">User Management</a>
-            	</li>
+            <form action="UserMangementServlet">
+              <input type="submit" value="User Management" class="nav-link astext">
+            </form>
           </c:if>
           <c:if test = "${sessionScope.role eq 'ADMIN'}">
             	<li class="nav-item">
@@ -78,9 +78,10 @@
         <h4>Log Out <i class="fa fa-lock"></i></h4>
       </div>
       <div class="modal-body">
-        <p><i class="fa fa-question-circle"></i> Are you sure you want to log-off? <br /></p>
+        <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
         <div class="actionsBtns">
-            <form action="login.jsp">
+            <form action="LogOut">
+            
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input type="submit" class="btn btn-default btn-primary" value="Logout" />
 	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
