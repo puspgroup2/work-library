@@ -17,8 +17,6 @@
   <title>TimeMate - Change Password</title>
 </head>
 
-
-
 <body>
 <%
 	if(session.getAttribute("username") == null) {
@@ -65,8 +63,8 @@
           </ul>
       </div>
   </nav>
-  
-  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
@@ -93,13 +91,13 @@
       <h5>Change password</h5>
     </div>
     <div class="card-body">
-    <form action="LogIn">
+    <form action="LogIn" method="post">
       <!--Current password input-->
       <div class="input-group">
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-key"></i></div>
         </div>
-        <input class="form-control" type="password" placeholder="Current password" name="username">
+        <input class="form-control" type="password" placeholder="Current password" id="currpass">
       </div>
 
       <!--New password input-->
@@ -107,7 +105,7 @@
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-lock"></i></div>
         </div>
-        <input class="form-control" type="password" placeholder="New password" name="password">
+        <input class="form-control" type="password" placeholder="New password" id="password1">
       </div>
 
       <!--New password input-->
@@ -115,15 +113,74 @@
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-lock"></i></div>
         </div>
-        <input class="form-control" type="password" placeholder="Repeat new password" name="password">
+        <input class="form-control" type="password" placeholder="Repeat new password" id="password2">
       </div>
 
-      <!--Log in button-->
+      <!--Change password button-->
       <div class="row justify-content-center" style="margin-top:20px">
-        <button type="submit" class="btn btn-success justify-content-center" id="btnLogin">Change password</button>
+        <button type="submit" class="btn btn-success justify-content-center" id="changePassword" disabled>Change password</button>
       </div>
     </form>
+
+      <!--Password requirements-->
+      <div style="margin-top:5px">
+        <a><b>Your password must fullfil the following requirements:</b></a><br>
+        <span id="8chars" style="color:#FF0004;">8 characters long</span><br>
+        <span id="ucase" style="color:#FF0004;">Atleast one uppercase letter</span><br>
+        <span id="lcase" style="color:#FF0004;">Atleast one lowercasecase letter</span><br>
+        <span id="num" style="color:#FF0004;">Atleast one number</span><br>
+        <span id="pwmatch" style="color:#FF0004;">The passwords must match</span> 
+      </div>
+    
     </div>
   </div>
 </div>
+
+<script>
+  $("input[type=password]").keyup(function(){
+    var ucase = new RegExp("[A-Z]+");
+    var lcase = new RegExp("[a-z]+");
+    var num = new RegExp("[0-9]+");
+    
+    if($("#password1").val().length >= 8){
+      $("#8chars").css("color","#00A41E");
+    }else{
+      $("#8chars").css("color","#FF0004");
+      $('#changePassword').prop('disabled', true);
+    }
+    
+    if(ucase.test($("#password1").val())){
+      $("#ucase").css("color","#00A41E");
+    }else{
+      $("#ucase").css("color","#FF0004");
+      $('#changePassword').prop('disabled', true);
+    }
+    
+    if(lcase.test($("#password1").val())){
+      $("#lcase").css("color","#00A41E");
+    }else{
+      $("#lcase").css("color","#FF0004");
+      $('#changePassword').prop('disabled', true);
+    }
+    
+    if(num.test($("#password1").val())){
+      $("#num").css("color","#00A41E");
+    }else{
+      $("#num").css("color","#FF0004");
+      $('#changePassword').prop('disabled', true);
+    }
+    
+    if($("#password1").val() == $("#password2").val() && $("#password1").val() != ""){
+      $("#pwmatch").css("color","#00A41E");
+    }else{
+      $("#pwmatch").css("color","#FF0004");
+      $('#changePassword').prop('disabled', true);
+    }
+    
+    if($("#password1").val() == $("#password2").val() && num.test($("#password1").val()) && lcase.test($("#password1").val()) && ucase.test($("#password1").val()) && $("#password1").val().length >= 8) {
+    	$('#changePassword').prop('disabled', false);
+    }
+    
+  });
+  </script>
 </body>
