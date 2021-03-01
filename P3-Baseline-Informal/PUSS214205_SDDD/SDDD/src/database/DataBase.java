@@ -22,10 +22,8 @@ public class DataBase {
 	private static String database = "pusp2102hbg";
 	private static String databaseUser = "pusp2102hbg";
 	private static String databasePassword = "s9hg34sf";
-	private static int MAXIMUM_TIMEOUT = 1;
 	
 	public DataBase(){
-		DriverManager.setLoginTimeout(MAXIMUM_TIMEOUT);
 		connection = null;
 	}
 	
@@ -658,6 +656,7 @@ public class DataBase {
 		db.connect();
 		
 		System.out.println(db.addUser("Victor", "pw", "mail"));
+		System.out.println(db.newTimeReport("Victor", 500, 8));
 	}
 	
 }
