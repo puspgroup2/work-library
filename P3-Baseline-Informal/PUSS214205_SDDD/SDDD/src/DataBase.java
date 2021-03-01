@@ -179,7 +179,28 @@ public class DataBase {
 		}
 	}
 	
-	public void setSigned(boolean answer,  )
+	/**
+	 * 
+	 * @param yes if the Time Report be signed
+	 * @param userName the name of the project leader
+	 * @param reportID the number of the Time Report in question.
+	 */
+	public void setSigned(boolean yes, String userName, int reportID) {
+		String sql = "UPDATE TABLE TimeReports "
+				+ "set signature = ? "
+				+ "where reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			if (yes) {
+				ps.setString(1, userName);
+			} else {
+				ps.setString(1, null);
+			}
+			ps.setInt(1, reportID);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+	}
 
 	/**
 	 * Retrieves a user's role with the help of their userName.
