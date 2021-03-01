@@ -1,3 +1,4 @@
+package servlets;
 
 
 import java.io.IOException;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.TimeReportManagementBean;
+import database.DataBase;
+
 /**
  * Servlet implementation class TimeReportManagementServlet
  */
@@ -24,6 +28,7 @@ public class TimeReportManagementServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
+		db.connect();
 		HttpSession session = request.getSession();
 		
 		//When the site is loaded
@@ -58,7 +63,7 @@ public class TimeReportManagementServlet extends HttpServlet {
 		trmb1 = (TimeReportManagementBean) request.getAttribute("TimeReportManagementBean");
 		
 		for(Map.Entry<Integer, Boolean> entry : trmb1.getTimeReportList().entrySet()){
-			db.setSigned(entry.getValue(), userName,  entry.getKey());
+			//db.setSigned(entry.getValue(), userName,  entry.getKey());
 		}
 		
 		response.sendRedirect("signreport.jsp");

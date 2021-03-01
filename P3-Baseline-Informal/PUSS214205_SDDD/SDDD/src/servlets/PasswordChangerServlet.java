@@ -1,3 +1,4 @@
+package servlets;
 
 
 import java.io.IOException;
@@ -8,11 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import database.DataBase;
+import handlers.PasswordHandler;
+
 /**
  * Servlet implementation class PasswordChangerServlet
  */
 @WebServlet("/PasswordChangerServlet")
-public class PasswordChangerServlet extends servletBase 
+public class PasswordChangerServlet extends ServletBase 
 {
 	private static final long serialVersionUID = 1L;
 
@@ -22,6 +26,7 @@ public class PasswordChangerServlet extends servletBase
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		DataBase db = new DataBase();
+		db.connect();
 		
 		PasswordHandler ph = new PasswordHandler();
 		if (db.setPassword(ph.hashPassword(session.getAttribute("password")))) {//Gets the password attribute, hashes the password, sets the password.

@@ -1,3 +1,4 @@
+package servlets;
 
 
 import java.io.IOException;
@@ -7,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import beans.UserManagementBean;
+import database.DataBase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +29,7 @@ public class UserMangementServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
+		db.connect();
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
 		HashMap<String, String> memberMap = new HashMap<>();
@@ -39,7 +44,7 @@ public class UserMangementServlet extends HttpServlet {
 		session.setAttribute("UserManagementBean", umb);
 		UserManagementBean umb1 = (UserManagementBean) request.getAttribute("userManagementBean");
 		for(Map.Entry<String, String> entry : umb1.getUserList().entrySet()){
-			db.updateRole(entry.getKey(), entry.getValue());
+			//db.updateRole(entry.getKey(), entry.getValue());
 		}
 		response.sendRedirect("usermanagement.jsp");
 	}
