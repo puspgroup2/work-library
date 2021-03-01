@@ -45,9 +45,9 @@
             	</li>
           </c:if>
           <c:if test = "${sessionScope.role eq 'ADMIN'}">
-            	<li class="nav-item">
-              		<a class="nav-link" href="administration.jsp">Administration</a>
-            	</li>
+            <form action="UserMangementServlet">
+              <input type="submit" value="User Management" class="nav-link astext">
+            </form>
             </c:if>
       </ul>
 
