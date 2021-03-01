@@ -39,7 +39,9 @@
               </li>
               <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
             	<li class="nav-item">
-              		<a class="nav-link" href="usermanagement.jsp">User Management</a>
+                  <form action="UserMangementServlet">
+                    <input type="submit" value="User Management" class="nav-link astext">
+                  </form>
             	</li>
               </c:if>
               <c:if test = "${sessionScope.role eq 'ADMIN'}">
@@ -94,4 +96,11 @@
       Please see the navigation bar at the top of the website in order to navigate.
     </div>
   </div>
+
+  <form action="UserMangementServlet">
+    <!--Log in button-->
+    <div class="row justify-content-center" style="margin-top:20px">
+      <button type="submit" class="btn btn-success justify-content-center" id="btnLogin">Log in</button>
+    </div>
+  </form>
 </body>

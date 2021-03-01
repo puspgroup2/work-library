@@ -218,7 +218,6 @@ public class DataBase {
 	 */
 	public boolean updateRole(String userName, String role) {
 		String sql = "UPDATE Users SET role = ? WHERE userName = ?";
-		
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, role);
 			ps.setString(2, userName);
@@ -514,6 +513,7 @@ public class DataBase {
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
+		return 0;
 	}
 	
 	/**

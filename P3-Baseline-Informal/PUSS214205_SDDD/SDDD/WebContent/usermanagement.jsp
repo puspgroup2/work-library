@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
+<%@page import="beans.UserManagementBean"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,9 +21,6 @@
 </head>
 
 <body>
-
-<jsp:useBean id="UserManagementBean" class="beans.UserManagementBean"></jsp:useBean>
-<jsp:getProperty name="UserManagementBean" property="userList"/>
 
 <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand abs">TimeMate</a>
@@ -88,18 +86,13 @@
   </div>
 </div>
 
-  <% 
-    HashMap<String, String> userMap = (HashMap<String, String>)session.getAttribute("UserManagementBean").getUserList();
-
-  %>
-
 
 <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 30rem; margin-top:50px; margin-bottom:50px;">
   <div class="card-header">
   User Management
   </div>
   <div class="card-body">
-  <form>
+  <form action="UserMangementServlet" method="post">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -111,15 +104,36 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach var="user" items="${UserManagementBean}">
-          <tr>
-            <td>${user.key}</td>
-            <td><input type="radio" name="${user.key}PG" ${user.value eq 'PG' ? 'checked="checked"':''}></td>
-            <td><input type="radio" name="${user.key}UG" ${user.value eq 'UG' ? 'checked="checked"':''}></td>
-            <td><input type="radio" name="${user.key}TG" ${user.value eq 'TG' ? 'checked="checked"':''}></td>
-            <td><input type="radio" name="${user.key}SG" ${user.value eq 'SG' ? 'checked="checked"':''}></td>
-          </tr>
-        </c:forEach>
+      <%
+		UserManagementBean ub = (UserManagementBean) session.getAttribute("UserManagementBean");
+		HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserList();
+		
+		for(Map.Entry<String, String> entry : userMap.entrySet()) {
+			String role = entry.getValue();
+			if(entry.getValue() == null) {
+				role = "";
+			}
+			
+			%>
+			<tr>
+			<td><%=entry.getKey()%></td>
+			<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="PG" <%
+			if(role.equals("PG")) {%>
+				checked
+			<%}%>></td>
+			<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="UG" <%
+			if(role.equals("UG")) {%>
+				checked
+			<%}%>></td>
+			<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="TG" <%
+			if(role.equals("TG")) {%>
+				checked
+			<%}%>></td>
+			<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="SG"<%
+			if(role.equals("SG")) {%>
+				checked
+			<%}%>></td>
+		<%}%> 
       </tbody>
     </table>
     <div class="form-group row">

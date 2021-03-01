@@ -48,3 +48,9 @@ body {
     margin-left: -15rem;
   }
 }
+
+.astext {
+  background:none;
+  border:none;
+  cursor: pointer;
+}
