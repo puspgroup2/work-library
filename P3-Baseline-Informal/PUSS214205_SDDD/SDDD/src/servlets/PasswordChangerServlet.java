@@ -26,6 +26,7 @@ public class PasswordChangerServlet extends ServletBase
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		DataBase db = new DataBase();
+		db.connect();
 		
 		PasswordHandler ph = new PasswordHandler();
 		if (db.setPassword(ph.hashPassword(session.getAttribute("password")))) {//Gets the password attribute, hashes the password, sets the password.
