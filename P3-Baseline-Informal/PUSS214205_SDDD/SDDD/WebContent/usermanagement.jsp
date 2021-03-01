@@ -21,7 +21,7 @@
 
 <body>
 
-<jsp:useBean id="UserManagementBean" class="UserManagementBean"></jsp:useBean>
+<jsp:useBean id="UserManagementBean" class="beans.UserManagementBean"></jsp:useBean>
 <jsp:getProperty name="UserManagementBean" property="userList"/>
 
 <nav class="navbar navbar-light navbar-expand-md bg-light">

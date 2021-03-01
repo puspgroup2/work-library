@@ -1,3 +1,4 @@
+package servlets;
 
 
 import java.io.IOException;
@@ -8,11 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.TimeReportBean;
+import database.DataBase;
+
 /**
  * Servlet implementation class TimeReportServlet
  */
 @WebServlet("/TimeReportServlet")
-public class TimeReportServlet extends servletBase {
+public class TimeReportServlet extends ServletBase {
 	private static final long serialVersionUID = 1L;
 
 	/**
