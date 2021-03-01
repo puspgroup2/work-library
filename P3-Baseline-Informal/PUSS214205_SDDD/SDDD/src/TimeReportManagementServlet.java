@@ -25,30 +25,39 @@ public class TimeReportManagementServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
 		HttpSession session = request.getSession();
+		
+		//When the site is loaded
 		TimeReportManagementBean trmb = new TimeReportManagementBean();
 		
-		ArrayList<String> signedReportIDs = (ArrayList<String>) db.getUnsignedTimeReportIDs();
-		ArrayList<String> unsignedReportIDs = (ArrayList<String>) db.getSignedTimeReportIDs();
-		signedReportIDs.addAll(unsignedReportIDs); // All timereport ID:s
-		HashMap<String, Integer> allTimeReports = new HashMap<>();
+		ArrayList<Integer> allTimeReportIDs;
+		ArrayList<Integer> signedReportIDs = (ArrayList<Integer>) db.getUnsignedTimeReportIDs();
+		ArrayList<Integer> unsignedReportIDs = (ArrayList<Integer>) db.getSignedTimeReportIDs();
+		signedReportIDs.addAll(unsignedReportIDs); //Add the ID:s of signed and usigned time reports
+		allTimeReportIDs = signedReportIDs; //Rename variable
 		
-		for(String s : signedReportIDs) {
-			int week = db.getWeekFromTimeReport(s);
-			String name = db.getUserNameFromTimeReport(s);
+		HashMap<Integer, Boolean> allTimeReports = new HashMap<>();
+		
+		for(Integer s : allTimeReportIDs) { 
+			boolean signed;
+			if (db.getSignatureFromTimeReport(s) == null) {
+				signed = false;
+			} else {
+				signed = true;
+			}
 			
-			allTimeReports.put(name, week);
+			allTimeReports.put(s, signed);//Fills the HashMap so it contains all time reports and signed/unsigned
 		}
 		trmb.populateBean(allTimeReports);
 		
 		
 		session.setAttribute("TimeReportManagementBean", trmb);
 		
-		//När någon klickar submit
+		//When someone presses the "Submit"-button
 		TimeReportManagementBean trmb1 = new TimeReportManagementBean();
 		trmb1 = (TimeReportManagementBean) request.getAttribute("TimeReportManagementBean");
 		
-		for(Map.Entry<String, Boolean> entry : trmb1.getTimeReportList().entrySet()){
-			db.signUnsignTimeReport(entry.getKey(), entry.getValue());
+		for(Map.Entry<Integer, Boolean> entry : trmb1.getTimeReportList().entrySet()){
+			db.setSigned(entry.getKey(), entry.getValue());
 		}
 		
 		response.sendRedirect("signreport.jsp");
