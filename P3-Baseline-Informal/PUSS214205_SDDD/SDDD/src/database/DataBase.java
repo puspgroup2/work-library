@@ -275,9 +275,20 @@ public class DataBase {
 	
 	
 	public boolean updateActivityReport(int reportID, Map<String, Integer> activityReport) {
-		String sql = "INSERT IGNORE INTO ActivityReports"
-				+ " SET ? = ?"
-				+ " WHERE reportID = ?";
+		String sql;
+		String check = "SELECT * FROM ActivityReports WHERE reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(check)) {
+			ps.setInt(1, reportID);
+			if (ps.executeQuery().next()) {
+				 sql = "UPDATE ActivityReports SET ? = ? WHERE reportID = ?";
+			} else {
+				 sql = "INSERT INTO ActivityReports SET ? = ? WHERE reportID = ?";
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
+		}
+		
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			for(String s : activityReport.keySet()) {
 				ps.setString(1, s);
@@ -315,9 +326,20 @@ public class DataBase {
 	
 	
 	private boolean updateDocumentTime(int reportID, Map<String, Integer> documentTime, char type) {
-		String sql = "INSERT IGNORE INTO DocumentTime" + type
-				+ " SET ? = ?"
-				+ " WHERE reportID = ?";
+		String sql;
+		String check = "SELECT * FROM DocumentTime" + type + " WHERE reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(check)) {
+			ps.setInt(1, reportID);
+			if (ps.executeQuery().next()) {
+				 sql = "UPDATE DocumentTime" + type + " SET ? = ? WHERE reportID = ?";
+			} else {
+				 sql = "INSERT INTO DocumentTime" + type + " SET ? = ? WHERE reportID = ?";
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
+		}
+		
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			for(String s : documentTime.keySet()) {
 				ps.setString(1, s);
