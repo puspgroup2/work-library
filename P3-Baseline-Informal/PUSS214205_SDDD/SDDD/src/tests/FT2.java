@@ -15,6 +15,7 @@ class FT2 {
 	@BeforeEach
 	void setUp() throws Exception {
 		malte = new DataBase(); //Must change connection in DataBase class so that it connects
+		malte.connect();
 		malteBean = new UserBean();
 		malteBean.populateBean("Malte", "123ABCde");
 	}

@@ -14,7 +14,8 @@ class FT1 {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		alex = new DataBase(); //Must change connection in DataBase class so that it connects
+		alex = new DataBase(); 
+		alex.connect();		//Must change connection in DataBase class so that it connects
 		alexBean = new UserBean();
 		alexBean.populateBean("Alex", "123ABCde");
 		
