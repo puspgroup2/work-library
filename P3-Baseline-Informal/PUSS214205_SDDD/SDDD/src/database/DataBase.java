@@ -563,6 +563,7 @@ public class DataBase {
 	 * @return the report id.
 	 */
 	public int getReportID(String userName, int week) {
+		int reportID = 0;
 		String sql = "SELECT reportID from TimeReports"
 				+ " where userName = ?"
 				+ " and week = ?";
@@ -571,12 +572,12 @@ public class DataBase {
 			ps.setInt(2, week);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				return rs.getInt("reportID");
+				reportID = rs.getInt("reportID");
 			}
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
-		return -1;
+		return reportID;
 	}
 	
 	/**
