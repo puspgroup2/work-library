@@ -302,15 +302,12 @@ public class DataBase {
 		
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
-			
-			ps.executeUpdate();
-			return true;
-			
+			return ps.executeUpdate() > 0;
 		}
         catch (SQLException e) {
         handleSQLException(e);
         return false;
-    }
+        }
 	}
 	
 	/**
