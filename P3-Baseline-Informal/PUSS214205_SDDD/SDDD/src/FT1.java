@@ -1,0 +1,33 @@
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class FT1 {
+	private DataBase alex;
+	private UserBean alexBean;
+
+	@BeforeEach
+	void setUp() throws Exception {
+		alex = new DataBase(); //Must change connection in DataBase class so that it connects
+		alexBean = new UserBean();
+		alexBean.populateBean("Alex", "123ABCde");
+		
+		
+	}
+
+	@AfterEach
+	void tearDown() throws Exception {
+		alex.disconnect();
+	}
+
+	@Test
+	void LoginSuccessfull() { 
+		assertTrue(alex.checkLogin(alexBean), "You did not get logged in.");
+	}
+
+}
+
+
+
