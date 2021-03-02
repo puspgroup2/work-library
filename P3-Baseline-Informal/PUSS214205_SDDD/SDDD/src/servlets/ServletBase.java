@@ -40,66 +40,11 @@ public class ServletBase extends HttpServlet {
 	protected Connection conn = null;
 	
 	/**
-	 * Constructs a servlet and makes a connection to the database. 
-	 * It also writes all user names on the console for test purpose. 
+	 * Do we need this class/constructor?? 
 	 */
     public ServletBase() {
-    	try{
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/base?" +
-            "user=martin&password=");			
-			       
-						
-			// Display the contents of the database in the console. 
-			// This should be removed in the final version
-			Statement stmt = conn.createStatement();		    
-		    ResultSet rs = stmt.executeQuery("select * from users"); 
-		    while (rs.next( )) {
-		    	String name = rs.getString("name"); 
-		    	System.out.println("base " + name);
-		    	}
 
-		    stmt.close();
-			
-		} catch (SQLException ex) {
-		    System.out.println("SQLException: " + ex.getMessage());
-		    System.out.println("SQLState: " + ex.getSQLState());
-		    System.out.println("VendorError: " + ex.getErrorCode());
-		}
     }
-    
-    /**
-     * Checks if a user is logged in or not.
-     * @param request The HTTP Servlet request (so that the session can be found)
-     * @return true if the user is logged in, otherwise false.
-     */
-    protected boolean loggedIn(HttpServletRequest request) {
-    	HttpSession session = request.getSession(true);
-    	Object objectState = session.getAttribute("state");
-    	int state = LOGIN_FALSE;
-		if (objectState != null) 
-			state = (Integer) objectState; 
-		return (state == LOGIN_TRUE);
-    }
-    
-    /**
-     * Can be used to construct form elements.
-     * @param par Input string
-     * @return output string = "par" 
-     */
-    protected String formElement(String par) {
-    	return '"' + par + '"';
-    }
-    
-    
-    /**
-     * Constructs the header of all servlets. 
-     * @return String with html code for the header. 
-     */
-    protected String getPageIntro() {
-    	String intro = "<html>" +
-                       "<head><title> The Base Block System </title></head>" +
-                       "<body>";
-    	return intro;
-    }
+
 
 }
