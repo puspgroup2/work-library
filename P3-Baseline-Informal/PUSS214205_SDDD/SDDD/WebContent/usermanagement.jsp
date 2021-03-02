@@ -37,7 +37,7 @@
               <a class="nav-link" href="summaryreport.jsp">Time Report</a>
             </li>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-            	<form action="UserMangementServlet">
+            	<form action="UserManagementServlet">
                 <input type="submit" value="User Management" class="nav-link astext">
               </form>
             </c:if>
