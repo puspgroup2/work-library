@@ -46,7 +46,7 @@ public class AdministrationServlet extends HttpServlet{
 		DataBase db = new DataBase();
 		db.connect();
 		
-		switch(request.getParameter("Add Or Remove")) {
+		switch(request.getParameter("action")) {
 			case "Add": db.addUser(request.getParameter("name"), PasswordHandler.generatePassword(), 
 						request.getParameter("Email"), PasswordHandler.generateSalt());
 						break;
