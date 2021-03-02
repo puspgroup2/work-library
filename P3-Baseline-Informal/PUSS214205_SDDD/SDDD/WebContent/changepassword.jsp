@@ -98,7 +98,7 @@
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-key"></i></div>
         </div>
-        <input class="form-control" type="password" placeholder="Current password" id="currpass">
+        <input class="form-control" type="password" placeholder="Current password" id="oldPassword">
       </div>
 
       <!--New password input-->
