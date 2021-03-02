@@ -30,8 +30,8 @@ public class AdministrationServlet extends HttpServlet{
 		DataBase db = new DataBase();
 		db.connect();
 		HttpSession session = request.getSession();
-		umb = new UserManagementBean();
-		memberMap = new HashMap<>();
+		UserManagementBean umb = new UserManagementBean();
+		Map<String, String> memberMap = new HashMap<String, String>();
 		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
 		for (String s : memberNames) {
 			if(!s.equals("admin")) {
