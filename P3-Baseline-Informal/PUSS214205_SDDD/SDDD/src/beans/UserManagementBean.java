@@ -12,7 +12,6 @@ public class UserManagementBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
     private Map<String, String> userList = new HashMap<String, String>();
-
     /*
       Fetches a list of all users in the system.
       @return List usersList.

@@ -215,7 +215,6 @@ public class DataBase {
 	 */
 	public boolean updateRole(String userName, String role) {
 		String sql = "UPDATE Users SET role = ? WHERE userName = ?";
-		
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, role);
 			ps.setString(2, userName);
@@ -239,11 +238,10 @@ public class DataBase {
             ps.setString(1, userName);
             ps.setInt(2, week);
             ps.executeUpdate();
-            return getReportID(userName, week);
         } catch (SQLException e) {
         	handleSQLException(e);
         }
-        return -1;
+        return getReportID(userName, week);
     }
 	
 	/**
@@ -730,8 +728,9 @@ public class DataBase {
 		db.connect();
 		
 		System.out.println(db.addUser("Elvis", "pw", "mail"));
-		System.out.println(db.newTimeReport("Elvis", 8));
-		db.setSigned(false, "Ulla", 9);
+		System.out.println(db.newTimeReport("Olga", 8));
+		int reportID = db.getReportID("Olga", 8);
+		db.setSigned(true, "Ulla", reportID);
 	}
 	
 }
