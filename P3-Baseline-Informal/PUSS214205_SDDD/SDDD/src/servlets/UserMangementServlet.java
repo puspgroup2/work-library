@@ -40,11 +40,7 @@ public class UserMangementServlet extends HttpServlet {
 			}
 		}
 		umb.populateBean(memberMap);
-		
-		
-		//When someone presses the "Submit"-button.
 		session.setAttribute("UserManagementBean", umb);
-		
 		
 		response.sendRedirect("usermanagement.jsp");
 	}

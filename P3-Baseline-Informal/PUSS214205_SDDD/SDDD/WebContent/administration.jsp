@@ -146,7 +146,6 @@
         <th scope="col">Selection</th>
         <th scope="col">User</th>
         <th scope="col">Mail</th>
-        <th scope="col">Role</th>
       </tr>
     </thead>
     <tbody>
@@ -157,28 +156,6 @@
         </div>
         </td>
         <td>placeholder</td>
-        <td>placeholder@gmail.com</td>
-        <td>UG</td>
-      </tr>
-      <tr>
-        <td>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        </div>
-        </td>
-        <td>placeholder</td>
-        <td>placeholder@gmail.com</td>
-        <td>UG</td>
-      </tr>
-      <tr>
-        <td>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        </div>
-        </td>
-        <td>placeholder</td>
-        <td>placeholder@gmail.com</td>
-        <td>UG</td>
       </tr>
     </tbody>
   </table>
