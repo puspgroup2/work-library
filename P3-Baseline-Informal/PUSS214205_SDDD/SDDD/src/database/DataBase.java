@@ -252,14 +252,15 @@ public class DataBase {
 	 * @return true if the Time Report was successfully updated.
 	 */
 	public boolean updateTimeReport(int reportID, Map<String, Integer> timeReport) {
+		int week = getReportID()
 		String sql = "UPDATE TimeReports"
 				+ " SET ? = ?"
 				+ " WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			connection.setAutoCommit(false);
-			for(String s : timeReport.keySet()) {
-				ps.setString(1, s);
-				ps.setInt(2, timeReport.get(s));
+			for(Map.Entry<String, Integer> entry : timeReport.entrySet()) {
+				ps.setString(1, entry.getKey());
+				ps.setInt(2, entry.getValue());
 				ps.setInt(3, reportID);
 				ps.addBatch();
 			}
@@ -584,6 +585,25 @@ public class DataBase {
 		return reportID;
 	}
 	
+	// helper method
+	private int getWeek(int reportID) {
+		int week = 0;
+		String sql = "SELECT week "
+				+ "from TimeReports "
+				+ "where reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				week = rs.getInt("week");
+				System.out.println(week);
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+		return week;
+	}
+	
 	
 	/**
 	 * Returns a map containing all time values in the ActivityReport table.
@@ -735,15 +755,8 @@ public class DataBase {
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
 		db.connect();
-		db.addUser("Miko", "katt", "brev", "jkjskgjkjsg");
-		db.newTimeReport("Miko", 1);
-		int reportID = db.getReportID("Miko", 1);
 		
-		HashMap<String, Integer> tr = new HashMap<>();
-		tr.put("totalMinutes", 400);
-		db.updateTimeReport(reportID, tr);
-		
-		
+		db.getWeek(10);
 		
 	}
 	
