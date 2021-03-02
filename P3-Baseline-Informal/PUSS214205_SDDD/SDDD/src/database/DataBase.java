@@ -134,13 +134,13 @@ public class DataBase {
 	 * Returns a list containing ID's of all unsigned Time Reports.
 	 * @return list of Time Report IDs.
 	 */
-	public List<String> getUnsignedTimeReportIDs() {
+	public List<Integer> getUnsignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NULL";
-		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
@@ -727,6 +727,10 @@ public class DataBase {
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
 		db.connect();
+		
+		for(Integer i : db.getUnsignedTimeReportIDs()) {
+			System.out.println(i);
+		}
 		
 		
 		
