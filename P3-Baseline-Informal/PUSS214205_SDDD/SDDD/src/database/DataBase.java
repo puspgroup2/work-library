@@ -259,8 +259,7 @@ public class DataBase {
 			for(String s : timeReport.keySet()) {
 				ps.setString(1, s);
 				ps.setInt(2, timeReport.get(s));
-				ps.setInt(3, reportID);
-				ps.execute();
+				ps.executeUpdate();
 			}
 		} catch (SQLException e) {
 			handleSQLException(e);
@@ -730,10 +729,12 @@ public class DataBase {
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
 		db.connect();
+		System.out.println(db.getReportID("Elvis", 4));
 		
-		for(Integer i : db.getSignedTimeReportIDs()) {
-			System.out.println(i);
-		}
+		HashMap<String, Integer> tr = new HashMap<>();
+		tr.put("totalMinutes", 400);
+		tr.put("week", 10);
+		db.updateTimeReport(db.getReportID("Elvis", 4), tr);
 		
 		
 		
