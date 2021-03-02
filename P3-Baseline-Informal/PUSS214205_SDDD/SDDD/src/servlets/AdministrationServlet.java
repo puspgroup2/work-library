@@ -15,6 +15,7 @@ import beans.UserManagementBean;
 import database.DataBase;
 import handlers.PasswordHandler;
 
+@WebServlet("/AdministrationServlet")
 public class AdministrationServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
