@@ -20,7 +20,7 @@ public class PasswordHandler {
 	 * @return hashed password as a String
 	 * @throws NoSuchAlgorithmException if the given cryptographic algorithm is not available in the environment
 	 */
-	public String hashPassword(String password, String salt) {
+	public static String hashPassword(String password, String salt) {
 		String hashedPassword = null;
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -41,7 +41,7 @@ public class PasswordHandler {
 	 * Generates a new random password according to requirement 6.2.1 in PUSS214201
 	 * @return password as a String
 	 */
-	public String generatePassword() {
+	public static String generatePassword() {
 		ArrayList<Character> passwordChars = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
 		final char[] lowerCase = "abcdefghijklmnopqrstuvwxyz".toCharArray();
@@ -65,7 +65,7 @@ public class PasswordHandler {
 	 * Generates a new random salt String
 	 * @return salt as a String
 	 */
-	public String generateSalt() {
+	public static String generateSalt() {
 		byte[] salt = new byte[32];
 		rand.nextBytes(salt);
 		return Base64.getEncoder().encodeToString(salt);
