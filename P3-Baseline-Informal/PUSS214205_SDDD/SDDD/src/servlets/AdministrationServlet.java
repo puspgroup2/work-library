@@ -57,7 +57,7 @@ public class AdministrationServlet extends HttpServlet{
 
 		if(removeBtn != null) { //
 			for(Map.Entry<String, String> member : memberMap.entrySet()) {
-				if(member.getKey().equals(request.getParameter(member.getKey()))) {
+				if(member.getKey().equals(request.getParameter(member.getKey())) && !member.getKey().equals(request.getParameter("admin"))) {
 					db.removeUser(member.getKey());
 				}
 			}
