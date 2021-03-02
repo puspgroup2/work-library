@@ -3,6 +3,7 @@ userName varChar(20) NOT NULL,
 password varChar(50) NOT NULL,
 email varChar(100),
 role varChar(30),
+salt varChar(32) UNIQUE,
 PRIMARY KEY(userName)
 );
 
