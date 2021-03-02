@@ -2,12 +2,15 @@ package servlets;
 
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import beans.TimeReportBean;
 import database.DataBase;
@@ -38,18 +41,34 @@ public class TimeReportServlet extends ServletBase {
 		db.connect();
 		HttpSession session = request.getSession();
 		
-		TimeReportBean tb1 = new TimeReportBean();
-		tb1.populateBean(db.getActivityReport((Integer) session.getAttribute("reportID")));
-		session.setAttribute("timeReport", tb1);
+		TimeReportBean trb1 = new TimeReportBean();
+		trb1.populateBean(db.getActivityReport((Integer) session.getAttribute("reportID")));
+		session.setAttribute("timeReport", trb1);
 		
 		switch (request.getParameter("action")) {
 		case "edit":
-			TimeReportBean tb2 = new TimeReportBean();
-			tb2.populateBean(request, response);			
-			db.updateTimeReport((int) session.getAttribute("reportID"), tb2.getReportValues());
+			List<Integer> signedReports = db.getSignedTimeReportIDs(); 
+			if(!signedReports.contains(session.getAttribute("reportID"))) {
+				session.setAttribute("editable", true);
+				response.sendRedirect("updatereport.jsp");
+			}else {
+				session.setAttribute("editable", false);
+				response.sendRedirect("summaryreport.jsp");
+			}
+			break;
+		case "submitEdit":
+			TimeReportBean trb2 = new TimeReportBean();
+			trb2.populateBean(request, response);			
+			db.updateTimeReport((int) session.getAttribute("reportID"), trb2.getReportValues());
 			response.sendRedirect("summaryreport.jsp");
 			break;
-		case "add":
+		case "view":
+			session.setAttribute("editable", false);
+			response.sendRedirect("updatereport.jsp");
+			break;
+		case "new":
+			response.sendRedirect("newreport.jsp");
+		case "submitNew":
 			TimeReportBean tb3 = new TimeReportBean();
 			tb3.populateBean(request, response);
 			db.newTimeReport((String) session.getAttribute("username"), (Integer) session.getAttribute("week"));
