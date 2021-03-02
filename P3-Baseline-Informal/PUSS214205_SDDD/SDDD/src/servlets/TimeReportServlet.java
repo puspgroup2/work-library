@@ -53,7 +53,7 @@ public class TimeReportServlet extends ServletBase {
 				response.sendRedirect("updatereport.jsp");
 			}else {
 				session.setAttribute("editable", false);
-				response.sendRedirect("summaryreport.jsp");
+				response.sendRedirect("updatereport.jsp");
 			}
 			break;
 		case "submitEdit":
