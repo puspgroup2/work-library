@@ -50,7 +50,8 @@ public class TimeReportManagementServlet extends HttpServlet {
 			allTimeReports.put(s, signed);//Fills the HashMap so it contains all time reports and signed/unsigned
 		}
 		trmb.populateBean(allTimeReports);
-		session.setAttribute("TimeReportManagementBean", trmb);
+		session.setAttribute("TimeReportManagementBean", trmb);	
+		response.sendRedirect("signreport.jsp");
 	}
 
 	/**

@@ -63,7 +63,7 @@ public class DataBase {
 	 * Only the admin can perform this action.
 	 * @return true if the user was successfully added to the database.
 	 */
-	public boolean addUser(String username, String password, String email) {
+	public boolean addUser(String username, String password, String email, String salt) {
 		// checks if user exists
 		String getUser = "SELECT * FROM Users WHERE userName = ?";
 		try(PreparedStatement ps = connection.prepareStatement(getUser)) {
@@ -78,11 +78,12 @@ public class DataBase {
 		}
 		
 		// Adds user
-		String addUser = "INSERT INTO Users(userName, password, email) VALUES (?, ?, ?)";
+		String addUser = "INSERT INTO Users(userName, password, email) VALUES (?, ?, ?, ?)";
 		try(PreparedStatement ps = connection.prepareStatement(addUser)) {
 			ps.setString(1, username);
 			ps.setString(2, password);
 			ps.setString(3, email);
+			ps.setString(4, salt);
 			ps.executeUpdate();
 			return true;
 		} catch(SQLException e) {
@@ -133,13 +134,13 @@ public class DataBase {
 	 * Returns a list containing ID's of all unsigned Time Reports.
 	 * @return list of Time Report IDs.
 	 */
-	public List<String> getUnsignedTimeReportIDs() {
+	public List<Integer> getUnsignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NULL";
-		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
@@ -151,13 +152,13 @@ public class DataBase {
 	 * Returns a list containing ID's of all signed Time Reports.
 	 * @return list of Time Report IDs.
 	 */
-	public List<String> getSignedTimeReportIDs() {
+	public List<Integer> getSignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NOT NULL";
-		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
@@ -578,15 +579,16 @@ public class DataBase {
 		return reportID;
 	}
 	
+	
 	/**
 	 * Returns a map containing all time values in the ActivityReport table.
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getActivityReport(String reportID) {
-		String getActivityReport = "SELECT * FROM DocumentTime WHERE reportID = ?";
+	public Map<String, Integer> getActivityReport(int reportID) {
+		String getActivityReport = "SELECT * FROM ActivityReports WHERE reportID = ?";
 		try(PreparedStatement ps = connection.prepareStatement(getActivityReport)) {
-			ps.setInt(1, Integer.valueOf(reportID));
+			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) {
 				//report does not exist does not exist
@@ -610,6 +612,8 @@ public class DataBase {
             return null;
 		}
 	}
+	
+	
 	/**
 	 * Retrieves a user's password with the help of their userName.
 	 * @param userName The userName of the user.
@@ -727,10 +731,12 @@ public class DataBase {
 		DataBase db = new DataBase();
 		db.connect();
 		
-		System.out.println(db.addUser("Elvis", "pw", "mail"));
-		System.out.println(db.newTimeReport("Olga", 8));
-		int reportID = db.getReportID("Olga", 8);
-		db.setSigned(true, "Ulla", reportID);
+		for(Integer i : db.getSignedTimeReportIDs()) {
+			System.out.println(i);
+		}
+		
+		
+		
 	}
 	
 }

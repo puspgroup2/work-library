@@ -16,11 +16,19 @@
   <meta name="author" content="">
   <title>TimeMate - Log in</title>
 </head>
+
 <c:if test="${sessionScope.errorMessage eq 0}">
     <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
         You have entered wrong username and/or password
     </div>
 </c:if>
+
+<c:if test="${sessionScope.message eq 1}">
+    <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        A new password has been sent to your mail
+    </div>
+</c:if>
+
 
 <body>
   <!--Log in card-->
@@ -77,7 +85,7 @@
         </div>
       
         <!--Modal body-->
-        <form action=""> 
+        <form method="post" action="LogIn"> 
           <div class="modal-body">
               <!--Email icon-->
               <div class="input-group">
@@ -85,13 +93,13 @@
                 <div class="input-group-text"><i class="fa fa-envelope"></i></div>
               </div>
               <!--Email text field-->
-              <input class="form-control" type="text" placeholder="Enter your e-mail" name="mail"></div>
+              <input class="form-control" type="text" placeholder="Enter your username" name="username" id="username"></div>
           </div>
 
           <!--Modal footer-->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Request new password</button>
+            <button class="btn btn-primary" type="submit">Request new password</button>
           </div>
         </form>
       </div>
