@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import beans.UserBean;
 import database.DataBase;
+import handlers.MailHandler;
+import handlers.PasswordHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,17 +34,17 @@ import javax.servlet.http.HttpServletResponse;
  * 
  */
 @WebServlet("/LogIn")
-		
+
 public class LogIn extends ServletBase 
 {
 	private static final long serialVersionUID = 1L;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LogIn() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public LogIn() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Implementation of all input to the servlet. All post-messages are forwarded to this method. 
@@ -57,15 +59,11 @@ public class LogIn extends ServletBase
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
 		db.connect();
-		
+
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
-		
-			
-		
-		
+
 		if (username == null || password == null) {
 			response.sendError(LOGIN_FALSE);
 			session.setAttribute("errorMessage", LOGIN_FALSE);
@@ -86,7 +84,7 @@ public class LogIn extends ServletBase
 			}
 		}
 	}
-			
+
 
 	/**
 	 * All requests are forwarded to the doGet method. 
@@ -94,7 +92,24 @@ public class LogIn extends ServletBase
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+		DataBase db = new DataBase();
+		db.connect();
 
+		String userName = request.getParameter("username");
+		String mail = db.getEmail(userName);
+
+		if(mail != null) {
+			MailHandler mh = new MailHandler();
+			String pw = PasswordHandler.generatePassword();
+			mh.sendPasswordMail(mail, "placeholder", pw);
+
+			String hashedPw = PasswordHandler.hashPassword(pw, PasswordHandler.generateSalt());
+			
+			if (db.changePassword(userName, hashedPw)) {
+				//TODO Handle potential error
+			}
+		} else {
+			response.sendRedirect("login.jsp");
+		}
+	}
 }

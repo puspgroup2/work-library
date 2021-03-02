@@ -77,7 +77,7 @@
         </div>
       
         <!--Modal body-->
-        <form action=""> 
+        <form method="post"> 
           <div class="modal-body">
               <!--Email icon-->
               <div class="input-group">
@@ -85,13 +85,13 @@
                 <div class="input-group-text"><i class="fa fa-envelope"></i></div>
               </div>
               <!--Email text field-->
-              <input class="form-control" type="text" placeholder="Enter your e-mail" name="mail"></div>
+              <input class="form-control" type="text" placeholder="Enter your username" name="username" id="username"></div>
           </div>
 
           <!--Modal footer-->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Request new password</button>
+            <button type="button" class="btn btn-primary" action="submit">Request new password</button>
           </div>
         </form>
       </div>

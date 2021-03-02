@@ -98,7 +98,10 @@
       <thead>
         <tr>
           <th scope="col">User</th>
-          <th scope="col">PG</th>
+          <%if(session.getAttribute("role").equals("ADMIN")) {
+            %>
+            <th scope="col">PG</th>
+          <%}%>
           <th scope="col">UG</th>
           <th scope="col">TG</th>
           <th scope="col">SG</th>
@@ -118,22 +121,39 @@
 			%>
 			<tr>
 			<td><%=entry.getKey()%></td>
-			<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="PG" <%
-			if(role.equals("PG")) {%>
-				checked
-			<%}%>></td>
-			<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="UG" <%
-			if(role.equals("UG")) {%>
-				checked
-			<%}%>></td>
-			<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="TG" <%
-			if(role.equals("TG")) {%>
-				checked
-			<%}%>></td>
-			<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="SG"<%
-			if(role.equals("SG")) {%>
-				checked
-			<%}%>></td>
+      		<% if(session.getAttribute("role").equals("ADMIN")) { %>
+				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="PG" <%
+				if(role.equals("PG")) {%>
+					checked
+				<%}%>></td>
+				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="UG" <%
+				if(role.equals("UG")) {%>
+					checked
+				<%}%>></td>
+				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="TG" <%
+				if(role.equals("TG")) {%>
+					checked
+				<%}%>></td>
+				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="SG"<%
+				if(role.equals("SG")) {%>
+					checked
+				<%}%>>
+			<%} else if (!session.getAttribute("role").equals("ADMIN") && role.equals("PG")) {%>
+				<td colspan="3">You can't change the role of other PG members</td>
+			<%} else {%>
+				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="UG" <%
+				if(role.equals("UG")) {%>
+					checked
+				<%}%>></td>
+				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="TG" <%
+				if(role.equals("TG")) {%>
+					checked
+				<%}%>></td>
+				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="SG"<%
+				if(role.equals("SG")) {%>
+					checked
+				<%}%>>
+			<%}%>
 		<%}%> 
       </tbody>
     </table>
