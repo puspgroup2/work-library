@@ -1,4 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="beans.UserManagementBean"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,15 +93,27 @@
   </div>
 </div>
       
+<c:if test="${sessionScope.AdminMessage eq 0}">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        Could not add user.
+    </div>
+</c:if>
+
+<c:if test="${sessionScope.AdminMessage eq 1}">
+    <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        User added
+    </div>
+</c:if>
 
 <div>
-  <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:50px; margin-bottom:50px;">
+  
+  <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:1rem; margin-bottom:50px;">
     <div class="card-header">
     Add user
     </div>
     <div class="card-body">
   
-   <form>
+   <form method="post" action="AdministrationServlet">
       <table class="table table-bordered">
         <tbody>
           <tr>
@@ -105,7 +121,7 @@
             <div class="form-group row">
               <label for="text" class="col-4 col-form-label">Username:</label> 
               <div class="col-8">
-                <input id="text" name="text" type="text" class="form-control">
+                <input name="username" type="text" class="form-control">
               </div>
             </div>
           </td>
@@ -113,7 +129,7 @@
             <div class="form-group row">
               <label for="text1" class="col-4 col-form-label">E-mail:</label> 
               <div class="col-8">
-                <input id="text1" name="text1" type="text" class="form-control">
+                <input name="mail" type="text" class="form-control">
               </div>
             </div>
           </td>
@@ -126,7 +142,7 @@
       </table>
       <div class="form-group row">
         <div class="offset-0 col-8">
-          <button name="submit" type="submit" class="btn btn-success">Add user</button>
+          <button name="Add" type="submit" class="btn btn-success">Add user</button>
         </div>
       </div>
     </form>
@@ -139,7 +155,8 @@
   Remove users
   </div>
   <div class="card-body">
-  <form>
+  <form method="post" action="AdministrationServlet">
+    
   <table class="table table-striped">
     <thead>
       <tr>
@@ -149,21 +166,36 @@
       </tr>
     </thead>
     <tbody>
+      <%
+      UserManagementBean ub = (UserManagementBean) session.getAttribute("AdministrationBean");
+		  HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserList();
+
+     
+      for(Map.Entry<String, String> entry : userMap.entrySet()) {
+        
+        
+      
+      %>
       <tr>
         <td>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <input class="form-check-input" value="<%=entry.getKey()%>" type="checkbox" name="<%=entry.getKey()%>" id="flexCheckDefault">
         </div>
         </td>
-        <td>placeholder</td>
+
+        <td> <%=entry.getKey()%> </td>
+        <td> <%=entry.getValue()%> </td>
+
       </tr>
+    <%}%>
     </tbody>
   </table>
   <div><b>When clicking confirm, you will remove all checked users</b></div>
   <br>
     <div class="form-group row">
       <div class="offset-0 col-8">
-        <button name="submit" type="submit" class="btn btn-danger">Confirm</button>
+        <button name="Remove" type="submit" class="btn btn-danger">Confirm</button>
+
       </div>
     </div>
   </div>
