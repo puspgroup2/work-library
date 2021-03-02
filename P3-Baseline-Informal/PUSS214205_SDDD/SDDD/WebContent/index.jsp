@@ -39,9 +39,9 @@
               </li>
               <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
             	<li class="nav-item">
-                  <form action="UserMangementServlet">
-                    <input type="submit" value="User Management" class="nav-link astext">
-                  </form>
+                <form action="UserManagementServlet">
+                  <input type="submit" value="User Management" class="nav-link astext">
+                </form>
             	</li>
               </c:if>
               <c:if test = "${sessionScope.role eq 'ADMIN'}">

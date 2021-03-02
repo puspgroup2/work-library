@@ -37,7 +37,7 @@
               <a class="nav-link" href="summaryreport.jsp">Time Report</a>
             </li>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-            	<form action="UserMangementServlet">
+            	<form action="UserManagementServlet">
                 <input type="submit" value="User Management" class="nav-link astext">
               </form>
             </c:if>
@@ -93,15 +93,12 @@
   User Management
   </div>
   <div class="card-body">
-  <form action="UserMangementServlet" method="post">
+  <form action="UserManagementServlet" method="post">
     <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">User</th>
-          <%if(session.getAttribute("role").equals("ADMIN")) {
-            %>
-            <th scope="col">PG</th>
-          <%}%>
+          <th scope="col">PG</th>
           <th scope="col">UG</th>
           <th scope="col">TG</th>
           <th scope="col">SG</th>
@@ -139,8 +136,27 @@
 					checked
 				<%}%>>
 			<%} else if (!session.getAttribute("role").equals("ADMIN") && role.equals("PG")) {%>
-				<td colspan="3">You can't change the role of other PG members</td>
+            <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="PG" <%
+            if(role.equals("PG")) {%>
+              checked
+            <%}%>></td>
+            <td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="UG" <%
+              if(role.equals("UG")) {%>
+                checked
+              <%}%>></td>
+              <td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="TG" <%
+                if(role.equals("TG")) {%>
+                  checked
+                <%}%>></td>
+                <td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="SG" <%
+                if(role.equals("SG")) {%>
+                  checked
+                <%}%>></td>
 			<%} else {%>
+				<td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="PG" <%
+	            if(role.equals("PG")) {%>
+	              checked
+	            <%}%>></td>
 				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="UG" <%
 				if(role.equals("UG")) {%>
 					checked
@@ -157,6 +173,8 @@
 		<%}%> 
       </tbody>
     </table>
+
+    
     <div class="form-group row">
       <div class="offset-0 col-8">
         <button name="submit" type="submit" class="btn btn-primary">Confirm</button>

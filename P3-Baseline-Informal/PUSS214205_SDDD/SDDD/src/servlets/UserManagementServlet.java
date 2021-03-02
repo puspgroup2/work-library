@@ -20,8 +20,8 @@ import java.util.Map.Entry;
 /**
  * Servlet implementation class UserMangementServlet
  */
-@WebServlet("/UserMangementServlet")
-public class UserMangementServlet extends HttpServlet {
+@WebServlet("/UserManagementServlet")
+public class UserManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
