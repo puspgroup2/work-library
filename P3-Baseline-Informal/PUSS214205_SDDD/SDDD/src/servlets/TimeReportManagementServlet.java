@@ -22,7 +22,7 @@ import database.DataBase;
 @WebServlet("/TimeReportManagementServlet")
 public class TimeReportManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -30,18 +30,16 @@ public class TimeReportManagementServlet extends HttpServlet {
 		DataBase db = new DataBase();
 		db.connect();
 		HttpSession session = request.getSession();
-		
+
 		//When the site is loaded
 		TimeReportManagementBean trmb = new TimeReportManagementBean();
-		
 		ArrayList<Integer> allTimeReportIDs;
 		ArrayList<Integer> signedReportIDs = (ArrayList<Integer>) db.getUnsignedTimeReportIDs();
 		ArrayList<Integer> unsignedReportIDs = (ArrayList<Integer>) db.getSignedTimeReportIDs();
 		signedReportIDs.addAll(unsignedReportIDs); //Add the ID:s of signed and usigned time reports
 		allTimeReportIDs = signedReportIDs; //Rename variable
-		
 		HashMap<Integer, Boolean> allTimeReports = new HashMap<>();
-		
+
 		for(Integer s : allTimeReportIDs) { 
 			boolean signed;
 			if (db.getSignatureFromTimeReport(s) == null) {
@@ -49,7 +47,6 @@ public class TimeReportManagementServlet extends HttpServlet {
 			} else {
 				signed = true;
 			}
-			
 			allTimeReports.put(s, signed);//Fills the HashMap so it contains all time reports and signed/unsigned
 		}
 		trmb.populateBean(allTimeReports);
@@ -61,20 +58,25 @@ public class TimeReportManagementServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
-		HttpSession session = request.getSession();
-		
-		//When someone presses the "Submit"-button
-		String userName = (String)session.getAttribute("username");
-		TimeReportManagementBean trmb1 = new TimeReportManagementBean();
-		trmb1 = (TimeReportManagementBean) request.getAttribute("TimeReportManagementBean");
-		
-		for(Map.Entry<Integer, Boolean> entry : trmb1.getTimeReportList().entrySet()){
-			db.setSigned(entry.getValue(), userName,  entry.getKey());
+		switch (request.getParameter("input")) {
+		case "Submit":
+			DataBase db = new DataBase();
+			db.connect();
+			HttpSession session = request.getSession();
+
+			String userName = (String)session.getAttribute("username");
+			TimeReportManagementBean trmb1 = new TimeReportManagementBean();
+			trmb1 = (TimeReportManagementBean) request.getAttribute("TimeReportManagementBean");
+
+			for(Map.Entry<Integer, Boolean> entry : trmb1.getTimeReportList().entrySet()){
+				db.setSigned(entry.getValue(), userName,  entry.getKey());
+			}
+			response.sendRedirect("signreport.jsp");
+			break;
+		case "":
+			//TODO Other buttons?
+			break;
 		}
-		
 		doGet(request, response);
 	}
-
 }

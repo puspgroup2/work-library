@@ -487,7 +487,7 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getDocumentTimeD(String reportID) {
+	public Map<String, Integer> getDocumentTimeD(int reportID) {
 		return getDocumentTime(reportID, 'D');
 	}
 	
@@ -497,7 +497,7 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getDocumentTimeI(String reportID) {
+	public Map<String, Integer> getDocumentTimeI(int reportID) {
 		return getDocumentTime(reportID, 'I');
 	}
 	
@@ -507,7 +507,7 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getDocumentTimeR(String reportID) {
+	public Map<String, Integer> getDocumentTimeR(int reportID) {
 		return getDocumentTime(reportID, 'R');
 	}
 	
@@ -517,7 +517,7 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getDocumentTimeF(String reportID) {
+	public Map<String, Integer> getDocumentTimeF(int reportID) {
 		return getDocumentTime(reportID, 'F');
 	}
 	
@@ -526,10 +526,10 @@ public class DataBase {
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	private Map<String, Integer> getDocumentTime(String reportID, char doctype) {
+	private Map<String, Integer> getDocumentTime(int reportID, char doctype) {
 		String getDocumentTime = "SELECT * FROM DocumentTime" + doctype + " WHERE reportID = ?";
 		try(PreparedStatement ps = connection.prepareStatement(getDocumentTime)) {
-			ps.setInt(1, Integer.valueOf(reportID));
+			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) {
 				//report does not exist does not exist
@@ -553,6 +553,7 @@ public class DataBase {
             return null;
 		}
 	}
+	
 	
 	/**
 	 * 

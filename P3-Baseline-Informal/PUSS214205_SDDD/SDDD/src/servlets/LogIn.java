@@ -38,6 +38,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LogIn extends ServletBase 
 {
 	private static final long serialVersionUID = 1L;
+	private final int PW_CHANGE_SUCCESS_ = 1;
+	private final int PW_CHANGE_FAILED_ = 0;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -84,7 +86,7 @@ public class LogIn extends ServletBase
 			}
 		}
 	}
-
+	//sdaasd
 
 	/**
 	 * All requests are forwarded to the doGet method. 
@@ -94,7 +96,7 @@ public class LogIn extends ServletBase
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
 		db.connect();
-
+		HttpSession session = request.getSession();
 		String userName = request.getParameter("username");
 		String mail = db.getEmail(userName);
 
@@ -108,7 +110,10 @@ public class LogIn extends ServletBase
 			if (db.changePassword(userName, hashedPw)) {
 				//TODO Handle potential error
 			}
+			session.setAttribute("message", PW_CHANGE_SUCCESS_);
+			response.sendRedirect("login.jsp");
 		} else {
+			session.setAttribute("message", PW_CHANGE_FAILED_);
 			response.sendRedirect("login.jsp");
 		}
 	}

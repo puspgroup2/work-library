@@ -92,7 +92,7 @@
       <h5>Change password</h5>
     </div>
     <div class="card-body">
-    <form action="LogIn" method="post">
+    <form action="PasswordChangerServlet">
       <!--Current password input-->
       <div class="input-group">
         <div class="input-group-append">
@@ -106,7 +106,7 @@
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-lock"></i></div>
         </div>
-        <input class="form-control" type="password" placeholder="New password" id="password1">
+        <input class="form-control" type="password" placeholder="New password" id="password">
       </div>
 
       <!--New password input-->
