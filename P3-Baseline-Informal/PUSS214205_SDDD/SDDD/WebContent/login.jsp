@@ -29,7 +29,6 @@
     </div>
 </c:if>
 
-
 <body>
   <!--Log in card-->
   <div>

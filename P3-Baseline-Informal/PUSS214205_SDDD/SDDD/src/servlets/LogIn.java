@@ -94,7 +94,7 @@ public class LogIn extends ServletBase
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
 		db.connect();
-
+		System.out.println("test");
 		String userName = request.getParameter("username");
 		String mail = db.getEmail(userName);
 
