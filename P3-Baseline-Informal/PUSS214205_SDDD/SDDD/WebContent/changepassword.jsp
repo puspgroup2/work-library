@@ -85,20 +85,47 @@
     </div>
   </div>
 </div>
-      
+
+
+
+<c:if test="${sessionScope.passwordMessage eq 1}">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        Database error, try again
+    </div>
+</c:if>
+
+<c:if test="${sessionScope.passwordMessage eq 2}">
+    <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        Password changed succesfully
+    </div>
+</c:if>
+
+<c:if test="${sessionScope.passwordMessage eq 0}">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        Your new password can not be the same as your old
+    </div>
+</c:if>
+
+<c:if test="${sessionScope.passwordMessage eq 3}">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        Your current password was wrong, try again
+    </div>
+</c:if>
+
+
 <div>
-  <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:50px; margin-bottom:50px;">
+  <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:1rem; margin-bottom:50px;">
     <div class="card-header">
       <h5>Change password</h5>
     </div>
     <div class="card-body">
-    <form action="LogIn" method="post">
+    <form action="PasswordChangerServlet">
       <!--Current password input-->
       <div class="input-group">
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-key"></i></div>
         </div>
-        <input class="form-control" type="password" placeholder="Current password" id="currpass">
+        <input class="form-control" type="password" placeholder="Current password" id="oldPassword">
       </div>
 
       <!--New password input-->
@@ -106,7 +133,7 @@
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-lock"></i></div>
         </div>
-        <input class="form-control" type="password" placeholder="New password" id="password1">
+        <input class="form-control" type="password" placeholder="New password" id="password">
       </div>
 
       <!--New password input-->
