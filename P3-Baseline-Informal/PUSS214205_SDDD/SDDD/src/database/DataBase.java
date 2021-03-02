@@ -579,15 +579,16 @@ public class DataBase {
 		return reportID;
 	}
 	
+	
 	/**
 	 * Returns a map containing all time values in the ActivityReport table.
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
-	public Map<String, Integer> getActivityReport(String reportID) {
-		String getActivityReport = "SELECT * FROM DocumentTime WHERE reportID = ?";
+	public Map<String, Integer> getActivityReport(int reportID) {
+		String getActivityReport = "SELECT * FROM ActivityReports WHERE reportID = ?";
 		try(PreparedStatement ps = connection.prepareStatement(getActivityReport)) {
-			ps.setInt(1, Integer.valueOf(reportID));
+			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) {
 				//report does not exist does not exist
@@ -611,6 +612,8 @@ public class DataBase {
             return null;
 		}
 	}
+	
+	
 	/**
 	 * Retrieves a user's password with the help of their userName.
 	 * @param userName The userName of the user.
