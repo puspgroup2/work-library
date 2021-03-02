@@ -23,6 +23,13 @@
     </div>
 </c:if>
 
+<c:if test="${sessionScope.message eq 0}">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        There is no such user in the database
+    </div>
+</c:if>
+
+
 <c:if test="${sessionScope.message eq 1}">
     <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
         A new password has been sent to your mail
