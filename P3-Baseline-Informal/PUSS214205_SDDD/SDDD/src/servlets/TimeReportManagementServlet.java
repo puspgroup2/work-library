@@ -34,8 +34,8 @@ public class TimeReportManagementServlet extends HttpServlet {
 		//When the site is loaded
 		TimeReportManagementBean trmb = new TimeReportManagementBean();
 		ArrayList<Integer> allTimeReportIDs;
-		ArrayList<Integer> signedReportIDs = (ArrayList<Integer>) db.getUnsignedTimeReportIDs();
-		ArrayList<Integer> unsignedReportIDs = (ArrayList<Integer>) db.getSignedTimeReportIDs();
+		ArrayList<Integer> signedReportIDs = (ArrayList<Integer>) db.getSignedTimeReportIDs();
+		ArrayList<Integer> unsignedReportIDs = (ArrayList<Integer>) db.getUnsignedTimeReportIDs();
 		signedReportIDs.addAll(unsignedReportIDs); //Add the ID:s of signed and usigned time reports
 		allTimeReportIDs = signedReportIDs; //Rename variable
 		HashMap<Integer, Boolean> allTimeReports = new HashMap<>();
