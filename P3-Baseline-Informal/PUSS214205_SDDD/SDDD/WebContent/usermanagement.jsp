@@ -93,7 +93,7 @@
   User Management
   </div>
   <div class="card-body">
-  <form action="UserMangementServlet" method="post">
+  <form action="UserManagementServlet" method="post">
     <table class="table table-striped">
       <thead>
         <tr>
