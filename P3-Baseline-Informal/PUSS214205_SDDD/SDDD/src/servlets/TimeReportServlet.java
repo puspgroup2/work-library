@@ -39,7 +39,7 @@ public class TimeReportServlet extends ServletBase {
 		HttpSession session = request.getSession();
 		
 		TimeReportBean tb1 = new TimeReportBean();
-		tb1.populateBean(db.getActivityReport((String) session.getAttribute("reportID")));
+		tb1.populateBean(db.getActivityReport((Integer) session.getAttribute("reportID")));
 		session.setAttribute("timeReport", tb1);
 		
 		switch (request.getParameter("action")) {
