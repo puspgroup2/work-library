@@ -63,7 +63,7 @@ public class DataBase {
 	 * Only the admin can perform this action.
 	 * @return true if the user was successfully added to the database.
 	 */
-	public boolean addUser(String username, String password, String email) {
+	public boolean addUser(String username, String password, String email, String salt) {
 		// checks if user exists
 		String getUser = "SELECT * FROM Users WHERE userName = ?";
 		try(PreparedStatement ps = connection.prepareStatement(getUser)) {
@@ -78,11 +78,12 @@ public class DataBase {
 		}
 		
 		// Adds user
-		String addUser = "INSERT INTO Users(userName, password, email) VALUES (?, ?, ?)";
+		String addUser = "INSERT INTO Users(userName, password, email) VALUES (?, ?, ?, ?)";
 		try(PreparedStatement ps = connection.prepareStatement(addUser)) {
 			ps.setString(1, username);
 			ps.setString(2, password);
 			ps.setString(3, email);
+			ps.setString(4, salt);
 			ps.executeUpdate();
 			return true;
 		} catch(SQLException e) {
@@ -727,10 +728,8 @@ public class DataBase {
 		DataBase db = new DataBase();
 		db.connect();
 		
-		System.out.println(db.addUser("Elvis", "pw", "mail"));
-		System.out.println(db.newTimeReport("Olga", 8));
-		int reportID = db.getReportID("Olga", 8);
-		db.setSigned(true, "Ulla", reportID);
+		
+		
 	}
 	
 }
