@@ -252,21 +252,17 @@ public class DataBase {
 	 * @return true if the Time Report was successfully updated.
 	 */
 	public boolean updateTimeReport(int reportID, Map<String, Integer> timeReport) {
-		int week = getReportID()
 		String sql = "UPDATE TimeReports"
 				+ " SET ? = ?"
 				+ " WHERE reportID = ?";
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			connection.setAutoCommit(false);
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
 			for(Map.Entry<String, Integer> entry : timeReport.entrySet()) {
 				ps.setString(1, entry.getKey());
 				ps.setInt(2, entry.getValue());
 				ps.setInt(3, reportID);
-				ps.addBatch();
+				ps.executeUpdate(); // här får jag fel hela tiden!!
 			}
-			ps.executeBatch();
-			connection.commit();
-			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			handleSQLException(e);
 			return false;
@@ -756,7 +752,9 @@ public class DataBase {
 		DataBase db = new DataBase();
 		db.connect();
 		
-		db.getWeek(10);
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("totalMinutes", 30);
+		db.updateTimeReport(10, map);
 		
 	}
 	
