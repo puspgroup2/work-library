@@ -78,7 +78,7 @@ public class DataBase {
 		}
 		
 		// Adds user
-		String addUser = "INSERT INTO Users(userName, password, email) VALUES (?, ?, ?, ?)";
+		String addUser = "INSERT INTO Users(userName, password, email, salt) VALUES (?, ?, ?, ?)";
 		try(PreparedStatement ps = connection.prepareStatement(addUser)) {
 			ps.setString(1, username);
 			ps.setString(2, password);
@@ -256,11 +256,16 @@ public class DataBase {
 				+ " SET ? = ?"
 				+ " WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			connection.setAutoCommit(false);
 			for(String s : timeReport.keySet()) {
 				ps.setString(1, s);
 				ps.setInt(2, timeReport.get(s));
-				ps.executeUpdate();
+				ps.setInt(3, reportID);
+				ps.addBatch();
 			}
+			ps.executeBatch();
+			connection.commit();
+			connection.setAutoCommit(true);
 		} catch (SQLException e) {
 			handleSQLException(e);
 			return false;
@@ -730,12 +735,13 @@ public class DataBase {
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
 		db.connect();
-		System.out.println(db.getReportID("Elvis", 4));
+		db.addUser("Miko", "katt", "brev", "jkjskgjkjsg");
+		db.newTimeReport("Miko", 1);
+		int reportID = db.getReportID("Miko", 1);
 		
 		HashMap<String, Integer> tr = new HashMap<>();
 		tr.put("totalMinutes", 400);
-		tr.put("week", 10);
-		db.updateTimeReport(db.getReportID("Elvis", 4), tr);
+		db.updateTimeReport(reportID, tr);
 		
 		
 		
