@@ -119,13 +119,13 @@
       <h5>Change password</h5>
     </div>
     <div class="card-body">
-    <form action="PasswordChangerServlet">
+    <form action="PasswordChangerServlet" method="post">
       <!--Current password input-->
       <div class="input-group">
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-key"></i></div>
         </div>
-        <input class="form-control" type="password" placeholder="Current password" id="oldPassword">
+        <input class="form-control" type="password" placeholder="Current password" id="oldPassword" name="oldPassword">
       </div>
 
       <!--New password input-->
@@ -133,7 +133,7 @@
         <div class="input-group-append">
           <div class="input-group-text"><i class="fa fa-lock"></i></div>
         </div>
-        <input class="form-control" type="password" placeholder="New password" id="password">
+        <input class="form-control" type="password" placeholder="New password" id="password" name="password">
       </div>
 
       <!--New password input-->
@@ -170,42 +170,42 @@
     var lcase = new RegExp("[a-z]+");
     var num = new RegExp("[0-9]+");
     
-    if($("#password1").val().length >= 8){
+    if($("#password").val().length >= 8){
       $("#8chars").css("color","#00A41E");
     }else{
       $("#8chars").css("color","#FF0004");
       $('#changePassword').prop('disabled', true);
     }
     
-    if(ucase.test($("#password1").val())){
+    if(ucase.test($("#password").val())){
       $("#ucase").css("color","#00A41E");
     }else{
       $("#ucase").css("color","#FF0004");
       $('#changePassword').prop('disabled', true);
     }
     
-    if(lcase.test($("#password1").val())){
+    if(lcase.test($("#password").val())){
       $("#lcase").css("color","#00A41E");
     }else{
       $("#lcase").css("color","#FF0004");
       $('#changePassword').prop('disabled', true);
     }
     
-    if(num.test($("#password1").val())){
+    if(num.test($("#password").val())){
       $("#num").css("color","#00A41E");
     }else{
       $("#num").css("color","#FF0004");
       $('#changePassword').prop('disabled', true);
     }
     
-    if($("#password1").val() == $("#password2").val() && $("#password1").val() != ""){
+    if($("#password").val() == $("#password2").val() && $("#password").val() != ""){
       $("#pwmatch").css("color","#00A41E");
     }else{
       $("#pwmatch").css("color","#FF0004");
       $('#changePassword').prop('disabled', true);
     }
     
-    if($("#password1").val() == $("#password2").val() && num.test($("#password1").val()) && lcase.test($("#password1").val()) && ucase.test($("#password1").val()) && $("#password1").val().length >= 8) {
+    if($("#password").val() == $("#password2").val() && num.test($("#password").val()) && lcase.test($("#password").val()) && ucase.test($("#password").val()) && $("#password").val().length >= 8) {
     	$('#changePassword').prop('disabled', false);
     }
     

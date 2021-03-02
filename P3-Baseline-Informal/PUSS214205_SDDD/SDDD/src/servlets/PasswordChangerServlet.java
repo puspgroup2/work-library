@@ -39,24 +39,24 @@ public class PasswordChangerServlet extends ServletBase
 		DataBase db = new DataBase();
 		db.connect();
 		String username = (String) session.getAttribute("username");
-		String newPw = (String)session.getAttribute("password");
-		String oldPw = (String)session.getAttribute("oldPassword");
+		String newPw = (String) request.getParameter("password");
+		String oldPw = (String) request.getParameter("oldPassword");
 		UserBean ub = new UserBean();
 		ub.populateBean(username, oldPw);
 		if(db.checkLogin(ub)) {
 			if (!newPw.equals(oldPw)) {
 				if (db.changePassword(username ,newPw)) {//sets the password.
 					//change successful
-					request.setAttribute("passwordMessage", PW_CHANGE_SUCCESSFUL_);
+					session.setAttribute("passwordMessage", PW_CHANGE_SUCCESSFUL_);
 				} else {
 					//change not successful
-					request.setAttribute("passwordMessage", PW_CHANGE_FAILED_NETWORK_ERROR_);
+					session.setAttribute("passwordMessage", PW_CHANGE_FAILED_NETWORK_ERROR_);
 				}
 			} else {
-				request.setAttribute("passwordMessage", PW_CHANGE_FAILED_IDENTICAL_PASSWORDS_);
+				session.setAttribute("passwordMessage", PW_CHANGE_FAILED_IDENTICAL_PASSWORDS_);
 			}
 		} else {
-			request.setAttribute("passwordMessage", PW_CHANGE_FAILED_FALSE_CURRENT_PASSWORD_);
+			session.setAttribute("passwordMessage", PW_CHANGE_FAILED_FALSE_CURRENT_PASSWORD_);
 		}
 		response.sendRedirect("changepassword.jsp");
 		doGet(request, response);
