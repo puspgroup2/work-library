@@ -73,6 +73,7 @@ public class LogIn extends ServletBase
 		} else {
 			UserBean ub = new UserBean();
 			String hashPassword = PasswordHandler.hashPassword(password, salt);
+			System.out.println(hashPassword);
 			ub.populateBean(username, hashPassword);
 			if (db.checkLogin(ub)) {
 				ub.setRole(db.getRole(username));
@@ -83,12 +84,10 @@ public class LogIn extends ServletBase
 			} else {
 				//failed login
 				session.setAttribute("state", LOGIN_FALSE);
-				session.setAttribute("errorMessage", LOGIN_FALSE);
 				response.sendRedirect("login.jsp");
 			}
 		}
 	}
-	//sdaasd
 
 	/**
 	 * All requests are forwarded to the doGet method. 
