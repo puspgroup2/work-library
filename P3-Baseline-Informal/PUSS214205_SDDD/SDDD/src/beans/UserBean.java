@@ -50,10 +50,17 @@ public class UserBean implements Serializable {
         this.role = role;
     }
     
+    /*
+    Fetches the name of the user.
+    @return userName.
+   */
     public String getUserName() {
     	return userName;
     }
-    
+    /*
+    Fetches the password.
+    @return password.
+   */
     public String getPassword() {
     	return password;
     }
