@@ -78,7 +78,7 @@ public class TimeReportManagementServlet extends HttpServlet {
 		
 		switch (request.getParameter("input")) {
 		case "sign":
-			// The timreports come as a string in the format of: ["x1", "x2"]
+			// The timereports come as a string in the format of: ["x1", "x2"]
 			// We need to parse this into a Java list.
 			String unsignedReports = request.getParameter("timeReports");
 			List<Integer> ids = unStringifiy(unsignedReports);
