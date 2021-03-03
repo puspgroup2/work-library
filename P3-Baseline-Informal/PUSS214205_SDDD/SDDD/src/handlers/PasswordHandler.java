@@ -66,7 +66,7 @@ public class PasswordHandler {
 	 * @return salt as a String
 	 */
 	public static String generateSalt() {
-		byte[] salt = new byte[32];
+		byte[] salt = new byte[16];
 		rand.nextBytes(salt);
 		return Base64.getEncoder().encodeToString(salt);
 	}

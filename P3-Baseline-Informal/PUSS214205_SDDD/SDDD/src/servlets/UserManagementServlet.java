@@ -33,7 +33,7 @@ public class UserManagementServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
 		HashMap<String, String> memberMap = new HashMap<>();
-		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
+		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
 		for (String s : memberNames) {
 			if(!s.equals("admin")) {
 				memberMap.put(s, db.getRole(s));
@@ -54,7 +54,7 @@ public class UserManagementServlet extends HttpServlet {
 		db.connect();
 		
 		HashMap<String, String> memberMap = new HashMap<>();
-		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
+		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
 		
 		for (String name : memberNames) {
 			if(!name.equals("admin")) {
