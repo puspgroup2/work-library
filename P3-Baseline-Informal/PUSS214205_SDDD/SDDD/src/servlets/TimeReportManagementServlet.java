@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class TimeReportManagementServlet extends HttpServlet {
 			unsignedReports.add(bean);			
 		}
 		
-		
+		unsignedReports.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
 		
 		session.setAttribute("unsignedReports", unsignedReports);
 		response.sendRedirect("signreport.jsp");

@@ -23,7 +23,6 @@ import database.DataBase;
 @WebServlet("/TimeReportServlet")
 public class TimeReportServlet extends ServletBase {
 	private static final long serialVersionUID = 1L;
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
