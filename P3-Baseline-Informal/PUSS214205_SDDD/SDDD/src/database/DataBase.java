@@ -239,6 +239,7 @@ public class DataBase {
 	 * @return the Time Report ID.
 	 */
 	public int newTimeReport(String userName, int week) {
+		if (this.weekAlreadyExists(userName, week)) return 0;
         String sql = "INSERT into TimeReports(userName, week) values(?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, userName);
@@ -292,7 +293,7 @@ public class DataBase {
 
 	/* Helper method for updateTimeReport */
 	private boolean weekAlreadyExists(String userName, Integer week) {
-		if (week < 0 || week > 54) return false;
+		if (week < 0 || week > 54) return true;
 		String sql = "SELECT * from TimeReports where Week = ? and userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, week);
@@ -826,8 +827,8 @@ public class DataBase {
 
 
 		System.out.println(db.updateDocumentTimeD(1, db.getDocumentTimeD(5)));
-		
-		db.updateTotalMinutes(3, 2);
+		int reportId = db.newTimeReport("Assar", 666);
+		db.updateTotalMinutes(reportId, 666);
 			
 	}
 	
