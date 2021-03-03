@@ -3,6 +3,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -53,6 +54,9 @@ public class TimeReportServlet extends ServletBase {
 			signedBean.setUsername(db.getUserNameFromTimeReport(x));
 			signedReports.add(signedBean);
 		}
+		
+		TimeReportBeanCan.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
+		signedReports.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
 		
 		session.setAttribute("signedReports", signedReports);
 		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);
