@@ -748,14 +748,37 @@ public class DataBase {
 		e.printStackTrace();
 	}
 	
+	public boolean exists(int reportID, String attribute, String relation) {
+		String sql = "SELECT ? from ? "
+				+ "where reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, attribute);
+			ps.setString(2, relation);
+			ps.setInt(3, reportID);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(attribute) != 0;
+			}
+			
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+		return false;
+	}
+	
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
 		db.connect();
+		db.addUser("Assar", "hej", "email", "röv");
 		
+		db.exists(17, "Assar", "TimeReports");
+		
+		/**
+		db.newTimeReport("Assar", 9);
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("totalMinutes", 30);
-		db.updateTimeReport(10, map);
-		
+		db.updateTimeReport(9, map);
+		*/
 	}
 	
 }
