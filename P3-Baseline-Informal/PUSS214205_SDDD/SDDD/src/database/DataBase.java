@@ -329,8 +329,6 @@ public class DataBase {
 	private boolean updateDocumentTime(int reportID, Map<String, Integer> documentTime, char type) {
 		if (this.select(reportID, "*", "TimeReports") == null) return false;
 		
-		System.out.println(this.select(reportID, "*", "TimeReports"));
-		
 		String sql;
 		if(this.select(reportID, "*", "DocumentTime" + type) == null) {
 			String addDocumentTime = "INSERT INTO DocumentTime" + type + "(reportID) VALUES (?)";
@@ -782,7 +780,7 @@ public class DataBase {
 		db.connect();
 
 
-		System.out.println(db.updateDocumentTimeD(3, db.getDocumentTimeD(5)));
+		System.out.println(db.updateDocumentTimeD(1, db.getDocumentTimeD(5)));
 		
 		/**
 		db.newTimeReport("Assar", 9);
