@@ -14,7 +14,7 @@ public class TimeReportManagementBean implements Serializable {
     private Map<Integer, Boolean> timeReportList = new HashMap<>();
     
     /*
-      Sets list of time reports and signs(1)/unsigns(0) them. Requires "Project leader" role.
+      Sets Map of time reports and signs(true)/ signs(false) them. Requires "Project leader" role.
       @param request, response
      */
     public void populateBean(Map<Integer, Boolean> map){ // get the check box results that the user entered in the form
@@ -23,7 +23,7 @@ public class TimeReportManagementBean implements Serializable {
 
     /*
       Fetches a list of time reports. Requires "Project leader" role.
-      @return List timeReportList
+      @return Map timeReportList
      */
     public Map<Integer, Boolean> getTimeReportList() {
         return timeReportList;
