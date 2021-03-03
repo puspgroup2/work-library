@@ -273,33 +273,32 @@ public class DataBase {
 	
 	public boolean updateActivityReport(int reportID, Map<String, Integer> activityReport) {
 		String sql;
-		String check = "SELECT * FROM ActivityReports WHERE reportID = ?";
-		try (PreparedStatement ps = connection.prepareStatement(check)) {
-			ps.setInt(1, reportID);
-			if (ps.executeQuery().next()) {
-				 sql = "UPDATE ActivityReports SET ? = ? WHERE reportID = ?";
-			} else {
-				 sql = "INSERT INTO ActivityReports SET ? = ? WHERE reportID = ?";
+		// här borde man se så att reportID:t faktiskt existrerar i timereports innan man gör något annat
+		if(this.select(reportID, "*", "ActivityReports") == null) {
+			String addUser = "INSERT INTO ActivityReports(reportID) VALUES (?)";
+			try(PreparedStatement ps = connection.prepareStatement(addUser)) {
+				ps.setInt(1, reportID);
+				ps.executeUpdate();
+			} catch(SQLException e) {
+				handleSQLException(e);
+	            return false;
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
-			return false;
 		}
 		
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			for(String s : activityReport.keySet()) {
-				ps.setString(1, s);
-				ps.setInt(2, activityReport.get(s));
-				ps.setInt(3, reportID);
+		for (String s : activityReport.keySet()) {
+			sql = "UPDATE ActivityReports SET " + s + " = ? WHERE reportID = ?";
+			try(PreparedStatement ps = connection.prepareStatement(sql)) {
+				ps.setInt(1, activityReport.get(s));
+				ps.setInt(2, reportID);
 				ps.execute();
+			} catch (SQLException e) {
+				handleSQLException(e);
 			}
-			
-		} catch (SQLException e) {
-			handleSQLException(e);
-			return false;
 		}
+		
 		return true;
 	}
+	
 	
 	
 	public boolean updateDocumentTimeD(int reportID, Map<String, Integer> documentTimeD) {
@@ -753,8 +752,7 @@ public class DataBase {
 		String sql = "SELECT " + attribute + " from " + relation;
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
-			int size = rs.getFetchSize();
-			if (size != 0) return rs;
+			if (rs.next()) return rs;
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
@@ -772,26 +770,12 @@ public class DataBase {
 	}
 	
 	
-	private int rowCount(int reportID, String attribute, String relation) {
-		int rows = 0;
-		String sql = "SELECT " + attribute + " from " + relation
-				+ " where reportID = ?";
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setInt(1, reportID);
-			rows = ps.executeQuery().getFetchSize();
-		} catch (SQLException e) {
-			handleSQLException(e);
-		}
-		return rows;
-	}
-	
-	
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
 		db.connect();
-		db.addUser("Assar", "hej", "email", "rï¿½v");
-		
-		db.select(17, , "TimeReports");
+
+
+		System.out.println(db.updateActivityReport(3, db.getActivityReport(1)));
 		
 		/**
 		db.newTimeReport("Assar", 9);
