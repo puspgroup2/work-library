@@ -47,42 +47,59 @@ public class TimeReportBean implements Serializable {
     public void setWeek(int week) {
         this.week = week;
     }
-    
+    /*
+    Fetches the signed time report.
+    @return signed
+   */
     public String getSigned() {
     	return signed;
     }
-    
+    /*
+    Sets the time report as signed.
+    @param signed
+   */
     public void setSigned(String signed) {
     	this.signed = signed;
     }
+    /*
     
+    Fetches the total time that reported.
+    @return totalTime
+   */
     public int getTotalTime() {
     	return totalTime;
     }
-    
+    /*
+    Sets the total time for a specified week .
+    @param totalTime
+   */
     public void setTotalTime(int totalTime) {
     	this.totalTime = totalTime;
     }
 
     /*
       Fetches a list of the reported values, the values are in minutes.
-      @return list reportValues
+      @return map reportValues
      */
     public Map<String, Integer> getReportValues() {
         return reportValues;
     }
     
+    /*
+    Sets the reported values into databaseData map .
+    @param databaseData
+   */
     public void populateBean(Map<String, Integer> databaseData) {
     	this.reportValues = databaseData;
     }
 
     /*
-      Sets the reported values into a list, the values are in minutes.
+      Puts into the reported values map the user values and the fieldNames
       @param request, response
      */
     public void populateBean(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	for(int i = 0; i < fieldNames.length; i++) {
-    	String Input = request.getParameter(fieldNames[i]); // get the values that the user entered in the form
+    	String Input = request.getParameter(fieldNames[i]); 
     	reportValues.put(fieldNames[i], Integer.parseInt(Input));
     	}
     }
