@@ -40,13 +40,13 @@
               <a class="nav-link" href="summaryreport.jsp">Time Report</a>
           </li>
           <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-            	<li class="nav-item">
-              		<a class="nav-link" href="usermanagement.jsp">User Management</a>
-            	</li>
-          </c:if>
-          <c:if test = "${sessionScope.role eq 'ADMIN'}">
             <form action="UserManagementServlet">
               <input type="submit" value="User Management" class="nav-link astext">
+            </form>
+          </c:if>
+          <c:if test = "${sessionScope.role eq 'ADMIN'}">
+            <form action="AdministrationServlet">
+              <input type="submit" value="Administration" class="nav-link astext">
             </form>
             </c:if>
       </ul>
