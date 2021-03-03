@@ -251,6 +251,24 @@ public class DataBase {
     }
 	
 	/**
+	 * Updates the totalMinutes attribute associated with the given reportID.
+	 * @param reportID The reportID number which attribute is to be altered.
+	 * @param totalMinutes The number of minutes the user has worked during the week.
+	 * @return true if update was successfully executed.
+	 */
+	public boolean updateTotalMinutes(int reportID, int totalMinutes) {
+		String sql = "UPDATE TimeReports SET totalMinutes = ? WHERE reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, totalMinutes);
+			ps.setInt(2, reportID);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+		return false;
+	}
+	/**
 	 * Updates the value of the week associated with a given reportID.
 	 * @param reportID The reportID of the Time Report that is to be altered.
 	 * @param userName The user's unique identifier.
