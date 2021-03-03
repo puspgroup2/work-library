@@ -139,7 +139,7 @@
           <% for (TimeReportBean bean : list) { %>
         	  
             <tr>
-              <td><input type="radio" name="radioGroup"></td>
+              <td><input type="radio" name="radioGroup" id="<%=bean.getWeek()%>" class='<%=(bean.getSigned() == null ? "notSigned" : "signed")%>'></td>
               <td>${username}</td>
               <td><%=bean.getWeek() %></td>
               <td><%=bean.getTotalTime() %></td>
@@ -190,10 +190,10 @@
        <form action="TimeReportServlet" method="POST">
         <div class="d-flex justify-content-center" style="margin-top:5px">
             <form class="form-inline my-2 my-lg-0" style="margin-right:2.5px">
-                <input type="submit" name="editBtn" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
-                <input type="submit" name="viewBtn" value="View selected report" class="btn btn-success" style="margin-left:3px; margin-right:3px">
+                <input type="submit" name="editBtn" id="editBtn" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
+                <input type="submit" name="viewBtn" id="viewBtn" value="View selected report" class="btn btn-success" style="margin-left:3px; margin-right:3px">
                 <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample collapseExample2" style="margin-left:3px">
+                <button class="btn btn-primary" id='showSignBtn' type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample collapseExample2" style="margin-left:3px">
                     Show signed reports
                 </button>                
                 </c:if>
@@ -201,10 +201,37 @@
         </div>
     </div>
    </form>
-   
-    
     <!-- /#page-content-wrapper -->
 
 </div>
+
+<script>
+
+    let showToggled = false;
+
+    $('#showSignBtn').click(() => {
+      showToggled = !showToggled;
+
+      if (showToggled) {
+        $('#editBtn').prop('disabled', true);
+        $('#viewBtn').prop('disabled', true);
+      } else {
+        $('#editBtn').prop('disabled', false);
+        $('#viewBtn').prop('disabled', false);
+      }
+    });
+
+    for (let radio of document.getElementsByName('radioGroup')) {
+      radio.addEventListener('click', radioButton => {
+        if (radio.checked && radio.classList.contains('signed')) {
+          $('#editBtn').prop('disabled', true);
+        } else {
+          $('#editBtn').prop('disabled', false);
+        }
+      })
+    }
+
+
+</script>
 
 </body>
