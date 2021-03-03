@@ -17,8 +17,7 @@ import handlers.PasswordHandler;
  * Servlet implementation class PasswordChangerServlet
  */
 @WebServlet("/PasswordChangerServlet")
-public class PasswordChangerServlet extends ServletBase 
-{
+public class PasswordChangerServlet extends ServletBase {
 	private static final long serialVersionUID = 1L;
 	private final int PW_CHANGE_SUCCESSFUL_ = 2;
 	private final int PW_CHANGE_FAILED_NETWORK_ERROR_ = 1;
@@ -47,7 +46,8 @@ public class PasswordChangerServlet extends ServletBase
 		System.out.println(PasswordHandler.hashPassword(oldPw, salt));
 		if(db.checkLogin(ub)) {
 			if (!newPw.equals(oldPw)) {
-				if (db.changePassword(username, PasswordHandler.hashPassword(newPw, salt))) {//sets the password.
+				    //sets the password.
+				if (db.changePassword(username, PasswordHandler.hashPassword(newPw, salt))) {
 					//change successful
 					session.setAttribute("passwordMessage", PW_CHANGE_SUCCESSFUL_);
 				} else {

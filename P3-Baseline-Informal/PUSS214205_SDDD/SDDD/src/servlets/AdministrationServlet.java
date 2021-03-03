@@ -48,6 +48,7 @@ public class AdministrationServlet extends HttpServlet{
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String removeBtn = request.getParameter("Remove");
 		String addBtn = request.getParameter("Add");
 		String username = request.getParameter("username");
@@ -65,15 +66,16 @@ public class AdministrationServlet extends HttpServlet{
 				mapM.put(s, db.getEmail(s));
 			}
 		}
+		
 		boolean emptyString = false; 
 
-		if(removeBtn != null) { //
+		if(removeBtn != null) { 
 			for(Map.Entry<String, String> member : mapM.entrySet()) {
 				if(member.getKey().equals(request.getParameter(member.getKey())) && !member.getKey().equals(request.getParameter("admin"))) {
 					db.removeUser(member.getKey());
 				}
 			}
-		} else if(addBtn != null) {
+		}else if(addBtn != null) {
 
 			if(username.equals("") || mail.equals("")) {
 				session.setAttribute("AdminMessage", 0);
@@ -101,7 +103,7 @@ public class AdministrationServlet extends HttpServlet{
 				}
 			}
 		}
-		doGet(request, response);
+	doGet(request, response);
 	}
 }
 
