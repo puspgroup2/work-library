@@ -376,75 +376,65 @@
               <tr>
                 <td colspan="2"><b>Sum</b></td>
                 <td>
-                  <fieldset disabled>
-                    <input type="number" id="total_d" name="total_d" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_d" name="total_d" type="text" class="form-control" disabled>
                 </td>
                 <td>
-                  <fieldset disabled>
-                    <input type="number" id="total_i" name="total_i" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_i" name="total_i" type="text" class="form-control" disabled>
                 </td>
                 <td>
-                  <fieldset disabled>
-                    <input type="number" id="total_f" name="total_f" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_f" name="total_f" type="text" class="form-control" disabled>
                 </td>
                 <td>
-                  <fieldset disabled>
-                    <input type="number" id="total_r" name="total_r" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_r" name="total_r" type="text" class="form-control" disabled>
                 </td>
                 <td>
-                  <fieldset disabled>
-                    <input type="number" id="total_total" name="total_total" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_total" name="total_total" type="text" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td colspan="2">21</td>
                 <td colspan="4">Functional test</td>
-                <td><input id="functional_test" name="functional_test" type="text" class="form-control"></td>
+                <td><input type="number" id="functional_test" class="other-values" name="functional_test" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input id="system_test" name="system_test" type="text" class="form-control"></td>
+                <td><input type="number" id="system_test" class="other-values" name="system_test" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input id="regression_test" name="regression_test" type="text" class="form-control"></td>
+                <td><input type="number" id="regression_test" class="other-values" name="regression_test" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
                 <td colspan="4">Meeting</td>
-                <td><input id="meeting" name="meeting" type="text" class="form-control"></td>
+                <td><input type="number" id="meeting" class="other-values" name="meeting" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">41</td>
                 <td colspan="4">Lecture</td>
-                <td><input id="lecture" name="lecture" type="text" class="form-control"></td>
+                <td><input type="number" id="lecture" class="other-values" name="lecture" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">42</td>
                 <td colspan="4">Exercise</td>
-                <td><input id="exercise" name="exercise" type="text" class="form-control"></td>
+                <td><input type="number" id="exercise" class="other-values" name="exercise" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input id="computer_exercise" name="computer_exercise" type="text" class="form-control"></td>
+                <td><input type="number" id="computer_exercise" class="other-values" name="computer_exercise" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input id="home_reading" name="home_reading" type="text" class="form-control"></td>
+                <td><input type="number" id="home_reading" class="other-values" name="home_reading" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
                 <td colspan="4">Other</td>
-                <td><input id="other" name="other" type="text" class="form-control"></td>
+                <td><input type="number" id="other" class="other-values" name="other" type="text" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="7">
@@ -464,9 +454,7 @@
                 <td>D</td>
                 <td colspan="3">Developing new code, test cases and documentation including documentation of the system</td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_d" name="total_d" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_d" name="total_d" type="text" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
@@ -474,9 +462,7 @@
                 <td>I</td>
                 <td colspan="3">Time spent preparing and at meeting for informal reviews</td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_i" name="total_i" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_i" name="total_i" type="text" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
@@ -484,9 +470,7 @@
                 <td>F</td>
                 <td colspan="3">Time spent preparing and at meeting for formal reviews</td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_f" name="total_f" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_f" name="total_f" type="text" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
@@ -494,9 +478,7 @@
                 <td>R</td>
                 <td colspan="3">Time spent improving, revising or correction documents and design objects</td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_r" name="total_r" type="text" class="form-control">
-                  </fieldset>  
+                    <input type="number" id="total_r" name="total_r" type="text" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
@@ -505,9 +487,7 @@
               <tr>
                 <td colspan="6"><b>Signed by manager</b></td>
                 <td>
-                <fieldset disabled>
-                  <input id="signature" name="signature" type="text" class="form-control">
-                </fieldset>
+                  <input type="number" id="signature" name="signature" type="text" class="form-control" disabled>
               </td>
               </tr>
             </table>
@@ -528,6 +508,7 @@
 
 <script>
 
+  // Format is "row-boxes", "row-total"
   let documents = [
     ["sdp_report_value", "sdp_total"],
     ["srs_report_value", "srs_total"],
@@ -538,13 +519,20 @@
     ["svvr_report_value", "svvr_total"],
     ["ssd_report_value", "ssd_total"],
     ["final_report_value", "final_total"]
-  ]
+  ];
+
+  let total_columns = ['total_d', 'total_i', 'total_f', 'total_r'];
 
   // Bind event listeners on all inputs
   for (let doc of documents) {
     for (let box of document.getElementsByClassName(doc[0])) {
-      box.addEventListener('input', updateTotals)
+      box.addEventListener('input', updateTotals);
     }
+  }
+
+  // Bind event listeners for others as well.
+  for (let box of document.getElementsByClassName("other-values")) {
+    box.addEventListener('input', updateTotals);
   }
 
   // Call it once to set to 0.
@@ -552,11 +540,47 @@
 
   /* Updates all the total boxes with the total report for each document. */
   function updateTotals() {
+    let col_sums = [0, 0, 0, 0];
+
     for (let doc of documents) {
       let totalTime = getTotal(doc[0]);
-      console.log(totalTime);
       document.getElementById(doc[1]).value = totalTime;
+
+      // Calculate the column totals.
+      let boxes = document.getElementsByClassName(doc[0]);
+      for (let i = 0; i < 4; i++) {
+        col_sums[i] += getValue(boxes[i]);
+      }
     }
+
+    // Update the total boxes.
+    for (let i = 0; i < 4; i++) {
+        console.log(total_columns[i], col_sums[i])
+        for (let box of document.getElementsByName(total_columns[i])) {
+          box.value = col_sums[i];
+        }
+    }
+
+    let others = getOtherValues();
+
+    // Update the total time (not including "others").
+    let totalTotal = 0;
+    col_sums.forEach(time => totalTotal += time);
+    document.getElementById("total_total").value = totalTotal;
+
+
+    console.log(others, totalTotal)
+    // Update the absolute TOTAL time.
+    document.getElementById('totaltime').value = others + totalTotal;
+  }
+
+  /* Get the total time for the "other" values. */
+  function getOtherValues() {
+    let sum = 0;
+    for (let box of document.getElementsByClassName("other-values")) {
+      sum += getValue(box);
+    }
+    return sum;
   }
 
   /* Gets the total time for a given document. */
@@ -564,10 +588,15 @@
     let boxes = document.getElementsByClassName(box_class);
     let sum = 0;
     for (let i = 0; i < 4; i++) {
-      let value = Number.isNaN(parseInt(boxes[i].value)) ? 0 : parseInt(boxes[i].value);
+      let value = getValue(boxes[i]);
       sum += value;
     }
     return sum;
+  }
+
+  /* Helper function to parse the integer value. */
+  function getValue(box) {
+    return Number.isNaN(parseInt(box.value)) ? 0 : parseInt(box.value);
   }
 
 </script>
