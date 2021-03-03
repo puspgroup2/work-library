@@ -748,20 +748,14 @@ public class DataBase {
 		e.printStackTrace();
 	}
 	
-	public boolean exists(int reportID, String attribute, String relation) {
-		String sql = "SELECT " + attribute + " from " + relation
-				+ " where reportID = ?";
+	public ResultSet select(int reportID, String attribute, String relation) {
+		String sql = "SELECT " + attribute + " from " + relation;
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setInt(1, reportID);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return rs.getInt(attribute) != 0;
-			}
-			
+			return ps.executeQuery();
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
-		return false;
+		return null;
 	}
 	
 	public static void main(String[] args) {
@@ -769,7 +763,7 @@ public class DataBase {
 		db.connect();
 		db.addUser("Assar", "hej", "email", "r�v");
 		
-		db.exists(17, "Assar", "TimeReports");
+		db.select(17, "Assar", "TimeReports");
 		
 		/**
 		db.newTimeReport("Assar", 9);
