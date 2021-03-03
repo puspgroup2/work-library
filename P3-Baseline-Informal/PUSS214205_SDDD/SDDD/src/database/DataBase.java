@@ -765,7 +765,7 @@ public class DataBase {
 	}
 	
 	/*Helper method */
-	public ResultSet select(int reportID, String attribute, String relation) {
+	private ResultSet select(int reportID, String attribute, String relation) {
 		String sql = "SELECT " + attribute + " from " + relation + " WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
