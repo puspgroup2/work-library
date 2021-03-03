@@ -752,7 +752,9 @@ public class DataBase {
 	public ResultSet select(int reportID, String attribute, String relation) {
 		String sql = "SELECT " + attribute + " from " + relation;
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			return ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
+			int size = rs.getFetchSize();
+			if (size != 0) return rs;
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
@@ -774,7 +776,7 @@ public class DataBase {
 		db.connect();
 		db.addUser("Assar", "hej", "email", "r�v");
 		
-		db.select(17, "Assar", "TimeReports");
+		db.select(17, , "TimeReports");
 		
 		/**
 		db.newTimeReport("Assar", 9);
