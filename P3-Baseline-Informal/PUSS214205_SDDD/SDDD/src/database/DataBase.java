@@ -276,6 +276,13 @@ public class DataBase {
 	}
 	
 	
+	/**
+     * Updates an Activity Report according to the values contained in the map.
+     * @param reportID The ID of the report.
+     * @param activityReport A map with key-value pairs consisting of the tuple's
+     * columns and the values associated with these.
+     * @return true if the Activity Report was successfully updated
+     */
 	public boolean updateActivityReport(int reportID, Map<String, Integer> activityReport) {
 		if (this.select(reportID, "*", "TimeReports") == null) return false;
 		
