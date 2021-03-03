@@ -66,8 +66,6 @@ public class LogIn extends ServletBase
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String salt = db.getSalt(username);
-		System.out.println(salt);
-		
 		
 		if (username == null || password == null) {
 			response.sendError(LOGIN_FALSE);
@@ -76,7 +74,7 @@ public class LogIn extends ServletBase
 			UserBean ub = new UserBean();
 			String hashPassword = PasswordHandler.hashPassword(password, salt);
 			System.out.println(hashPassword);
-			ub.populateBean(username, password);
+			ub.populateBean(username, hashPassword);
 			if (db.checkLogin(ub)) {
 				ub.setRole(db.getRole(username));
 				session.setAttribute("username", ub.getUserName());
