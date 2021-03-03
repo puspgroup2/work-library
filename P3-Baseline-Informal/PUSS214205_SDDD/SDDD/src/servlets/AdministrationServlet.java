@@ -52,11 +52,20 @@ public class AdministrationServlet extends HttpServlet{
 		DataBase db = new DataBase();
 		db.connect();
 		HttpSession session = request.getSession();
-
+		
+		HashMap<String, String> mapM = new HashMap<String, String>();
+		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
+		PasswordHandler pw = new PasswordHandler();
+		
+		for (String s : memberNames) {
+			if(!s.equals("admin")) {
+				mapM.put(s, db.getEmail(s));
+			}
+		}
 		boolean emptyString = false; 
 
 		if(removeBtn != null) { //
-			for(Map.Entry<String, String> member : memberMap.entrySet()) {
+			for(Map.Entry<String, String> member : mapM.entrySet()) {
 				if(member.getKey().equals(request.getParameter(member.getKey())) && !member.getKey().equals(request.getParameter("admin"))) {
 					db.removeUser(member.getKey());
 				}
@@ -69,7 +78,7 @@ public class AdministrationServlet extends HttpServlet{
 			}
 
 			if(!emptyString) {
-				if(!db.addUser(request.getParameter("username"), "password", request.getParameter("mail"), "hej")) {
+				if(!db.addUser(request.getParameter("username"), pw.generatePassword(), request.getParameter("mail"), pw.generateSalt())) {
 					session.setAttribute("AdminMessage", 0);
 				} else {
 					session.setAttribute("AdminMessage", 1);
