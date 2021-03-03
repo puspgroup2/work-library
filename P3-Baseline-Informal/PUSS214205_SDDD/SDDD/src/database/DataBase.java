@@ -114,14 +114,14 @@ public class DataBase {
 	 * @param username
 	 * @return list of Time Report IDs.
 	 */
-	public List<String> getTimeReportIDs(String username) {
+	public List<Integer> getTimeReportIDs(String username) {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE userName = ?";
-		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
