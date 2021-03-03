@@ -43,8 +43,9 @@ public class TimeReportServlet extends ServletBase {
 
 		
 		List<TimeReportBean> signedReports = new ArrayList<TimeReportBean>();
+		List<Integer> signedTimeReportIDs = db.getSignedTimeReportIDs();
 		
-		for (Integer x: db.getSignedTimeReportIDs()) {
+		for (Integer x: signedTimeReportIDs) {
 			TimeReportBean signedBean = new TimeReportBean();
 			signedBean.setReportID(x);
 			signedBean.setTotalTime(db.getTotalMinutesFromTimeReport(x));
@@ -55,11 +56,6 @@ public class TimeReportServlet extends ServletBase {
 		}
 		
 		session.setAttribute("signedReports", signedReports);
-		
-		
-		
-		
-		
 		
 		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);
 
