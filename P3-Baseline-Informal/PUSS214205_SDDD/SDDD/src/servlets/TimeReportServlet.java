@@ -41,6 +41,7 @@ public class TimeReportServlet extends ServletBase {
 			TimeReportBeanCan.add(trb);			
 		}
 		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);	
+		response.sendRedirect("summaryreport.jsp");
 	}
 
 	/**
