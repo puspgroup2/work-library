@@ -75,6 +75,12 @@ public class TimeReportBean implements Serializable {
     public void setTotalTime(int totalTime) {
     	this.totalTime = totalTime;
     }
+    
+    public void setTotalTime(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String Input = request.getParameter("totaltime");
+    	totalTime = Integer.parseInt(Input);
+    }
+    
     /*
      Fetches the ID of the report.
      @return reportID
@@ -153,7 +159,7 @@ public class TimeReportBean implements Serializable {
 	    		reportValuesD.put(fieldNamesD[i], Integer.parseInt(Input));
 	    	}
 	    	}
-    	
+	    	
     	for(int i = 0; i < fieldNamesI.length; i++) {
         	String Input = request.getParameter(fieldNamesI[i]); 
         	if (request.getParameter(Input) == null) {
