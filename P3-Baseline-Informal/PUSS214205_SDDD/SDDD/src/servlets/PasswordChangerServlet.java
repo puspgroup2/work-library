@@ -44,6 +44,7 @@ public class PasswordChangerServlet extends ServletBase
 		String salt = db.getSalt(username);
 		UserBean ub = new UserBean();
 		ub.populateBean(username, PasswordHandler.hashPassword(oldPw, salt));
+		System.out.println(PasswordHandler.hashPassword(oldPw, salt));
 		if(db.checkLogin(ub)) {
 			if (!newPw.equals(oldPw)) {
 				if (db.changePassword(username, PasswordHandler.hashPassword(newPw, salt))) {//sets the password.
