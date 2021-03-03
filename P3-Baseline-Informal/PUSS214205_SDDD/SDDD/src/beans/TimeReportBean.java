@@ -18,6 +18,7 @@ public class TimeReportBean implements Serializable {
     private int week = 0;
     private String signed;
     private int totalTime;
+    private int reportID = -1;
     private Map<String, Integer> reportValues = new HashMap<String, Integer>();
     private String[] fieldNames = {"sdp_d", "sdp_i", "sdp_f", "sdp_r", "sdp_total",
     							   "srs_d", "srs_i", "srs_f", "srs_r", "srs_total",
@@ -75,6 +76,14 @@ public class TimeReportBean implements Serializable {
    */
     public void setTotalTime(int totalTime) {
     	this.totalTime = totalTime;
+    }
+    
+    public int getReportID() {
+    	return this.reportID;
+    }
+    
+    public void setReportID(int reportID) {
+    	this.reportID=reportID;
     }
 
     /*
