@@ -16,6 +16,7 @@ public class TimeReportBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
     private int week = 0;
+    private String username;
     private String signed;
     private int totalTime;
     private int reportID = -1;
@@ -86,6 +87,14 @@ public class TimeReportBean implements Serializable {
     	this.reportID=reportID;
     }
 
+    public void setUsername(String username) {
+    	this.username = username;
+    }
+    
+    public String getUsername() {
+    	return this.username ;
+    }
+    
     /*
       Fetches a list of the reported values, the values are in minutes.
       @return map reportValues
