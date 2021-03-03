@@ -292,6 +292,7 @@ public class DataBase {
 
 	/* Helper method for updateTimeReport */
 	private boolean weekAlreadyExists(String userName, Integer week) {
+		if (week < 0 || week > 54) return false;
 		String sql = "SELECT * from TimeReports where Week = ? and userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, week);
@@ -826,8 +827,8 @@ public class DataBase {
 
 		System.out.println(db.updateDocumentTimeD(1, db.getDocumentTimeD(5)));
 		
-		int reportID = db.newTimeReport("Assar", 5);
-		db.updateWeek(reportID, "Assar", 4);
+		db.updateTotalMinutes(3, 2);
+			
 	}
 	
 }
