@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import beans.UserManagementBean;
 import database.DataBase;
+import handlers.MailHandler;
 import handlers.PasswordHandler;
 
 @WebServlet("/AdministrationServlet")
@@ -47,7 +48,8 @@ public class AdministrationServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String removeBtn = request.getParameter("Remove");
 		String addBtn = request.getParameter("Add");
-
+		String username = request.getParameter("username");
+		String mail = request.getParameter("mail");
 
 		DataBase db = new DataBase();
 		db.connect();
@@ -71,31 +73,32 @@ public class AdministrationServlet extends HttpServlet{
 			}
 		} else if(addBtn != null) {
 
-			if(request.getParameter("username").equals("") || request.getParameter("mail").equals("")) {
+			if(username.equals("") || mail.equals("")) {
 				session.setAttribute("AdminMessage", 0);
 				emptyString = true;
 			}
 
 			if(!emptyString) {
-				if(!db.addUser(request.getParameter("username"), PasswordHandler.generatePassword(), request.getParameter("mail"), PasswordHandler.generateSalt())) {
+				String pw = PasswordHandler.generatePassword();
+				if(!db.addUser(username, pw, mail, PasswordHandler.generateSalt())) {
 					session.setAttribute("AdminMessage", 0);
 				} else {
 					session.setAttribute("AdminMessage", 1);
+					
+					if(request.getParameter("mail") != null) {
+						MailHandler mh = new MailHandler();
+						mh.sendPasswordMail(mail, username, pw);
+
+						//String hashedPw = PasswordHandler.hashPassword(pw, PasswordHandler.generateSalt());
+						
+						if (db.changePassword(username, pw)) {
+							//TODO Handle potential error
+						}
+					}
 				}
 			}
 		}
-
-		/*switch(request.getParameter("action")) {
-			case "Add": db.addUser(request.getParameter("name"), PasswordHandler.generatePassword(), 
-						request.getParameter("Email"), PasswordHandler.generateSalt());
-						break;
-
-			case "Remove": db.removeUser(request.getParameter("name"));
-						   break;
-			default: break; 
-		}*/
 		doGet(request, response);
-
 	}
 }
 
