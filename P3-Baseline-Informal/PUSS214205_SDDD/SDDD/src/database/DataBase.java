@@ -61,6 +61,10 @@ public class DataBase {
 	
 	/**
 	 * Only the admin can perform this action.
+	 * @param username The userName of the user.
+	 * @param password The password for the login.
+	 * @param email The email of the user.
+	 * @param salt The salt to be added.
 	 * @return true if the user was successfully added to the database.
 	 */
 	public boolean addUser(String username, String password, String email, String salt) {
@@ -94,6 +98,7 @@ public class DataBase {
 	
 	/**
 	 * Only the admin can perform this action.
+	 * @param username The userName of the user.
 	 * @return true if the user was successfully removed from the database.
 	 */
 	public boolean removeUser(String username) {
@@ -111,7 +116,7 @@ public class DataBase {
 	
 	/**
 	 * Returns a list containing a user's Time Report ID's.
-	 * @param username
+	 * @param username The userName of the user.
 	 * @return list of Time Report IDs.
 	 */
 	public List<Integer> getTimeReportIDs(String username) {
@@ -168,7 +173,7 @@ public class DataBase {
 	}
 	
 	/**
-	 * 
+	 * Sets the time report as signed by the project leader
 	 * @param yes if the Time Report be signed
 	 * @param userName the name of the project leader
 	 * @param reportID the number of the Time Report in question.
