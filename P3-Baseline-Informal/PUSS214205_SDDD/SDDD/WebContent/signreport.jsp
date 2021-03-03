@@ -96,15 +96,15 @@
 
 <div class="d-flex" id="wrapper">
 
-    <!-- Sidebar -->
+ <!-- Sidebar -->
     <div>
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Options</div>
             <div class="list-group list-group-flush">
-            <form action="TimeReportServlet">
+            <form action="TimeReportServlet" method="POST">
        	        <input type="submit" name="summary" value="Time Report Summary" class="list-group-item list-group-item-action bg-light astext">
             </form>
-            <form action="TimeReportServlet">
+            <form action="TimeReportServlet" method="POST">
         	    <input type="submit" name="new" value="Create New Time Report" class="list-group-item list-group-item-action bg-light astext">
             </form>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
@@ -171,8 +171,9 @@
     (data) => {
       if (data == 'ok') {
         // Reload the page.
+        console.log("JDHSKAS")
         location.href = "/TimeReportManagementServlet";
-        location.reload();
+        //location.reload();
       }
     });
   })
