@@ -6,7 +6,7 @@ public class MailHandler
 {
 	/*
 	IN ORDER FOR THIS CLASS TO FUNCTION, TWO EXTERNAL JARS ARE REQUIRED.
-	ADD ALL JARS IN THE "resources" FOLDER TO CLASSPATH (SIMILARLY TO HOW servlet-api.jar WAS ADDED).
+	ADD ALL JARS IN THE "resources" FOLDER TO CLASSPATH .
 	 */
 	private final String senderEmail = "puspmailgroup2@gmail.com";
 	private final String senderPassword = "_7xYxeY-9c$7by.r%/aL";
@@ -18,7 +18,12 @@ public class MailHandler
 		prop_.put("mail.smtp.auth", "true");
 		prop_.put("mail.smtp.starttls.enable", "true"); //TLS
 	}
-	
+	/**
+	 * Send password to the recipient's e-mail.
+	 * @param recipient The e-mail of recipient
+	 * @param username recipient's username
+	 * @param password recipient's password
+	 */
 	public void sendPasswordMail(String recipient, String username, String password) {
 		// Recipient's email ID needs to be mentioned.
         String to = recipient;
