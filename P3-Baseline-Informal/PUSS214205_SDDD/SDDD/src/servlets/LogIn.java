@@ -90,7 +90,7 @@ public class LogIn extends ServletBase
 
 	/**
 	 * All requests are forwarded to the doGet method. 
-	 * 
+	 * ,
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
