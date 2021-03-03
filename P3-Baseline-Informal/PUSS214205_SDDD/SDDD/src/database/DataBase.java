@@ -261,7 +261,7 @@ public class DataBase {
 				ps.setString(1, entry.getKey());
 				ps.setInt(2, entry.getValue());
 				ps.setInt(3, reportID);
-				ps.executeUpdate(); // här får jag fel hela tiden!!
+				ps.executeUpdate(); // hï¿½r fï¿½r jag fel hela tiden!!
 			}
 		} catch (SQLException e) {
 			handleSQLException(e);
@@ -371,25 +371,25 @@ public class DataBase {
 	}
 	
 	/**
-	 * Retrieves the list of all the members.
-	 * @return a list of all the members.
+	 * Retrieves the list of all the users.
+	 * @return a list of all the users.
 	 */
-	public List<String> getMembers() {
+	public List<String> getUsers() {
 		String sql = "SELECT * FROM Users";
-		List<String> members = new ArrayList<>();
+		List<String> users = new ArrayList<>();
 		
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				members.add(rs.getString("userName"));
+				users.add(rs.getString("userName"));
 				
 			}
 			
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
-		 return members;
+		 return users;
 	}
 	
 	
@@ -767,7 +767,7 @@ public class DataBase {
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
 		db.connect();
-		db.addUser("Assar", "hej", "email", "röv");
+		db.addUser("Assar", "hej", "email", "rï¿½v");
 		
 		db.exists(17, "Assar", "TimeReports");
 		
