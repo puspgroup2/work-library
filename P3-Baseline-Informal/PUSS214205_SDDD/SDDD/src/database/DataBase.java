@@ -114,14 +114,14 @@ public class DataBase {
 	 * @param username
 	 * @return list of Time Report IDs.
 	 */
-	public List<String> getTimeReportIDs(String username) {
+	public List<Integer> getTimeReportIDs(String username) {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE userName = ?";
-		ArrayList<String> timeReportIDs = new ArrayList<String>();
+		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
 		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				timeReportIDs.add(String.valueOf(rs.getInt(1)));
+				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
 		} catch(SQLException e) {
@@ -261,7 +261,7 @@ public class DataBase {
 				ps.setString(1, entry.getKey());
 				ps.setInt(2, entry.getValue());
 				ps.setInt(3, reportID);
-				ps.executeUpdate(); // här får jag fel hela tiden!!
+				ps.executeUpdate(); // hï¿½r fï¿½r jag fel hela tiden!!
 			}
 		} catch (SQLException e) {
 			handleSQLException(e);
@@ -371,25 +371,25 @@ public class DataBase {
 	}
 	
 	/**
-	 * Retrieves the list of all the members.
-	 * @return a list of all the members.
+	 * Retrieves the list of all the users.
+	 * @return a list of all the users.
 	 */
-	public List<String> getMembers() {
+	public List<String> getUsers() {
 		String sql = "SELECT * FROM Users";
-		List<String> members = new ArrayList<>();
+		List<String> users = new ArrayList<>();
 		
 		try(PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				members.add(rs.getString("userName"));
+				users.add(rs.getString("userName"));
 				
 			}
 			
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
-		 return members;
+		 return users;
 	}
 	
 	
@@ -748,14 +748,57 @@ public class DataBase {
 		e.printStackTrace();
 	}
 	
+	/*Helper method */
+	public ResultSet select(int reportID, String attribute, String relation) {
+		String sql = "SELECT " + attribute + " from " + relation;
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ResultSet rs = ps.executeQuery();
+			int size = rs.getFetchSize();
+			if (size != 0) return rs;
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+		return null;
+	}
+	
+	public boolean valueExists(int reportID, String target, ResultSet rs) throws SQLException {
+		if (rs == null) return false;
+		while (rs.next()) {
+			if (rs.getInt("reportID") == reportID) {
+				return rs.getInt(target) != 0;
+			}
+		}
+		return false;
+	}
+	
+	
+	private int rowCount(int reportID, String attribute, String relation) {
+		int rows = 0;
+		String sql = "SELECT " + attribute + " from " + relation
+				+ " where reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
+			rows = ps.executeQuery().getFetchSize();
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+		return rows;
+	}
+	
+	
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
 		db.connect();
+		db.addUser("Assar", "hej", "email", "rï¿½v");
 		
+		db.select(17, , "TimeReports");
+		
+		/**
+		db.newTimeReport("Assar", 9);
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("totalMinutes", 30);
-		db.updateTimeReport(10, map);
-		
+		db.updateTimeReport(9, map);
+		*/
 	}
 	
 }

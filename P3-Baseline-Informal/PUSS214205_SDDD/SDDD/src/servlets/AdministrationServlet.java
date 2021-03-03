@@ -32,7 +32,7 @@ public class AdministrationServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
 		Map<String, String> memberMap = new HashMap<String, String>();
-		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
+		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
 		for (String s : memberNames) {
 			if(!s.equals("admin")) {
 				memberMap.put(s, db.getEmail(s));
@@ -52,11 +52,19 @@ public class AdministrationServlet extends HttpServlet{
 		DataBase db = new DataBase();
 		db.connect();
 		HttpSession session = request.getSession();
-
+		
+		HashMap<String, String> mapM = new HashMap<String, String>();
+		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
+		
+		for (String s : memberNames) {
+			if(!s.equals("admin")) {
+				mapM.put(s, db.getEmail(s));
+			}
+		}
 		boolean emptyString = false; 
 
 		if(removeBtn != null) { //
-			for(Map.Entry<String, String> member : memberMap.entrySet()) {
+			for(Map.Entry<String, String> member : mapM.entrySet()) {
 				if(member.getKey().equals(request.getParameter(member.getKey())) && !member.getKey().equals(request.getParameter("admin"))) {
 					db.removeUser(member.getKey());
 				}
@@ -69,7 +77,7 @@ public class AdministrationServlet extends HttpServlet{
 			}
 
 			if(!emptyString) {
-				if(!db.addUser(request.getParameter("username"), "password", request.getParameter("mail"), "hej")) {
+				if(!db.addUser(request.getParameter("username"), PasswordHandler.generatePassword(), request.getParameter("mail"), PasswordHandler.generateSalt())) {
 					session.setAttribute("AdminMessage", 0);
 				} else {
 					session.setAttribute("AdminMessage", 1);

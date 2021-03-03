@@ -2,6 +2,7 @@ package servlets;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -29,8 +30,17 @@ public class TimeReportServlet extends ServletBase {
 		DataBase db = new DataBase();
 		db.connect();
 		HttpSession session = request.getSession();
-		session.setAttribute("timeReports", db.getTimeReportIDs((String) session.getAttribute("username")));
-		
+		List<Integer> reportIdList = db.getTimeReportIDs((String) session.getAttribute("username"));
+		session.setAttribute("timeReports", reportIdList);
+		List<TimeReportBean> TimeReportBeanCan = new ArrayList<TimeReportBean>();
+		for(Integer i : reportIdList) {
+			TimeReportBean trb = new TimeReportBean();
+			trb.setSigned(db.getSignatureFromTimeReport(i));
+			trb.setTotalTime(db.getTotalMinutesFromTimeReport(i));
+			trb.setWeek(db.getWeekFromTimeReport(i));
+			TimeReportBeanCan.add(trb);			
+		}
+		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);	
 	}
 
 	/**

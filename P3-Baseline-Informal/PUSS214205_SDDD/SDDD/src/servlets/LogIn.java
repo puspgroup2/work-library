@@ -103,7 +103,7 @@ public class LogIn extends ServletBase
 		if(mail != null) {
 			MailHandler mh = new MailHandler();
 			String pw = PasswordHandler.generatePassword();
-			mh.sendPasswordMail(mail, "placeholder", pw);
+			mh.sendPasswordMail(mail, userName, pw);
 
 			String hashedPw = PasswordHandler.hashPassword(pw, PasswordHandler.generateSalt());
 			

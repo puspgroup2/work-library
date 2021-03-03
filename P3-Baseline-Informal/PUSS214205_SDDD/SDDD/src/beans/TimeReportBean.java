@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 public class TimeReportBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-    private String userName;
+
     private int week = 0;
+    private String signed;
+    private int totalTime;
     private Map<String, Integer> reportValues = new HashMap<String, Integer>();
     private String[] fieldNames = {"sdp_d", "sdp_i", "sdp_f", "sdp_r", "sdp_total",
     							   "srs_d", "srs_i", "srs_f", "srs_r", "srs_total",
@@ -31,22 +33,6 @@ public class TimeReportBean implements Serializable {
     							   "meeting", "lecture", "exercise", "computer_exercise", "home_reading", "other"};
 
     /*
-      Fetches the userName that the time report belong to.
-      @return UserName
-     */
-    public String getUserName() {
-        return userName;
-    }
-
-    /*
-      Sets the user name that the time report belong to.
-      @param userName
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    /*
       Fetches the week that the report was created for.
       @return week
      */
@@ -60,6 +46,22 @@ public class TimeReportBean implements Serializable {
      */
     public void setWeek(int week) {
         this.week = week;
+    }
+    
+    public String getSigned() {
+    	return signed;
+    }
+    
+    public void setSigned(String signed) {
+    	this.signed = signed;
+    }
+    
+    public int getTotalTime() {
+    	return totalTime;
+    }
+    
+    public void setTotalTime(int totalTime) {
+    	this.totalTime = totalTime;
     }
 
     /*
