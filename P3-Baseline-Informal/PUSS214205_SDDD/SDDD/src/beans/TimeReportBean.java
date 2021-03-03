@@ -78,19 +78,31 @@ public class TimeReportBean implements Serializable {
     public void setTotalTime(int totalTime) {
     	this.totalTime = totalTime;
     }
-    
+    /*
+     Fetches the ID of the report.
+     @return reportID
+     */
     public int getReportID() {
     	return this.reportID;
     }
-    
+    /*
+     Sets ID to the report.
+     @param reportID
+     */
     public void setReportID(int reportID) {
     	this.reportID=reportID;
     }
-
+    /*
+     Sets the username for the current user.
+     @param username
+     */
     public void setUsername(String username) {
     	this.username = username;
     }
-    
+    /*
+     Fetches the username.
+     @return username
+     */
     public String getUsername() {
     	return this.username ;
     }

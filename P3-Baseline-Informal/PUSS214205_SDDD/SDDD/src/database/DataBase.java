@@ -23,13 +23,13 @@ public class DataBase {
 	private static String databaseUser = "pusp2102hbg";
 	private static String databasePassword = "s9hg34sf";
 	
-	public DataBase(){
+	public DataBase() {
 		connection = null;
 	}
 	
 	/**
 	 * Establishes a connection to the MySQL database.
-	 * @return true if the connection was established
+	 * @return true if the connection was established.
 	 */
 	public boolean connect() {
 		try {
@@ -173,9 +173,9 @@ public class DataBase {
 	}
 	
 	/**
-	 * Sets the time report as signed by the project leader
-	 * @param yes if the Time Report be signed
-	 * @param userName the name of the project leader
+	 * Sets the time report as signed by the project leader.
+	 * @param yes if the Time Report be signed.
+	 * @param userName the name of the project leader.
 	 * @param reportID the number of the Time Report in question.
 	 */
 	public void setSigned(boolean yes, String userName, int reportID) {
@@ -250,30 +250,35 @@ public class DataBase {
         return getReportID(userName, week);
     }
 	
-	/**
-	 * Updates a Time Report according to the values contained in the map.
-	 * @param timeReport A map with key-value pairs consisting of the tuple's 
-	 * columns and the values associated with these.
-	 * @return true if the Time Report was successfully updated.
-	 */
-	public boolean updateTimeReport(int reportID, Map<String, Integer> timeReport) {
-		String sql = "UPDATE TimeReports"
-				+ " SET ? = ?"
-				+ " WHERE reportID = ?";
-		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
-			for(Map.Entry<String, Integer> entry : timeReport.entrySet()) {
-				ps.setString(1, entry.getKey());
-				ps.setInt(2, entry.getValue());
-				ps.setInt(3, reportID);
-				ps.executeUpdate(); // h�r f�r jag fel hela tiden!!
+	public boolean updateWeek(int reportID, String userName, int newWeek) {
+		if (this.weekAlreadyExists(userName, newWeek)) return false;
+		String sql = "UPDATE TimeReports "
+				+ "SET Week = ? "
+				+ "WHERE reportID = ?";
+			try (PreparedStatement ps = connection.prepareStatement(sql)) {
+				ps.setInt(1, newWeek);
+				ps.setInt(2, reportID);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				handleSQLException(e);
 			}
+		return false;
+	}
+
+	/* Helper method for updateTimeReport */
+	private boolean weekAlreadyExists(String userName, Integer week) {
+		String sql = "SELECT * from TimeReports where Week = ? and userName = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, week);
+			ps.setString(2, userName);
+			ResultSet rs = ps.executeQuery();
+			return rs != null;
 		} catch (SQLException e) {
 			handleSQLException(e);
-			return false;
 		}
-		return true;
+		return false;
 	}
+
 	
 	
 	/**
@@ -281,7 +286,7 @@ public class DataBase {
      * @param reportID The ID of the report.
      * @param activityReport A map with key-value pairs consisting of the tuple's
      * columns and the values associated with these.
-     * @return true if the Activity Report was successfully updated
+     * @return true if the Activity Report was successfully updated.
      */
 	public boolean updateActivityReport(int reportID, Map<String, Integer> activityReport) {
 		if (this.select(reportID, "*", "TimeReports") == null) return false;
@@ -315,9 +320,9 @@ public class DataBase {
 	/**
      * Updates a Document Time Report according to the values contained in the map.
      * @param reportID The ID of the report.
-     * @param documentTimeD/I/R/F A map with key-value pairs consisting of the tuple's
+     * @param documentTimeD/I/R/F A map with key-value pairs consisting of the tuple's.
      * columns and the values associated with these.
-     * @return true if the Document Time Report was successfully updated
+     * @return true if the Document Time Report was successfully updated.
      */
 	public boolean updateDocumentTimeD(int reportID, Map<String, Integer> documentTimeD) {
 		return updateDocumentTime(reportID, documentTimeD, 'D');
@@ -457,7 +462,7 @@ public class DataBase {
 	
 	
 	/**
-	 * Returns the username of a  Time Report.
+	 * Returns the username of the user who has signed the Time Report.
 	 * @param reportID the reportID of a specific Time Report.
 	 * @return the totalMinutes connected to the reportID.
 	 */
