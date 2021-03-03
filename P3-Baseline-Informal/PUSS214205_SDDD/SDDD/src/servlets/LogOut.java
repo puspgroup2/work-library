@@ -27,7 +27,9 @@ public class LogOut extends ServletBase {
     public LogOut() {
         super();
     }
-    
+    /**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession(false);
     	

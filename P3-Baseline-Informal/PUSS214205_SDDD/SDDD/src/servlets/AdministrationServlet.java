@@ -44,7 +44,9 @@ public class AdministrationServlet extends HttpServlet{
 		response.sendRedirect("administration.jsp");
 		
 	}
-	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String removeBtn = request.getParameter("Remove");
 		String addBtn = request.getParameter("Add");
