@@ -337,7 +337,7 @@ public class DataBase {
 		}
 		
 		for (String s : documentTime.keySet()) {
-			sql = "UPDATE ActivityReports SET " + s + " = ? WHERE reportID = ?";
+			sql = "UPDATE DocumentTime" + type + " SET " + s + " = ? WHERE reportID = ?";
 			try(PreparedStatement ps = connection.prepareStatement(sql)) {
 				ps.setInt(1, documentTime.get(s));
 				ps.setInt(2, reportID);
@@ -774,7 +774,7 @@ public class DataBase {
 		db.connect();
 
 
-		System.out.println(db.updateActivityReport(3, db.getActivityReport(1)));
+		System.out.println(db.updateDocumentTimeD(3, db.getDocumentTimeD(5)));
 		
 		/**
 		db.newTimeReport("Assar", 9);
