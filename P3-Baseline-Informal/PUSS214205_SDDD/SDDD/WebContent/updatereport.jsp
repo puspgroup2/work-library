@@ -102,6 +102,7 @@
   <!-- /#sidebar-wrapper -->
 
   <!-- Page Content -->
+  <form action="TimeReportServlet">
   <div id="page-content-wrapper">
       <div style="background-color:white">
         <table class="table table-striped">
@@ -151,8 +152,8 @@
       </table>
       </div>
       <div class="d-flex justify-content-center">
-      <form class="form-inline my-2 my-lg-0" action="GetReport">
-           <input type="submit" value="Update selected report" class="btn btn-success">
+      
+           <input name="submitEdit" type="submit" value="Update selected report" class="btn btn-success">
          </form>
       </div>
   </div>

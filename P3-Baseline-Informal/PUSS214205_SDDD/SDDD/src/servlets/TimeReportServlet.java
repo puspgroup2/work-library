@@ -40,7 +40,28 @@ public class TimeReportServlet extends ServletBase {
 			trb.setWeek(db.getWeekFromTimeReport(i));
 			TimeReportBeanCan.add(trb);			
 		}
-		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);	
+		
+		List<TimeReportBean> signedReports = new ArrayList<TimeReportBean>();
+		
+		for (Integer x: db.getSignedTimeReportIDs()) {
+			TimeReportBean signedBean = new TimeReportBean();
+			signedBean.setReportID(x);
+			signedBean.setTotalTime(db.getTotalMinutesFromTimeReport(x));
+			signedBean.setWeek(db.getWeekFromTimeReport(x));
+			signedBean.setSigned(db.getSignatureFromTimeReport(x));
+			signedBean.setUsername(db.getUserNameFromTimeReport(x));
+			signedReports.add(signedBean);
+		}
+		
+		session.setAttribute("signedReports", signedReports);
+		
+		
+		
+		
+		
+		
+		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);
+		response.sendRedirect("summaryreport.jsp");
 	}
 
 	/**
@@ -52,9 +73,54 @@ public class TimeReportServlet extends ServletBase {
 		HttpSession session = request.getSession();
 		
 		TimeReportBean trb1 = new TimeReportBean();
-		trb1.populateBean(db.getActivityReport((Integer) session.getAttribute("reportID")));
+		//trb1.populateBean(db.getActivityReport((Integer) session.getAttribute("reportID")));
 		session.setAttribute("timeReport", trb1);
 		
+		String submitNewReport = request.getParameter("submitNew"); //Submit button in newreport.jsp
+		String editSelectedBtn = request.getParameter("editBtn");  //edit selected button in summaryreport.jsp
+		String viewBtn = request.getParameter("viewBtn");			//"view selected" button in summaryreport.jsp
+		String submitEdit = request.getParameter("submitEdit");		//submit button in updatereport.jsp
+		String createNewNav = request.getParameter("new");			//navigation to newreport.jsp
+		
+		if (createNewNav != null) {
+			response.sendRedirect("newreport.jsp");
+		}
+		
+		if (editSelectedBtn != null) {
+			List<Integer> signedReports = db.getSignedTimeReportIDs(); 
+			if(!signedReports.contains(session.getAttribute("reportID"))) {
+				session.setAttribute("editable", true);
+				response.sendRedirect("updatereport.jsp");
+			}else {
+				session.setAttribute("editable", false);
+				response.sendRedirect("updatereport.jsp");
+			}
+		}
+		
+		if (submitNewReport != null) {
+			TimeReportBean tb3 = new TimeReportBean();
+			tb3.populateBean(request, response);
+			int id=db.newTimeReport((String) session.getAttribute("username"), Integer.parseInt(request.getParameter("week")));
+			
+			db.updateActivityReport(id, tb3.getReportValues());
+			doGet(request,response);
+		}
+		
+		if (viewBtn != null) {
+			session.setAttribute("editable", false);
+			response.sendRedirect("updatereport.jsp");
+			
+		}
+		
+		if (submitEdit != null) {
+			TimeReportBean trb2 = new TimeReportBean();
+			trb2.populateBean(request, response);			
+			db.updateActivityReport((int) session.getAttribute("reportID"), trb2.getReportValues());
+			response.sendRedirect("summaryreport.jsp");
+		}
+		
+		
+		/*
 		switch (request.getParameter("action")) {
 		case "edit":
 			List<Integer> signedReports = db.getSignedTimeReportIDs(); 
@@ -69,7 +135,7 @@ public class TimeReportServlet extends ServletBase {
 		case "submitEdit":
 			TimeReportBean trb2 = new TimeReportBean();
 			trb2.populateBean(request, response);			
-			db.updateTimeReport((int) session.getAttribute("reportID"), trb2.getReportValues());
+			db.updateActivityReport((int) session.getAttribute("reportID"), trb2.getReportValues());
 			response.sendRedirect("summaryreport.jsp");
 			break;
 		case "view":
@@ -82,7 +148,7 @@ public class TimeReportServlet extends ServletBase {
 			TimeReportBean tb3 = new TimeReportBean();
 			tb3.populateBean(request, response);
 			db.newTimeReport((String) session.getAttribute("username"), (Integer) session.getAttribute("week"));
-			db.updateTimeReport((int) session.getAttribute("reportID"), tb3.getReportValues());
+			db.updateActivityReport((int) session.getAttribute("reportID"), tb3.getReportValues());
 			response.sendRedirect("summaryreport.jsp");
 			break;
 		case "remove":
@@ -92,7 +158,8 @@ public class TimeReportServlet extends ServletBase {
 			}
 			break;
 		}
-		doGet(request, response);
+		*/
+		//doGet(request, response);
 	}
 
 }

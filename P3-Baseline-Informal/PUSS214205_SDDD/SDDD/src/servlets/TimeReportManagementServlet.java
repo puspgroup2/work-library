@@ -46,6 +46,9 @@ public class TimeReportManagementServlet extends HttpServlet {
 			bean.setUsername(db.getUserNameFromTimeReport(id));
 			unsignedReports.add(bean);			
 		}
+		
+		
+		
 		session.setAttribute("unsignedReports", unsignedReports);
 		response.sendRedirect("signreport.jsp");
 	}

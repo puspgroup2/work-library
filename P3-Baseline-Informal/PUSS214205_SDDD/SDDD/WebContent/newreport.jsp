@@ -121,7 +121,7 @@
           </div>
           <div class="card-body">
         
-         <form>
+         <form action="TimeReportServlet" method="POST">
             <table class="table table-bordered">
               <tbody>
                 <tr>
@@ -525,7 +525,7 @@
             </table>
             <div class="form-group row">
               <div class="offset-0 col-8">
-                <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                <button name="submitNew" type="submit" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </form>
