@@ -104,7 +104,6 @@ public class TimeReportServlet extends ServletBase {
 		if (submitNewReport != null) {
 			TimeReportBean trb3 = new TimeReportBean();
 			trb3.populateBean(request, response);
-			trb3.setTotalTime(request, response);
 			int id=db.newTimeReport((String) session.getAttribute("username"), Integer.parseInt(request.getParameter("week")));
 			
 			db.updateDocumentTimeD(id, trb3.getReportValuesD());
@@ -132,7 +131,6 @@ public class TimeReportServlet extends ServletBase {
 		if (submitEdit != null) {
 			TimeReportBean trb2 = new TimeReportBean();
 			trb2.populateBean(request, response);
-			trb2.setTotalTime(request, response);
 			int id = (Integer) session.getAttribute("reportID");
 			
 			db.updateDocumentTimeD(id, trb2.getReportValuesD());
