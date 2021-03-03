@@ -20,19 +20,16 @@ public class TimeReportBean implements Serializable {
     private String signed;
     private int totalTime;
     private int reportID = -1;
-    private Map<String, Integer> reportValues = new HashMap<String, Integer>();
-    private String[] fieldNames = {"sdp_d", "sdp_i", "sdp_f", "sdp_r", "sdp_total",
-    							   "srs_d", "srs_i", "srs_f", "srs_r", "srs_total",
-    							   "svvs_d", "svvs_i", "svvs_f", "svvs_r", "svvs_total",
-    							   "stldd_d", "stldd_i", "stldd_f", "stldd_r", "stldd_total",
-    							   "svvi_d", "svvi_i", "svvi_f", "svvi_r", "svvi_total",
-    							   "sddd_d", "sddd_i", "sddd_f", "sddd_r", "sddd_total",
-    							   "svvr_d", "svvr_i", "svvr_f", "svvr_r", "svvr_total",
-    							   "ssd_d", "ssd_i", "ssd_f", "ssd_r", "ssd_total",
-    							   "final_d", "final_i", "final_f", "final_r", "final_total",
-    							   "total_d", "total_i", "total_f", "total_r", "total_total",
-    							   "functional_test", "system_test", "regression_test",
-    							   "meeting", "lecture", "exercise", "computer_exercise", "home_reading", "other"};
+    private Map<String, Integer> reportValuesD = new HashMap<String, Integer>();
+    private Map<String, Integer> reportValuesI = new HashMap<String, Integer>();
+    private Map<String, Integer> reportValuesF = new HashMap<String, Integer>();
+    private Map<String, Integer> reportValuesR = new HashMap<String, Integer>();
+    private Map<String, Integer> reportValuesActivity = new HashMap<String, Integer>();
+    private String[] fieldNamesD = {"sdp_d", "srs_d", "svvs_d", "stldd_d", "svvi_d", "sddd_d", "svvr_d", "ssd_d", "fianl_d", "total_d"}; 
+    private String[] fieldNamesI = {"sdp_i", "srs_i", "svvs_i", "stldd_i", "svvi_i", "sddd_i", "svvr_i", "ssd_i", "final_i", "total_i"}; 
+    private String[] fieldNamesF = {"sdp_f", "srs_f", "svvs_f", "stldd_f", "svvi_f", "sddd_f", "svvr_f", "ssd_f", "final_f", "total_f"};
+    private String[] fieldNamesR = {"sdp_r", "srs_r", "svvs_r", "stldd_r", "svvi_r", "sddd_r", "svvr_r", "ssd_r", "final_r", "total_r"};
+    private String[] fieldNamesActivity = {	"functional_test", "system_test", "regression_test", "meeting", "lecture", "exercise", "computer_exercise", "home_reading", "other"};
 
     /*
       Fetches the week that the report was created for.
@@ -111,16 +108,36 @@ public class TimeReportBean implements Serializable {
       Fetches a list of the reported values, the values are in minutes.
       @return map reportValues
      */
-    public Map<String, Integer> getReportValues() {
-        return reportValues;
+    public Map<String, Integer> getReportValuesD() {
+        return reportValuesD;
+    }
+
+    public Map<String, Integer> getReportValuesI() {
+        return reportValuesI;
+    }
+    
+    public Map<String, Integer> getReportValuesF() {
+        return reportValuesF;
+    }
+    
+    public Map<String, Integer> getReportValuesR() {
+        return reportValuesR;
+    }
+    
+    public Map<String, Integer> getReportValuesActivity() {
+        return reportValuesActivity;
     }
     
     /*
     Sets the reported values into databaseData map .
     @param databaseData
    */
-    public void populateBean(Map<String, Integer> databaseData) {
-    	this.reportValues = databaseData;
+    public void populateBean(Map<String, Integer> databaseDataD, Map<String, Integer> databaseDataI, Map<String, Integer> databaseDataF, Map<String, Integer> databaseDataR, Map<String, Integer> databaseDataActivity) {
+    	reportValuesD = databaseDataD;
+    	reportValuesI = databaseDataI;
+    	reportValuesF = databaseDataF;
+    	reportValuesR = databaseDataR;
+    	reportValuesActivity = databaseDataActivity;
     }
 
     /*
@@ -128,14 +145,50 @@ public class TimeReportBean implements Serializable {
       @param request, response
      */
     public void populateBean(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	for(int i = 0; i < fieldNames.length; i++) {
-    	String Input = request.getParameter(fieldNames[i]); 
-    	if (request.getParameter(Input) == null) {
-    		reportValues.put(fieldNames[i], 0);
-    	} else {
-    		reportValues.put(fieldNames[i], Integer.parseInt(Input));
-    	}
-    	}
+	    for(int i = 0; i < fieldNamesD.length; i++) {
+	    	String Input = request.getParameter(fieldNamesD[i]); 
+	    	if (request.getParameter(Input) == null) {
+	    		reportValuesD.put(fieldNamesD[i], 0);
+	    	} else {
+	    		reportValuesD.put(fieldNamesD[i], Integer.parseInt(Input));
+	    	}
+	    	}
+    	
+    	for(int i = 0; i < fieldNamesI.length; i++) {
+        	String Input = request.getParameter(fieldNamesI[i]); 
+        	if (request.getParameter(Input) == null) {
+        		reportValuesI.put(fieldNamesI[i], 0);
+        	} else {
+        		reportValuesI.put(fieldNamesI[i], Integer.parseInt(Input));
+        	}
+        	}
+    	
+    	for(int i = 0; i < fieldNamesF.length; i++) {
+        	String Input = request.getParameter(fieldNamesF[i]); 
+        	if (request.getParameter(Input) == null) {
+        		reportValuesF.put(fieldNamesF[i], 0);
+        	} else {
+        		reportValuesF.put(fieldNamesF[i], Integer.parseInt(Input));
+        	}
+        	}
+    	
+    	for(int i = 0; i < fieldNamesR.length; i++) {
+        	String Input = request.getParameter(fieldNamesR[i]); 
+        	if (request.getParameter(Input) == null) {
+        		reportValuesR.put(fieldNamesR[i], 0);
+        	} else {
+        		reportValuesR.put(fieldNamesR[i], Integer.parseInt(Input));
+        	}
+        	}
+    	
+    	for(int i = 0; i < fieldNamesActivity.length; i++) {
+        	String Input = request.getParameter(fieldNamesActivity[i]); 
+        	if (request.getParameter(Input) == null) {
+        		reportValuesActivity.put(fieldNamesActivity[i], 0);
+        	} else {
+        		reportValuesActivity.put(fieldNamesActivity[i], Integer.parseInt(Input));
+        	}
+        	}
     }
 
 }
