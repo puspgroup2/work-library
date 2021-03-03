@@ -748,6 +748,7 @@ public class DataBase {
 		e.printStackTrace();
 	}
 	
+	/*Helper method */
 	public ResultSet select(int reportID, String attribute, String relation) {
 		String sql = "SELECT " + attribute + " from " + relation;
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -756,6 +757,16 @@ public class DataBase {
 			handleSQLException(e);
 		}
 		return null;
+	}
+	
+	public boolean valueExists(int reportID, String target, ResultSet rs) throws SQLException {
+		if (rs == null) return false;
+		while (rs.next()) {
+			if (rs.getInt("reportID") == reportID) {
+				return rs.getInt(target) != 0;
+			}
+		}
+		return false;
 	}
 	
 	public static void main(String[] args) {
