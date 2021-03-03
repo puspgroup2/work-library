@@ -107,7 +107,7 @@
         	    <input type="submit" name="new" value="Create New Time Report" class="list-group-item list-group-item-action bg-light astext">
             </form>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-    	       	<form action="TimeReportManagementServlet" method="POST">
+    	       	<form action="TimeReportManagementServlet">
         	        <input type="submit" value="Sign Time Reports" class="list-group-item list-group-item-action bg-light astext">
               	</form>
             </c:if>
