@@ -3,6 +3,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -22,7 +23,6 @@ import database.DataBase;
 @WebServlet("/TimeReportServlet")
 public class TimeReportServlet extends ServletBase {
 	private static final long serialVersionUID = 1L;
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -40,11 +40,11 @@ public class TimeReportServlet extends ServletBase {
 			trb.setWeek(db.getWeekFromTimeReport(i));
 			TimeReportBeanCan.add(trb);			
 		}
-
 		
 		List<TimeReportBean> signedReports = new ArrayList<TimeReportBean>();
+		List<Integer> signedTimeReportIDs = db.getSignedTimeReportIDs();
 		
-		for (Integer x: db.getSignedTimeReportIDs()) {
+		for (Integer x: signedTimeReportIDs) {
 			TimeReportBean signedBean = new TimeReportBean();
 			signedBean.setReportID(x);
 			signedBean.setTotalTime(db.getTotalMinutesFromTimeReport(x));
@@ -54,16 +54,11 @@ public class TimeReportServlet extends ServletBase {
 			signedReports.add(signedBean);
 		}
 		
+		TimeReportBeanCan.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
+		signedReports.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
+		
 		session.setAttribute("signedReports", signedReports);
-		
-		
-		
-		
-		
-		
 		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);
-
-		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);	
 
 		response.sendRedirect("summaryreport.jsp");
 	}
@@ -76,9 +71,7 @@ public class TimeReportServlet extends ServletBase {
 		db.connect();
 		HttpSession session = request.getSession();
 		
-		TimeReportBean trb1 = new TimeReportBean();
-		//trb1.populateBean(db.getActivityReport((Integer) session.getAttribute("reportID")));
-		session.setAttribute("timeReport", trb1);
+		
 		
 		String submitNewReport = request.getParameter("submitNew"); //Submit button in newreport.jsp
 		String editSelectedBtn = request.getParameter("editBtn");  //edit selected button in summaryreport.jsp
@@ -109,11 +102,17 @@ public class TimeReportServlet extends ServletBase {
 		}
 		
 		if (submitNewReport != null) {
-			TimeReportBean tb3 = new TimeReportBean();
-			tb3.populateBean(request, response);
+			TimeReportBean trb3 = new TimeReportBean();
+			trb3.populateBean(request, response);
+			trb3.setTotalTime(request, response);
 			int id=db.newTimeReport((String) session.getAttribute("username"), Integer.parseInt(request.getParameter("week")));
 			
-			db.updateActivityReport(id, tb3.getReportValues());
+			db.updateDocumentTimeD(id, trb3.getReportValuesD());
+			db.updateDocumentTimeI(id, trb3.getReportValuesI());
+			db.updateDocumentTimeF(id, trb3.getReportValuesF());
+			db.updateDocumentTimeR(id, trb3.getReportValuesR());
+			db.updateActivityReport(id, trb3.getReportValuesActivity());
+			db.updateTotalMinutes(id, trb3.getTotalTime());
 			doGet(request,response);
 		}
 		
@@ -125,52 +124,21 @@ public class TimeReportServlet extends ServletBase {
 		
 		if (submitEdit != null) {
 			TimeReportBean trb2 = new TimeReportBean();
-			trb2.populateBean(request, response);			
-			db.updateActivityReport((int) session.getAttribute("reportID"), trb2.getReportValues());
-			response.sendRedirect("summaryreport.jsp");
+			trb2.populateBean(request, response);
+			trb2.setTotalTime(request, response);
+			int id=db.newTimeReport((String) session.getAttribute("username"), Integer.parseInt(request.getParameter("week")));
+			
+			db.updateDocumentTimeD(id, trb2.getReportValuesD());
+			db.updateDocumentTimeI(id, trb2.getReportValuesI());
+			db.updateDocumentTimeF(id, trb2.getReportValuesF());
+			db.updateDocumentTimeR(id, trb2.getReportValuesR());
+			db.updateActivityReport(id, trb2.getReportValuesActivity());
+			db.updateTotalMinutes(id, trb2.getTotalTime());
+			
+			doGet(request, response);
 		}
+
 		
-		
-		/*
-		switch (request.getParameter("action")) {
-		case "edit":
-			List<Integer> signedReports = db.getSignedTimeReportIDs(); 
-			if(!signedReports.contains(session.getAttribute("reportID"))) {
-				session.setAttribute("editable", true);
-				response.sendRedirect("updatereport.jsp");
-			}else {
-				session.setAttribute("editable", false);
-				response.sendRedirect("updatereport.jsp");
-			}
-			break;
-		case "submitEdit":
-			TimeReportBean trb2 = new TimeReportBean();
-			trb2.populateBean(request, response);			
-			db.updateActivityReport((int) session.getAttribute("reportID"), trb2.getReportValues());
-			response.sendRedirect("summaryreport.jsp");
-			break;
-		case "view":
-			session.setAttribute("editable", false);
-			response.sendRedirect("updatereport.jsp");
-			break;
-		case "new":
-			response.sendRedirect("newreport.jsp");
-		case "submitNew":
-			TimeReportBean tb3 = new TimeReportBean();
-			tb3.populateBean(request, response);
-			db.newTimeReport((String) session.getAttribute("username"), (Integer) session.getAttribute("week"));
-			db.updateActivityReport((int) session.getAttribute("reportID"), tb3.getReportValues());
-			response.sendRedirect("summaryreport.jsp");
-			break;
-		case "remove":
-			if(session.getAttribute("role") == "PG") {
-			db.deleteTimeReport((int) session.getAttribute("reportID"));
-			response.sendRedirect("summaryreport.jsp");
-			}
-			break;
-		}
-		*/
-		//doGet(request, response);
 	}
 
 }
