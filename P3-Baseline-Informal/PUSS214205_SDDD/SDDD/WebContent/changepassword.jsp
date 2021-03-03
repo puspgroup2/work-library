@@ -18,196 +18,192 @@
 </head>
 
 <body>
-<%
-	if(session.getAttribute("username") == null) {
-		response.sendRedirect("login.jsp");
-	}
-%>
-<nav class="navbar navbar-light navbar-expand-md bg-light">
-    <a class="navbar-brand abs">TimeMate</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <%
+    if(session.getAttribute("username") == null) {
+      response.sendRedirect("login.jsp");
+    }
+  %>
 
-    <div class="navbar-collapse collapse" id="collapsingNavbar">
+  <nav class="navbar navbar-light navbar-expand-md bg-light">
+      <a class="navbar-brand abs">TimeMate</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse collapse" id="collapsingNavbar">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="index.jsp">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="summaryreport.jsp">Time Report</a>
-            </li>
-            <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-            	<form action="UserManagementServlet">
-                <input type="submit" value="User Management" class="nav-link astext">
-              </form>
+          <li class="nav-item">
+              <a class="nav-link" href="index.jsp">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="summaryreport.jsp">Time Report</a>
+          </li>
+          <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+            <form action="UserManagementServlet">
+              <input type="submit" value="User Management" class="nav-link astext">
+            </form>
           </c:if>
-            <c:if test = "${sessionScope.role eq 'ADMIN'}">
-            	<form action="AdministrationServlet">
-                <input type="submit" value="Administration" class="nav-link astext">
-              </form>
-            </c:if>
+          <c:if test = "${sessionScope.role eq 'ADMIN'}">
+            <form action="AdministrationServlet">
+              <input type="submit" value="Administration" class="nav-link astext">
+            </form>
+          </c:if>
         </ul>
 
         <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
-                  <input type="submit" value="Change Password" class="btn btn-primary" style="margin-right:7px">
-                </form>
-              </li>
-              <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0">
-                  <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#logoutModal">Log out</a>
-                </form>
-              </li> 
-          </ul>
+          <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
+              <input type="submit" value="Change Password" class="btn btn-primary" style="margin-right:7px">
+            </form>
+          </li>
+          <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0">
+              <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#logoutModal">Log out</a>
+            </form>
+          </li> 
+        </ul>
       </div>
   </nav>
 
-  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-        <h4>Log Out <i class="fa fa-lock"></i></h4>
+  <c:if test="${sessionScope.passwordMessage eq 0}">
+      <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+          Your new password can not be the same as your old
       </div>
-      <div class="modal-body">
-        <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
-        <div class="actionsBtns">
+  </c:if>
+
+  <c:if test="${sessionScope.passwordMessage eq 1}">
+      <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+          Database error, try again
+      </div>
+  </c:if>
+
+  <c:if test="${sessionScope.passwordMessage eq 2}">
+      <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+          Password changed succesfully
+      </div>
+  </c:if>
+
+  <c:if test="${sessionScope.passwordMessage eq 3}">
+      <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+          Your current password was wrong, try again
+      </div>
+  </c:if>
+
+
+  <div>
+    <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:1rem; margin-bottom:50px;">
+      <div class="card-header"><h5>Change password</h5></div>
+      <div class="card-body">
+        <form action="PasswordChangerServlet" method="post">
+          <!--Current password input-->
+          <div class="input-group">
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-key"></i></div>
+            </div>
+            <input class="form-control" type="password" placeholder="Current password" id="oldPassword" name="oldPassword">
+          </div>
+
+          <!--New password input-->
+          <div class="input-group" style="margin-top:10px">
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-lock"></i></div>
+            </div>
+            <input class="form-control" type="password" placeholder="New password" id="password" name="password">
+          </div>
+
+          <!--New password input-->
+          <div class="input-group" style="margin-top:10px">
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fa fa-lock"></i></div>
+            </div>
+            <input class="form-control" type="password" placeholder="Repeat new password" id="password2">
+          </div>
+
+          <!--Change password button-->
+          <div class="row justify-content-center" style="margin-top:20px">
+            <button type="submit" class="btn btn-success justify-content-center" id="changePassword" disabled>Change password</button>
+          </div>
+        </form>
+
+        <!--Password requirements-->
+        <div style="margin-top:5px">
+          <a><b>Your password must fullfil the following requirements:</b></a><br>
+          <span id="8chars" style="color:#FF0004;">8 characters long</span><br>
+          <span id="ucase" style="color:#FF0004;">Atleast one uppercase letter</span><br>
+          <span id="lcase" style="color:#FF0004;">Atleast one lowercasecase letter</span><br>
+          <span id="num" style="color:#FF0004;">Atleast one number</span><br>
+          <span id="pwmatch" style="color:#FF0004;">The passwords must match</span> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+          <h4>Log Out <i class="fa fa-lock"></i></h4>
+        </div>
+        <div class="modal-body">
+          <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
+          <div class="actionsBtns">
             <form action="LogOut">
-            
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input type="submit" class="btn btn-default btn-primary" value="Logout" />
-	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
             </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-
-<c:if test="${sessionScope.passwordMessage eq 0}">
-    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
-        Your new password can not be the same as your old
-    </div>
-</c:if>
-
-<c:if test="${sessionScope.passwordMessage eq 1}">
-    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
-        Database error, try again
-    </div>
-</c:if>
-
-<c:if test="${sessionScope.passwordMessage eq 2}">
-    <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
-        Password changed succesfully
-    </div>
-</c:if>
-
-<c:if test="${sessionScope.passwordMessage eq 3}">
-    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
-        Your current password was wrong, try again
-    </div>
-</c:if>
-
-
-<div>
-  <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:1rem; margin-bottom:50px;">
-    <div class="card-header">
-      <h5>Change password</h5>
-    </div>
-    <div class="card-body">
-    <form action="PasswordChangerServlet" method="post">
-      <!--Current password input-->
-      <div class="input-group">
-        <div class="input-group-append">
-          <div class="input-group-text"><i class="fa fa-key"></i></div>
-        </div>
-        <input class="form-control" type="password" placeholder="Current password" id="oldPassword" name="oldPassword">
-      </div>
-
-      <!--New password input-->
-      <div class="input-group" style="margin-top:10px">
-        <div class="input-group-append">
-          <div class="input-group-text"><i class="fa fa-lock"></i></div>
-        </div>
-        <input class="form-control" type="password" placeholder="New password" id="password" name="password">
-      </div>
-
-      <!--New password input-->
-      <div class="input-group" style="margin-top:10px">
-        <div class="input-group-append">
-          <div class="input-group-text"><i class="fa fa-lock"></i></div>
-        </div>
-        <input class="form-control" type="password" placeholder="Repeat new password" id="password2">
-      </div>
-
-      <!--Change password button-->
-      <div class="row justify-content-center" style="margin-top:20px">
-        <button type="submit" class="btn btn-success justify-content-center" id="changePassword" disabled>Change password</button>
-      </div>
-    </form>
-
-      <!--Password requirements-->
-      <div style="margin-top:5px">
-        <a><b>Your password must fullfil the following requirements:</b></a><br>
-        <span id="8chars" style="color:#FF0004;">8 characters long</span><br>
-        <span id="ucase" style="color:#FF0004;">Atleast one uppercase letter</span><br>
-        <span id="lcase" style="color:#FF0004;">Atleast one lowercasecase letter</span><br>
-        <span id="num" style="color:#FF0004;">Atleast one number</span><br>
-        <span id="pwmatch" style="color:#FF0004;">The passwords must match</span> 
-      </div>
-    
-    </div>
-  </div>
-</div>
-
-<script>
-  $("input[type=password]").keyup(function(){
-    var ucase = new RegExp("[A-Z]+");
-    var lcase = new RegExp("[a-z]+");
-    var num = new RegExp("[0-9]+");
-    
-    if($("#password").val().length >= 8){
-      $("#8chars").css("color","#00A41E");
-    }else{
-      $("#8chars").css("color","#FF0004");
-      $('#changePassword').prop('disabled', true);
-    }
-    
-    if(ucase.test($("#password").val())){
-      $("#ucase").css("color","#00A41E");
-    }else{
-      $("#ucase").css("color","#FF0004");
-      $('#changePassword').prop('disabled', true);
-    }
-    
-    if(lcase.test($("#password").val())){
-      $("#lcase").css("color","#00A41E");
-    }else{
-      $("#lcase").css("color","#FF0004");
-      $('#changePassword').prop('disabled', true);
-    }
-    
-    if(num.test($("#password").val())){
-      $("#num").css("color","#00A41E");
-    }else{
-      $("#num").css("color","#FF0004");
-      $('#changePassword').prop('disabled', true);
-    }
-    
-    if($("#password").val() == $("#password2").val() && $("#password").val() != ""){
-      $("#pwmatch").css("color","#00A41E");
-    }else{
-      $("#pwmatch").css("color","#FF0004");
-      $('#changePassword').prop('disabled', true);
-    }
-    
-    if($("#password").val() == $("#password2").val() && num.test($("#password").val()) && lcase.test($("#password").val()) && ucase.test($("#password").val()) && $("#password").val().length >= 8) {
-    	$('#changePassword').prop('disabled', false);
-    }
-    
-  });
+  <script>
+    $("input[type=password]").keyup(function(){
+      var ucase = new RegExp("[A-Z]+");
+      var lcase = new RegExp("[a-z]+");
+      var num = new RegExp("[0-9]+");
+      
+      if($("#password").val().length >= 8){
+        $("#8chars").css("color","#00A41E");
+      }else{
+        $("#8chars").css("color","#FF0004");
+        $('#changePassword').prop('disabled', true);
+      }
+      
+      if(ucase.test($("#password").val())){
+        $("#ucase").css("color","#00A41E");
+      }else{
+        $("#ucase").css("color","#FF0004");
+        $('#changePassword').prop('disabled', true);
+      }
+      
+      if(lcase.test($("#password").val())){
+        $("#lcase").css("color","#00A41E");
+      }else{
+        $("#lcase").css("color","#FF0004");
+        $('#changePassword').prop('disabled', true);
+      }
+      
+      if(num.test($("#password").val())){
+        $("#num").css("color","#00A41E");
+      }else{
+        $("#num").css("color","#FF0004");
+        $('#changePassword').prop('disabled', true);
+      }
+      
+      if($("#password").val() == $("#password2").val() && $("#password").val() != ""){
+        $("#pwmatch").css("color","#00A41E");
+      }else{
+        $("#pwmatch").css("color","#FF0004");
+        $('#changePassword').prop('disabled', true);
+      }
+      
+      if($("#password").val() == $("#password2").val() && num.test($("#password").val()) && lcase.test($("#password").val()) && ucase.test($("#password").val()) && $("#password").val().length >= 8) {
+        $('#changePassword').prop('disabled', false);
+      }
+      
+    });
   </script>
 </body>
