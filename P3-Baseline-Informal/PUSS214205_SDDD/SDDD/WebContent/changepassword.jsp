@@ -87,6 +87,11 @@
 </div>
 
 
+<c:if test="${sessionScope.passwordMessage eq 0}">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        Your new password can not be the same as your old
+    </div>
+</c:if>
 
 <c:if test="${sessionScope.passwordMessage eq 1}">
     <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
@@ -97,12 +102,6 @@
 <c:if test="${sessionScope.passwordMessage eq 2}">
     <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
         Password changed succesfully
-    </div>
-</c:if>
-
-<c:if test="${sessionScope.passwordMessage eq 0}">
-    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
-        Your new password can not be the same as your old
     </div>
 </c:if>
 
