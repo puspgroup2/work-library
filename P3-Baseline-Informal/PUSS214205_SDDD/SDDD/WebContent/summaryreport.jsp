@@ -158,7 +158,7 @@
          <table class="table table-striped">
          <thead>
            <tr>
-             <th scope="col" data-field="state">Selection</th>
+             
              <th scope="col">User</th>
              
              <th scope="col">Week</th>

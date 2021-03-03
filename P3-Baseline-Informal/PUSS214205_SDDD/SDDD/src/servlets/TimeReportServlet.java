@@ -85,6 +85,13 @@ public class TimeReportServlet extends ServletBase {
 		String viewBtn = request.getParameter("viewBtn");			//"view selected" button in summaryreport.jsp
 		String submitEdit = request.getParameter("submitEdit");		//submit button in updatereport.jsp
 		String createNewNav = request.getParameter("new");			//navigation to newreport.jsp
+		String viewSummary = request.getParameter("summary");
+		
+		
+		if (viewSummary != null) {
+			response.sendRedirect("summaryreport.jsp");
+		}
+		
 		
 		if (createNewNav != null) {
 			response.sendRedirect("newreport.jsp");
