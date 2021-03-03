@@ -40,7 +40,7 @@ public class ServletBase extends HttpServlet {
 	protected Connection conn = null;
 	
 	/**
-	 * Do we need this class/constructor?? 
+	 * Default constructor. 
 	 */
     public ServletBase() {
 

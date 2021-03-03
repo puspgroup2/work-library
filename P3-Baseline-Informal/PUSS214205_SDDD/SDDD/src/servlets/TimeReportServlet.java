@@ -40,6 +40,7 @@ public class TimeReportServlet extends ServletBase {
 			trb.setWeek(db.getWeekFromTimeReport(i));
 			TimeReportBeanCan.add(trb);			
 		}
+
 		
 		List<TimeReportBean> signedReports = new ArrayList<TimeReportBean>();
 		
@@ -61,6 +62,9 @@ public class TimeReportServlet extends ServletBase {
 		
 		
 		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);
+
+		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);	
+
 		response.sendRedirect("summaryreport.jsp");
 	}
 

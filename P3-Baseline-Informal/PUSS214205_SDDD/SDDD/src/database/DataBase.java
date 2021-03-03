@@ -250,6 +250,31 @@ public class DataBase {
         return getReportID(userName, week);
     }
 	
+	/**
+	 * Updates the totalMinutes attribute associated with the given reportID.
+	 * @param reportID The reportID number which attribute is to be altered.
+	 * @param totalMinutes The number of minutes the user has worked during the week.
+	 * @return true if update was successfully executed.
+	 */
+	public boolean updateTotalMinutes(int reportID, int totalMinutes) {
+		String sql = "UPDATE TimeReports SET totalMinutes = ? WHERE reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, totalMinutes);
+			ps.setInt(2, reportID);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+		return false;
+	}
+	/**
+	 * Updates the value of the week associated with a given reportID.
+	 * @param reportID The reportID of the Time Report that is to be altered.
+	 * @param userName The user's unique identifier.
+	 * @param newWeek The new week value. 
+	 * @return True if there was not already a Time Report for that week and user.
+	 */
 	public boolean updateWeek(int reportID, String userName, int newWeek) {
 		if (this.weekAlreadyExists(userName, newWeek)) return false;
 		String sql = "UPDATE TimeReports "
@@ -267,6 +292,7 @@ public class DataBase {
 
 	/* Helper method for updateTimeReport */
 	private boolean weekAlreadyExists(String userName, Integer week) {
+		if (week < 0 || week > 54) return false;
 		String sql = "SELECT * from TimeReports where Week = ? and userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, week);
@@ -782,6 +808,7 @@ public class DataBase {
 		return null;
 	}
 	
+	// helper method, might not be used.
 	public boolean valueExists(int reportID, String target, ResultSet rs) throws SQLException {
 		if (rs == null) return false;
 		while (rs.next()) {
@@ -800,12 +827,8 @@ public class DataBase {
 
 		System.out.println(db.updateDocumentTimeD(1, db.getDocumentTimeD(5)));
 		
-		/**
-		db.newTimeReport("Assar", 9);
-		HashMap<String, Integer> map = new HashMap<>();
-		map.put("totalMinutes", 30);
-		db.updateTimeReport(9, map);
-		*/
+		db.updateTotalMinutes(3, 2);
+			
 	}
 	
 }

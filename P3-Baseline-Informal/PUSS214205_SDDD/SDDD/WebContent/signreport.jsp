@@ -169,7 +169,11 @@
       "timeReports": JSON.stringify(ids)
     },
     (data) => {
-
+      if (data == 'ok') {
+        // Reload the page.
+        location.href = "/TimeReportManagementServlet";
+        location.reload();
+      }
     });
   })
 
