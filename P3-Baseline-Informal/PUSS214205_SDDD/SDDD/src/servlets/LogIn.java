@@ -38,8 +38,9 @@ import javax.servlet.http.HttpServletResponse;
 public class LogIn extends ServletBase 
 {
 	private static final long serialVersionUID = 1L;
-	private final int PW_CHANGE_SUCCESS_ = 1;
-	private final int PW_CHANGE_FAILED_ = 0;
+	private final int USER_LOGIN_FAILED_ = 0;
+	private final int PW_CHANGE_FAILED_ = 1;
+	private final int PW_CHANGE_SUCCESS_ = 2;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -65,25 +66,29 @@ public class LogIn extends ServletBase
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String salt = db.getSalt(username);
 		
 		if (username == null || password == null) {
-			response.sendError(LOGIN_FALSE);
-			session.setAttribute("errorMessage", LOGIN_FALSE);
+			session.setAttribute("message", USER_LOGIN_FAILED_);
 		} else {
 			UserBean ub = new UserBean();
-			String hashPassword = PasswordHandler.hashPassword(password, salt);
-			System.out.println(hashPassword);
-			ub.populateBean(username, hashPassword);
-			if (db.checkLogin(ub)) {
-				ub.setRole(db.getRole(username));
-				session.setAttribute("username", ub.getUserName());
-				session.setAttribute("role", ub.getRole());
-				session.setAttribute("state", LOGIN_TRUE);
-				response.sendRedirect("index.jsp");
+			String salt = db.getSalt(username);
+			if (salt != null) {
+				String hashPassword = PasswordHandler.hashPassword(password, salt);
+				ub.populateBean(username, hashPassword);
+				if (db.checkLogin(ub)) {
+					ub.setRole(db.getRole(username));
+					session.setAttribute("username", ub.getUserName());
+					session.setAttribute("role", ub.getRole());
+					session.setAttribute("state", LOGIN_TRUE);
+					response.sendRedirect("index.jsp");
+				} else {
+					//failed login
+					session.setAttribute("message", USER_LOGIN_FAILED_);
+					response.sendRedirect("login.jsp");
+				}
 			} else {
 				//failed login
-				session.setAttribute("state", LOGIN_FALSE);
+				session.setAttribute("message", USER_LOGIN_FAILED_);
 				response.sendRedirect("login.jsp");
 			}
 		}
