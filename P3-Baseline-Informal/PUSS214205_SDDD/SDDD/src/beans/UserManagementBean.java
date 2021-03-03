@@ -13,16 +13,16 @@ public class UserManagementBean implements Serializable {
 	private static final long serialVersionUID = 1L;
     private Map<String, String> userList = new HashMap<String, String>();
     /*
-      Fetches a list of all users in the system.
-      @return List usersList.
+      Fetches a map of all users in the system.
+      @return Map usersList.
      */
     public Map<String, String> getUserList() {
         return userList;
     }
 
     /*
-      Adds a user to the list of all users. Requires "Project leader" role.
-      @param request, response
+      Adds a user to the Map of all users. Requires "Project leader" role.
+      @param map
      */
     public void populateBean(Map<String, String> map){
     	userList.putAll(map); // get the string that the user entered in the form  	
