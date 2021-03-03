@@ -329,6 +329,8 @@ public class DataBase {
 	private boolean updateDocumentTime(int reportID, Map<String, Integer> documentTime, char type) {
 		if (this.select(reportID, "*", "TimeReports") == null) return false;
 		
+		System.out.println(this.select(reportID, "*", "TimeReports"));
+		
 		String sql;
 		if(this.select(reportID, "*", "DocumentTime" + type) == null) {
 			String addDocumentTime = "INSERT INTO DocumentTime" + type + "(reportID) VALUES (?)";
@@ -753,8 +755,9 @@ public class DataBase {
 	
 	/*Helper method */
 	public ResultSet select(int reportID, String attribute, String relation) {
-		String sql = "SELECT " + attribute + " from " + relation;
+		String sql = "SELECT " + attribute + " from " + relation + " WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) return rs;
 		} catch (SQLException e) {
