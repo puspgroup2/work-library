@@ -115,7 +115,7 @@
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
-    <form action="TimeReportServlet">
+    
   <div id="page-content-wrapper">
     
   <div class="collapse multi-collapse show"  id="collapseExample">
@@ -187,11 +187,11 @@
     
     
     
-       
+       <form action="TimeReportServlet" method="POST">
         <div class="d-flex justify-content-center" style="margin-top:5px">
             <form class="form-inline my-2 my-lg-0" style="margin-right:2.5px">
-                <input type="editBtn" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
-                <input type="submit" value="View selected report" class="btn btn-success" style="margin-left:3px; margin-right:3px">
+                <input type="submit" name="editBtn" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
+                <input type="submit" name="viewBtn" value="View selected report" class="btn btn-success" style="margin-left:3px; margin-right:3px">
                 <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample collapseExample2" style="margin-left:3px">
                     Show signed reports
