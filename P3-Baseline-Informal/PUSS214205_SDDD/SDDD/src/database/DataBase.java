@@ -250,6 +250,13 @@ public class DataBase {
         return getReportID(userName, week);
     }
 	
+	/**
+	 * Updates the value of the week associated with a given reportID.
+	 * @param reportID The reportID of the Time Report that is to be altered.
+	 * @param userName The user's unique identifier.
+	 * @param newWeek The new week value. 
+	 * @return True if there was not already a Time Report for that week and user.
+	 */
 	public boolean updateWeek(int reportID, String userName, int newWeek) {
 		if (this.weekAlreadyExists(userName, newWeek)) return false;
 		String sql = "UPDATE TimeReports "
@@ -782,6 +789,7 @@ public class DataBase {
 		return null;
 	}
 	
+	// helper method, might not be used.
 	public boolean valueExists(int reportID, String target, ResultSet rs) throws SQLException {
 		if (rs == null) return false;
 		while (rs.next()) {
@@ -800,12 +808,8 @@ public class DataBase {
 
 		System.out.println(db.updateDocumentTimeD(1, db.getDocumentTimeD(5)));
 		
-		/**
-		db.newTimeReport("Assar", 9);
-		HashMap<String, Integer> map = new HashMap<>();
-		map.put("totalMinutes", 30);
-		db.updateTimeReport(9, map);
-		*/
+		int reportID = db.newTimeReport("Assar", 5);
+		db.updateWeek(reportID, "Assar", 4);
 	}
 	
 }
