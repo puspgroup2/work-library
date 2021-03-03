@@ -105,10 +105,9 @@ public class LogIn extends ServletBase
 			MailHandler mh = new MailHandler();
 			String pw = PasswordHandler.generatePassword();
 			mh.sendPasswordMail(mail, userName, pw);
-
-			String hashedPw = PasswordHandler.hashPassword(pw, PasswordHandler.generateSalt());
+			db.changePassword(userName, PasswordHandler.hashPassword(pw, db.getSalt(userName)));
 			
-			if (db.changePassword(userName, hashedPw)) {
+			if (db.changePassword(userName, pw)) {
 				//TODO Handle potential error
 			}
 			session.setAttribute("message", PW_CHANGE_SUCCESS_);
