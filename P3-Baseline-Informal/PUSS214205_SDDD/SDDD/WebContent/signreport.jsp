@@ -1,11 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
+<%@page import="beans.TimeReportBean"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
@@ -45,9 +51,9 @@
               </form>
             </c:if>
             <c:if test = "${sessionScope.role eq 'ADMIN'}">
-            	<form action="AdministrationServlet">
-                <input type="submit" value="Administration" class="nav-link astext">
-              </form>
+            	<li class="nav-item">
+              		<a class="nav-link" href="administration.jsp">Administration</a>
+            	</li>
             </c:if>
         </ul>
 
@@ -95,10 +101,16 @@
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Options</div>
             <div class="list-group list-group-flush">
-            <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
-            <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
+            <form action="TimeReportServlet">
+       	        <input type="submit" name="summary" value="Time Report Summary" class="list-group-item list-group-item-action bg-light astext">
+            </form>
+            <form action="TimeReportServlet">
+        	    <input type="submit" name="new" value="Create New Time Report" class="list-group-item list-group-item-action bg-light astext">
+            </form>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Sign Time Reports</b></a>
+    	       	<form action="TimeReportManagementServlet">
+        	        <input type="submit" value="Sign Time Reports" class="list-group-item list-group-item-action bg-light astext">
+              	</form>
             </c:if>
             </div>
         </div>
@@ -113,64 +125,80 @@
             <tr>
               <th scope="col" data-field="state">Signed</th>
               <th scope="col">User</th>
-              <th scope="col">Last update</th>
               <th scope="col">Week</th>
-              <th scope="col">Development</th>
-              <th scope="col">Informal review</th>
-              <th scope="col">Formal review</th>
-              <th scope="col">Rework</th>
-              <th scope="col">Other</th>
               <th scope="col">Total time</th>
-              <th scope="col">Signed</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                </div>
-              </td>
-              <td>${username}</td>
-              <td>date</td>
-              <td>week</td>
-              <td>dev</td>
-              <td>inf</td>
-              <td>for</td>
-              <td>rew</td>
-              <td>other</td>
-              <td>total</td>
-              <td>signed</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                </div>
-              </td>
-              <td>${username}</td>
-              <td>date</td>
-              <td>week</td>
-              <td>dev</td>
-              <td>inf</td>
-              <td>for</td>
-              <td>rew</td>
-              <td>other</td>
-              <td>total</td>
-              <td>signed</td>
-            </tr>
+
+            <% List<TimeReportBean> timeReports = (List<TimeReportBean>) session.getAttribute("unsignedReports"); %>
+
+            <% for (TimeReportBean report: timeReports) { %>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="" id="<%=report.getReportID()%>">
+                    </div>
+                  </td>
+                  <td><%= report.getUsername() %></td>
+                  <td><%= report.getWeek() %></td>
+                  <td><%= report.getTotalTime() %></td>
+                </tr>
+            <%}%>
           </tbody>
         </table>
         </div>
+
+        <!-- Submit button -->
         <div class="d-flex justify-content-center">
-            <form class="form-inline my-2 my-lg-0" action="GetReport" style="margin-right:2.5px">
-                <input type="submit" value="Confirm" class="btn btn-success" style="margin-right:3px">
-                
-            </form>
+          <button id="submit" class="btn btn-success">Submit</button>
         </div>
     </div>
     <!-- /#page-content-wrapper -->
 
+
 </div>
+
+<script>
+  $('#submit').on('click', () => {
+    const boxes = getSignedReports();
+    const ids = boxes.map(box => $(box).attr('id'));
+    console.log(ids)
+    $.post("/TimeReportManagementServlet",  {
+      "input": "sign",
+      "timeReports": JSON.stringify(ids)
+    },
+    (data) => {
+
+    });
+  })
+
+  function getReports(signed) {
+    let boxes = [];
+    for (box of $(".form-check-input")) {
+      if (signed) {
+        if (box.checked) {
+           boxes.push(box);
+        }
+      } else {
+        if (!box.checked) {
+           boxes.push(box);
+        }
+      }
+
+    }
+    return boxes;
+  }
+
+  function getUnsignedReports() {
+    return getReports(false);
+  }
+
+  function getSignedReports() {
+    return getReports(true);
+  }
+
+
+</script>
 
 </body>

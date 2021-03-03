@@ -21,15 +21,15 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-light navbar-expand-md bg-light">
+      <a class="navbar-brand abs">TimeMate</a>
 
-<nav class="navbar navbar-light navbar-expand-md bg-light">
-    <a class="navbar-brand abs">TimeMate</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+          <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="navbar-collapse collapse" id="collapsingNavbar">
-        <ul class="navbar-nav">
+      <div class="navbar-collapse collapse" id="collapsingNavbar">
+          <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="index.jsp">Home</a>
             </li>
@@ -37,18 +37,18 @@
               <a class="nav-link" href="summaryreport.jsp">Time Report</a>
             </li>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-            	<form action="UserManagementServlet">
+              <form action="UserManagementServlet">
                 <input type="submit" value="User Management" class="nav-link astext">
               </form>
             </c:if>
             <c:if test = "${sessionScope.role eq 'ADMIN'}">
-            	<form action="AdministrationServlet">
+              <form action="AdministrationServlet">
                 <input type="submit" value="Administration" class="nav-link astext">
               </form>
             </c:if>
-        </ul>
+          </ul>
 
-        <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
                   <input type="submit" value="Change Password" class="btn btn-primary" style="margin-right:7px">
@@ -63,124 +63,124 @@
       </div>
   </nav>
 
-  
-
-  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-        <h4>Log Out <i class="fa fa-lock"></i></h4>
-      </div>
-      <div class="modal-body">
-        <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
-        <div class="actionsBtns">
-            <form action="LogOut">
+  <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 30rem; margin-top:50px; margin-bottom:50px;">
+    <div class="card-header">User Management</div>
+    <div class="card-body">
+      <form action="UserManagementServlet" method="post">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">PG</th>
+              <th scope="col">UG</th>
+              <th scope="col">TG</th>
+              <th scope="col">SG</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%UserManagementBean ub = (UserManagementBean) session.getAttribute("UserManagementBean");
+            HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserList();
             
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input type="submit" class="btn btn-default btn-primary" value="Logout" />
-	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            for(Map.Entry<String, String> entry : userMap.entrySet()) {
+              String role = entry.getValue();
+              if(entry.getValue() == null) {
+                role = "";
+              }%>
+            
+            <tr>
+              <td><%=entry.getKey()%></td>
+              <%if(session.getAttribute("role").equals("ADMIN")) { %>
+                <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="PG" <%
+                if(role.equals("PG")) {%>
+                  checked
+                <%}%>></td>
 
+                <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="UG" <%
+                if(role.equals("UG")) {%>
+                  checked
+                <%}%>></td>
 
-<div class="card mx-auto rounded shadow shadow-sm" style="max-width: 30rem; margin-top:50px; margin-bottom:50px;">
-  <div class="card-header">
-  User Management
-  </div>
-  <div class="card-body">
-  <form action="UserManagementServlet" method="post">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">User</th>
-          <th scope="col">PG</th>
-          <th scope="col">UG</th>
-          <th scope="col">TG</th>
-          <th scope="col">SG</th>
-        </tr>
-      </thead>
-      <tbody>
-      <%
-		UserManagementBean ub = (UserManagementBean) session.getAttribute("UserManagementBean");
-		HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserList();
-		
-		for(Map.Entry<String, String> entry : userMap.entrySet()) {
-			String role = entry.getValue();
-			if(entry.getValue() == null) {
-				role = "";
-			}
-			
-			%>
-			<tr>
-			<td><%=entry.getKey()%></td>
-      		<% if(session.getAttribute("role").equals("ADMIN")) { %>
-				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="PG" <%
-				if(role.equals("PG")) {%>
-					checked
-				<%}%>></td>
-				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="UG" <%
-				if(role.equals("UG")) {%>
-					checked
-				<%}%>></td>
-				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="TG" <%
-				if(role.equals("TG")) {%>
-					checked
-				<%}%>></td>
-				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="SG"<%
-				if(role.equals("SG")) {%>
-					checked
-				<%}%>>
-			<%} else if (!session.getAttribute("role").equals("ADMIN") && role.equals("PG")) {%>
-            <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="PG" <%
-            if(role.equals("PG")) {%>
-              checked
-            <%}%>></td>
-            <td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="UG" <%
-              if(role.equals("UG")) {%>
-                checked
-              <%}%>></td>
-              <td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="TG" <%
+                <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="TG" <%
                 if(role.equals("TG")) {%>
                   checked
                 <%}%>></td>
+
+                <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="SG"<%
+                if(role.equals("SG")) {%>
+                  checked
+                <%}%>>
+              <%} else if (!session.getAttribute("role").equals("ADMIN") && role.equals("PG")) {%>
+                <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="PG" <%
+                if(role.equals("PG")) {%>
+                  checked
+                <%}%>></td>
+
+                <td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="UG" <%
+                if(role.equals("UG")) {%>
+                  checked
+                <%}%>></td>
+
+                <td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="TG" <%
+                if(role.equals("TG")) {%>
+                  checked
+                <%}%>></td>
+
                 <td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="SG" <%
                 if(role.equals("SG")) {%>
                   checked
                 <%}%>></td>
-			<%} else {%>
-				<td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="PG" <%
-	            if(role.equals("PG")) {%>
-	              checked
-	            <%}%>></td>
-				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="UG" <%
-				if(role.equals("UG")) {%>
-					checked
-				<%}%>></td>
-				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="TG" <%
-				if(role.equals("TG")) {%>
-					checked
-				<%}%>></td>
-				<td><input type="radio" name="<%=entry.getKey()+"role"%>" value="SG"<%
-				if(role.equals("SG")) {%>
-					checked
-				<%}%>>
-			<%}%>
-		<%}%> 
-      </tbody>
-    </table>
+              <%} else {%>
+                <td><input type="radio" disabled="disabled" name="<%=entry.getKey()+"role"%>" value="PG" <%
+                if(role.equals("PG")) {%>
+                  checked
+                <%}%>></td>
 
-    
-    <div class="form-group row">
-      <div class="offset-0 col-8">
-        <button name="submit" type="submit" class="btn btn-primary">Confirm</button>
+                <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="UG" <%
+                if(role.equals("UG")) {%>
+                  checked
+                <%}%>></td>
+
+                <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="TG" <%
+                if(role.equals("TG")) {%>
+                  checked
+                <%}%>></td>
+
+                <td><input type="radio" name="<%=entry.getKey()+"role"%>" value="SG"<%
+                if(role.equals("SG")) {%>
+                  checked
+                <%}%>></td>
+              <%}%>
+            <%}%> 
+          </tbody>
+        </table>
+        
+        <div class="form-group row">
+          <div class="offset-0 col-8">
+            <button name="submit" type="submit" class="btn btn-primary">Confirm</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+          <h4>Log Out <i class="fa fa-lock"></i></h4>
+        </div>
+        <div class="modal-body">
+          <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
+          <div class="actionsBtns">
+            <form action="LogOut">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <input type="submit" class="btn btn-default btn-primary" value="Logout" />
+                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  </form>
-</div>
 </body>
