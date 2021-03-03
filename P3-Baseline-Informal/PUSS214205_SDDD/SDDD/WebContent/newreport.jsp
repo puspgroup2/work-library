@@ -95,20 +95,26 @@
 
 <div class="d-flex" id="wrapper">
 
-  <!-- Sidebar -->
-  <div>
-      <div class="bg-light border-right" id="sidebar-wrapper">
-          <div class="sidebar-heading">Options</div>
-          <div class="list-group list-group-flush">
-          <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light">Time Report Summary</a>
-          <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Create New Time Report</b></a>
-          <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light">Sign Time Reports</a>
+ <!-- Sidebar -->
+    <div>
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading">Options</div>
+            <div class="list-group list-group-flush">
+            <form action="TimeReportServlet" method="POST">
+       	        <input type="submit" name="summary" value="Time Report Summary" class="list-group-item list-group-item-action bg-light astext">
+            </form>
+            <form action="TimeReportServlet" method="POST">
+        	    <input type="submit" name="new" value="Create New Time Report" class="list-group-item list-group-item-action bg-light astext">
+            </form>
+            <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+    	       	<form action="TimeReportManagementServlet" method="POST">
+        	        <input type="submit" value="Sign Time Reports" class="list-group-item list-group-item-action bg-light astext">
+              	</form>
             </c:if>
+            </div>
         </div>
-      </div>
-  </div>
-  <!-- /#sidebar-wrapper -->
+    </div>
+    <!-- /#sidebar-wrapper -->
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
