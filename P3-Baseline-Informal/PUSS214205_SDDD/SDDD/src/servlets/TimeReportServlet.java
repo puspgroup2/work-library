@@ -68,10 +68,7 @@ public class TimeReportServlet extends ServletBase {
 		db.connect();
 		HttpSession session = request.getSession();
 		
-		TimeReportBean trb1 = new TimeReportBean();
-		int reportID = (Integer) session.getAttribute("reportID");
-		trb1.populateBean(db.getDocumentTimeD(reportID), db.getDocumentTimeI(reportID), db.getDocumentTimeF(reportID), db.getDocumentTimeR(reportID),db.getActivityReport(reportID));
-		session.setAttribute("timeReport", trb1);
+		
 		
 		String submitNewReport = request.getParameter("submitNew"); //Submit button in newreport.jsp
 		String editSelectedBtn = request.getParameter("editBtn");  //edit selected button in summaryreport.jsp
@@ -122,13 +119,15 @@ public class TimeReportServlet extends ServletBase {
 		
 		if (submitEdit != null) {
 			TimeReportBean trb2 = new TimeReportBean();
-			trb2.populateBean(request, response);		
-			db.updateDocumentTimeD(reportID, trb2.getReportValuesD());
-			db.updateDocumentTimeI(reportID, trb2.getReportValuesI());
-			db.updateDocumentTimeF(reportID, trb2.getReportValuesF());
-			db.updateDocumentTimeR(reportID, trb2.getReportValuesR());
-			db.updateActivityReport(reportID, trb2.getReportValuesActivity());
-			response.sendRedirect("summaryreport.jsp");
+			trb2.populateBean(request, response);
+			int id=db.newTimeReport((String) session.getAttribute("username"), Integer.parseInt(request.getParameter("week")));
+			
+			db.updateDocumentTimeD(id, trb2.getReportValuesD());
+			db.updateDocumentTimeI(id, trb2.getReportValuesI());
+			db.updateDocumentTimeF(id, trb2.getReportValuesF());
+			db.updateDocumentTimeR(id, trb2.getReportValuesR());
+			db.updateActivityReport(id, trb2.getReportValuesActivity());
+			
 			doGet(request, response);
 		}
 
