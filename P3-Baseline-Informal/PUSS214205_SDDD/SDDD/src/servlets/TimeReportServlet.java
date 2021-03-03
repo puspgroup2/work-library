@@ -111,6 +111,7 @@ public class TimeReportServlet extends ServletBase {
 			db.updateDocumentTimeF(id, trb3.getReportValuesF());
 			db.updateDocumentTimeR(id, trb3.getReportValuesR());
 			db.updateActivityReport(id, trb3.getReportValuesActivity());
+			db.updateTotalMinutes(id, trb3.getTotalTime());
 			doGet(request,response);
 		}
 		
@@ -130,6 +131,7 @@ public class TimeReportServlet extends ServletBase {
 			db.updateDocumentTimeF(id, trb2.getReportValuesF());
 			db.updateDocumentTimeR(id, trb2.getReportValuesR());
 			db.updateActivityReport(id, trb2.getReportValuesActivity());
+			db.updateTotalMinutes(id, trb2.getTotalTime());
 			
 			doGet(request, response);
 		}
