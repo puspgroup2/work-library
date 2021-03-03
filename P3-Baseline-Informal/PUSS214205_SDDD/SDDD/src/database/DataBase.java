@@ -312,7 +312,13 @@ public class DataBase {
 	}
 	
 	
-	
+	/**
+     * Updates a Document Time Report according to the values contained in the map.
+     * @param reportID The ID of the report.
+     * @param documentTimeD/I/R/F A map with key-value pairs consisting of the tuple's
+     * columns and the values associated with these.
+     * @return true if the Document Time Report was successfully updated
+     */
 	public boolean updateDocumentTimeD(int reportID, Map<String, Integer> documentTimeD) {
 		return updateDocumentTime(reportID, documentTimeD, 'D');
 	}
