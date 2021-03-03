@@ -41,11 +41,12 @@ public class PasswordChangerServlet extends ServletBase
 		String username = (String) session.getAttribute("username");
 		String newPw = (String) request.getParameter("password");
 		String oldPw = (String) request.getParameter("oldPassword");
+		String salt = db.getSalt(username);
 		UserBean ub = new UserBean();
-		ub.populateBean(username, oldPw);
+		ub.populateBean(username, PasswordHandler.hashPassword(oldPw, salt));
 		if(db.checkLogin(ub)) {
 			if (!newPw.equals(oldPw)) {
-				if (db.changePassword(username ,newPw)) {//sets the password.
+				if (db.changePassword(username, PasswordHandler.hashPassword(newPw, salt))) {//sets the password.
 					//change successful
 					session.setAttribute("passwordMessage", PW_CHANGE_SUCCESSFUL_);
 				} else {
