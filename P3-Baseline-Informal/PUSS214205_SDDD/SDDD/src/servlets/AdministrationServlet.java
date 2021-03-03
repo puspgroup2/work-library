@@ -32,7 +32,7 @@ public class AdministrationServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
 		Map<String, String> memberMap = new HashMap<String, String>();
-		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
+		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
 		for (String s : memberNames) {
 			if(!s.equals("admin")) {
 				memberMap.put(s, db.getEmail(s));
@@ -54,8 +54,7 @@ public class AdministrationServlet extends HttpServlet{
 		HttpSession session = request.getSession();
 		
 		HashMap<String, String> mapM = new HashMap<String, String>();
-		ArrayList<String> memberNames = (ArrayList<String>) db.getMembers();
-		PasswordHandler pw = new PasswordHandler();
+		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
 		
 		for (String s : memberNames) {
 			if(!s.equals("admin")) {
@@ -78,7 +77,7 @@ public class AdministrationServlet extends HttpServlet{
 			}
 
 			if(!emptyString) {
-				if(!db.addUser(request.getParameter("username"), pw.generatePassword(), request.getParameter("mail"), pw.generateSalt())) {
+				if(!db.addUser(request.getParameter("username"), PasswordHandler.generatePassword(), request.getParameter("mail"), PasswordHandler.generateSalt())) {
 					session.setAttribute("AdminMessage", 0);
 				} else {
 					session.setAttribute("AdminMessage", 1);

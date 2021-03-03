@@ -771,6 +771,21 @@ public class DataBase {
 		return false;
 	}
 	
+	
+	private int rowCount(int reportID, String attribute, String relation) {
+		int rows = 0;
+		String sql = "SELECT " + attribute + " from " + relation
+				+ " where reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, reportID);
+			rows = ps.executeQuery().getFetchSize();
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+		return rows;
+	}
+	
+	
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
 		db.connect();
