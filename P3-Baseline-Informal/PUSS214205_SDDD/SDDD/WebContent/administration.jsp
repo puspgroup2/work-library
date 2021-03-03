@@ -22,15 +22,15 @@
 </head>
 
 <body>
-    <%
-		if(session.getAttribute("username") == null) {
-			response.sendRedirect("login.jsp");
-		} else if (!session.getAttribute("role").equals("ADMIN")) {
-			response.sendRedirect("index.jsp");
-		}
-	%>
+  <%
+    if(session.getAttribute("username") == null) {
+      response.sendRedirect("login.jsp");
+    } else if (!session.getAttribute("role").equals("ADMIN")) {
+      response.sendRedirect("index.jsp");
+    }
+  %>
 	
-<nav class="navbar navbar-light navbar-expand-md bg-light">
+  <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand abs">TimeMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -72,134 +72,116 @@
   </nav>
   
     <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-        <h4>Log Out <i class="fa fa-lock"></i></h4>
-      </div>
-      <div class="modal-body">
-        <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
-        <div class="actionsBtns">
-            <form action="LogOut">
-            
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input type="submit" class="btn btn-default btn-primary" value="Logout" />
-	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </form>
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+          <h4>Log Out <i class="fa fa-lock"></i></h4>
+        </div>
+        <div class="modal-body">
+          <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
+          <div class="actionsBtns">
+              <form action="LogOut">
+              
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                  <input type="submit" class="btn btn-default btn-primary" value="Logout" />
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
       
-<c:if test="${sessionScope.AdminMessage eq 0}">
-    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
-        Could not add user.
-    </div>
-</c:if>
+  <c:if test="${sessionScope.AdminMessage eq 0}">
+      <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+          Could not add user.
+      </div>
+  </c:if>
 
-<c:if test="${sessionScope.AdminMessage eq 1}">
-    <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
-        User added
-    </div>
-</c:if>
+  <c:if test="${sessionScope.AdminMessage eq 1}">
+      <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+          User added
+      </div>
+  </c:if>
 
-<div>
-  
-  <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:1rem; margin-bottom:50px;">
-    <div class="card-header">
-    Add user
+  <div>
+    <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:1rem; margin-bottom:50px;">
+      <div class="card-header">Add user</div>
+      <div class="card-body">
+        <form method="post" action="AdministrationServlet">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td>
+                  <div class="form-group row">
+                    <label for="text" class="col-4 col-form-label">Username:</label> 
+                    <div class="col-8">
+                      <input name="username" type="text" class="form-control">
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group row">
+                    <label for="text1" class="col-4 col-form-label">E-mail:</label> 
+                    <div class="col-8">
+                      <input name="mail" type="text" class="form-control">
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="7">
+                  A password will be randomly generated and sent along with the username to the mail.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="form-group row">
+            <div class="offset-0 col-8">
+              <button name="Add" type="submit" class="btn btn-success">Add user</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
+
+  <div class="card mx-auto rounded shadow shadow-sm" style="max-width:50rem; margin-top:50px; margin-bottom:50px;">
+    <div class="card-header">Remove users</div>
     <div class="card-body">
-  
-   <form method="post" action="AdministrationServlet">
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-          <td>
-            <div class="form-group row">
-              <label for="text" class="col-4 col-form-label">Username:</label> 
-              <div class="col-8">
-                <input name="username" type="text" class="form-control">
-              </div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group row">
-              <label for="text1" class="col-4 col-form-label">E-mail:</label> 
-              <div class="col-8">
-                <input name="mail" type="text" class="form-control">
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="7">
-            A password will be randomly generated and sent along with the username to the mail.
-          </td>
-        </tr>
-      </table>
-      <div class="form-group row">
-        <div class="offset-0 col-8">
-          <button name="Add" type="submit" class="btn btn-success">Add user</button>
+      <form method="post" action="AdministrationServlet">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Selection</th>
+              <th scope="col">User</th>
+              <th scope="col">Mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%UserManagementBean ub = (UserManagementBean) session.getAttribute("AdministrationBean");
+            HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserList();
+            for(Map.Entry<String, String> entry : userMap.entrySet()) {%>
+            <tr>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" value="<%=entry.getKey()%>" type="checkbox" name="<%=entry.getKey()%>" id="flexCheckDefault">
+                </div>
+              </td>
+              <td><%=entry.getKey()%></td>
+              <td><%=entry.getValue()%></td>
+            </tr>
+            <%}%>
+          </tbody>
+        </table>
+        <div><b>When clicking confirm, you will remove all checked users</b></div><br>
+        <div class="form-group row">
+          <div class="offset-0 col-8">
+            <button name="Remove" type="submit" class="btn btn-danger">Confirm</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
     </div>
   </div>
-</div>
-
-<div class="card mx-auto rounded shadow shadow-sm" style="max-width:50rem; margin-top:50px; margin-bottom:50px;">
-  <div class="card-header">
-  Remove users
-  </div>
-  <div class="card-body">
-  <form method="post" action="AdministrationServlet">
-    
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Selection</th>
-        <th scope="col">User</th>
-        <th scope="col">Mail</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%
-      UserManagementBean ub = (UserManagementBean) session.getAttribute("AdministrationBean");
-		  HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserList();
-
-     
-      for(Map.Entry<String, String> entry : userMap.entrySet()) {
-        
-        
-      
-      %>
-      <tr>
-        <td>
-        <div class="form-check">
-          <input class="form-check-input" value="<%=entry.getKey()%>" type="checkbox" name="<%=entry.getKey()%>" id="flexCheckDefault">
-        </div>
-        </td>
-
-        <td> <%=entry.getKey()%> </td>
-        <td> <%=entry.getValue()%> </td>
-
-      </tr>
-    <%}%>
-    </tbody>
-  </table>
-  <div><b>When clicking confirm, you will remove all checked users</b></div>
-  <br>
-    <div class="form-group row">
-      <div class="offset-0 col-8">
-        <button name="Remove" type="submit" class="btn btn-danger">Confirm</button>
-
-      </div>
-    </div>
-  </div>
-  </form>
-</div>
-
 </body>
