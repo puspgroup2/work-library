@@ -776,11 +776,7 @@ public class DataBase {
 				+ " where reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				rows++;
-			}
-			
+			rows = ps.executeQuery().getFetchSize();
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
