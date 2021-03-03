@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+% ---- Commands ------- %
+\newcommand{\documentNumber}[1]{
+    \LARGE  \textbf{ PUSS2142{#1} } \\
+    \medskip
+}
+\newcommand{\documentVersion}[1]{
+    v. {#1}
+
+    \medskip
+}
+\newcommand{\documentTitle}[1]{
+    \centerline{\rule{13cm}{0.4pt}}
+    \bigskip \bigskip
+    \LARGE \textbf{TimeMate} \\
+    \bigskip
+    \LARGE {Software Specification Document} \\
+    \bigskip \bigskip
+    \centerline{\rule{13cm}{0.4pt}}
+}
+\newcommand{\documentGroup}[1]{
+    \bigskip \bigskip
+    \LARGE Group {#1} \\
+    \bigskip
+}
+\newcommand{\documentResponsible}[1]{
+    \LARGE Responsible: {#1} \\
+    \medskip
+}
+\newcommand{\documentAuthors}[1]{
+    \LARGE Authors: {#1} \\
+    \medskip    
+}
+\newcommand{\documentDate}[1]{
+    \date {#1} 
+}
+
+\graphicspath{{./images/}} % Defines a path to file images
+\renewcommand{\arraystretch}{1.7}  % Vertical padding for tables
+
+
+% --- Header & Footer ---- %
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{}
+\rfoot{\thepage}
+\cfoot{}
+\lfoot{}
+
+
+% ------------------------------------------------ #
+
+% ----- FILL THIS ----- %
+\title {
+    % Must be 2 digits
+    \documentNumber {01}    
+    
+    % BASELINE.VERSION
+    \documentVersion {0.1}
+    
+    % Full name - SHORTNAME
+    \documentTitle {Template}
+    \documentGroup {2}
+    
+    % Options: - Project Management Group
+    %          - System Architecture Group
+    %          - Developer Group
+    %          - Test Group
+    \documentResponsible {Project Management Group}
+    \documentAuthors {Project Management group}
+    
+    % Format: YYYY-MM-DD
+    \documentDate {2021-03-03}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%---------Document begins here-----------
+
+% FILL IN CORRECT VERSION HISTORY!
+% Not sure? Refer to SDP how it works or ask someone!
+
+\section{Document history}
+
+\begin{tabular}{ l | l | l | l }
+    Version & Date & Responsible & Description \\
+    \hline
+    0.1 & 2021-03-03 & PG & Document created. \\
+   
+\end{tabular}
+
+\section{Introduction}
+    This document presents the delivered system, and details which version each document is in. It also specifies limitations of the delivered system, and possible differences between the requirements specification and the delivered system.
+
+\section{Delivered system}
+ \begin{table}[h]
+            \centering
+            
+             \caption{Estimated time for each activity per person, per week}
+            \begin{tabular}{|l|c|c|c|}
+                \hline
+                    \textbf{Doc / part} & \textbf{Doc.  number} & \textbf{Version} & \textbf{Comment} \\
+                \hline
+                    SRS & PUSS214201 & 1.x & Hej \\
+                 \hline
+                    SVVS & PUSS214202 & 1.x & Hej\\
+                 \hline
+                    STLDD & PUSS214204 & 1.x & Hej\\
+                 \hline
+                    SDDD & N/A  & N/A & Hej\\
+                 \hline
+                    SVVI & PUSS214203 & 1.x & Hej\\
+                 \hline
+                    SSD & PUSS214207 & 1.x & Hej\\
+                 \hline
+                    SVVR & PUSS214206 & 1.x & Hej\\
+                 \hline
+                 
+            \end{tabular}
+           
+            \label{activitytable}
+        \end{table}
+
+\section{Limitations}
+
+
+\subsection{System objectives}
+The intention for the delivered system is to be used as a web-based time reporting system. The system builds upon the already given "BaseBlockSystem". The system is specifically created for project groups.
+
+\subsection{Differences  compared  to  the  Software  Requirements Specification (SRS) and the delivered system.}
+There are no differences.
+
+\section{Installation instructions}
+\begin{enumerate}
+    \item System must be started on a machine with a Tomcat server installed.
+    \item 
+    
+    \item
+\end{enumerate}
+
+%---------Document ends here-----------
+
+\end{document}
