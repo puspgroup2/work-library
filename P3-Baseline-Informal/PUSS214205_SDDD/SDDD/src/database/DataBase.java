@@ -749,12 +749,10 @@ public class DataBase {
 	}
 	
 	public boolean exists(int reportID, String attribute, String relation) {
-		String sql = "SELECT ? from ? "
-				+ "where reportID = ?";
+		String sql = "SELECT " + attribute + " from " + relation
+				+ " where reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, attribute);
-			ps.setString(2, relation);
-			ps.setInt(3, reportID);
+			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(attribute) != 0;
