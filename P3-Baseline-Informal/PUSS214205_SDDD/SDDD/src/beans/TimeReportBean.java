@@ -130,7 +130,11 @@ public class TimeReportBean implements Serializable {
     public void populateBean(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	for(int i = 0; i < fieldNames.length; i++) {
     	String Input = request.getParameter(fieldNames[i]); 
-    	reportValues.put(fieldNames[i], Integer.parseInt(Input));
+    	if (request.getParameter(Input) == null) {
+    		reportValues.put(fieldNames[i], 0);
+    	} else {
+    		reportValues.put(fieldNames[i], Integer.parseInt(Input));
+    	}
     	}
     }
 

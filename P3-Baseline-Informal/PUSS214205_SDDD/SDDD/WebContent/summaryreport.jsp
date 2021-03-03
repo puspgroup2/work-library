@@ -8,6 +8,9 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<%@page import = "java.util.ArrayList"%>
+<%@page import = "java.util.List" %>
+<%@page import = "beans.*" %>
 
 <head>
   <meta charset="utf-8">
@@ -90,15 +93,21 @@
 
 <div class="d-flex" id="wrapper">
 
-    <!-- Sidebar -->
+     <!-- Sidebar -->
     <div>
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Options</div>
             <div class="list-group list-group-flush">
-            <a href="summaryreport.jsp" class="list-group-item list-group-item-action bg-light"><b>Time Report Summary</b></a>
-            <a href="newreport.jsp" class="list-group-item list-group-item-action bg-light">Create New Time Report</a>
+            <form action="TimeReportServlet" method="POST">
+       	        <input type="submit" name="summary" value="Time Report Summary" class="list-group-item list-group-item-action bg-light astext">
+            </form>
+            <form action="TimeReportServlet" method="POST">
+        	    <input type="submit" name="new" value="Create New Time Report" class="list-group-item list-group-item-action bg-light astext">
+            </form>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-                <a href="signreport.jsp" class="list-group-item list-group-item-action bg-light">Sign Time Reports</a>
+    	       	<form action="TimeReportManagementServlet" method="POST">
+        	        <input type="submit" value="Sign Time Reports" class="list-group-item list-group-item-action bg-light astext">
+              	</form>
             </c:if>
             </div>
         </div>
@@ -106,6 +115,7 @@
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
+    <form action="TimeReportServlet">
   <div id="page-content-wrapper">
     
   <div class="collapse multi-collapse show"  id="collapseExample">
@@ -116,44 +126,26 @@
             <tr>
               <th scope="col" data-field="state">Selection</th>
               <th scope="col">User</th>
-              <th scope="col">Last update</th>
+              
               <th scope="col">Week</th>
-              <th scope="col">Development</th>
-              <th scope="col">Informal review</th>
-              <th scope="col">Formal review</th>
-              <th scope="col">Rework</th>
-              <th scope="col">Other</th>
+              
               <th scope="col">Total time</th>
               <th scope="col">Signed</th>
             </tr>
           </thead>
           <tbody>
+          <%List<TimeReportBean> list = (ArrayList<TimeReportBean>) session.getAttribute("TimeReportBeanCan"); %>
+          
+          <% for (TimeReportBean bean : list) { %>
+        	  
             <tr>
               <td><input type="radio" name="radioGroup"></td>
               <td>${username}</td>
-              <td>date</td>
-              <td>week</td>
-              <td>dev</td>
-              <td>inf</td>
-              <td>for</td>
-              <td>rew</td>
-              <td>other</td>
-              <td>total</td>
-              <td>signed</td>
+              <td><%=bean.getWeek() %></td>
+              <td><%=bean.getTotalTime() %></td>
+              <td><%=(bean.getSigned() == null ? "No" : "Yes")%></td>
             </tr>
-            <tr>
-              <td><input type="radio" name="radioGroup"></td>
-              <td>${username}</td>
-              <td>date</td>
-              <td>week</td>
-              <td>dev</td>
-              <td>inf</td>
-              <td>for</td>
-              <td>rew</td>
-              <td>other</td>
-              <td>total</td>
-              <td>signed</td>
-            </tr>
+           <%} %>
           </tbody>
         </table>
         
@@ -168,83 +160,25 @@
            <tr>
              <th scope="col" data-field="state">Selection</th>
              <th scope="col">User</th>
-             <th scope="col">Last update</th>
+             
              <th scope="col">Week</th>
-             <th scope="col">Development</th>
-             <th scope="col">Informal review</th>
-             <th scope="col">Formal review</th>
-             <th scope="col">Rework</th>
-             <th scope="col">Other</th>
+             
              <th scope="col">Total time</th>
              <th scope="col">Signed</th>
            </tr>
          </thead>
          <tbody>
-           <tr>
-             <td><input type="radio" name="radioGroup"></td>
-             <td>${username}</td>
-             <td>date</td>
-             <td>week</td>
-             <td>dev</td>
-             <td>inf</td>
-             <td>for</td>
-             <td>rew</td>
-             <td>other</td>
-             <td>total</td>
-             <td>signed</td>
-           </tr>
-           <tr>
-             <td><input type="radio" name="radioGroup"></td>
-             <td>${username}</td>
-             <td>date</td>
-             <td>week</td>
-             <td>dev</td>
-             <td>inf</td>
-             <td>for</td>
-             <td>rew</td>
-             <td>other</td>
-             <td>total</td>
-             <td>signed</td>
-           </tr>
-           <tr>
-            <td><input type="radio" name="radioGroup"></td>
-            <td>${username}</td>
-            <td>date</td>
-            <td>week</td>
-            <td>dev</td>
-            <td>inf</td>
-            <td>for</td>
-            <td>rew</td>
-            <td>other</td>
-            <td>total</td>
-            <td>signed</td>
-          </tr>
-          <tr>
-            <td><input type="radio" name="radioGroup"></td>
-            <td>${username}</td>
-            <td>date</td>
-            <td>week</td>
-            <td>dev</td>
-            <td>inf</td>
-            <td>for</td>
-            <td>rew</td>
-            <td>other</td>
-            <td>total</td>
-            <td>signed</td>
-          </tr>
-          <tr>
-            <td><input type="radio" name="radioGroup"></td>
-            <td>${username}</td>
-            <td>date</td>
-            <td>week</td>
-            <td>dev</td>
-            <td>inf</td>
-            <td>for</td>
-            <td>rew</td>
-            <td>other</td>
-            <td>total</td>
-            <td>signed</td>
-          </tr>
+          	<%List<TimeReportBean> signedList = (ArrayList<TimeReportBean>) session.getAttribute("signedReports"); %>
+          	
+          	<%for (TimeReportBean bean: signedList) { %>
+          	
+          	<tr>
+          	<td><%=bean.getUsername() %></td>
+          	<td><%=bean.getWeek() %></td>
+          	<td><%=bean.getTotalTime() %></td>
+          	<td><%=(bean.getSigned() == null ? "No" : "Yes") %></td>
+          	</tr>
+          <%} %>
          </tbody>
        </table>
        
@@ -256,7 +190,7 @@
        
         <div class="d-flex justify-content-center" style="margin-top:5px">
             <form class="form-inline my-2 my-lg-0" style="margin-right:2.5px">
-                <input type="submit" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
+                <input type="editBtn" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
                 <input type="submit" value="View selected report" class="btn btn-success" style="margin-left:3px; margin-right:3px">
                 <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample collapseExample2" style="margin-left:3px">
@@ -266,7 +200,7 @@
             </form>
         </div>
     </div>
-    
+   </form>
    
     
     <!-- /#page-content-wrapper -->
