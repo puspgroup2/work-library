@@ -272,11 +272,12 @@ public class DataBase {
 	
 	
 	public boolean updateActivityReport(int reportID, Map<String, Integer> activityReport) {
+		if (this.select(reportID, "*", "TimeReports") == null) return false;
+		
 		String sql;
-		// här borde man se så att reportID:t faktiskt existrerar i timereports innan man gör något annat
 		if(this.select(reportID, "*", "ActivityReports") == null) {
-			String addUser = "INSERT INTO ActivityReports(reportID) VALUES (?)";
-			try(PreparedStatement ps = connection.prepareStatement(addUser)) {
+			String addActivityReport = "INSERT INTO ActivityReports(reportID) VALUES (?)";
+			try(PreparedStatement ps = connection.prepareStatement(addActivityReport)) {
 				ps.setInt(1, reportID);
 				ps.executeUpdate();
 			} catch(SQLException e) {
@@ -295,7 +296,6 @@ public class DataBase {
 				handleSQLException(e);
 			}
 		}
-		
 		return true;
 	}
 	
@@ -322,30 +322,29 @@ public class DataBase {
 	
 	
 	private boolean updateDocumentTime(int reportID, Map<String, Integer> documentTime, char type) {
+		if (this.select(reportID, "*", "TimeReports") == null) return false;
+		
 		String sql;
-		String check = "SELECT * FROM DocumentTime" + type + " WHERE reportID = ?";
-		try (PreparedStatement ps = connection.prepareStatement(check)) {
-			ps.setInt(1, reportID);
-			if (ps.executeQuery().next()) {
-				 sql = "UPDATE DocumentTime" + type + " SET ? = ? WHERE reportID = ?";
-			} else {
-				 sql = "INSERT INTO DocumentTime" + type + " SET ? = ? WHERE reportID = ?";
+		if(this.select(reportID, "*", "DocumentTime" + type) == null) {
+			String addDocumentTime = "INSERT INTO DocumentTime" + type + "(reportID) VALUES (?)";
+			try(PreparedStatement ps = connection.prepareStatement(addDocumentTime)) {
+				ps.setInt(1, reportID);
+				ps.executeUpdate();
+			} catch(SQLException e) {
+				handleSQLException(e);
+	            return false;
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
-			return false;
 		}
 		
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			for(String s : documentTime.keySet()) {
-				ps.setString(1, s);
-				ps.setInt(2, documentTime.get(s));
-				ps.setInt(3, reportID);
+		for (String s : documentTime.keySet()) {
+			sql = "UPDATE ActivityReports SET " + s + " = ? WHERE reportID = ?";
+			try(PreparedStatement ps = connection.prepareStatement(sql)) {
+				ps.setInt(1, documentTime.get(s));
+				ps.setInt(2, reportID);
 				ps.execute();
+			} catch (SQLException e) {
+				handleSQLException(e);
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
-			return false;
 		}
 		return true;
 	}
