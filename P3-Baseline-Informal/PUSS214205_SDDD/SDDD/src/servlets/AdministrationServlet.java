@@ -80,18 +80,19 @@ public class AdministrationServlet extends HttpServlet{
 
 			if(!emptyString) {
 				String pw = PasswordHandler.generatePassword();
-				if(!db.addUser(username, pw, mail, PasswordHandler.generateSalt())) {
+				String hashedPw = PasswordHandler.hashPassword(pw, PasswordHandler.generateSalt());
+				System.out.println(hashedPw);
+				if(!db.addUser(username, hashedPw, mail, PasswordHandler.generateSalt())) {
 					session.setAttribute("AdminMessage", 0);
 				} else {
 					session.setAttribute("AdminMessage", 1);
 					
 					if(request.getParameter("mail") != null) {
 						MailHandler mh = new MailHandler();
-						mh.sendPasswordMail(mail, username, pw);
-
-						//String hashedPw = PasswordHandler.hashPassword(pw, PasswordHandler.generateSalt());
 						
-						if (db.changePassword(username, pw)) {
+						mh.sendPasswordMail(mail, username, pw);
+						
+						if (db.changePassword(username, hashedPw)) {
 							//TODO Handle potential error
 						}
 					}
