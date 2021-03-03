@@ -63,7 +63,7 @@
     \documentNumber {03}    
     
     % BASELINE.VERSION
-    \documentVersion {1.0}
+    \documentVersion {1.1}
     
     % Full name - SHORTNAME
     \documentTitle {Software Verification and Validation Instructions}
@@ -73,7 +73,7 @@
     \documentAuthors {Test Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-03-01}
+    \documentDate {2021-03-03}
 }
 
 \begin{document}
@@ -100,7 +100,8 @@
    0.3 & 2021-02-18 & TG & Removed a test. Fixed grammatics. \\
    0.4 & 2021-02-24 & TG & Corrected reference error, changed descriptions for testcases,  \\
        &            &   &   removed paragraph in chapter 4. \\
-   1.0 & 2021-03-01 & TG & Reached baseline. \\    
+   1.0 & 2021-03-01 & TG & Reached baseline. \\ 
+   1.1 & 2021-03-03 & TG & Changed SVVS ref. and minor changes to FT 9,12,20,21   
 \end{tabular}
 
 \section{Introduction}
@@ -108,7 +109,7 @@ This document presents detailed test instructions of the  TimeMate system.
 
 \section{Reference Documents}
 \begin{enumerate}
-	\item Software Verification and Validation Specification: 	TimeMate, v. 1.3, Doc. number: PUSS214202
+	\item Software Verification and Validation Specification: 	TimeMate, v. 1.4, Doc. number: PUSS214202
 \end{enumerate}
 
 \section{Test Instructions}
@@ -217,14 +218,13 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 		
 		\item \textbf {FT9: User tries to change password from logged-in state but enters incorrect new password.} \newline
 		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. \newline
-		\textbf{End state:} The site displays a message informing that the entered password is invalid. 
+		\textbf{End state:} User cannot change password.
 		\begin{enumerate}
 			\item Access the login page.
 			\item Login with username ’Alex’ and password “123ABCde”.
 			\item Click the “Change Password” button.
 			\item Choose the new password “abcABC\%”.
-			\item Click the “Change Password” button.
-			\item Checks that the site displays a message informing that the password has not been changed.
+			\item Check that you cannot click the “Change Password” button.
 		\end{enumerate}
 		
 		\item \textbf{F10: User is shown a relevant error message on failed login.} \newline
@@ -253,12 +253,11 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 		
 			\item \textbf{FT12: When changing password, user cannot change password if it doesn't adhere to the password ruleset} \newline
 		\textbf{Start state:} User is logged in. \newline
-		\textbf{End state:} The site displays a message informing that the password has not been changed.
+		\textbf{End state:} User cannot change password.
 		\begin{enumerate}
 			\item Click the “Change Password” button.
 			\item Try to change the password to “\&aaaa”.
-			\item Click the “Change Password” button.
-			\item Check that an error message is displayed saying that the new password is invalid.
+			\item Check that you cannot click the “Change Password” button.
 		\end{enumerate}
 \end{itemize}
 \subsection{User}
@@ -338,24 +337,22 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 		
 		\item \textbf{FT20: Cannot change roles on themselves.} \newline
 		\textbf{Start state:} Project Leader is logged in. \newline
-		\textbf{End state:} The site displays a message informing that the role has not been changed. 
+		\textbf{End state:}Project Leader cannot change their own role. 
 		\begin{enumerate}
 			\item Access the User management page.
 			\item Check that the site displays a list of all the users and their correspondent roles.
 			\item Click a radio button with a different role for the logged in Project Leader.
-			\item Click the “Confirm” button. 
-			\item Check that the site displays an error message, informing that their action has failed. 
+			\item Check that you cannot click the “Confirm” button. 
 		\end{enumerate}
 		
 		\item \textbf{FT21: Cannot  change other Project Leaders roles.}\newline
 		\textbf{Start state:} Project Leader is logged in, another Project Leader exists in the database.  \newline
-		\textbf{End state:} The site displays a message informing that change is not allowed.
+		\textbf{End state:} The site displays Project Leaders as their correct roles.
 		\begin{enumerate}
 			\item Access the User management page.
 			\item Check that the site displays a list of all the users and their correspondent roles.
 			\item Click a radio button with a different role for another Project Leader.
-			\item Click the “Confirm” button. 
-			\item Check that the site displays an error message, informing that their action has failed.
+			\item Check that you cannot click the “Confirm” button. 
 		\end{enumerate}
 		
 		\item \textbf{FT22: Can sign time reports}\newline
