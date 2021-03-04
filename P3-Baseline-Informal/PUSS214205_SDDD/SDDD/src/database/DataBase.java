@@ -239,7 +239,7 @@ public class DataBase {
 	 * @return the Time Report ID.
 	 */
 	public int newTimeReport(String userName, int week) {
-		if (this.weekAlreadyExists(userName, week)) return 0;
+		if (!this.weekOK(userName, week)) return 0;
         String sql = "INSERT into TimeReports(userName, week) values(?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, userName);
@@ -277,8 +277,7 @@ public class DataBase {
 	 * @return True if there was not already a Time Report for that week and user.
 	 */
 	public boolean updateWeek(int reportID, String userName, int newWeek) {
-		if (newWeek < 0 || newWeek > 54) return false;
-		if (this.weekAlreadyExists(userName, newWeek)) return false;
+		if (!weekOK(userName, newWeek)) return false;
 		String sql = "UPDATE TimeReports "
 				+ "SET Week = ? "
 				+ "WHERE reportID = ?";
@@ -286,6 +285,7 @@ public class DataBase {
 				ps.setInt(1, newWeek);
 				ps.setInt(2, reportID);
 				ps.executeUpdate();
+				return true;
 			} catch (SQLException e) {
 				handleSQLException(e);
 			}
@@ -293,16 +293,17 @@ public class DataBase {
 	}
 
 	/* Helper method for updateTimeReport */
-	private boolean weekAlreadyExists(String userName, Integer week) {
+	private boolean weekOK(String userName, Integer week) {
+		if (week < 0 || week > 54) return false;
 		String sql = "SELECT * from TimeReports where Week = ? and userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, week);
 			ps.setString(2, userName);
 			ResultSet rs = ps.executeQuery();
-			if (rs == null) return false; 
-			System.out.println("Week exists!");
-			return true;
-			
+			if (rs == null) {
+				System.out.println("Week ok!!!!");
+				return true;
+			}
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
@@ -829,7 +830,7 @@ public class DataBase {
 		db.connect();
 
 
-		db.newTimeReport("admin", 13);
+		System.out.println(db.newTimeReport("oscar", 2));
 		
 			
 	}
