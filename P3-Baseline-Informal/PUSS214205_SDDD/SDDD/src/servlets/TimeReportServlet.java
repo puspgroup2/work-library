@@ -141,7 +141,8 @@ public class TimeReportServlet extends ServletBase {
 					detranslateCrypticMap(db.getDocumentTimeI(reportID), 'i'),
 					detranslateCrypticMap(db.getDocumentTimeF(reportID), 'f'),
 					detranslateCrypticMap(db.getDocumentTimeR(reportID), 'r'),
-					db.getActivityReport(reportID)
+					db.getActivityReport(reportID),
+					db.getTotalMinutesFromTimeReport(reportID)
 					);
 			bean.setReportID(reportID);
 			bean.setWeek(db.getWeekFromTimeReport(reportID));
@@ -166,7 +167,8 @@ public class TimeReportServlet extends ServletBase {
 					detranslateCrypticMap(db.getDocumentTimeI(reportID), 'i'),
 					detranslateCrypticMap(db.getDocumentTimeF(reportID), 'f'),
 					detranslateCrypticMap(db.getDocumentTimeR(reportID), 'r'),
-					db.getActivityReport(reportID)
+					db.getActivityReport(reportID),
+					db.getTotalMinutesFromTimeReport(reportID)
 					);
 			bean.setReportID(reportID);
 			
