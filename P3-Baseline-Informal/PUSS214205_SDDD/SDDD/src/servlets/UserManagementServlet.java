@@ -25,6 +25,7 @@ public class UserManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * This method is called when the webpage using this class is loaded.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,27 +42,24 @@ public class UserManagementServlet extends HttpServlet {
 		}
 		umb.populateBean(memberMap);
 		session.setAttribute("UserManagementBean", umb);
-		
 		response.sendRedirect("usermanagement.jsp");
 	}
 
 	/**
+	 * This method is called when submitting the changes made to users.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		DataBase db = new DataBase();
 		db.connect();
 		
 		HashMap<String, String> memberMap = new HashMap<>();
 		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
-		
 		for (String name : memberNames) {
 			if(!name.equals("admin")) {
 				db.updateRole(name, request.getParameter(name+"role"));
 			}
 		}
-
 		doGet(request, response);
 	}
 
