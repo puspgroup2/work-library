@@ -91,9 +91,9 @@ public class TimeReportServlet extends ServletBase {
 			String document = entry.getKey().split("_")[0];
 			
 			if (document.equals("totalMinutes")) {
-				document = "total";
+				document = String.format("total_%s", character);
 			} else if (document.equals("finalReport")) {
-				document = "final";
+				document = String.format("final_%s", character);
 			} else {
 				document = String.format("%s_%s", document.toLowerCase(), character);
 			}
@@ -133,19 +133,20 @@ public class TimeReportServlet extends ServletBase {
 		if (editSelectedBtn != null) {
 			List<Integer> signedReports = db.getSignedTimeReportIDs(); 
 			session.setAttribute("editable", true);
-			TimeReportBean tb = new TimeReportBean();
+			TimeReportBean bean = new TimeReportBean();
 			int reportID = Integer.parseInt(request.getParameter("reportID"));
-			
-			tb.populateBean(
+
+			bean.populateBean(
 					detranslateCrypticMap(db.getDocumentTimeD(reportID), 'd'),
 					detranslateCrypticMap(db.getDocumentTimeI(reportID), 'i'),
 					detranslateCrypticMap(db.getDocumentTimeF(reportID), 'f'),
 					detranslateCrypticMap(db.getDocumentTimeR(reportID), 'r'),
 					db.getActivityReport(reportID)
 					);
-			tb.setWeek(db.getWeekFromTimeReport(reportID));
-			tb.setUsername((String)session.getAttribute("username"));
-			session.setAttribute("TimeReportBean", tb);
+			bean.setReportID(reportID);
+			bean.setWeek(db.getWeekFromTimeReport(reportID));
+			bean.setUsername((String)session.getAttribute("username"));
+			session.setAttribute("timereport", bean);
 			
 			ServletOutputStream out = response.getOutputStream();
 			out.print("ok");
@@ -157,6 +158,9 @@ public class TimeReportServlet extends ServletBase {
 			TimeReportBean bean = new TimeReportBean();
 			int reportID = Integer.parseInt(request.getParameter("reportID"));
 			
+			System.out.println("VIEW, Fetching report id: " + reportID);
+			System.out.println(db.getDocumentTimeD(reportID));
+			
 			bean.populateBean(
 					detranslateCrypticMap(db.getDocumentTimeD(reportID), 'd'),
 					detranslateCrypticMap(db.getDocumentTimeI(reportID), 'i'),
@@ -164,6 +168,12 @@ public class TimeReportServlet extends ServletBase {
 					detranslateCrypticMap(db.getDocumentTimeR(reportID), 'r'),
 					db.getActivityReport(reportID)
 					);
+			bean.setReportID(reportID);
+			
+			System.out.println(bean.getReportValuesI());
+			System.out.println(bean.getReportValuesF());
+			System.out.println(bean.getReportValuesR());
+			System.out.println(bean.getReportValuesD());
 			
 			bean.setWeek(db.getWeekFromTimeReport(reportID));
 			bean.setUsername(db.getUserNameFromTimeReport(reportID));
@@ -188,7 +198,8 @@ public class TimeReportServlet extends ServletBase {
 		if (submitEdit != null) {
 			TimeReportBean bean = new TimeReportBean();
 			bean.populateBean(request, response);
-			int reportID = (Integer) session.getAttribute("reportID");
+			int reportID = Integer.parseInt(request.getParameter("reportID"));
+			System.out.println("EDITING: " +  reportID);
 			
 			updateReport(request, response, session, db, reportID);
 			doGet(request,response);
