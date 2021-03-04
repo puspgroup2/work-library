@@ -4,7 +4,9 @@ package servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -64,6 +66,25 @@ public class TimeReportServlet extends ServletBase {
 
 		response.sendRedirect("summaryreport.jsp");
 	}
+	
+	
+	
+	private Map<String, Integer> translateCrypticMap(Map<String, Integer> map ) {
+		Map<String, Integer> translated = new HashMap<>();
+		for (Map.Entry<String, Integer> entry: map.entrySet()) {
+			String document = entry.getKey().split("_")[0];
+			if (document.equals("total")) {
+				document = "totalMinutes";
+			} else if (document.equals("final")) {
+				document = "finalReport";
+			} else {
+				document = document.toUpperCase();
+			}
+			translated.put(document, entry.getValue());
+		}
+		return translated;
+	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -72,8 +93,6 @@ public class TimeReportServlet extends ServletBase {
 		DataBase db = new DataBase();
 		db.connect();
 		HttpSession session = request.getSession();
-		
-		
 		
 		String submitNewReport = request.getParameter("submitNew"); //Submit button in newreport.jsp
 		String editSelectedBtn = request.getParameter("editBtn");  //edit selected button in summaryreport.jsp
@@ -119,11 +138,17 @@ public class TimeReportServlet extends ServletBase {
 			trb3.populateBean(request, response);
 			int id=db.newTimeReport((String) session.getAttribute("username"), Integer.parseInt(request.getParameter("week")));
 			
-			db.updateDocumentTimeD(id, trb3.getReportValuesD());
-			db.updateDocumentTimeI(id, trb3.getReportValuesI());
-			db.updateDocumentTimeF(id, trb3.getReportValuesF());
-			db.updateDocumentTimeR(id, trb3.getReportValuesR());
-			db.updateActivityReport(id, trb3.getReportValuesActivity());
+			Map<String, Integer> reportD = translateCrypticMap(trb3.getReportValuesD());
+			Map<String, Integer> reportF = translateCrypticMap(trb3.getReportValuesF());
+			Map<String, Integer> reportI = translateCrypticMap(trb3.getReportValuesI());
+			Map<String, Integer> reportR = translateCrypticMap(trb3.getReportValuesR());
+			
+			db.updateDocumentTimeD(id, reportD);
+			db.updateDocumentTimeI(id, reportI);
+			db.updateDocumentTimeF(id, reportF);
+			db.updateDocumentTimeR(id, reportR);
+			
+			//db.updateActivityReport(id, trb3.getReportValuesActivity());
 			db.updateTotalMinutes(id, trb3.getTotalTime());
 			doGet(request,response);
 		}
