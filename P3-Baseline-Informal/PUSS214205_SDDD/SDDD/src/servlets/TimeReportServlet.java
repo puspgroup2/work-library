@@ -38,7 +38,7 @@ public class TimeReportServlet extends ServletBase {
 		List<TimeReportBean> signedReports = getSignedReports();
 		
 		session.setAttribute("signedReports", signedReports);		// Only signed
-		session.setAttribute("TimeReportBeanCan", timeReports);		// All time reports
+		session.setAttribute("timeReports", timeReports);		// All time reports
 		response.sendRedirect("summaryreport.jsp");
 	}
 	
