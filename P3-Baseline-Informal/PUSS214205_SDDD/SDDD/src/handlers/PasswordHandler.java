@@ -15,8 +15,8 @@ public class PasswordHandler {
 	
 	/**
 	 * Hashes the provided password string with the provided salt string using SHA-256 
-	 * @param password
-	 * @param salt
+	 * @param password the users password
+	 * @param salt the users salt
 	 * @return hashed password as a String
 	 * @throws NoSuchAlgorithmException if the given cryptographic algorithm is not available in the environment
 	 */

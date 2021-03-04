@@ -35,7 +35,7 @@ public class TimeReportBean implements Serializable {
     private List<String[]> allFields = new ArrayList<String[]>();
     private List<Map<String, Integer>> reportFields = new ArrayList<Map<String, Integer>>();
     
-    /*
+    /**
       Fetches the week that the report was created for.
       @return week
      */
@@ -43,36 +43,35 @@ public class TimeReportBean implements Serializable {
         return week;
     }
 
-    /*
+    /**
       Sets the week that the time report was created for.
       @param week
      */
     public void setWeek(int week) {
         this.week = week;
     }
-    /*
+    /**
     Fetches the signed time report.
     @return signed
    */
     public String getSigned() {
     	return signed;
     }
-    /*
+    /**
     Sets the time report as signed.
     @param signed
    */
     public void setSigned(String signed) {
     	this.signed = signed;
     }
-    /*
-    
+    /**
     Fetches the total time that reported.
     @return totalTime
    */
     public int getTotalTime() {
     	return totalTime;
     }
-    /*
+    /**
     Sets the total time for a specified week .
     @param totalTime
    */
@@ -80,28 +79,28 @@ public class TimeReportBean implements Serializable {
     	this.totalTime = totalTime;
     }
     
-    /*
+    /**
      Fetches the ID of the report.
      @return reportID
      */
     public int getReportID() {
     	return this.reportID;
     }
-    /*
+    /**
      Sets ID to the report.
      @param reportID
      */
     public void setReportID(int reportID) {
     	this.reportID=reportID;
     }
-    /*
+    /**
      Sets the username for the current user.
      @param username
      */
     public void setUsername(String username) {
     	this.username = username;
     }
-    /*
+    /**
      Fetches the username.
      @return username
      */
@@ -109,7 +108,7 @@ public class TimeReportBean implements Serializable {
     	return this.username ;
     }
     
-    /*
+    /**
       Fetches a list of the reported values, the values are in minutes.
       @return map reportValues
      */
@@ -133,9 +132,9 @@ public class TimeReportBean implements Serializable {
         return reportValuesActivity;
     }
     
-    /*
+    /**
     Sets the reported values into databaseData map .
-    @param databaseData
+    @param databaseData are maps corresponding to each text field in the time report.
    */
     public void populateBean(Map<String, Integer> D, Map<String, Integer> I, Map<String, Integer> F, Map<String, Integer> R, Map<String, Integer> Activity, Integer time) {
     	reportValuesD = D;
@@ -146,7 +145,7 @@ public class TimeReportBean implements Serializable {
     	totalTime = time;
     }
 
-    /*
+    /**
       puts the time from the time-report in their corresponding map and the "totaltime" in its own integer.
       @param request, response
      */

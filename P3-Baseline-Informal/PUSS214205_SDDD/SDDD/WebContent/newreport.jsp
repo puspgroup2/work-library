@@ -131,7 +131,7 @@
             <table class="table table-bordered">
               <tbody>
                 <tr>
-                <td colspan="4">
+                <td colspan="7">
                 <fieldset disabled>
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Name:</label> 
@@ -140,19 +140,6 @@
                     </div>
                   </div>
                 </fieldset>
-                </td>
-                <td colspan="3">
-                <fieldset disabled>
-                  <div class="form-group row">
-                    <label for="text1" class="col-4 col-form-label">Date</label> 
-                    <div class="col-8">
-                      
-                      <fmt:formatDate var="fmtDate" value="<%=new java.util.Date()%>" pattern="dd/MM/yyyy HH:mm:ss"/>  
-                      <input type="text" name="bean.dateProperty" class="form-control" value="${fmtDate}" placeholder="${fmtDate}"/>
-                      
-                    </div>
-                  </div>
-                </fieldset> 
                 </td>
               </tr>
               <tr>
