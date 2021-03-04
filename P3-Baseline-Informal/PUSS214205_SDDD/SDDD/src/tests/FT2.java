@@ -27,7 +27,7 @@ class FT2 {
 
 	@Test
 	void UnsuccessfullLogin() {
-		assertFalse(malte.checkLogin(malteBean), "You got logged in.");
+		assertFalse(malte.checkLogin("Malte", "123ABCde"), "You got logged in.");
 	}
 
 }
