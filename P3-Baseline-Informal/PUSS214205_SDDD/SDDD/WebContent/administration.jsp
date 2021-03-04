@@ -109,9 +109,7 @@
                 </td>
               </tr>
               <tr>
-                <td colspan="7">
-                  A password will be randomly generated and sent along with the username to the mail.
-                </td>
+                <td colspan="7">A password will be randomly generated and sent along with the username to the mail.</td>
               </tr>
             </tbody>
           </table>
@@ -138,17 +136,17 @@
             </tr>
           </thead>
           <tbody>
-            <%UserManagementBean ub = (UserManagementBean) session.getAttribute("AdministrationBean");
-            HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserList();
-            for(Map.Entry<String, String> entry : userMap.entrySet()) {%>
+            <%UserManagementBean adminBean = (UserManagementBean) session.getAttribute("AdministrationBean");
+            HashMap<String, String> userMap = (HashMap<String, String>)adminBean.getUserList();
+            for(Map.Entry<String, String> user : userMap.entrySet()) {%>
             <tr>
               <td>
                 <div class="form-check">
-                  <input class="form-check-input" value="<%=entry.getKey()%>" type="checkbox" name="<%=entry.getKey()%>" id="flexCheckDefault">
+                  <input class="form-check-input" value="<%=user.getKey()%>" type="checkbox" name="<%=user.getKey()%>" id="flexCheckDefault">
                 </div>
               </td>
-              <td><%=entry.getKey()%></td>
-              <td><%=entry.getValue()%></td>
+              <td><%=user.getKey()%></td>
+              <td><%=user.getValue()%></td>
             </tr>
             <%}%>
           </tbody>
