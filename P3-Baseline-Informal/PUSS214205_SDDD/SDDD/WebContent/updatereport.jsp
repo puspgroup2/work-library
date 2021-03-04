@@ -558,6 +558,17 @@
     box.addEventListener('input', updateTotals);
   }
 
+  // Week must be between 0-53!
+  document.getElementById('week').addEventListener('input', change => {
+    const week = document.getElementById('week');
+    const value = getValue(week);
+    if (value > 53) {
+      week.value = 53;
+    } else if (value < 0) {
+      week.value = 0;
+    }
+  });
+
   // Call it once to set to 0.
   updateTotals();
 
