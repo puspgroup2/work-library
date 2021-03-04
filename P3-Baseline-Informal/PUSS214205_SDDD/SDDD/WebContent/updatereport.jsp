@@ -181,7 +181,7 @@
                     <div class="form-group row">
                       <label for="text" class="col-5 col-form-label"><b>Part A: Total time this week (minutes):</b></label> 
                       <div class="col-7">
-                        <input id="totaltime" name="totaltime" type="text" class="form-control" value="<%=bean.getTotalTime()%>">
+                        <input id="totalMinutes" name="totalMinutes" type="text" class="form-control" value="<%=bean.getTotalTime()%>">
                       </div>
                     </div>
                     </fieldset>
@@ -422,17 +422,17 @@
               <tr>
                 <td colspan="2">21</td>
                 <td colspan="4">Functional test</td>
-                <td><input id="functional_test" name="functional_test" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("functional_test")%>"></td>
+                <td><input id="functionalTest" name="functionalTest" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("functionalTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input id="system_test" name="system_test" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("system_test")%>"></td>
+                <td><input id="systemTest" name="systemTest" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("systemTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input id="regression_test" name="regression_test" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("regression_test")%>"></td>
+                <td><input id="regressionTest" name="regressionTest" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("regressionTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
@@ -452,12 +452,12 @@
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input id="computer_exercise" name="computer_exercise" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("computer_exercise")%>"></td>
+                <td><input id="computerExercise" name="computerExercise" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("computerExercise")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input id="home_reading" name="home_reading" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("home_reading")%>"></td>
+                <td><input id="homeReading" name="homeReading" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("homeReading")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
@@ -590,8 +590,8 @@
     let col_sums = [0, 0, 0, 0];
 
     for (let doc of documents) {
-      let totalTime = getTotal(doc[0]);
-      document.getElementById(doc[1]).value = totalTime;
+      let totalMinutes = getTotal(doc[0]);
+      document.getElementById(doc[1]).value = totalMinutes;
 
       // Calculate the column totals.
       let boxes = document.getElementsByClassName(doc[0]);
@@ -618,7 +618,7 @@
 
     console.log(others, totalTotal)
     // Update the absolute TOTAL time.
-    document.getElementById('totaltime').value = others + totalTotal;
+    document.getElementById('totalMinutes').value = others + totalTotal;
   }
 
   /* Get the total time for the "other" values. */
