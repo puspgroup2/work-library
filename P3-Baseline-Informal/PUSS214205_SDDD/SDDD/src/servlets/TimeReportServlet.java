@@ -25,26 +25,99 @@ import database.DataBase;
  */
 @WebServlet("/TimeReportServlet")
 public class TimeReportServlet extends ServletBase {
+	
 	private static final long serialVersionUID = 1L;
+	
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Handles GET request and serves summaryreport.jsp, 
+	 * which displays a summary of all Time reports for the user.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
 		HttpSession session = request.getSession();
+		List<TimeReportBean> timeReports = getTimeReportList(session);
+		List<TimeReportBean> signedReports = getSignedReports();
+		
+		session.setAttribute("signedReports", signedReports);		// Only signed
+		session.setAttribute("timeReports", timeReports);		// All time reports
+		response.sendRedirect("summaryreport.jsp");
+	}
+	
+	/**
+	 * This POST handles the following actions:
+	 * - Submit new Time report
+	 * - Edit a Time report
+	 * - View a summary of a Time report
+	 * - Submit edit changes to a Time report
+	 * - Create a new Time report
+	 * - View a summary of all Time reports
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+		// These parameters are set or NOT set depending on what button send the post request.
+		String submitNewReport = request.getParameter("submitNew");  // Submit button in newreport.jsp
+		String editSelectedBtn = request.getParameter("editBtn");    // Edit selected button in summaryreport.jsp
+		String viewBtn = request.getParameter("viewBtn");		     // "View selected" button in summaryreport.jsp
+		String submitEdit = request.getParameter("submitEdit");      // Submit button in updatereport.jsp
+		String createNewNav = request.getParameter("new");		 	 // Navigation to newreport.jsp
+		String viewSummary = request.getParameter("summary");		 // Navigation to summaryreport.jsp
+		
+		// Only one of the parameters can be NOT null per POST request.
+		if (viewSummary != null) {
+			response.sendRedirect("summaryreport.jsp");
+		} 
+		else if (createNewNav != null) {
+			response.sendRedirect("newreport.jsp");
+		} 
+		else if (editSelectedBtn != null) {
+			session.setAttribute("editable", true);
+			sendViewTimeReportRedirect(request, response, session);
+		} 
+		else if (viewBtn != null) {
+			session.setAttribute("editable", false);
+			sendViewTimeReportRedirect(request, response, session);
+		} 
+		else if (submitNewReport != null) {
+			TimeReportBean bean = new TimeReportBean();
+			bean.populateBean(request, response);
+			int reportID = db.newTimeReport(
+						(String) session.getAttribute("username"), 
+						Integer.parseInt(request.getParameter("week")));
+			updateReport(request, response, session, db, reportID);
+			doGet(request,response);
+		} 
+		else if (submitEdit != null) {
+			TimeReportBean bean = new TimeReportBean();
+			bean.populateBean(request, response);
+			int reportID = Integer.parseInt(request.getParameter("reportID"));
+			updateReport(request, response, session, db, reportID);
+			doGet(request,response);
+		}
+
+	}
+	
+	/** Helper method to get all unsigned report .*/
+	private List<TimeReportBean> getTimeReportList(HttpSession session) {
 		List<Integer> reportIdList = db.getTimeReportIDs((String) session.getAttribute("username"));
-		session.setAttribute("timeReports", reportIdList);
-		List<TimeReportBean> TimeReportBeanCan = new ArrayList<TimeReportBean>();
-		for(Integer i : reportIdList) {
-			TimeReportBean trb = new TimeReportBean();
-			trb.setReportID(i);
-			trb.setSigned(db.getSignatureFromTimeReport(i));
-			trb.setTotalTime(db.getTotalMinutesFromTimeReport(i));
-			trb.setWeek(db.getWeekFromTimeReport(i));
-			TimeReportBeanCan.add(trb);			
+		List<TimeReportBean> timeReports = new ArrayList<TimeReportBean>();
+		
+		for(Integer id : reportIdList) {
+			TimeReportBean bean = new TimeReportBean();
+			bean.setReportID(id);
+			bean.setSigned(db.getSignatureFromTimeReport(id));
+			bean.setTotalTime(db.getTotalMinutesFromTimeReport(id));
+			bean.setWeek(db.getWeekFromTimeReport(id));
+			timeReports.add(bean);			
 		}
 		
+		// Rather cryptic way to sort but works fine!.
+		timeReports.sort(Comparator.comparing(b -> b.getWeek(), 
+						 Comparator.nullsFirst(Comparator.naturalOrder())));
+		return timeReports;
+	}
+	
+	/** Helper method to get all signed report .*/
+	private List<TimeReportBean> getSignedReports() {
 		List<TimeReportBean> signedReports = new ArrayList<TimeReportBean>();
 		List<Integer> signedTimeReportIDs = db.getSignedTimeReportIDs();
 		
@@ -57,19 +130,16 @@ public class TimeReportServlet extends ServletBase {
 			signedBean.setUsername(db.getUserNameFromTimeReport(x));
 			signedReports.add(signedBean);
 		}
-		
-		TimeReportBeanCan.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
+		// Rather cryptic way to sort but works fine!.
 		signedReports.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
-		
-		session.setAttribute("signedReports", signedReports);
-		session.setAttribute("TimeReportBeanCan", TimeReportBeanCan);
-
-		response.sendRedirect("summaryreport.jsp");
+		return signedReports;
 	}
-	
-	
-	
-	private Map<String, Integer> translateCrypticMap(Map<String, Integer> map ) {
+
+	/** Translates the Map from the Frontend, to the map that the database
+	 *  expects. This is required since Frontend and DB uses different key names.
+	 * 	The field names of the Frontend can be found in TimeReportBean.java and the db in Database.java
+	 */
+	private Map<String, Integer> translateFrontendToDb(Map<String, Integer> map ) {
 		Map<String, Integer> translated = new HashMap<>();
 		for (Map.Entry<String, Integer> entry: map.entrySet()) {
 			String document = entry.getKey().split("_")[0];
@@ -84,12 +154,16 @@ public class TimeReportServlet extends ServletBase {
 		}
 		return translated;
 	}
-	
-	private Map<String, Integer> detranslateCrypticMap(Map<String, Integer> map, char character ) {
+
+	/** Translates the Map from the Database, to the map that the Frontend
+	 *  expects. This is required since Frontend and DB uses different key names.
+	 *  The field names of the Frontend can be found in TimeReportBean.java and the db in Database.java
+	 */
+	private Map<String, Integer> translateDbToFrontend(Map<String, Integer> map, char character ) {
 		Map<String, Integer> translated = new HashMap<>();
 		for (Map.Entry<String, Integer> entry: map.entrySet()) {
 			String document = entry.getKey().split("_")[0];
-			
+
 			if (document.equals("totalMinutes")) {
 				document = String.format("total_%s", character);
 			} else if (document.equals("finalReport")) {
@@ -102,126 +176,55 @@ public class TimeReportServlet extends ServletBase {
 		}
 		return translated;
 	}
-	
-	
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	/** Helper method that redirects the client to view a time report. */
+	private void sendViewTimeReportRedirect(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+		TimeReportBean bean = getTimeReportBean(request, session);
+		session.setAttribute("timereport", bean);
+		sendJsResponse(response);
+	}
+
+	/** Helper method to send response to frontend JS.
+	 *  Not that this is needed instead of a redirect because the
+	 *  frontend handles the page redirect.
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
-		HttpSession session = request.getSession();
-		
-		String submitNewReport = request.getParameter("submitNew"); //Submit button in newreport.jsp
-		String editSelectedBtn = request.getParameter("editBtn");  //edit selected button in summaryreport.jsp
-		String viewBtn = request.getParameter("viewBtn");			//"view selected" button in summaryreport.jsp
-		String submitEdit = request.getParameter("submitEdit");		//submit button in updatereport.jsp
-		String createNewNav = request.getParameter("new");			//navigation to newreport.jsp
-		String viewSummary = request.getParameter("summary");
-		
-		
-		if (viewSummary != null) {
-			response.sendRedirect("summaryreport.jsp");
-		}
-		
-		
-		if (createNewNav != null) {
-			response.sendRedirect("newreport.jsp");
-		}
-		
-		if (editSelectedBtn != null) {
-			List<Integer> signedReports = db.getSignedTimeReportIDs(); 
-			session.setAttribute("editable", true);
-			TimeReportBean bean = new TimeReportBean();
-			int reportID = Integer.parseInt(request.getParameter("reportID"));
+	private void sendJsResponse(HttpServletResponse response) throws IOException {
+		ServletOutputStream out = response.getOutputStream();
+		out.print("ok");
+		out.flush();
+	}
 
-			bean.populateBean(
-					detranslateCrypticMap(db.getDocumentTimeD(reportID), 'd'),
-					detranslateCrypticMap(db.getDocumentTimeI(reportID), 'i'),
-					detranslateCrypticMap(db.getDocumentTimeF(reportID), 'f'),
-					detranslateCrypticMap(db.getDocumentTimeR(reportID), 'r'),
-					db.getActivityReport(reportID),
-					db.getTotalMinutesFromTimeReport(reportID)
-					);
-			bean.setReportID(reportID);
-			bean.setWeek(db.getWeekFromTimeReport(reportID));
-			bean.setUsername((String)session.getAttribute("username"));
-			session.setAttribute("timereport", bean);
-			
-			ServletOutputStream out = response.getOutputStream();
-			out.print("ok");
-			out.flush();		
-		}
-		
-		if (viewBtn != null) {
-			session.setAttribute("editable", false);
-			TimeReportBean bean = new TimeReportBean();
-			int reportID = Integer.parseInt(request.getParameter("reportID"));
-			
-			System.out.println("VIEW, Fetching report id: " + reportID);
-			System.out.println(db.getDocumentTimeD(reportID));
-			
-			bean.populateBean(
-					detranslateCrypticMap(db.getDocumentTimeD(reportID), 'd'),
-					detranslateCrypticMap(db.getDocumentTimeI(reportID), 'i'),
-					detranslateCrypticMap(db.getDocumentTimeF(reportID), 'f'),
-					detranslateCrypticMap(db.getDocumentTimeR(reportID), 'r'),
-					db.getActivityReport(reportID),
-					db.getTotalMinutesFromTimeReport(reportID)
-					);
-			bean.setReportID(reportID);
-			
-			System.out.println(bean.getReportValuesI());
-			System.out.println(bean.getReportValuesF());
-			System.out.println(bean.getReportValuesR());
-			System.out.println(bean.getReportValuesD());
-			
-			bean.setWeek(db.getWeekFromTimeReport(reportID));
-			bean.setUsername(db.getUserNameFromTimeReport(reportID));
-			session.setAttribute("timereport", bean);
-			ServletOutputStream out = response.getOutputStream();
-			out.print("ok");
-			out.flush();
-		}
-		
-		if (submitNewReport != null) {
-			TimeReportBean bean = new TimeReportBean();
-			bean.populateBean(request, response);
-			int reportID = db.newTimeReport(
-						(String) session.getAttribute("username"), 
-						Integer.parseInt(request.getParameter("week")));
-			
-			updateReport(request, response, session, db, reportID);
-			doGet(request,response);
-		}
-		
-		
-		if (submitEdit != null) {
-			TimeReportBean bean = new TimeReportBean();
-			bean.populateBean(request, response);
-			int reportID = Integer.parseInt(request.getParameter("reportID"));
-			System.out.println("EDITING: " +  reportID);
-			
-			updateReport(request, response, session, db, reportID);
-			doGet(request,response);
-		}
-		
+	/** Helper method to get and fill a time report beam. */
+	private TimeReportBean getTimeReportBean(HttpServletRequest request, HttpSession session) {
+		int reportID = Integer.parseInt(request.getParameter("reportID"));
+		String username = (String) session.getAttribute("username");
+
+		TimeReportBean bean = new TimeReportBean();
+		bean.populateBean(
+				translateDbToFrontend(db.getDocumentTimeD(reportID), 'd'),
+				translateDbToFrontend(db.getDocumentTimeI(reportID), 'i'),
+				translateDbToFrontend(db.getDocumentTimeF(reportID), 'f'),
+				translateDbToFrontend(db.getDocumentTimeR(reportID), 'r'),
+				db.getActivityReport(reportID),
+				db.getTotalMinutesFromTimeReport(reportID)
+				);
+		bean.setReportID(reportID);
+		bean.setWeek(db.getWeekFromTimeReport(reportID));
+		bean.setUsername(username);
+
+		return bean;
 	}
 	
-	/** Helper method to update a time report. 
-	 * @throws IOException 
-	 * @throws ServletException 
-	 * */
+	/** Helper method to update a time report. */
 	private void updateReport(HttpServletRequest request, HttpServletResponse response, 
 						      HttpSession session, DataBase db, int reportID) throws ServletException, IOException {
 		TimeReportBean bean = new TimeReportBean();
 		bean.populateBean(request, response);
 		
-		db.updateDocumentTimeD(reportID, translateCrypticMap(bean.getReportValuesD()));
-		db.updateDocumentTimeI(reportID, translateCrypticMap(bean.getReportValuesI()));
-		db.updateDocumentTimeF(reportID, translateCrypticMap(bean.getReportValuesF()));
-		db.updateDocumentTimeR(reportID, translateCrypticMap(bean.getReportValuesR()));
+		db.updateDocumentTimeD(reportID, translateFrontendToDb(bean.getReportValuesD()));
+		db.updateDocumentTimeI(reportID, translateFrontendToDb(bean.getReportValuesI()));
+		db.updateDocumentTimeF(reportID, translateFrontendToDb(bean.getReportValuesF()));
+		db.updateDocumentTimeR(reportID, translateFrontendToDb(bean.getReportValuesR()));
 		db.updateActivityReport(reportID, bean.getReportValuesActivity());
 		db.updateTotalMinutes(reportID, bean.getTotalTime());
 	}

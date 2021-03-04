@@ -134,7 +134,7 @@
             </tr>
           </thead>
           <tbody>
-          <%List<TimeReportBean> list = (ArrayList<TimeReportBean>) session.getAttribute("TimeReportBeanCan"); %>
+          <%List<TimeReportBean> list = (ArrayList<TimeReportBean>) session.getAttribute("timeReports"); %>
           
           <% for (TimeReportBean bean : list) { %>
         	  
