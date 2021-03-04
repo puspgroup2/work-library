@@ -17,7 +17,7 @@ import java.util.HashMap;
  * Servlet implementation class UserMangementServlet
  */
 @WebServlet("/UserManagementServlet")
-public class UserManagementServlet extends HttpServlet {
+public class UserManagementServlet extends ServletBase {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,8 +25,6 @@ public class UserManagementServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
 		HashMap<String, String> userMap = new HashMap<>(); //Creates a map intended to contain <Username, Role>.
@@ -46,8 +44,6 @@ public class UserManagementServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
 		ArrayList<String> userNames = (ArrayList<String>) db.getUsers(); //Retrieve all members in database
 		for (String name : userNames) {
 			if(!name.equals("admin")) {
