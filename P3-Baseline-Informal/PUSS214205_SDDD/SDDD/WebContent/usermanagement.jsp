@@ -75,14 +75,16 @@
             </tr>
           </thead>
           <tbody>
-            <%UserManagementBean ub = (UserManagementBean) session.getAttribute("UserManagementBean");
-            HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserList();
-            
-            for(Map.Entry<String, String> entry : userMap.entrySet()) {
-              String role = entry.getValue();
-              if(entry.getValue() == null) {
-                role = "";
-              }%>
+            <%
+            UserManagementBean ub = (UserManagementBean) session.getAttribute("UserManagementBean");
+                        HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserMap();
+                        
+                        for(Map.Entry<String, String> entry : userMap.entrySet()) {
+                          String role = entry.getValue();
+                          if(entry.getValue() == null) {
+                            role = "";
+                          }
+            %>
             
             <tr>
               <td><%=entry.getKey()%></td>

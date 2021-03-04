@@ -142,9 +142,11 @@
             </tr>
           </thead>
           <tbody>
-            <%UserManagementBean adminBean = (UserManagementBean) session.getAttribute("AdministrationBean");
-            HashMap<String, String> userMap = (HashMap<String, String>)adminBean.getUserList();
-            for(Map.Entry<String, String> user : userMap.entrySet()) {%>
+            <%
+            UserManagementBean adminBean = (UserManagementBean) session.getAttribute("AdministrationBean");
+                        HashMap<String, String> userMap = (HashMap<String, String>)adminBean.getUserMap();
+                        for(Map.Entry<String, String> user : userMap.entrySet()) {
+            %>
             <tr>
               <td>
                 <div class="form-check">
