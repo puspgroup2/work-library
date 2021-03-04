@@ -159,7 +159,7 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Week:</label> 
                     <div class="col-8">
-                      <input id="week" name="week" type="text" class="form-control" value="<%=bean.getWeek() %>">
+                      <input id="week" name="week" type="number" class="form-control" value="<%=bean.getWeek() %>">
                     </div>
                   </div>
                 </td>
@@ -170,7 +170,7 @@
                     <div class="form-group row">
                       <label for="text" class="col-5 col-form-label"><b>Part A: Total time this week (minutes):</b></label> 
                       <div class="col-7">
-                        <input id="totalMinutes" name="totalMinutes" type="text" class="form-control" value="<%=bean.getTotalTime()%>">
+                        <input id="totalMinutes" name="totalMinutes" type="text" class="form-control" value="<%=bean.getTotalTime()%>" readonly>
                       </div>
                     </div>
                 </td>
@@ -194,16 +194,16 @@
                 <td>11</td>
                 <td>SDP</td>
                 <td>
-                  <input id="sdp_d" name="sdp_d" type="text" class="sdp_report_value form-control" value="<%=bean.getReportValuesD().get("sdp_d")%>">
+                  <input id="sdp_d" name="sdp_d" type="number" class="sdp_report_value form-control" value="<%=bean.getReportValuesD().get("sdp_d")%>">
                 </td>
                 <td>
-                  <input id="sdp_i" name="sdp_i" type="text" class="sdp_report_value form-control" value="<%=bean.getReportValuesI().get("sdp_i")%>">
+                  <input id="sdp_i" name="sdp_i" type="number" class="sdp_report_value form-control" value="<%=bean.getReportValuesI().get("sdp_i")%>">
                 </td>
                 <td>
-                  <input id="sdp_f" name="sdp_f" type="text" class="sdp_report_value form-control" value="<%=bean.getReportValuesF().get("sdp_f")%>">
+                  <input id="sdp_f" name="sdp_f" type="number" class="sdp_report_value form-control" value="<%=bean.getReportValuesF().get("sdp_f")%>">
                 </td>
                 <td>
-                  <input id="sdp_r" name="sdp_r" type="text" class="sdp_report_value form-control" value="<%=bean.getReportValuesR().get("sdp_r")%>">
+                  <input id="sdp_r" name="sdp_r" type="number" class="sdp_report_value form-control" value="<%=bean.getReportValuesR().get("sdp_r")%>">
                 </td>
                 <td>
                   
@@ -215,16 +215,16 @@
                 <td>12</td>
                 <td>SRS</td>
                 <td>
-                  <input id="srs_d" name="srs_d" type="text" class="srs_report_value form-control" value="<%=bean.getReportValuesD().get("srs_d")%>">
+                  <input id="srs_d" name="srs_d" type="number" class="srs_report_value form-control" value="<%=bean.getReportValuesD().get("srs_d")%>">
                 </td>
                 <td>
-                  <input id="srs_i" name="srs_i" type="text" class="srs_report_value form-control" value="<%=bean.getReportValuesI().get("srs_i")%>">
+                  <input id="srs_i" name="srs_i" type="number" class="srs_report_value form-control" value="<%=bean.getReportValuesI().get("srs_i")%>">
                 </td>
                 <td>
-                  <input id="srs_f" name="srs_f" type="text" class="srs_report_value form-control" value="<%=bean.getReportValuesF().get("srs_f")%>">
+                  <input id="srs_f" name="srs_f" type="number" class="srs_report_value form-control" value="<%=bean.getReportValuesF().get("srs_f")%>">
                 </td>
                 <td>
-                  <input id="srs_r" name="srs_r" type="text" class="srs_report_value form-control" value="<%=bean.getReportValuesR().get("srs_r")%>">
+                  <input id="srs_r" name="srs_r" type="number" class="srs_report_value form-control" value="<%=bean.getReportValuesR().get("srs_r")%>">
                 </td>
                 <td>
                   
@@ -236,16 +236,16 @@
                 <td>13</td>
                 <td>SVVS</td>
                 <td>
-                  <input id="svvs_d" name="svvs_d" type="text" class="svvs_report_value form-control" value="<%=bean.getReportValuesD().get("svvs_d")%>">
+                  <input id="svvs_d" name="svvs_d" type="number" class="svvs_report_value form-control" value="<%=bean.getReportValuesD().get("svvs_d")%>">
                 </td>
                 <td>
-                  <input id="svvs_i" name="svvs_i" type="text" class="svvs_report_value form-control" value="<%=bean.getReportValuesI().get("svvs_i")%>">
+                  <input id="svvs_i" name="svvs_i" type="number" class="svvs_report_value form-control" value="<%=bean.getReportValuesI().get("svvs_i")%>">
                 </td>
                 <td>
-                  <input id="svvs_f" name="svvs_f" type="text" class="svvs_report_value form-control" value="<%=bean.getReportValuesF().get("svvs_f")%>">
+                  <input id="svvs_f" name="svvs_f" type="number" class="svvs_report_value form-control" value="<%=bean.getReportValuesF().get("svvs_f")%>">
                 </td>
                 <td>
-                  <input id="svvs_r" name="svvs_r" type="text" class="svvs_report_value form-control" value="<%=bean.getReportValuesR().get("svvs_r")%>">
+                  <input id="svvs_r" name="svvs_r" type="number" class="svvs_report_value form-control" value="<%=bean.getReportValuesR().get("svvs_r")%>">
                 </td>
                 <td>
                   
@@ -257,16 +257,16 @@
                 <td>14</td>
                 <td>STLDD</td>
                 <td>
-                  <input id="stldd_d" name="stldd_d" type="text" class="stldd_report_value form-control" value="<%=bean.getReportValuesD().get("stldd_d")%>">
+                  <input id="stldd_d" name="stldd_d" type="number" class="stldd_report_value form-control" value="<%=bean.getReportValuesD().get("stldd_d")%>">
                 </td>
                 <td>
-                  <input id="stldd_i" name="stldd_i" type="text" class="stldd_report_value form-control" value="<%=bean.getReportValuesI().get("stldd_i")%>">
+                  <input id="stldd_i" name="stldd_i" type="number" class="stldd_report_value form-control" value="<%=bean.getReportValuesI().get("stldd_i")%>">
                 </td>
                 <td>
-                  <input id="stldd_f" name="stldd_f" type="text" class="stldd_report_value form-control" value="<%=bean.getReportValuesF().get("stldd_f")%>">
+                  <input id="stldd_f" name="stldd_f" type="number" class="stldd_report_value form-control" value="<%=bean.getReportValuesF().get("stldd_f")%>">
                 </td>
                 <td>
-                  <input id="stldd_r" name="stldd_r" type="text" class="stldd_report_value form-control" value="<%=bean.getReportValuesR().get("stldd_r")%>">
+                  <input id="stldd_r" name="stldd_r" type="number" class="stldd_report_value form-control" value="<%=bean.getReportValuesR().get("stldd_r")%>">
                 </td>
                 <td>
                   
@@ -278,16 +278,16 @@
                 <td>15</td>
                 <td>SVVI</td>
                 <td>
-                  <input id="svvi_d" name="svvi_d" type="text" class="svvi_report_value form-control" value="<%=bean.getReportValuesD().get("svvi_d")%>">
+                  <input id="svvi_d" name="svvi_d" type="number" class="svvi_report_value form-control" value="<%=bean.getReportValuesD().get("svvi_d")%>">
                 </td>
                 <td>
-                  <input id="svvi_i" name="svvi_i" type="text" class="svvi_report_value form-control" value="<%=bean.getReportValuesI().get("svvi_i")%>">
+                  <input id="svvi_i" name="svvi_i" type="number" class="svvi_report_value form-control" value="<%=bean.getReportValuesI().get("svvi_i")%>">
                 </td>
                 <td>
-                  <input id="svvi_f" name="svvi_f" type="text" class="svvi_report_value form-control" value="<%=bean.getReportValuesF().get("svvi_f")%>">
+                  <input id="svvi_f" name="svvi_f" type="number" class="svvi_report_value form-control" value="<%=bean.getReportValuesF().get("svvi_f")%>">
                 </td>
                 <td>
-                  <input id="svvi_r" name="svvi_r" type="text" class="svvi_report_value form-control" value="<%=bean.getReportValuesR().get("svvi_r")%>">
+                  <input id="svvi_r" name="svvi_r" type="number" class="svvi_report_value form-control" value="<%=bean.getReportValuesR().get("svvi_r")%>">
                 </td>
                 <td>
                   
@@ -299,20 +299,20 @@
                 <td>16</td>
                 <td>SDDD</td>
                 <td>
-                  <input id="sddd_d" name="sddd_d" type="text" class="sddd_report_value form-control" value="<%=bean.getReportValuesD().get("sddd_d")%>">
+                  <input id="sddd_d" name="sddd_d" type="number" class="sddd_report_value form-control" value="<%=bean.getReportValuesD().get("sddd_d")%>">
                 </td>
                 <td>
-                  <input id="sddd_i" name="sddd_i" type="text" class="sddd_report_value form-control" value="<%=bean.getReportValuesI().get("sddd_i")%>">
+                  <input id="sddd_i" name="sddd_i" type="number" class="sddd_report_value form-control" value="<%=bean.getReportValuesI().get("sddd_i")%>">
                 </td>
                 <td>
-                  <input id="sddd_f" name="sddd_f" type="text" class="sddd_report_value form-control" value="<%=bean.getReportValuesF().get("sddd_f")%>">
+                  <input id="sddd_f" name="sddd_f" type="number" class="sddd_report_value form-control" value="<%=bean.getReportValuesF().get("sddd_f")%>">
                 </td>
                 <td>
-                  <input id="sddd_r" name="sddd_r" type="text" class="sddd_report_value form-control" value="<%=bean.getReportValuesR().get("sddd_r")%>">
+                  <input id="sddd_r" name="sddd_r" type="number" class="sddd_report_value form-control" value="<%=bean.getReportValuesR().get("sddd_r")%>">
                 </td>
                 <td>
                   
-                  <input id="sddd_total" name="sddd_total" type="text" class="form-control" disabled>
+                  <input id="sddd_total" name="sddd_total" type="number" class="form-control" disabled>
           
                 </td>
               </tr>
@@ -320,16 +320,16 @@
                 <td>17</td>
                 <td>SVVR</td>
                 <td>
-                  <input id="svvr_d" name="svvr_d" type="text" class="svvr_report_value form-control" value="<%=bean.getReportValuesD().get("svvr_d")%>">
+                  <input id="svvr_d" name="svvr_d" type="number" class="svvr_report_value form-control" value="<%=bean.getReportValuesD().get("svvr_d")%>">
                 </td>
                 <td>
-                  <input id="svvr_i" name="svvr_i" type="text" class="svvr_report_value form-control" value="<%=bean.getReportValuesI().get("svvr_i")%>">
+                  <input id="svvr_i" name="svvr_i" type="number" class="svvr_report_value form-control" value="<%=bean.getReportValuesI().get("svvr_i")%>">
                 </td>
                 <td>
-                  <input id="svvr_f" name="svvr_f" type="text" class="svvr_report_value form-control" value="<%=bean.getReportValuesF().get("svvr_f")%>">
+                  <input id="svvr_f" name="svvr_f" type="number" class="svvr_report_value form-control" value="<%=bean.getReportValuesF().get("svvr_f")%>">
                 </td>
                 <td>
-                  <input id="svvr_r" name="svvr_r" type="text" class="svvr_report_value form-control" value="<%=bean.getReportValuesR().get("svvr_r")%>">
+                  <input id="svvr_r" name="svvr_r" type="number" class="svvr_report_value form-control" value="<%=bean.getReportValuesR().get("svvr_r")%>">
                 </td>
                 <td>
              
@@ -341,16 +341,16 @@
                 <td>18</td>
                 <td>SSD</td>
                 <td>
-                  <input id="ssd_d" name="ssd_d" type="text" class="ssd_report_value form-control" value="<%=bean.getReportValuesD().get("ssd_d")%>">
+                  <input id="ssd_d" name="ssd_d" type="number" class="ssd_report_value form-control" value="<%=bean.getReportValuesD().get("ssd_d")%>">
                 </td>
                 <td>
-                  <input id="ssd_i" name="ssd_i" type="text" class="ssd_report_value form-control" value="<%=bean.getReportValuesI().get("ssd_i")%>">
+                  <input id="ssd_i" name="ssd_i" type="number" class="ssd_report_value form-control" value="<%=bean.getReportValuesI().get("ssd_i")%>">
                 </td>
                 <td>
-                  <input id="ssd_f" name="ssd_f" type="text" class="ssd_report_value form-control" value="<%=bean.getReportValuesF().get("ssd_f")%>">
+                  <input id="ssd_f" name="ssd_f" type="number" class="ssd_report_value form-control" value="<%=bean.getReportValuesF().get("ssd_f")%>">
                 </td>
                 <td>
-                  <input id="ssd_r" name="ssd_r" type="text" class="ssd_report_value form-control" value="<%=bean.getReportValuesR().get("ssd_r")%>">
+                  <input id="ssd_r" name="ssd_r" type="number" class="ssd_report_value form-control" value="<%=bean.getReportValuesR().get("ssd_r")%>">
                 </td>
                 <td>
                   
@@ -362,21 +362,19 @@
                 <td>19</td>
                 <td>Final Report</td>
                 <td>
-                  <input id="final_d" name="final_d" type="text" class="final_report_value form-control" value="<%=bean.getReportValuesD().get("final_d")%>">
+                  <input id="final_d" name="final_d" type="number" class="final_report_value form-control" value="<%=bean.getReportValuesD().get("final_d")%>">
                 </td>
                 <td>
-                  <input id="final_i" name="final_i" type="text" class="final_report_value form-control" value="<%=bean.getReportValuesI().get("final_i")%>">
+                  <input id="final_i" name="final_i" type="number" class="final_report_value form-control" value="<%=bean.getReportValuesI().get("final_i")%>">
                 </td>
                 <td>
-                  <input id="final_f" name="final_f" type="text" class="final_report_value form-control" value="<%=bean.getReportValuesF().get("final_f")%>">
+                  <input id="final_f" name="final_f" type="number" class="final_report_value form-control" value="<%=bean.getReportValuesF().get("final_f")%>">
                 </td>
                 <td>
-                  <input id="final_r" name="final_r" type="text" class="final_report_value form-control" value="<%=bean.getReportValuesR().get("final_r")%>">
+                  <input id="final_r" name="final_r" type="number" class="final_report_value form-control" value="<%=bean.getReportValuesR().get("final_r")%>">
                 </td>
                 <td>
-             
                   <input type="number" id="final_total" name="final_total" class="form-control" disabled>
-              
                 </td>
               </tr>
               <tr>
