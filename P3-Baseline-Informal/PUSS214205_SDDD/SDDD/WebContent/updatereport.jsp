@@ -413,47 +413,47 @@
               <tr>
                 <td colspan="2">21</td>
                 <td colspan="4">Functional test</td>
-                <td><input id="functional_test" name="functionalTest" type="number" class="form-control" value="<%=bean.getReportValuesActivity().get("functionalTest")%>"></td>
+                <td><input id="functional_test" name="functionalTest" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("functionalTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input id="system_test" name="systemTest" type="number" class="form-control" value="<%=bean.getReportValuesActivity().get("systemTest")%>"></td>
+                <td><input id="system_test" name="systemTest" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("systemTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input id="regression_test" name="regressionTest" type="number" class="form-control" value="<%=bean.getReportValuesActivity().get("regressionTest")%>"></td>
+                <td><input id="regression_test" name="regressionTest" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("regressionTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
                 <td colspan="4">Meeting</td>
-                <td><input id="meeting" name="meeting" type="number" class="form-control" value="<%=bean.getReportValuesActivity().get("meeting")%>"></td>
+                <td><input id="meeting" name="meeting" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("meeting")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">41</td>
                 <td colspan="4">Lecture</td>
-                <td><input id="lecture" name="lecture" type="number" class="form-control" value="<%=bean.getReportValuesActivity().get("lecture")%>"></td>
+                <td><input id="lecture" name="lecture" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("lecture")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">42</td>
                 <td colspan="4">Exercise</td>
-                <td><input id="exercise" name="exercise" type="number" class="form-control" value="<%=bean.getReportValuesActivity().get("exercise")%>"></td>
+                <td><input id="exercise" name="exercise" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("exercise")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input id="computer_exercise" name="computer_exercise" type="number" class="form-control" value="<%=bean.getReportValuesActivity().get("computerExercise")%>"></td>
+                <td><input id="computer_exercise" name="computer_exercise" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("computerExercise")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input id="home_reading" name="home_reading" type="number" class="form-control" value="<%=bean.getReportValuesActivity().get("homeReading")%>"></td>
+                <td><input id="home_reading" name="home_reading" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("homeReading")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
                 <td colspan="4">Other</td>
-                <td><input id="other" name="other" type="number" class="form-control" value="<%=bean.getReportValuesActivity().get("other")%>"></td>
+                <td><input id="other" name="other" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("other")%>"></td>
               </tr>
               <tr>
                 <td colspan="7">
