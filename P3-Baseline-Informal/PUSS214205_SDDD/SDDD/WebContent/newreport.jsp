@@ -180,7 +180,7 @@
                     <div class="form-group row">
                       <label for="text" class="col-5 col-form-label"><b>Part A: Total time this week (minutes):</b></label>
                       <div class="col-7">
-                        <input type="number" id="totaltime" name="totaltime" class="form-control" disabled>
+                        <input type="number" id="totalMinutes" name="totalMinutes" class="form-control" disabled>
                       </div>
                     </div>
                 </td>
@@ -392,17 +392,17 @@
               <tr>
                 <td colspan="2">21</td>
                 <td colspan="4">Functional test</td>
-                <td><input type="number" id="functional_test" class="other-values" name="functional_test" class="form-control"></td>
+                <td><input type="number" id="functionalTest" class="other-values" name="functionalTest" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input type="number" id="system_test" class="other-values" name="system_test" class="form-control"></td>
+                <td><input type="number" id="systemTest" class="other-values" name="systemTest" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input type="number" id="regression_test" class="other-values" name="regression_test" class="form-control"></td>
+                <td><input type="number" id="regressionTest" class="other-values" name="regressionTest" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
@@ -422,12 +422,12 @@
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input type="number" id="computer_exercise" class="other-values" name="computer_exercise" class="form-control"></td>
+                <td><input type="number" id="computerExercise" class="other-values" name="computerExercise" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input type="number" id="home_reading" class="other-values" name="home_reading" class="form-control"></td>
+                <td><input type="number" id="homeReading" class="other-values" name="homeReading" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
@@ -541,8 +541,8 @@
     let col_sums = [0, 0, 0, 0];
 
     for (let doc of documents) {
-      let totalTime = getTotal(doc[0]);
-      document.getElementById(doc[1]).value = totalTime;
+      let totalMinutes = getTotal(doc[0]);
+      document.getElementById(doc[1]).value = totalMinutes;
 
       // Calculate the column totals.
       let boxes = document.getElementsByClassName(doc[0]);
@@ -569,7 +569,7 @@
 
     console.log(others, totalTotal)
     // Update the absolute TOTAL time.
-    document.getElementById('totaltime').value = others + totalTotal;
+    document.getElementById('totalMinutes').value = others + totalTotal;
   }
 
   /* Get the total time for the "other" values. */
