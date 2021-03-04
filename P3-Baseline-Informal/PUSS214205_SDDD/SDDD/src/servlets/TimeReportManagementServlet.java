@@ -23,21 +23,29 @@ import beans.TimeReportManagementBean;
 import database.DataBase;
 
 /**
- * Servlet implementation class TimeReportManagementServlet
+ * This servlet handles sign/unsigning Time reports.
  */
 @WebServlet("/TimeReportManagementServlet")
-public class TimeReportManagementServlet extends HttpServlet {
+public class TimeReportManagementServlet extends ServletBase {
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
 		HttpSession session = request.getSession();
+		List<TimeReportBean> unsignedReports = getUnsignedReports();
+		session.setAttribute("unsignedReports", unsignedReports);
+		response.sendRedirect("signreport.jsp");
+	}
+
+
+	/** Helper method to get all unsigned time reports. */
+	private List<TimeReportBean> getUnsignedReports() {
 		List<TimeReportBean> unsignedReports = new ArrayList<TimeReportBean>();
-		for(Integer id: db.getUnsignedTimeReportIDs()) {
+
+		for (Integer id: db.getUnsignedTimeReportIDs()) {
 			TimeReportBean bean = new TimeReportBean();
 			bean.setReportID(id);
 			bean.setTotalTime(db.getTotalMinutesFromTimeReport(id));
@@ -46,11 +54,49 @@ public class TimeReportManagementServlet extends HttpServlet {
 			bean.setUsername(db.getUserNameFromTimeReport(id));
 			unsignedReports.add(bean);			
 		}
-		unsignedReports.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
-		session.setAttribute("unsignedReports", unsignedReports);
-		response.sendRedirect("signreport.jsp");
+		
+		// Cryptic sorting, but works fine!
+		unsignedReports.sort(Comparator.comparing(b -> b.getWeek(), 
+							 Comparator.nullsFirst(Comparator.naturalOrder())));
+		return unsignedReports;
 	}
+	
+	/**
+	 * This post handled sign/unsign with a Time report.
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String userName = (String) session.getAttribute("username");
 
+		// The timereports come as a string in the format of: ["x1", "x2"]
+		// We need to parse this into a Java list.
+		String unsignedReports = request.getParameter("timeReports");
+		List<Integer> ids = unStringifiy(unsignedReports);
+		
+		if(request.getParameter("input").equals("sign")) {
+			// Sign the reports.
+			for (Integer id: ids) {
+				db.setSigned(true, userName, id);	
+			}
+		} else if(request.getParameter("input").equals("Unsign")) {
+			// UNsign the reports.
+			for (Integer id: ids) {
+				db.setSigned(false, userName, id);	
+			}
+		}
+		
+	}
+	
+	/** Helper method to send response to frontend JS.
+	 *  Not that this is needed instead of a redirect because the
+	 *  frontend handles the page redirect.
+	 */
+	private void sendJsResponse(HttpServletResponse response) throws IOException {
+		ServletOutputStream out = response.getOutputStream();
+		out.print("ok");
+		out.flush();
+	}
+	
 	/**
 	 * Parses raw string data to a list of integers.
 	 * @param rawData raw string
@@ -66,41 +112,5 @@ public class TimeReportManagementServlet extends HttpServlet {
 		}
 		return ids;
 	}
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
-		HttpSession session = request.getSession();
-		String userName = (String)session.getAttribute("username");
-		if(request.getParameter("input").equals("sign")) {
-			// The timereports come as a string in the format of: ["x1", "x2"]
-			// We need to parse this into a Java list.
-			String unsignedReports = request.getParameter("timeReports");
-			List<Integer> ids = unStringifiy(unsignedReports);
-			for (Integer id: ids) {
-				db.setSigned(true, userName, id);	
-			}
-		}
-		
-		if(request.getParameter("input").equals("Unsign")) {
-			// The timereports come as a string in the format of: ["x1", "x2"]
-			// We need to parse this into a Java list.
-			String unsignedReports = request.getParameter("timeReports");
-			List<Integer> ids = unStringifiy(unsignedReports);
-			for (Integer id: ids) {
-				db.setSigned(false, userName, id);	
-			}
-		}
-		
-		
-		
-		
-		
-		// Send response so JS can reload page. Can this ever be NOT ok? 
-		ServletOutputStream out = response.getOutputStream();
-		out.print("ok");
-		out.flush();
-	}
+	
 }
