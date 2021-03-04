@@ -46,6 +46,7 @@ public class ServletBase extends HttpServlet {
 	 * Default constructor. 
 	 */
     public ServletBase() {
+    	db = new DataBase();
     	db.connect();
     }
 
