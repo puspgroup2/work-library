@@ -303,7 +303,7 @@ public class DataBase {
 			ps.setString(2, userName);
 			ResultSet rs = ps.executeQuery();
 			System.out.println(rs.getFetchSize());
-			if (rs.getFetchSize() == 0) {
+			if (!rs.next()) {
 				System.out.println("Week ok!!!!");
 				return true;
 			}
@@ -815,7 +815,8 @@ public class DataBase {
 		db.connect();
 
 
-		System.out.println(db.newTimeReport("oscar", 10));
+		System.out.println(db.newTimeReport("oscar", 12));
+
 		
 			
 	}
