@@ -35,6 +35,7 @@ public class TimeReportServlet extends ServletBase {
 		List<TimeReportBean> TimeReportBeanCan = new ArrayList<TimeReportBean>();
 		for(Integer i : reportIdList) {
 			TimeReportBean trb = new TimeReportBean();
+			trb.setReportID(i);
 			trb.setSigned(db.getSignatureFromTimeReport(i));
 			trb.setTotalTime(db.getTotalMinutesFromTimeReport(i));
 			trb.setWeek(db.getWeekFromTimeReport(i));
