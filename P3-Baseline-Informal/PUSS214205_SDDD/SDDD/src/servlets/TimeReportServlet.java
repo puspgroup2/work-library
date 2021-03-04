@@ -83,8 +83,14 @@ public class TimeReportServlet extends ServletBase {
 			int reportID = db.newTimeReport(
 						(String) session.getAttribute("username"), 
 						Integer.parseInt(request.getParameter("week")));
-			updateReport(request, response, session, db, reportID);
-			doGet(request,response);
+			if (reportID != 0) {
+				updateReport(request, response, session, db, reportID);
+				doGet(request,response);
+				session.setAttribute("reportError", 0);
+			} else {
+				session.setAttribute("reportError", 1);
+				response.sendRedirect("newreport.jsp");
+			}
 		} 
 		else if (submitEdit != null) {
 			TimeReportBean bean = new TimeReportBean();

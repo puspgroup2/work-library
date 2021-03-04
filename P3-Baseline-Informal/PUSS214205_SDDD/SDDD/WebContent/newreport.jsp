@@ -118,6 +118,11 @@
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
+    <c:if test="${sessionScope.reportError eq 1}">
+        <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+            There is already a report with the given week.
+        </div>
+    </c:if>
 
     <div class="container-fluid">
       <div>

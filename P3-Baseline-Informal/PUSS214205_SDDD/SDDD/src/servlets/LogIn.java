@@ -66,15 +66,12 @@ public class LogIn extends ServletBase {
 		if (username == null || password == null) {
 			session.setAttribute("message", USER_LOGIN_FAILED_);
 		} else {
-			UserBean ub = new UserBean();
 			String salt = db.getSalt(username);
 			if (salt != null) {
 				String hashPassword = PasswordHandler.hashPassword(password, salt);
-				ub.populateBean(username, hashPassword);
 				if (db.checkLogin(username, hashPassword)) {
-					ub.setRole(db.getRole(username));
-					session.setAttribute("username", ub.getUserName());
-					session.setAttribute("role", ub.getRole());
+					session.setAttribute("username", username);
+					session.setAttribute("role", db.getRole(username));
 					session.setAttribute("state", LOGIN_TRUE);
 					response.sendRedirect("index.jsp");
 				} else {
@@ -106,9 +103,7 @@ public class LogIn extends ServletBase {
 			String pw = PasswordHandler.generatePassword();
 			mh.sendPasswordMail(mail, userName, pw);
 			
-			if (db.changePassword(userName, PasswordHandler.hashPassword(pw, db.getSalt(userName)))) {
-				//TODO Handle potential error
-			}
+			db.changePassword(userName, PasswordHandler.hashPassword(pw, db.getSalt(userName)));
 			session.setAttribute("message", PW_CHANGE_SUCCESS_);
 			response.sendRedirect("login.jsp");
 		} else {
