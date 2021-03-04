@@ -180,7 +180,7 @@
                     <div class="form-group row">
                       <label for="text" class="col-5 col-form-label"><b>Part A: Total time this week (minutes):</b></label>
                       <div class="col-7">
-                        <input type="number" id="totaltime" name="totaltime" class="form-control">
+                        <input type="number" id="totaltime" name="totaltime" class="form-control" disabled>
                       </div>
                     </div>
                 </td>
