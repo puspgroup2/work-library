@@ -507,7 +507,7 @@
             </table>
             <div class="form-group row">
               <div class="offset-0 col-8">
-                <button name="submitEdit" type="submit" class="btn btn-primary">Submit</button>
+                <button name="submitEdit" type="submit" class="btn btn-primary">Submit change</button>
               </div>
             </div>
           </form>
