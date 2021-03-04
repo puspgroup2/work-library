@@ -35,8 +35,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/LogIn")
 
-public class LogIn extends ServletBase 
-{
+public class LogIn extends ServletBase {
 	private static final long serialVersionUID = 1L;
 	private final int USER_LOGIN_FAILED_ = 0;
 	private final int PW_CHANGE_FAILED_ = 1;
@@ -46,7 +45,6 @@ public class LogIn extends ServletBase
 	 */
 	public LogIn() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -60,9 +58,7 @@ public class LogIn extends ServletBase
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
-
+	
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -82,12 +78,12 @@ public class LogIn extends ServletBase
 					session.setAttribute("state", LOGIN_TRUE);
 					response.sendRedirect("index.jsp");
 				} else {
-					//failed login
+					//---------Failed Login--------------
 					session.setAttribute("message", USER_LOGIN_FAILED_);
 					response.sendRedirect("login.jsp");
 				}
 			} else {
-				//failed login
+				//------------Failed Login----------------
 				session.setAttribute("message", USER_LOGIN_FAILED_);
 				response.sendRedirect("login.jsp");
 			}
@@ -100,8 +96,7 @@ public class LogIn extends ServletBase
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
+	
 		HttpSession session = request.getSession();
 		String userName = request.getParameter("username");
 		String mail = db.getEmail(userName);
