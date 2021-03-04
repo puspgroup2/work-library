@@ -163,7 +163,7 @@ public class TimeReportBean implements Serializable {
 	   for(int i = 0; i < allFields.size(); i++) {
 		  for(int j = 0; j < allFields.get(i).length; j++) {
 	    	String Input = request.getParameter(allFields.get(i)[j]); 
-	    	if (request.getParameter(Input) == null) {
+	    	if (Input == null) {
 	    		reportFields.get(i).put(allFields.get(i)[j], 0);
 	    	} else {
 	    		reportFields.get(i).put(allFields.get(i)[j], Integer.parseInt(Input));
