@@ -37,8 +37,8 @@ public class ServletBase extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	// Define states
-	protected static final int LOGIN_FALSE = 0;
-	protected static final int LOGIN_TRUE = 1;	
+	public static final int LOGIN_FALSE = 0;
+	public static final int LOGIN_TRUE = 1;	
 	protected DataBase db = null;
 	
 	
