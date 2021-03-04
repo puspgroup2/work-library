@@ -96,7 +96,7 @@ public class TimeReportServlet extends ServletBase {
 			List<Integer> signedReports = db.getSignedTimeReportIDs(); 
 			session.setAttribute("editable", true);
 			TimeReportBean tb = new TimeReportBean();
-			int reportID = (Integer)session.getAttribute("reportID");
+			int reportID = Integer.parseInt(request.getParameter("reportID"));
 			tb.populateBean(db.getDocumentTimeD(reportID), 
 					db.getDocumentTimeF(reportID), 
 					db.getDocumentTimeI(reportID), 
@@ -131,7 +131,8 @@ public class TimeReportServlet extends ServletBase {
 		if (viewBtn != null) {
 			session.setAttribute("editable", false);
 			TimeReportBean trb1 = new TimeReportBean();
-			int id = (Integer) session.getAttribute("reportID");
+			int id = Integer.parseInt(request.getParameter("reportID"));
+			
 			trb1.populateBean(db.getDocumentTimeD(id), 
 					db.getDocumentTimeI(id), 
 					db.getDocumentTimeF(id), 
