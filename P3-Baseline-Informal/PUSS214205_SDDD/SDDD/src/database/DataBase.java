@@ -799,17 +799,6 @@ public class DataBase {
 		return null;
 	}
 	
-	// helper method, might not be used.
-	public boolean valueExists(int reportID, String target, ResultSet rs) throws SQLException {
-		if (rs == null) return false;
-		while (rs.next()) {
-			if (rs.getInt("reportID") == reportID) {
-				return rs.getInt(target) != 0;
-			}
-		}
-		return false;
-	}
-	
 	
 	public static void main(String[] args) {
 		DataBase db = new DataBase();
