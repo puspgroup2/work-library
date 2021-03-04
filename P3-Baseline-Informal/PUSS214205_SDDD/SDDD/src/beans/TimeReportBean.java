@@ -29,7 +29,9 @@ public class TimeReportBean implements Serializable {
     private String[] fieldNamesI = {"sdp_i", "srs_i", "svvs_i", "stldd_i", "svvi_i", "sddd_i", "svvr_i", "ssd_i", "final_i", "total_i"}; 
     private String[] fieldNamesF = {"sdp_f", "srs_f", "svvs_f", "stldd_f", "svvi_f", "sddd_f", "svvr_f", "ssd_f", "final_f", "total_f"};
     private String[] fieldNamesR = {"sdp_r", "srs_r", "svvs_r", "stldd_r", "svvi_r", "sddd_r", "svvr_r", "ssd_r", "final_r", "total_r"};
-    private String[] fieldNamesActivity = {	"functional_test", "system_test", "regression_test", "meeting", "lecture", "exercise", "computer_exercise", "home_reading", "other"};
+    private String[] fieldNamesActivity = {	"totalMinutes", "functionalTest", "systemTest", "regressionTest", "meeting", 
+    										"lecture", "exercise", "computerExercise", "homeReading", "other"};
+
     private List<String[]> allFields = new ArrayList<String[]>();
     private List<Map<String, Integer>> reportFields = new ArrayList<Map<String, Integer>>();
     
