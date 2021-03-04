@@ -1,4 +1,5 @@
 package database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,11 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import beans.UserBean;
 
 /**
  * A database used by the time reporting system TimeMate.
+ * 
  * @author Anna, Alexandra, Annelie
  *
  */
@@ -22,27 +23,29 @@ public class DataBase {
 	private static String database = "pusp2102hbg";
 	private static String databaseUser = "pusp2102hbg";
 	private static String databasePassword = "s9hg34sf";
-	
+
 	public DataBase() {
 		connection = null;
 	}
-	
+
 	/**
 	 * Establishes a connection to the MySQL database.
+	 * 
 	 * @return true if the connection was established.
 	 */
 	public boolean connect() {
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://" + databaseServerAddress + 
-					"/" + database, databaseUser, databasePassword);
+			connection = DriverManager.getConnection("jdbc:mysql://" + databaseServerAddress + "/" + database,
+					databaseUser, databasePassword);
 		} catch (SQLException e) {
 			handleSQLException(e);
-            return false;
+			return false;
 		}
 		return true;
 	}
-	
+
 	/**
+	 * Interrupts the connection to the MySQL database.
 	 * 
 	 * @return true is the connection was successfully closed.
 	 * @throws SQLException if the connection could not be closed.
@@ -56,136 +59,139 @@ public class DataBase {
 		}
 		return true;
 	}
-	
+
 	// Methods only the admin has access to.
-	
+
 	/**
 	 * Only the admin can perform this action.
+	 * 
 	 * @param username The userName of the user.
 	 * @param password The password for the login.
-	 * @param email The email of the user.
-	 * @param salt The salt to be added.
+	 * @param email    The email of the user.
+	 * @param salt     The salt to be added.
 	 * @return true if the user was successfully added to the database.
 	 */
 	public boolean addUser(String username, String password, String email, String salt) {
-		// checks if user exists
 		String getUser = "SELECT * FROM Users WHERE userName = ?";
-		try(PreparedStatement ps = connection.prepareStatement(getUser)) {
+		try (PreparedStatement ps = connection.prepareStatement(getUser)) {
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				return false;
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			handleSQLException(e);
-            return false;
+			return false;
 		}
-		
-		// Adds user
+
 		String addUser = "INSERT INTO Users(userName, password, email, salt) VALUES (?, ?, ?, ?)";
-		try(PreparedStatement ps = connection.prepareStatement(addUser)) {
+		try (PreparedStatement ps = connection.prepareStatement(addUser)) {
 			ps.setString(1, username);
 			ps.setString(2, password);
 			ps.setString(3, email);
 			ps.setString(4, salt);
 			ps.executeUpdate();
 			return true;
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			handleSQLException(e);
-            return false;
+			return false;
 		}
 	}
-	
+
 	/**
 	 * Only the admin can perform this action.
+	 * 
 	 * @param username The userName of the user.
 	 * @return true if the user was successfully removed from the database.
 	 */
 	public boolean removeUser(String username) {
 		String removeUser = "DELETE FROM Users WHERE userName = ?";
-		try(PreparedStatement ps = connection.prepareStatement(removeUser)) {
+		try (PreparedStatement ps = connection.prepareStatement(removeUser)) {
 			ps.setString(1, username);
 			return ps.executeUpdate() > 0;
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			handleSQLException(e);
-            return false;
+			return false;
 		}
 	}
-	
-	// Methods only the project leader has access to
-	
+
+	// Methods only the project leader has access to.
+
 	/**
-	 * Returns a list containing a user's Time Report ID's.
+	 * Returns a list containing a user's all Time Report ID's.
+	 * 
 	 * @param username The userName of the user.
 	 * @return list of Time Report IDs.
 	 */
 	public List<Integer> getTimeReportIDs(String username) {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE userName = ?";
 		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
-		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
+		try (PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			handleSQLException(e);
-            return timeReportIDs;
+			return timeReportIDs;
 		}
 	}
-	
+
 	/**
-	 * Returns a list containing ID's of all unsigned Time Reports.
+	 * Returns a list containing the Time Report ID's of all unsigned Time Reports.
+	 * 
 	 * @return list of Time Report IDs.
 	 */
 	public List<Integer> getUnsignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NULL";
 		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
-		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
+		try (PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			handleSQLException(e);
-            return timeReportIDs;
+			return timeReportIDs;
 		}
 	}
+
 	/**
-	 * Returns a list containing ID's of all signed Time Reports.
+	 * Returns a list containing the Time Report ID's of all signed Time Reports.
+	 * 
 	 * @return list of Time Report IDs.
 	 */
 	public List<Integer> getSignedTimeReportIDs() {
 		String getIDs = "SELECT reportID FROM TimeReports WHERE signature IS NOT NULL";
 		ArrayList<Integer> timeReportIDs = new ArrayList<Integer>();
-		try(PreparedStatement ps = connection.prepareStatement(getIDs)) {
+		try (PreparedStatement ps = connection.prepareStatement(getIDs)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			handleSQLException(e);
-            return timeReportIDs;
+			return timeReportIDs;
 		}
 	}
-	
+
 	/**
-	 * Sets the time report as signed by the project leader.
-	 * @param yes if the Time Report be signed.
+	 * Sets the Time Report as signed by the project leader.
+	 * 
+	 * @param yes      if the Time Report be signed.
 	 * @param userName the name of the project leader.
 	 * @param reportID the number of the Time Report in question.
 	 */
 	public void setSigned(boolean yes, String userName, int reportID) {
-		String sql = "UPDATE TimeReports "
-				+ "set signature = ? "
-				+ "where reportID = ?";
+		String sql = "UPDATE TimeReports " + "set signature = ? " + "where reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			String result = yes ? userName : null;
 			ps.setString(1, result);
-			ps.setInt(2, reportID);	
+			ps.setInt(2, reportID);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			handleSQLException(e);
@@ -194,48 +200,53 @@ public class DataBase {
 
 	/**
 	 * Retrieves a user's role with the help of their userName.
+	 * 
 	 * @param userName The userName of the user.
 	 * @return the role of the user, null will otherwise be returned.
 	 */
 	public String getRole(String userName) {
 		String role = null;
 		String sql = "SELECT role from Users where userName = ?";
-		
+
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, userName);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				role = rs.getString("role");
 			}
 		} catch (SQLException e) {
-		  handleSQLException(e);
+			handleSQLException(e);
 		}
 		return role;
 	}
 
 	/**
 	 * Updates the user's role.
+	 * 
 	 * @param userName The userName of the user.
-	 * @param role The role of the user.
-	 * @return true and updates the user's role, returns false if it wasn't possible.
+	 * @param role     The role of the user.
+	 * @return true and updates the user's role, returns false if it wasn't
+	 *         possible.
 	 */
 	public boolean updateRole(String userName, String role) {
 		String sql = "UPDATE Users SET role = ? WHERE userName = ?";
-		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, role);
 			ps.setString(2, userName);
 			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
 		}
-        catch (SQLException e) {
-        handleSQLException(e);
-        return false;
-        }
 	}
 
-	
 	// Methods every user has access to
+
 	/**
 	 * Creates a new Time Report.
+	 * 
+	 * @param userName The userName of the user associated with the Time Report.
+	 * @param week     The week of the Time Report.
 	 * @return the Time Report ID.
 	 */
 	public int newTimeReport(String userName, int week) {
@@ -251,16 +262,19 @@ public class DataBase {
 			return getReportID(userName, week);
 		}
 		return 0;
-    }
-	
+	}
+
 	/**
 	 * Updates the totalMinutes attribute associated with the given reportID.
-	 * @param reportID The reportID number which attribute is to be altered.
-	 * @param totalMinutes The number of minutes the user has worked during the week.
+	 * 
+	 * @param reportID     The reportID number which attribute is to be altered.
+	 * @param totalMinutes The number of minutes the user has worked during the
+	 *                     week.
 	 * @return true if update was successfully executed.
 	 */
 	public boolean updateTotalMinutes(int reportID, int totalMinutes) {
-		if (totalMinutes < 0) return false;
+		if (totalMinutes < 0)
+			return false;
 		String sql = "UPDATE TimeReports SET totalMinutes = ? WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, totalMinutes);
@@ -272,32 +286,34 @@ public class DataBase {
 		}
 		return false;
 	}
+
 	/**
 	 * Updates the value of the week associated with a given reportID.
+	 * 
 	 * @param reportID The reportID of the Time Report that is to be altered.
 	 * @param userName The user's unique identifier.
-	 * @param newWeek The new week value. 
+	 * @param newWeek  The new week value.
 	 * @return True if there was not already a Time Report for that week and user.
 	 */
 	public boolean updateWeek(int reportID, String userName, int newWeek) {
-		if (!weekOK(userName, newWeek)) return false;
-		String sql = "UPDATE TimeReports "
-				+ "SET Week = ? "
-				+ "WHERE reportID = ?";
-			try (PreparedStatement ps = connection.prepareStatement(sql)) {
-				ps.setInt(1, newWeek);
-				ps.setInt(2, reportID);
-				ps.executeUpdate();
-				return true;
-			} catch (SQLException e) {
-				handleSQLException(e);
-			}
+		if (!weekOK(userName, newWeek))
+			return false;
+		String sql = "UPDATE TimeReports " + "SET Week = ? " + "WHERE reportID = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, newWeek);
+			ps.setInt(2, reportID);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
 		return false;
 	}
 
-	/* Helper method for updateTimeReport */
+	/* Helper method for updateTimeReport. */
 	private boolean weekOK(String userName, Integer week) {
-		if (week < 0 || week > 54) return false;
+		if (week < 0 || week > 54)
+			return false;
 		String sql = "SELECT * from TimeReports where Week = ? and userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, week);
@@ -314,33 +330,33 @@ public class DataBase {
 		return false;
 	}
 
-	
-	
 	/**
-     * Updates an Activity Report according to the values contained in the map.
-     * @param reportID The ID of the report.
-     * @param activityReport A map with key-value pairs consisting of the tuple's
-     * columns and the values associated with these.
-     * @return true if the Activity Report was successfully updated.
-     */
+	 * Updates an Activity Report according to the values contained in the map.
+	 * 
+	 * @param reportID       The ID of the report.
+	 * @param activityReport A map with key-value pairs consisting of the tuple's
+	 *                       columns and the values associated with these.
+	 * @return true if the Activity Report was successfully updated.
+	 */
 	public boolean updateActivityReport(int reportID, Map<String, Integer> activityReport) {
-		if (this.select(reportID, "*", "TimeReports") == null) return false;
-		
+		if (this.select(reportID, "*", "TimeReports") == null)
+			return false;
+
 		String sql;
-		if(this.select(reportID, "*", "ActivityReports") == null) {
+		if (this.select(reportID, "*", "ActivityReports") == null) {
 			String addActivityReport = "INSERT INTO ActivityReports(reportID) VALUES (?)";
-			try(PreparedStatement ps = connection.prepareStatement(addActivityReport)) {
+			try (PreparedStatement ps = connection.prepareStatement(addActivityReport)) {
 				ps.setInt(1, reportID);
 				ps.executeUpdate();
-			} catch(SQLException e) {
+			} catch (SQLException e) {
 				handleSQLException(e);
-	            return false;
+				return false;
 			}
 		}
-		
+
 		for (String s : activityReport.keySet()) {
 			sql = "UPDATE ActivityReports SET " + s + " = ? WHERE reportID = ?";
-			try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				ps.setInt(1, activityReport.get(s));
 				ps.setInt(2, reportID);
 				ps.execute();
@@ -350,53 +366,83 @@ public class DataBase {
 		}
 		return true;
 	}
-	
-	
+
 	/**
-     * Updates a Document Time Report according to the values contained in the map.
-     * @param reportID The ID of the report.
-     * @param documentTimeD/I/R/F A map with key-value pairs consisting of the tuple's.
-     * columns and the values associated with these.
-     * @return true if the Document Time Report was successfully updated.
-     */
+	 * Updates a Document Time D Report according to the values contained in the
+	 * map.
+	 * 
+	 * @param reportID            The Time Report to be updated.
+	 * @param documentTimeD/I/R/F A map with key-value pairs consisting of the
+	 *                            tuple's. columns and the values associated with
+	 *                            these.
+	 * @return true if the Document Time Report was successfully updated.
+	 */
 	public boolean updateDocumentTimeD(int reportID, Map<String, Integer> documentTimeD) {
 		return updateDocumentTime(reportID, documentTimeD, 'D');
 	}
-	
-	
+
+	/**
+	 * Updates a Document Time I Report according to the values contained in the
+	 * map.
+	 * 
+	 * @param reportID            The Time Report to be updated.
+	 * @param documentTimeD/I/R/F A map with key-value pairs consisting of the
+	 *                            tuple's. columns and the values associated with
+	 *                            these.
+	 * @return true if the Document Time Report was successfully updated.
+	 */
 	public boolean updateDocumentTimeI(int reportID, Map<String, Integer> documentTimeI) {
 		return updateDocumentTime(reportID, documentTimeI, 'I');
 	}
-	
-	
+
+	/**
+	 * Updates a Document Time R Report according to the values contained in the
+	 * map.
+	 * 
+	 * @param reportID            The Time Report to be updated.
+	 * @param documentTimeD/I/R/F A map with key-value pairs consisting of the
+	 *                            tuple's. columns and the values associated with
+	 *                            these.
+	 * @return true if the Document Time Report was successfully updated.
+	 */
 	public boolean updateDocumentTimeR(int reportID, Map<String, Integer> documentTimeR) {
 		return updateDocumentTime(reportID, documentTimeR, 'R');
 	}
-	
-	
+
+	/**
+	 * Updates a Document Time F Report according to the values contained in the
+	 * map.
+	 * 
+	 * @param reportID            The Time Report to be updated.
+	 * @param documentTimeD/I/R/F A map with key-value pairs consisting of the
+	 *                            tuple's. columns and the values associated with
+	 *                            these.
+	 * @return true if the Document Time Report was successfully updated.
+	 */
 	public boolean updateDocumentTimeF(int reportID, Map<String, Integer> documentTimeF) {
 		return updateDocumentTime(reportID, documentTimeF, 'F');
 	}
-	
-	
+
+	/* Helper method for updateDocumentTimeD/I/R/F. */
 	private boolean updateDocumentTime(int reportID, Map<String, Integer> documentTime, char type) {
-		if (this.select(reportID, "*", "TimeReports") == null) return false;
-		
+		if (this.select(reportID, "*", "TimeReports") == null)
+			return false;
+
 		String sql;
-		if(this.select(reportID, "*", "DocumentTime" + type) == null) {
+		if (this.select(reportID, "*", "DocumentTime" + type) == null) {
 			String addDocumentTime = "INSERT INTO DocumentTime" + type + "(reportID) VALUES (?)";
-			try(PreparedStatement ps = connection.prepareStatement(addDocumentTime)) {
+			try (PreparedStatement ps = connection.prepareStatement(addDocumentTime)) {
 				ps.setInt(1, reportID);
 				ps.executeUpdate();
-			} catch(SQLException e) {
+			} catch (SQLException e) {
 				handleSQLException(e);
-	            return false;
+				return false;
 			}
 		}
-		
+
 		for (String s : documentTime.keySet()) {
 			sql = "UPDATE DocumentTime" + type + " SET " + s + " = ? WHERE reportID = ?";
-			try(PreparedStatement ps = connection.prepareStatement(sql)) {
+			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				ps.setInt(1, documentTime.get(s));
 				ps.setInt(2, reportID);
 				ps.execute();
@@ -406,65 +452,62 @@ public class DataBase {
 		}
 		return true;
 	}
-	
-	
+
 	/**
 	 * Deletes the specified Time Report.
+	 * 
 	 * @param reportID the Time Report to be deleted.
 	 * @return true if deletion was successful.
 	 */
 	public boolean deleteTimeReport(int reportID) {
 		String sql = "DELETE FROM TimeReports WHERE reportID = ?";
-		
-		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
 			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
 		}
-        catch (SQLException e) {
-        handleSQLException(e);
-        return false;
-        }
 	}
-	
+
 	/**
-	 * Retrieves the list of all the users.
+	 * Retrieves a list of all the users.
+	 * 
 	 * @return a list of all the users.
 	 */
 	public List<String> getUsers() {
 		String sql = "SELECT * FROM Users";
 		List<String> users = new ArrayList<>();
-		
-		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				users.add(rs.getString("userName"));
-				
+
 			}
-			
+
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
-		 return users;
+		return users;
 	}
-	
-	
-	
-	// admin??
-	
+
 	/**
 	 * Returns the username connected to a Time Report.
+	 * 
 	 * @param reportID the reportID of a specific Time Report.
 	 * @return the username connected to the reportID.
 	 */
 	public String getUserNameFromTimeReport(int reportID) {
 		String username = null;
 		String sql = "SELECT userName from TimeReports where reportID = ?";
-		
+
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				username = rs.getString("userName");
 			}
 		} catch (SQLException e) {
@@ -472,21 +515,21 @@ public class DataBase {
 		}
 		return username;
 	}
-	
-	
+
 	/**
 	 * Returns the totalMinutes stored in a Time Report.
+	 * 
 	 * @param reportID the reportID of a specific Time Report.
 	 * @return the totalMinutes connected to the reportID.
 	 */
 	public int getTotalMinutesFromTimeReport(int reportID) {
 		int totalminutes = 0;
 		String sql = "SELECT totalMinutes from TimeReports where reportID = ?";
-		
+
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				totalminutes = rs.getInt("totalMinutes");
 			}
 		} catch (SQLException e) {
@@ -494,21 +537,21 @@ public class DataBase {
 		}
 		return totalminutes;
 	}
-	
-	
+
 	/**
 	 * Returns the username of the user who has signed the Time Report.
+	 * 
 	 * @param reportID the reportID of a specific Time Report.
 	 * @return the totalMinutes connected to the reportID.
 	 */
 	public String getSignatureFromTimeReport(int reportID) {
 		String signature = null;
 		String sql = "SELECT signature from TimeReports where reportID = ?";
-		
+
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				signature = rs.getString("signature");
 			}
 		} catch (SQLException e) {
@@ -516,21 +559,21 @@ public class DataBase {
 		}
 		return signature;
 	}
-	
-	
+
 	/**
-	 * Returns the week of a  Time Report.
+	 * Returns the week of a Time Report.
+	 * 
 	 * @param reportID the reportID of a specific Time Report.
 	 * @return the week connected to the reportID.
 	 */
 	public int getWeekFromTimeReport(int reportID) {
 		int week = -1;
 		String sql = "SELECT week from TimeReports where reportID = ?";
-		
+
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				week = rs.getInt("week");
 			}
 		} catch (SQLException e) {
@@ -538,59 +581,59 @@ public class DataBase {
 		}
 		return week;
 	}
-	
-	
+
 	/**
 	 * Returns a map containing all time values in the DocumentTimeD table.
+	 * 
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
 	public Map<String, Integer> getDocumentTimeD(int reportID) {
 		return getDocumentTime(reportID, 'D');
 	}
-	
-	
+
 	/**
 	 * Returns a map containing all time values in the DocumentTimeI table.
+	 * 
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
 	public Map<String, Integer> getDocumentTimeI(int reportID) {
 		return getDocumentTime(reportID, 'I');
 	}
-	
-	
+
 	/**
 	 * Returns a map containing all time values in the DocumentTimeR table.
+	 * 
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
 	public Map<String, Integer> getDocumentTimeR(int reportID) {
 		return getDocumentTime(reportID, 'R');
 	}
-	
-	
+
 	/**
 	 * Returns a map containing all time values in the DocumentTimeF table.
+	 * 
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
 	public Map<String, Integer> getDocumentTimeF(int reportID) {
 		return getDocumentTime(reportID, 'F');
 	}
-	
+
 	/**
 	 * Returns a map containing all time values in the ActivityReport table.
+	 * 
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
 	private Map<String, Integer> getDocumentTime(int reportID, char doctype) {
 		String getDocumentTime = "SELECT * FROM DocumentTime" + doctype + " WHERE reportID = ?";
-		try(PreparedStatement ps = connection.prepareStatement(getDocumentTime)) {
+		try (PreparedStatement ps = connection.prepareStatement(getDocumentTime)) {
 			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) {
-				//report does not exist does not exist
 				return null;
 			} else {
 				HashMap<String, Integer> documentTime = new HashMap<String, Integer>();
@@ -603,27 +646,24 @@ public class DataBase {
 				documentTime.put("SDDD", rs.getInt("SDDD"));
 				documentTime.put("SVVR", rs.getInt("SVVR"));
 				documentTime.put("SSD", rs.getInt("SSD"));
-				documentTime.put("finalReport", rs.getInt("finalReport"));	
+				documentTime.put("finalReport", rs.getInt("finalReport"));
 				return documentTime;
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			handleSQLException(e);
-            return null;
+			return null;
 		}
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param userName The userName associated with the user.
-	 * @param week The week that the time report is referring to.
+	 * @param week     The week that the time report is referring to.
 	 * @return the report id.
 	 */
 	public int getReportID(String userName, int week) {
 		int reportID = 0;
-		String sql = "SELECT reportID from TimeReports"
-				+ " where userName = ?"
-				+ " and week = ?";
+		String sql = "SELECT reportID from TimeReports" + " where userName = ?" + " and week = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, userName);
 			ps.setInt(2, week);
@@ -636,21 +676,20 @@ public class DataBase {
 		}
 		return reportID;
 	}
-	
-	
-	
+
 	/**
 	 * Returns a map containing all time values in the ActivityReport table.
+	 * 
 	 * @param reportID the Time Report to be returned.
 	 * @return a map of time values if Time Report exists, else null.
 	 */
 	public Map<String, Integer> getActivityReport(int reportID) {
 		String getActivityReport = "SELECT * FROM ActivityReports WHERE reportID = ?";
-		try(PreparedStatement ps = connection.prepareStatement(getActivityReport)) {
+		try (PreparedStatement ps = connection.prepareStatement(getActivityReport)) {
 			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
 			if (!rs.next()) {
-				//report does not exist does not exist
+				// report does not exist does not exist
 				return null;
 			} else {
 				HashMap<String, Integer> activityReport = new HashMap<String, Integer>();
@@ -663,18 +702,18 @@ public class DataBase {
 				activityReport.put("exercise", rs.getInt("exercise"));
 				activityReport.put("computerExercise", rs.getInt("computerExercise"));
 				activityReport.put("homeReading", rs.getInt("homeReading"));
-				activityReport.put("other", rs.getInt("other"));	
+				activityReport.put("other", rs.getInt("other"));
 				return activityReport;
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			handleSQLException(e);
-            return null;
+			return null;
 		}
 	}
-	
-	
+
 	/**
 	 * Retrieves a user's password with the help of their userName.
+	 * 
 	 * @param userName The userName of the user.
 	 * @return password of the user, null will be returned if it's wrong.
 	 */
@@ -692,15 +731,13 @@ public class DataBase {
 		}
 		return pw;
 	}
-	
+
 	/**
-	 * @param userID The user whose salt are requested. 
+	 * @param userID The user whose salt are requested.
 	 * @return the salt as a String
 	 */
 	public String getSalt(String userID) {
-		String sql = "SELECT salt "
-				+ "from Users "
-				+ "where userName = ?";
+		String sql = "SELECT salt " + "from Users " + "where userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, userID);
 			ResultSet rs = ps.executeQuery();
@@ -712,39 +749,41 @@ public class DataBase {
 		}
 		return null;
 	}
+
 	/**
-	 * Changes the user's password.
-	 * @param userName The user's userName.
+	 * Changes a user's password.
+	 * 
+	 * @param userName The user's username.
 	 * @param password The user's password.
 	 * @return true if the change was successful, otherwise false.
 	 */
 	public boolean changePassword(String userName, String password) {
 		String sql = "UPDATE Users SET password = ? WHERE userName = ?";
-		
-		try(PreparedStatement ps = connection.prepareStatement(sql)) {
+
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, password);
 			ps.setString(2, userName);
 			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			handleSQLException(e);
+			return false;
 		}
-        catch (SQLException e) {
-        handleSQLException(e);
-        return false;
-        }
 	}
-	
+
 	/**
-	 * Retrieves a user's e-mail with the help of their userName.
-	 * @param userName The userName of the user.
+	 * Retrieves a user's e-mail with the help of their username.
+	 * 
+	 * @param userName The username of the user.
 	 * @return e-mail if it exists, otherwise null will be returned.
 	 */
 	public String getEmail(String userName) {
 		String email = null;
 		String sql = "SELECT email from Users where userName = ?";
-		
+
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, userName);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				email = rs.getString("email");
 			}
 		} catch (SQLException e) {
@@ -752,51 +791,54 @@ public class DataBase {
 		}
 		return email;
 	}
+
 	/**
 	 * Checks if the password for a specific user is correct.
-	 * @param userName The userName of the user.
+	 * 
+	 * @param userName The username of the user.
 	 * @param password The password of the user.
 	 * @return true if they were correct, otherwise false will be returned.
 	 */
-	// anv�nd username "Ulla" and pw "ulla123!"
 	public boolean checkLogin(UserBean bajsbean) {
-        String sql = "SELECT * FROM Users where userName = ? AND password = ?";
-        try(PreparedStatement ps = connection.prepareStatement(sql)) {
-        	String userName = bajsbean.getUserName();
-        	String password = bajsbean.getPassword();
-        	
-            ps.setString(1, userName);
-            ps.setString(2, password);
+		String sql = "SELECT * FROM Users where userName = ? AND password = ?";
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
+			String userName = bajsbean.getUserName();
+			String password = bajsbean.getPassword();
 
-            ResultSet rs = ps.executeQuery();
+			ps.setString(1, userName);
+			ps.setString(2, password);
 
-            while(rs.next()) {
-            	String name = rs.getString("userName");
-            	String pw = rs.getString("password");
-            	return name.equals(userName) && pw.equals(password);
-            }
-        } catch (SQLException e) {
-        	handleSQLException(e);
-        }
-        return false;
-    }
-	
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				String name = rs.getString("userName");
+				String pw = rs.getString("password");
+				return name.equals(userName) && pw.equals(password);
+			}
+		} catch (SQLException e) {
+			handleSQLException(e);
+		}
+		return false;
+	}
+
+	/* Helper method for SQLException handling. */
 	private void handleSQLException(SQLException e) {
 		System.err.println(e);
 		e.printStackTrace();
 	}
-	
-	/*Helper method */
+
+	/* Helper method. */
 	private ResultSet select(int reportID, String attribute, String relation) {
 		String sql = "SELECT " + attribute + " from " + relation + " WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) return rs;
+			if (rs.next())
+				return rs;
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
 		return null;
 	}
-	
+
 }
