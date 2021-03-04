@@ -93,6 +93,8 @@ public class AdministrationServlet extends HttpServlet{
 					if(request.getParameter("mail") != null) {
 						MailHandler mh = new MailHandler();
 						mh.sendPasswordMail(mail, username, pw);
+						
+						db.changePassword(username, hashedPw);
 					}
 				}
 			} else {
