@@ -71,7 +71,7 @@ public class LogIn extends ServletBase {
 			if (salt != null) {
 				String hashPassword = PasswordHandler.hashPassword(password, salt);
 				ub.populateBean(username, hashPassword);
-				if (db.checkLogin(ub)) {
+				if (db.checkLogin(username, hashPassword)) {
 					ub.setRole(db.getRole(username));
 					session.setAttribute("username", ub.getUserName());
 					session.setAttribute("role", ub.getRole());
