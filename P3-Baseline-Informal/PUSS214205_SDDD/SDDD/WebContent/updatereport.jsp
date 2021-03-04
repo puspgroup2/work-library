@@ -430,12 +430,12 @@
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input id="computer_exercise" name="computer_exercise" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("computerExercise")%>"></td>
+                <td><input id="computerExercise" name="computerExercise" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("computerExercise")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input id="home_reading" name="home_reading" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("homeReading")%>"></td>
+                <td><input id="homeReading" name="homeReading" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("homeReading")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
