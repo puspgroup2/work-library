@@ -30,8 +30,6 @@ public class PasswordChangerServlet extends ServletBase {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		DataBase db = new DataBase();
-		db.connect();
 		String username = (String) session.getAttribute("username");
 		String newPw = (String) request.getParameter("password");
 		String oldPw = (String) request.getParameter("oldPassword");

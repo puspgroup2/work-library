@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class LogOut.
  */
 @WebServlet("/LogOut")
-public class LogOut extends ServletBase {
+public class LogOut extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -44,7 +44,7 @@ public class LogOut extends ServletBase {
 			session.removeAttribute("username");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
-			session.setAttribute("state", LOGIN_FALSE);
+			session.setAttribute("state",ServletBase.LOGIN_FALSE);
 		}
 	}
 }
