@@ -260,6 +260,7 @@ public class DataBase {
 	 * @return true if update was successfully executed.
 	 */
 	public boolean updateTotalMinutes(int reportID, int totalMinutes) {
+		if (totalMinutes < 0) return false;
 		String sql = "UPDATE TimeReports SET totalMinutes = ? WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, totalMinutes);
@@ -814,8 +815,8 @@ public class DataBase {
 		DataBase db = new DataBase();
 		db.connect();
 
-
-		System.out.println(db.newTimeReport("oscar", 12));
+		db.updateTotalMinutes(123, -1);
+		
 
 		
 			
