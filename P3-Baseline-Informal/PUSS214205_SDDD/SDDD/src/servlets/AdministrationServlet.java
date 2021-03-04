@@ -92,12 +92,7 @@ public class AdministrationServlet extends HttpServlet{
 					
 					if(request.getParameter("mail") != null) {
 						MailHandler mh = new MailHandler();
-						
 						mh.sendPasswordMail(mail, username, pw);
-						
-						if (db.changePassword(username, hashedPw)) {
-							//TODO Handle potential error
-						}
 					}
 				}
 			} else {
@@ -105,6 +100,10 @@ public class AdministrationServlet extends HttpServlet{
 			}
 		}
 		doGet(request, response);
+	}
+	
+	private void removeAction() {
+		
 	}
 	
 	private static boolean verifyName(String username) {
