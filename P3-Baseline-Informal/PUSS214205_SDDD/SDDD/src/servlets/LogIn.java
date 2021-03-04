@@ -103,9 +103,7 @@ public class LogIn extends ServletBase {
 			String pw = PasswordHandler.generatePassword();
 			mh.sendPasswordMail(mail, userName, pw);
 			
-			if (db.changePassword(userName, PasswordHandler.hashPassword(pw, db.getSalt(userName)))) {
-				//TODO Handle potential error
-			}
+			db.changePassword(userName, PasswordHandler.hashPassword(pw, db.getSalt(userName)));
 			session.setAttribute("message", PW_CHANGE_SUCCESS_);
 			response.sendRedirect("login.jsp");
 		} else {
