@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import database.DataBase;
+
 
 /**
  *  This class is the superclass for all servlets in the application. 
@@ -37,13 +39,14 @@ public class ServletBase extends HttpServlet {
 	// Define states
 	protected static final int LOGIN_FALSE = 0;
 	protected static final int LOGIN_TRUE = 1;	
-	protected Connection conn = null;
+	protected DataBase db = null;
+	
 	
 	/**
 	 * Default constructor. 
 	 */
     public ServletBase() {
-
+    	db.connect();
     }
 
 
