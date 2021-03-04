@@ -26,7 +26,7 @@
 	if(session.getAttribute("username") == null) {
 		response.sendRedirect("login.jsp");
 	}
-	TimeReportBean bean = (TimeReportBean)session.getAttribute("TimeReportBean");
+	TimeReportBean bean = (TimeReportBean)session.getAttribute("timereport");
 %>
 
 <nav class="navbar navbar-light navbar-expand-md bg-light">
@@ -181,7 +181,7 @@
                     <div class="form-group row">
                       <label for="text" class="col-5 col-form-label"><b>Part A: Total time this week (minutes):</b></label> 
                       <div class="col-7">
-                        <input id="totalMinutes" name="totalMinutes" type="text" class="form-control" value="<%=bean.getTotalTime()%>">
+                        <input id="totaltime" name="totaltime" type="text" class="form-control" value="<%=bean.getTotalTime()%>">
                       </div>
                     </div>
                     </fieldset>
@@ -209,13 +209,13 @@
                   <input id="sdp_d" name="sdp_d" type="text" class="form-control" value="<%=bean.getReportValuesD().get("sdp_d")%>">
                 </td>
                 <td>
-                  <input id="sdp_i" name="sdp_i" type="text" class="form-control" value="<%=bean.getReportValuesD().get("sdp_i")%>">
+                  <input id="sdp_i" name="sdp_i" type="text" class="form-control" value="<%=bean.getReportValuesI().get("sdp_i")%>">
                 </td>
                 <td>
-                  <input id="sdp_f" name="sdp_f" type="text" class="form-control" value="<%=bean.getReportValuesD().get("sdp_f")%>">
+                  <input id="sdp_f" name="sdp_f" type="text" class="form-control" value="<%=bean.getReportValuesF().get("sdp_f")%>">
                 </td>
                 <td>
-                  <input id="sdp_r" name="sdp_r" type="text" class="form-control" value="<%=bean.getReportValuesD().get("sdp_r")%>">
+                  <input id="sdp_r" name="sdp_r" type="text" class="form-control" value="<%=bean.getReportValuesR().get("sdp_r")%>">
                 </td>
                 <td>
                   <fieldset disabled>
@@ -230,13 +230,13 @@
                   <input id="srs_d" name="srs_d" type="text" class="form-control" value="<%=bean.getReportValuesD().get("srs_d")%>">
                 </td>
                 <td>
-                  <input id="srs_i" name="srs_i" type="text" class="form-control" value="<%=bean.getReportValuesD().get("srs_i")%>">
+                  <input id="srs_i" name="srs_i" type="text" class="form-control" value="<%=bean.getReportValuesI().get("srs_i")%>">
                 </td>
                 <td>
-                  <input id="srs_f" name="srs_f" type="text" class="form-control" value="<%=bean.getReportValuesD().get("srs_f")%>">
+                  <input id="srs_f" name="srs_f" type="text" class="form-control" value="<%=bean.getReportValuesF().get("srs_f")%>">
                 </td>
                 <td>
-                  <input id="srs_r" name="srs_r" type="text" class="form-control" value="<%=bean.getReportValuesD().get("srs_r")%>">
+                  <input id="srs_r" name="srs_r" type="text" class="form-control" value="<%=bean.getReportValuesR().get("srs_r")%>">
                 </td>
                 <td>
                   <fieldset disabled>
@@ -251,13 +251,13 @@
                   <input id="svvs_d" name="svvs_d" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvs_d")%>">
                 </td>
                 <td>
-                  <input id="svvs_i" name="svvs_i" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvs_i")%>">
+                  <input id="svvs_i" name="svvs_i" type="text" class="form-control" value="<%=bean.getReportValuesI().get("svvs_i")%>">
                 </td>
                 <td>
-                  <input id="svvs_f" name="svvs_f" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvs_f")%>">
+                  <input id="svvs_f" name="svvs_f" type="text" class="form-control" value="<%=bean.getReportValuesF().get("svvs_f")%>">
                 </td>
                 <td>
-                  <input id="svvs_r" name="svvs_r" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvs_r")%>">
+                  <input id="svvs_r" name="svvs_r" type="text" class="form-control" value="<%=bean.getReportValuesR().get("svvs_r")%>">
                 </td>
                 <td>
                   <fieldset disabled>
@@ -272,13 +272,13 @@
                   <input id="stldd_d" name="stldd_d" type="text" class="form-control" value="<%=bean.getReportValuesD().get("stldd_d")%>">
                 </td>
                 <td>
-                  <input id="stldd_i" name="stldd_i" type="text" class="form-control" value="<%=bean.getReportValuesD().get("stldd_i")%>">
+                  <input id="stldd_i" name="stldd_i" type="text" class="form-control" value="<%=bean.getReportValuesI().get("stldd_i")%>">
                 </td>
                 <td>
-                  <input id="stldd_f" name="stldd_f" type="text" class="form-control" value="<%=bean.getReportValuesD().get("stldd_f")%>">
+                  <input id="stldd_f" name="stldd_f" type="text" class="form-control" value="<%=bean.getReportValuesF().get("stldd_f")%>">
                 </td>
                 <td>
-                  <input id="stldd_r" name="stldd_r" type="text" class="form-control" value="<%=bean.getReportValuesD().get("stldd_r")%>">
+                  <input id="stldd_r" name="stldd_r" type="text" class="form-control" value="<%=bean.getReportValuesR().get("stldd_r")%>">
                 </td>
                 <td>
                   <fieldset disabled>
@@ -293,13 +293,13 @@
                   <input id="svvi_d" name="svvi_d" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvi_d")%>">
                 </td>
                 <td>
-                  <input id="svvi_i" name="svvi_i" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvi_i")%>">
+                  <input id="svvi_i" name="svvi_i" type="text" class="form-control" value="<%=bean.getReportValuesI().get("svvi_i")%>">
                 </td>
                 <td>
-                  <input id="svvi_f" name="svvi_f" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvi_f")%>">
+                  <input id="svvi_f" name="svvi_f" type="text" class="form-control" value="<%=bean.getReportValuesF().get("svvi_f")%>">
                 </td>
                 <td>
-                  <input id="svvi_r" name="svvi_r" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvi_r")%>">
+                  <input id="svvi_r" name="svvi_r" type="text" class="form-control" value="<%=bean.getReportValuesR().get("svvi_r")%>">
                 </td>
                 <td>
                   <fieldset disabled>
@@ -314,13 +314,13 @@
                   <input id="sddd_d" name="sddd_d" type="text" class="form-control" value="<%=bean.getReportValuesD().get("sddd_d")%>">
                 </td>
                 <td>
-                  <input id="sddd_i" name="sddd_i" type="text" class="form-control" value="<%=bean.getReportValuesD().get("sddd_i")%>">
+                  <input id="sddd_i" name="sddd_i" type="text" class="form-control" value="<%=bean.getReportValuesI().get("sddd_i")%>">
                 </td>
                 <td>
-                  <input id="sddd_f" name="sddd_f" type="text" class="form-control" value="<%=bean.getReportValuesD().get("sddd_f")%>">
+                  <input id="sddd_f" name="sddd_f" type="text" class="form-control" value="<%=bean.getReportValuesF().get("sddd_f")%>">
                 </td>
                 <td>
-                  <input id="sddd_r" name="sddd_r" type="text" class="form-control" value="<%=bean.getReportValuesD().get("sddd_r")%>">
+                  <input id="sddd_r" name="sddd_r" type="text" class="form-control" value="<%=bean.getReportValuesR().get("sddd_r")%>">
                 </td>
                 <td>
                   <fieldset disabled>
@@ -335,13 +335,13 @@
                   <input id="svvr_d" name="svvr_d" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvr_d")%>">
                 </td>
                 <td>
-                  <input id="svvr_i" name="svvr_i" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvr_i")%>">
+                  <input id="svvr_i" name="svvr_i" type="text" class="form-control" value="<%=bean.getReportValuesI().get("svvr_i")%>">
                 </td>
                 <td>
-                  <input id="svvr_f" name="svvr_f" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvr_f")%>">
+                  <input id="svvr_f" name="svvr_f" type="text" class="form-control" value="<%=bean.getReportValuesF().get("svvr_f")%>">
                 </td>
                 <td>
-                  <input id="svvr_r" name="svvr_r" type="text" class="form-control" value="<%=bean.getReportValuesD().get("svvr_r")%>">
+                  <input id="svvr_r" name="svvr_r" type="text" class="form-control" value="<%=bean.getReportValuesR().get("svvr_r")%>">
                 </td>
                 <td>
                   <fieldset disabled>
@@ -356,13 +356,13 @@
                   <input id="ssd_d" name="ssd_d" type="text" class="form-control" value="<%=bean.getReportValuesD().get("ssd_d")%>">
                 </td>
                 <td>
-                  <input id="ssd_i" name="ssd_i" type="text" class="form-control" value="<%=bean.getReportValuesD().get("ssd_i")%>">
+                  <input id="ssd_i" name="ssd_i" type="text" class="form-control" value="<%=bean.getReportValuesI().get("ssd_i")%>">
                 </td>
                 <td>
-                  <input id="ssd_f" name="ssd_f" type="text" class="form-control" value="<%=bean.getReportValuesD().get("ssd_f")%>">
+                  <input id="ssd_f" name="ssd_f" type="text" class="form-control" value="<%=bean.getReportValuesF().get("ssd_f")%>">
                 </td>
                 <td>
-                  <input id="ssd_r" name="ssd_r" type="text" class="form-control" value="<%=bean.getReportValuesD().get("ssd_r")%>">
+                  <input id="ssd_r" name="ssd_r" type="text" class="form-control" value="<%=bean.getReportValuesR().get("ssd_r")%>">
                 </td>
                 <td>
                   <fieldset disabled>
@@ -377,13 +377,13 @@
                   <input id="final_d" name="final_d" type="text" class="form-control" value="<%=bean.getReportValuesD().get("final_d")%>">
                 </td>
                 <td>
-                  <input id="final_i" name="final_i" type="text" class="form-control" value="<%=bean.getReportValuesD().get("final_i")%>">
+                  <input id="final_i" name="final_i" type="text" class="form-control" value="<%=bean.getReportValuesI().get("final_i")%>">
                 </td>
                 <td>
-                  <input id="final_f" name="final_f" type="text" class="form-control" value="<%=bean.getReportValuesD().get("final_f")%>">
+                  <input id="final_f" name="final_f" type="text" class="form-control" value="<%=bean.getReportValuesF().get("final_f")%>">
                 </td>
                 <td>
-                  <input id="final_r" name="final_r" type="text" class="form-control" value="<%=bean.getReportValuesD().get("final_r")%>">
+                  <input id="final_r" name="final_r" type="text" class="form-control" value="<%=bean.getReportValuesR().get("final_r")%>">
                 </td>
                 <td>
                   <fieldset disabled>
@@ -422,17 +422,17 @@
               <tr>
                 <td colspan="2">21</td>
                 <td colspan="4">Functional test</td>
-                <td><input id="functionalTest" name="functionalTest" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("functionalTest")%>"></td>
+                <td><input id="functional_test" name="functionalTest" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("functionalTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input id="systemTest" name="systemTest" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("systemTest")%>"></td>
+                <td><input id="system_test" name="systemTest" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("systemTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input id="regressionTest" name="regressionTest" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("regressionTest")%>"></td>
+                <td><input id="regression_test" name="regressionTest" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("regressionTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
@@ -452,12 +452,12 @@
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input id="computerExercise" name="computerExercise" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("computerExercise")%>"></td>
+                <td><input id="computer_exercise" name="computer_exercise" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("computerExercise")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input id="homeReading" name="homeReading" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("homeReading")%>"></td>
+                <td><input id="home_reading" name="home_reading" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("homeReading")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
@@ -590,8 +590,8 @@
     let col_sums = [0, 0, 0, 0];
 
     for (let doc of documents) {
-      let totalMinutes = getTotal(doc[0]);
-      document.getElementById(doc[1]).value = totalMinutes;
+      let totalTime = getTotal(doc[0]);
+      document.getElementById(doc[1]).value = totalTime;
 
       // Calculate the column totals.
       let boxes = document.getElementsByClassName(doc[0]);
@@ -618,7 +618,7 @@
 
     console.log(others, totalTotal)
     // Update the absolute TOTAL time.
-    document.getElementById('totalMinutes').value = others + totalTotal;
+    document.getElementById('totaltime').value = others + totalTotal;
   }
 
   /* Get the total time for the "other" values. */
