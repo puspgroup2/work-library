@@ -799,16 +799,4 @@ public class DataBase {
 		return null;
 	}
 	
-	
-	public static void main(String[] args) {
-		DataBase db = new DataBase();
-		db.connect();
-
-		db.updateTotalMinutes(123, -1);
-		
-
-		
-			
-	}
-	
 }
