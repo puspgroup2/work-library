@@ -92,13 +92,18 @@ public class TimeReportServlet extends ServletBase {
 		
 		if (editSelectedBtn != null) {
 			List<Integer> signedReports = db.getSignedTimeReportIDs(); 
-			if(!signedReports.contains(session.getAttribute("reportID"))) {
-				session.setAttribute("editable", true);
-				response.sendRedirect("updatereport.jsp");
-			}else {
-				session.setAttribute("editable", false);
-				response.sendRedirect("updatereport.jsp");
-			}
+			session.setAttribute("editable", true);
+			TimeReportBean tb = new TimeReportBean();
+			int reportID = (Integer)session.getAttribute("reportID");
+			tb.populateBean(db.getDocumentTimeD(reportID), 
+					db.getDocumentTimeF(reportID), 
+					db.getDocumentTimeI(reportID), 
+					db.getDocumentTimeR(reportID), 
+					db.getActivityReport(reportID));
+			
+			tb.setWeek(db.getWeekFromTimeReport(reportID));
+			tb.setUsername((String)session.getAttribute("username"));
+			session.setAttribute("TimeReportBean", tb);
 		}
 		
 		if (submitNewReport != null) {

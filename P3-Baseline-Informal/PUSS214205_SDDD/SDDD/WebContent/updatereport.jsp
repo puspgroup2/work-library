@@ -24,6 +24,7 @@
 	if(session.getAttribute("username") == null) {
 		response.sendRedirect("login.jsp");
 	}
+	TimeReportBean bean = (TimeReportBean)session.getAttribute("TimeReportBean");
 %>
 
 <nav class="navbar navbar-light navbar-expand-md bg-light">
@@ -111,7 +112,7 @@
     </div>
     <!-- /#sidebar-wrapper -->
     
-    <%TimeReportManagementBean bean = new TimeReportManagementBean(); %>
+    
 
  <!-- Page Content -->
   <div id="page-content-wrapper">
@@ -167,7 +168,7 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Week:</label> 
                     <div class="col-8">
-                      <input id="week" name="week" type="text" class="form-control">
+                      <input id="week" name="week" type="text" class="form-control" value="<%=bean.getWeek() %>">
                     </div>
                   </div>
                 </td>
