@@ -28,21 +28,16 @@ public class LogOut extends ServletBase {
         super();
     }
     /**
+     * Removes a user from the current session.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession(false);
-    	
     	if (session != null) {
             session.removeAttribute("username");
-             
             RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
             dispatcher.forward(request, response);
             session.setAttribute("state", LOGIN_FALSE);
-        }
-    	
+        }	
     }
-    
-    
-
 }
