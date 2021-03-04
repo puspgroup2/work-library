@@ -18,7 +18,7 @@ public class UserBean implements Serializable {
     	this.password = password;
     }
 
-    /*
+    /**
       Fetches the email of the user that is logged in.
       @return email.
      */
@@ -26,7 +26,7 @@ public class UserBean implements Serializable {
         return email;
     }
 
-    /*
+    /**
       Sets the email of the user that is logged in.
       @param email.
      */
@@ -34,7 +34,7 @@ public class UserBean implements Serializable {
         this.email = email;
     }
 
-    /*
+    /**
       Fetches the role of the user that is logged in.
       @return role.
      */
@@ -42,22 +42,22 @@ public class UserBean implements Serializable {
         return role;
     }
 
-    /*
+    /**
       Sets the role of the user that is logged in.
-      @param role.
+      @param role
      */
     public void setRole(String role) {
         this.role = role;
     }
     
-    /*
+    /**
     Fetches the name of the user.
     @return userName.
    */
     public String getUserName() {
     	return userName;
     }
-    /*
+    /**
     Fetches the password.
     @return password.
    */
