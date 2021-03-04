@@ -177,12 +177,12 @@ public class TimeReportBean implements Serializable {
 
 	/**
 	 * 
-	 * @param D The map of the D reported values
-	 * @param I The map of the I reported values
-	 * @param F The map of the F reported values
-	 * @param R The map of the R reported values
+	 * @param D        The map of the D reported values
+	 * @param I        The map of the I reported values
+	 * @param F        The map of the F reported values
+	 * @param R        The map of the R reported values
 	 * @param Activity The map of the Activity reported values
-	 * @param time Total time
+	 * @param time     Total time
 	 */
 	public void populateBean(Map<String, Integer> D, Map<String, Integer> I, Map<String, Integer> F,
 			Map<String, Integer> R, Map<String, Integer> Activity, Integer time) {
