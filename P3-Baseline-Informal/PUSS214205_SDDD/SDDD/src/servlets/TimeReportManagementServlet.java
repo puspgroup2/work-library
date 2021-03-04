@@ -85,6 +85,8 @@ public class TimeReportManagementServlet extends ServletBase {
 			}
 		}
 		
+		sendJsResponse(response);
+		
 	}
 	
 	/** Helper method to send response to frontend JS.
