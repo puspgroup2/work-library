@@ -127,7 +127,7 @@
           </div>
           <div class="card-body">
         
-         <form action="TimeReportServlet" method="POST">
+         <form id="myForm" action="TimeReportServlet" method="POST">
             <table class="table table-bordered">
               <tbody>
                 <tr>
@@ -544,6 +544,15 @@
   <!-- /#page-content-wrapper -->
 
 </div>
+
+<%if ((boolean) session.getAttribute("editable") == false) { %>
+<script>
+  $(document).ready(function(){
+        $("#myForm :input").prop("disabled", true);
+    });
+</script>
+<%} %>
+
 <script>
 
   // Format is "row-boxes", "row-total"
