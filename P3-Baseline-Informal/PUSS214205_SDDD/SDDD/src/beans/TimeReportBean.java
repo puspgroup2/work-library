@@ -137,12 +137,13 @@ public class TimeReportBean implements Serializable {
     Sets the reported values into databaseData map .
     @param databaseData
    */
-    public void populateBean(Map<String, Integer> D, Map<String, Integer> I, Map<String, Integer> F, Map<String, Integer> R, Map<String, Integer> Activity) {
+    public void populateBean(Map<String, Integer> D, Map<String, Integer> I, Map<String, Integer> F, Map<String, Integer> R, Map<String, Integer> Activity, Integer time) {
     	reportValuesD = D;
     	reportValuesI = I;
     	reportValuesF = F;
     	reportValuesR = R;
     	reportValuesActivity = Activity;
+    	totalTime = time;
     }
 
     /*
