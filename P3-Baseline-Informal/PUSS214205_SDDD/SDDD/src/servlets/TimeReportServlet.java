@@ -125,8 +125,12 @@ public class TimeReportServlet extends ServletBase {
 			session.setAttribute("editable", false);
 			TimeReportBean trb1 = new TimeReportBean();
 			int id = (Integer) session.getAttribute("reportID");
-			trb1.populateBean(db.getDocumentTimeD(id), db.getDocumentTimeI(id), db.getDocumentTimeF(id), db.getDocumentTimeR(id), db.getActivityReport(id));
-			trb1.setTotalTime(db.getTotalMinutesFromTimeReport(id));
+			trb1.populateBean(db.getDocumentTimeD(id), 
+					db.getDocumentTimeI(id), 
+					db.getDocumentTimeF(id), 
+					db.getDocumentTimeR(id), 
+					db.getActivityReport(id));
+			
 			trb1.setWeek(db.getWeekFromTimeReport(id));
 			trb1.setUsername(db.getUserNameFromTimeReport(id));
 			session.setAttribute("timereport", trb1);
