@@ -418,12 +418,12 @@
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input id="system_test" name="systemTest" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("systemTest")%>"></td>
+                <td><input id="systemTest" name="systemTest" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("systemTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input id="regression_test" name="regressionTest" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("regressionTest")%>"></td>
+                <td><input id="regressionTest" name="regressionTest" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("regressionTest")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
@@ -443,12 +443,12 @@
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input id="computer_exercise" name="computer_exercise" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("computerExercise")%>"></td>
+                <td><input id="computerExercise" name="computerExercise" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("computerExercise")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input id="home_reading" name="home_reading" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("homeReading")%>"></td>
+                <td><input id="homeReading" name="homeReading" type="number" class="other-values form-control" value="<%=bean.getReportValuesActivity().get("homeReading")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
