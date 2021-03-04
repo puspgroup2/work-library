@@ -134,7 +134,7 @@
             </tr>
           </thead>
           <tbody>
-          <%List<TimeReportBean> list = (ArrayList<TimeReportBean>) session.getAttribute("TimeReportBeanCan"); %>
+          <%List<TimeReportBean> list = (ArrayList<TimeReportBean>) session.getAttribute("timeReports"); %>
           
           <% for (TimeReportBean bean : list) { %>
         	  
@@ -158,7 +158,7 @@
          <table class="table table-striped">
          <thead>
            <tr>
-             
+             <th scope="col" data-field="state">Unsign</th>
              <th scope="col">User</th>
              
              <th scope="col">Week</th>
@@ -173,6 +173,11 @@
           	<%for (TimeReportBean bean: signedList) { %>
           	
           	<tr>
+          	<td>
+                    <div class="form-check">
+                       <input class="form-check-input" type="checkbox" value="" id="<%=bean.getReportID()%>">
+                    </div>
+                  </td>
           	<td><%=bean.getUsername() %></td>
           	<td><%=bean.getWeek() %></td>
           	<td><%=bean.getTotalTime() %></td>
@@ -181,7 +186,7 @@
           <%} %>
          </tbody>
        </table>
-       
+       <button class="btn btn-primary" id="Unsign" type="button">Unsign</button>
      </div>
 </div>
     
@@ -198,6 +203,54 @@
     <!-- /#page-content-wrapper -->
 
 </div>
+
+<script>
+  $('#Unsign').on('click', () => {
+    const boxes = getSignedReports();
+    const ids = boxes.map(box => $(box).attr('id'));
+    console.log(ids)
+    $.post("/TimeReportManagementServlet",  {
+      "input": "Unsign",
+      "timeReports": JSON.stringify(ids)
+    },
+    (data) => {
+      if (data == 'ok') {
+        // Reload the page.
+        console.log("JDHSKAS")
+        location.href = "/TimeReportManagementServlet";
+        //location.reload();
+      }
+    });
+  })
+
+  function getReports(signed) {
+    let boxes = [];
+    for (box of $(".form-check-input")) {
+      if (signed) {
+        if (box.checked) {
+           boxes.push(box);
+        }
+      } else {
+        if (!box.checked) {
+           boxes.push(box);
+        }
+      }
+
+    }
+    return boxes;
+  }
+
+  function getUnsignedReports() {
+    return getReports(false);
+  }
+
+  function getSignedReports() {
+    return getReports(true);
+  }
+
+
+</script>
+
 
 <script>
 
