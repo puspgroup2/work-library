@@ -1,9 +1,11 @@
 package servlets;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,36 +23,37 @@ import handlers.PasswordHandler;
 public class AdministrationServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
-	HashMap<String, String> memberMap;
-	UserManagementBean umb;
+	private HashMap<String, String> memberMap;
+	private UserManagementBean umb;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		DataBase db = new DataBase();
 		db.connect();
 		HttpSession session = request.getSession();
-		UserManagementBean umb = new UserManagementBean();
+		UserManagementBean userBeanAdmin = new UserManagementBean();
+		
 		Map<String, String> memberMap = new HashMap<String, String>();
 		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
+		
 		for (String s : memberNames) {
 			if(!s.equals("admin")) {
 				memberMap.put(s, db.getEmail(s));
 			}
 		}
-		umb.populateBean(memberMap);
-		session.setAttribute("AdministrationBean", umb);
-		response.sendRedirect("administration.jsp");
 		
+		userBeanAdmin.populateBean(memberMap);
+		session.setAttribute("AdministrationBean", userBeanAdmin);
+		response.sendRedirect("administration.jsp");
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String removeBtn = request.getParameter("Remove");
-		String addBtn = request.getParameter("Add");
+		// Used to see which buttons is pressed. If a string != null, then that button was pressed
+		String removeBtn = request.getParameter("remove");
+		String addBtn = request.getParameter("add");
 		String username = request.getParameter("username");
 		String mail = request.getParameter("mail");
 
@@ -67,22 +70,18 @@ public class AdministrationServlet extends HttpServlet{
 			}
 		}
 		
-		boolean emptyString = false; 
-
+		// If the button to remove a user was pressed
 		if(removeBtn != null) { 
 			for(Map.Entry<String, String> member : mapM.entrySet()) {
 				if(member.getKey().equals(request.getParameter(member.getKey())) && !member.getKey().equals(request.getParameter("admin"))) {
 					db.removeUser(member.getKey());
 				}
 			}
-		}else if(addBtn != null) {
-
-			if(username.equals("") || mail.equals("")) {
-				session.setAttribute("AdminMessage", 0);
-				emptyString = true;
-			}
-
-			if(!emptyString) {
+		}
+		
+		// If the button to add a user was pressed
+		if(addBtn != null) {
+			if (verifyName(username)) {
 				String pw = PasswordHandler.generatePassword();
 				String salt = PasswordHandler.generateSalt();
 				String hashedPw = PasswordHandler.hashPassword(pw, salt);
@@ -101,9 +100,25 @@ public class AdministrationServlet extends HttpServlet{
 						}
 					}
 				}
+			} else {
+				session.setAttribute("AdminMessage", 2);
 			}
 		}
-	doGet(request, response);
+		doGet(request, response);
+	}
+	
+	private static boolean verifyName(String username) {
+		String regex = "^[0-9a-zA-Z]\\w{5,10}$";
+		
+		Pattern p = Pattern.compile(regex);
+		
+		if (username == null) {
+			return false;
+		}
+		
+		Matcher m = p.matcher(username);
+		
+		return m.matches();
 	}
 }
 
