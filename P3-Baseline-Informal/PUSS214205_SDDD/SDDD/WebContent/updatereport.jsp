@@ -427,42 +427,42 @@
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input id="system_test" name="system_test" type="text" class="form-control"></td>
+                <td><input id="system_test" name="system_test" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("system_test")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input id="regression_test" name="regression_test" type="text" class="form-control"></td>
+                <td><input id="regression_test" name="regression_test" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("regression_test")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
                 <td colspan="4">Meeting</td>
-                <td><input id="meeting" name="meeting" type="text" class="form-control"></td>
+                <td><input id="meeting" name="meeting" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("meeting")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">41</td>
                 <td colspan="4">Lecture</td>
-                <td><input id="lecture" name="lecture" type="text" class="form-control"></td>
+                <td><input id="lecture" name="lecture" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("lecture")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">42</td>
                 <td colspan="4">Exercise</td>
-                <td><input id="exercise" name="exercise" type="text" class="form-control"></td>
+                <td><input id="exercise" name="exercise" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("exercise")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input id="computer_exercise" name="computer_exercise" type="text" class="form-control"></td>
+                <td><input id="computer_exercise" name="computer_exercise" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("computer_exercise")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input id="home_reading" name="home_reading" type="text" class="form-control"></td>
+                <td><input id="home_reading" name="home_reading" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("home_reading")%>"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
                 <td colspan="4">Other</td>
-                <td><input id="other" name="other" type="text" class="form-control"></td>
+                <td><input id="other" name="other" type="text" class="form-control" value="<%=bean.getReportValuesActivity().get("other")%>"></td>
               </tr>
               <tr>
                 <td colspan="7">
@@ -544,6 +544,100 @@
   <!-- /#page-content-wrapper -->
 
 </div>
+<script>
+
+  // Format is "row-boxes", "row-total"
+  let documents = [
+    ["sdp_report_value", "sdp_total"],
+    ["srs_report_value", "srs_total"],
+    ["svvs_report_value", "svvs_total"],
+    ["stldd_report_value", "stldd_total"],
+    ["svvi_report_value", "svvi_total"],
+    ["sddd_report_value", "sddd_total"],
+    ["svvr_report_value", "svvr_total"],
+    ["ssd_report_value", "ssd_total"],
+    ["final_report_value", "final_total"]
+  ];
+
+  let total_columns = ['total_d', 'total_i', 'total_f', 'total_r'];
+
+  // Bind event listeners on all inputs
+  for (let doc of documents) {
+    for (let box of document.getElementsByClassName(doc[0])) {
+      box.addEventListener('input', updateTotals);
+    }
+  }
+
+  // Bind event listeners for others as well.
+  for (let box of document.getElementsByClassName("other-values")) {
+    box.addEventListener('input', updateTotals);
+  }
+
+  // Call it once to set to 0.
+  updateTotals();
+
+  /* Updates all the total boxes with the total report for each document. */
+  function updateTotals() {
+    let col_sums = [0, 0, 0, 0];
+
+    for (let doc of documents) {
+      let totalTime = getTotal(doc[0]);
+      document.getElementById(doc[1]).value = totalTime;
+
+      // Calculate the column totals.
+      let boxes = document.getElementsByClassName(doc[0]);
+      for (let i = 0; i < 4; i++) {
+        col_sums[i] += getValue(boxes[i]);
+      }
+    }
+
+    // Update the total boxes.
+    for (let i = 0; i < 4; i++) {
+        console.log(total_columns[i], col_sums[i])
+        for (let box of document.getElementsByName(total_columns[i])) {
+          box.value = col_sums[i];
+        }
+    }
+
+    let others = getOtherValues();
+
+    // Update the total time (not including "others").
+    let totalTotal = 0;
+    col_sums.forEach(time => totalTotal += time);
+    document.getElementById("total_total").value = totalTotal;
+
+
+    console.log(others, totalTotal)
+    // Update the absolute TOTAL time.
+    document.getElementById('totaltime').value = others + totalTotal;
+  }
+
+  /* Get the total time for the "other" values. */
+  function getOtherValues() {
+    let sum = 0;
+    for (let box of document.getElementsByClassName("other-values")) {
+      sum += getValue(box);
+    }
+    return sum;
+  }
+
+  /* Gets the total time for a given document. */
+  function getTotal(box_class) {
+    let boxes = document.getElementsByClassName(box_class);
+    let sum = 0;
+    for (let i = 0; i < 4; i++) {
+      let value = getValue(boxes[i]);
+      sum += value;
+    }
+    return sum;
+  }
+
+  /* Helper function to parse the integer value. */
+  function getValue(box) {
+    return Number.isNaN(parseInt(box.value)) ? 0 : parseInt(box.value);
+  }
+
+</script>
 
   	
 </body>

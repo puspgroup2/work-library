@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -105,6 +106,12 @@ public class TimeReportServlet extends ServletBase {
 			tb.setWeek(db.getWeekFromTimeReport(reportID));
 			tb.setUsername((String)session.getAttribute("username"));
 			session.setAttribute("TimeReportBean", tb);
+			
+			ServletOutputStream out = response.getOutputStream();
+			out.print("ok");
+			out.flush();
+			
+			
 		}
 		
 		if (submitNewReport != null) {
@@ -134,7 +141,9 @@ public class TimeReportServlet extends ServletBase {
 			trb1.setWeek(db.getWeekFromTimeReport(id));
 			trb1.setUsername(db.getUserNameFromTimeReport(id));
 			session.setAttribute("timereport", trb1);
-			response.sendRedirect("updatereport.jsp");
+			ServletOutputStream out = response.getOutputStream();
+			out.print("ok");
+			out.flush();
 			
 		}
 		
