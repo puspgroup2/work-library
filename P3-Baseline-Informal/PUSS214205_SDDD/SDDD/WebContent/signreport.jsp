@@ -101,7 +101,7 @@
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">Options</div>
             <div class="list-group list-group-flush">
-            <form action="TimeReportServlet" method="POST">
+            <form action="TimeReportServlet">
        	        <input type="submit" name="summary" value="Time Report Summary" class="list-group-item list-group-item-action bg-light astext">
             </form>
             <form action="TimeReportServlet" method="POST">
