@@ -187,7 +187,7 @@ public class DataBase {
 	 * @param reportID the number of the Time Report in question.
 	 */
 	public void setSigned(boolean yes, String userName, int reportID) {
-		String sql = "UPDATE TimeReports " + "set signature = ? " + "where reportID = ?";
+		String sql = "UPDATE TimeReports SET signature = ? WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			String result = yes ? userName : null;
 			ps.setString(1, result);
@@ -206,7 +206,7 @@ public class DataBase {
 	 */
 	public String getRole(String userName) {
 		String role = null;
-		String sql = "SELECT role from Users where userName = ?";
+		String sql = "SELECT role FROM Users WHERE userName = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, userName);
@@ -251,7 +251,7 @@ public class DataBase {
 	 */
 	public int newTimeReport(String userName, int week) {
 		if (this.weekOK(userName, week)) {
-			String sql = "INSERT into TimeReports(userName, week) values(?, ?)";
+			String sql = "INSERT INTO TimeReports(userName, week) VALUES(?, ?)";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				ps.setString(1, userName);
 				ps.setInt(2, week);
@@ -298,7 +298,7 @@ public class DataBase {
 	public boolean updateWeek(int reportID, String userName, int newWeek) {
 		if (!weekOK(userName, newWeek))
 			return false;
-		String sql = "UPDATE TimeReports " + "SET Week = ? " + "WHERE reportID = ?";
+		String sql = "UPDATE TimeReports SET Week = ? WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, newWeek);
 			ps.setInt(2, reportID);
@@ -310,23 +310,25 @@ public class DataBase {
 		return false;
 	}
 
-	/* Helper method for updateTimeReport. */
+	/* Helper method for updateTimeReport. Checks if week has a valid value and
+	 * that there are no other Time Reports for that user that week. */
 	private boolean weekOK(String userName, Integer week) {
 		if (week < 0 || week > 54)
 			return false;
-		String sql = "SELECT * from TimeReports where Week = ? and userName = ?";
+		String sql = "SELECT * FROM TimeReports WHERE Week = ? AND userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, week);
 			ps.setString(2, userName);
 			ResultSet rs = ps.executeQuery();
 			System.out.println(rs.getFetchSize());
 			if (!rs.next()) {
-				System.out.println("Week ok!!!!");
+				System.out.println("WEEK OK");
 				return true;
 			}
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
+		System.out.println("WEEK NOT OK");
 		return false;
 	}
 
@@ -375,7 +377,7 @@ public class DataBase {
 	 * @param documentTimeD/I/R/F A map with key-value pairs consisting of the
 	 *                            tuple's. columns and the values associated with
 	 *                            these.
-	 * @return true if the Document Time Report was successfully updated.
+	 * @return true If the Document Time Report was successfully updated.
 	 */
 	public boolean updateDocumentTimeD(int reportID, Map<String, Integer> documentTimeD) {
 		return updateDocumentTime(reportID, documentTimeD, 'D');
@@ -399,7 +401,7 @@ public class DataBase {
 	 * Updates a Document Time R Report according to the values contained in the
 	 * map.
 	 * 
-	 * @param reportID            The Time Report to be updated.
+	 * @param reportID 			  The Time Report to be updated.
 	 * @param documentTimeD/I/R/F A map with key-value pairs consisting of the
 	 *                            tuple's. columns and the values associated with
 	 *                            these.
@@ -456,8 +458,8 @@ public class DataBase {
 	/**
 	 * Deletes the specified Time Report.
 	 * 
-	 * @param reportID the Time Report to be deleted.
-	 * @return true if deletion was successful.
+	 * @param reportID 	the Time Report to be deleted.
+	 * @return true 	if deletion was successful.
 	 */
 	public boolean deleteTimeReport(int reportID) {
 		String sql = "DELETE FROM TimeReports WHERE reportID = ?";
@@ -497,12 +499,12 @@ public class DataBase {
 	/**
 	 * Returns the username connected to a Time Report.
 	 * 
-	 * @param reportID the reportID of a specific Time Report.
-	 * @return the username connected to the reportID.
+	 * @param reportID 	the reportID of a specific Time Report.
+	 * @return			The username connected to the reportID.
 	 */
 	public String getUserNameFromTimeReport(int reportID) {
 		String username = null;
-		String sql = "SELECT userName from TimeReports where reportID = ?";
+		String sql = "SELECT userName FROM TimeReports WHERE reportID = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
@@ -519,12 +521,12 @@ public class DataBase {
 	/**
 	 * Returns the totalMinutes stored in a Time Report.
 	 * 
-	 * @param reportID the reportID of a specific Time Report.
-	 * @return the totalMinutes connected to the reportID.
+	 * @param reportID  the reportID of a specific Time Report.
+	 * @return 			the totalMinutes connected to the reportID.
 	 */
 	public int getTotalMinutesFromTimeReport(int reportID) {
 		int totalminutes = 0;
-		String sql = "SELECT totalMinutes from TimeReports where reportID = ?";
+		String sql = "SELECT totalMinutes FROM TimeReports WHERE reportID = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
@@ -541,12 +543,12 @@ public class DataBase {
 	/**
 	 * Returns the username of the user who has signed the Time Report.
 	 * 
-	 * @param reportID the reportID of a specific Time Report.
-	 * @return the totalMinutes connected to the reportID.
+	 * @param reportID 	the reportID of a specific Time Report.
+	 * @return 			the totalMinutes connected to the reportID.
 	 */
 	public String getSignatureFromTimeReport(int reportID) {
 		String signature = null;
-		String sql = "SELECT signature from TimeReports where reportID = ?";
+		String sql = "SELECT signature FROM TimeReports WHERE reportID = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
@@ -568,7 +570,7 @@ public class DataBase {
 	 */
 	public int getWeekFromTimeReport(int reportID) {
 		int week = -1;
-		String sql = "SELECT week from TimeReports where reportID = ?";
+		String sql = "SELECT week FROM TimeReports WHERE reportID = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
@@ -663,7 +665,7 @@ public class DataBase {
 	 */
 	public int getReportID(String userName, int week) {
 		int reportID = 0;
-		String sql = "SELECT reportID from TimeReports" + " where userName = ?" + " and week = ?";
+		String sql = "SELECT reportID FROM TimeReports WHERE userName = ?" + " AND week = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, userName);
 			ps.setInt(2, week);
@@ -719,7 +721,7 @@ public class DataBase {
 	 */
 	public String getPassword(String userName) {
 		String pw = null;
-		String sql = "select password from Users where userName = ?";
+		String sql = "SELECT password FROM Users WHERE userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, userName);
 			ResultSet rs = ps.executeQuery();
@@ -737,7 +739,7 @@ public class DataBase {
 	 * @return the salt as a String
 	 */
 	public String getSalt(String userID) {
-		String sql = "SELECT salt " + "from Users " + "where userName = ?";
+		String sql = "SELECT salt FROM Users WHERE userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, userID);
 			ResultSet rs = ps.executeQuery();
@@ -778,7 +780,7 @@ public class DataBase {
 	 */
 	public String getEmail(String userName) {
 		String email = null;
-		String sql = "SELECT email from Users where userName = ?";
+		String sql = "SELECT email FROM Users WHERE userName = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, userName);
@@ -795,12 +797,12 @@ public class DataBase {
 	/**
 	 * Checks if the password for a specific user is correct.
 	 * 
-	 * @param userName The username of the user.
+	 * @param userName The name to identify the user.
 	 * @param password The password of the user.
 	 * @return true if they were correct, otherwise false will be returned.
 	 */
 	public boolean checkLogin(UserBean bajsbean) {
-		String sql = "SELECT * FROM Users where userName = ? AND password = ?";
+		String sql = "SELECT * FROM Users WHERE userName = ? AND password = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			String userName = bajsbean.getUserName();
 			String password = bajsbean.getPassword();
@@ -829,7 +831,7 @@ public class DataBase {
 
 	/* Helper method. */
 	private ResultSet select(int reportID, String attribute, String relation) {
-		String sql = "SELECT " + attribute + " from " + relation + " WHERE reportID = ?";
+		String sql = "SELECT " + attribute + " FROM " + relation + " WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
 			ResultSet rs = ps.executeQuery();
