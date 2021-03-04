@@ -23,11 +23,9 @@
 <body>
   <nav class="navbar navbar-light navbar-expand-md bg-light">
       <a class="navbar-brand abs">TimeMate</a>
-
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
           <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="navbar-collapse collapse" id="collapsingNavbar">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -47,7 +45,6 @@
               </form>
             </c:if>
           </ul>
-
           <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <form class="form-inline my-2 my-lg-0" action="changepassword.jsp">
