@@ -73,7 +73,7 @@
       
   <c:if test="${sessionScope.AdminMessage eq 0}">
       <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
-          Could not add user.
+          There is already an user with that name.
       </div>
   </c:if>
 
@@ -82,6 +82,12 @@
           User added
       </div>
   </c:if>
+
+  <c:if test="${sessionScope.AdminMessage eq 2}">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        The username must be 5-10 letters long and only contain 0-9, A-Z, a-z
+    </div>
+</c:if>
 
   <div>
     <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:1rem; margin-bottom:50px;">
@@ -115,7 +121,7 @@
           </table>
           <div class="form-group row">
             <div class="offset-0 col-8">
-              <button name="Add" type="submit" class="btn btn-success">Add user</button>
+              <button name="add" type="submit" class="btn btn-success">Add user</button>
             </div>
           </div>
         </form>
@@ -154,7 +160,7 @@
         <div><b>When clicking confirm, you will remove all checked users</b></div><br>
         <div class="form-group row">
           <div class="offset-0 col-8">
-            <button name="Remove" type="submit" class="btn btn-danger">Confirm</button>
+            <button name="remove" type="submit" class="btn btn-danger">Confirm</button>
           </div>
         </div>
       </form>
