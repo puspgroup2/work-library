@@ -42,7 +42,9 @@
                 <a class="nav-link" href="index.jsp">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="summaryreport.jsp">Time Report</a>
+              <form action="TimeReportServlet">
+                <input type="submit" value="Time Report" class="nav-link astext">
+              </form>
             </li>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
             	<form action="UserManagementServlet">
@@ -73,7 +75,7 @@
       
   <c:if test="${sessionScope.AdminMessage eq 0}">
       <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
-          Could not add user.
+          There is already an user with that name.
       </div>
   </c:if>
 
@@ -82,6 +84,12 @@
           User added
       </div>
   </c:if>
+
+  <c:if test="${sessionScope.AdminMessage eq 2}">
+    <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+        The username must be 5-10 letters long and only contain 0-9, A-Z, a-z
+    </div>
+</c:if>
 
   <div>
     <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:1rem; margin-bottom:50px;">
@@ -109,15 +117,13 @@
                 </td>
               </tr>
               <tr>
-                <td colspan="7">
-                  A password will be randomly generated and sent along with the username to the mail.
-                </td>
+                <td colspan="7">A password will be randomly generated and sent along with the username to the mail.</td>
               </tr>
             </tbody>
           </table>
           <div class="form-group row">
             <div class="offset-0 col-8">
-              <button name="Add" type="submit" class="btn btn-success">Add user</button>
+              <button name="add" type="submit" class="btn btn-success">Add user</button>
             </div>
           </div>
         </form>
@@ -138,17 +144,19 @@
             </tr>
           </thead>
           <tbody>
-            <%UserManagementBean ub = (UserManagementBean) session.getAttribute("AdministrationBean");
-            HashMap<String, String> userMap = (HashMap<String, String>)ub.getUserList();
-            for(Map.Entry<String, String> entry : userMap.entrySet()) {%>
+            <%
+            UserManagementBean adminBean = (UserManagementBean) session.getAttribute("AdministrationBean");
+                        HashMap<String, String> userMap = (HashMap<String, String>)adminBean.getUserMap();
+                        for(Map.Entry<String, String> user : userMap.entrySet()) {
+            %>
             <tr>
               <td>
                 <div class="form-check">
-                  <input class="form-check-input" value="<%=entry.getKey()%>" type="checkbox" name="<%=entry.getKey()%>" id="flexCheckDefault">
+                  <input class="form-check-input" value="<%=user.getKey()%>" type="checkbox" name="<%=user.getKey()%>" id="flexCheckDefault">
                 </div>
               </td>
-              <td><%=entry.getKey()%></td>
-              <td><%=entry.getValue()%></td>
+              <td><%=user.getKey()%></td>
+              <td><%=user.getValue()%></td>
             </tr>
             <%}%>
           </tbody>
@@ -156,7 +164,7 @@
         <div><b>When clicking confirm, you will remove all checked users</b></div><br>
         <div class="form-group row">
           <div class="offset-0 col-8">
-            <button name="Remove" type="submit" class="btn btn-danger">Confirm</button>
+            <button name="remove" type="submit" class="btn btn-danger">Confirm</button>
           </div>
         </div>
       </form>

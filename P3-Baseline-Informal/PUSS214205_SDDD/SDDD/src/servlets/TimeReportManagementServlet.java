@@ -36,9 +36,6 @@ public class TimeReportManagementServlet extends HttpServlet {
 		DataBase db = new DataBase();
 		db.connect();
 		HttpSession session = request.getSession();
-
-		System.out.println("Get");
-		
 		List<TimeReportBean> unsignedReports = new ArrayList<TimeReportBean>();
 		for(Integer id: db.getUnsignedTimeReportIDs()) {
 			TimeReportBean bean = new TimeReportBean();
@@ -49,9 +46,7 @@ public class TimeReportManagementServlet extends HttpServlet {
 			bean.setUsername(db.getUserNameFromTimeReport(id));
 			unsignedReports.add(bean);			
 		}
-		
 		unsignedReports.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
-		
 		session.setAttribute("unsignedReports", unsignedReports);
 		response.sendRedirect("signreport.jsp");
 	}
@@ -71,8 +66,6 @@ public class TimeReportManagementServlet extends HttpServlet {
 		}
 		return ids;
 	}
-	
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -81,20 +74,15 @@ public class TimeReportManagementServlet extends HttpServlet {
 		db.connect();
 		HttpSession session = request.getSession();
 		String userName = (String)session.getAttribute("username");
-		
-		switch (request.getParameter("input")) {
-		case "sign":
+		if(request.getParameter("input").equals("sign")) {
 			// The timereports come as a string in the format of: ["x1", "x2"]
 			// We need to parse this into a Java list.
 			String unsignedReports = request.getParameter("timeReports");
 			List<Integer> ids = unStringifiy(unsignedReports);
-			
 			for (Integer id: ids) {
 				db.setSigned(true, userName, id);	
 			}
-			break;
 		}
-		
 		// Send response so JS can reload page. Can this ever be NOT ok? 
 		ServletOutputStream out = response.getOutputStream();
 		out.print("ok");

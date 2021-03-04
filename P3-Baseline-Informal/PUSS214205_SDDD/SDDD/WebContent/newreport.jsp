@@ -134,8 +134,8 @@
                 <td colspan="7">
                 <fieldset disabled>
                   <div class="form-group row">
-                    <label for="text" class="col-4 col-form-label">Name:</label> 
-                    <div class="col-8">
+                    <label for="text" class="col-2 col-form-label">Name:</label> 
+                    <div class="col-10">
                       <input id="username" name="username" type="text" class="form-control" placeholder="${username}">
                     </div>
                   </div>

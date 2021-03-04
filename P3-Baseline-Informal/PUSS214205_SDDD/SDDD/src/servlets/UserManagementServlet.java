@@ -8,14 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import beans.UserManagementBean;
 import database.DataBase;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * Servlet implementation class UserMangementServlet
@@ -33,14 +29,14 @@ public class UserManagementServlet extends HttpServlet {
 		db.connect();
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
-		HashMap<String, String> memberMap = new HashMap<>();
-		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
-		for (String s : memberNames) {
+		HashMap<String, String> userMap = new HashMap<>(); //Creates a map intended to contain <Username, Role>.
+		ArrayList<String> userNames = (ArrayList<String>) db.getUsers();
+		for (String s : userNames) {
 			if(!s.equals("admin")) {
-				memberMap.put(s, db.getRole(s));
+				userMap.put(s, db.getRole(s)); //Fills the map with values from the database.
 			}
 		}
-		umb.populateBean(memberMap);
+		umb.populateBean(userMap);
 		session.setAttribute("UserManagementBean", umb);
 		response.sendRedirect("usermanagement.jsp");
 	}
@@ -52,15 +48,12 @@ public class UserManagementServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
 		db.connect();
-		
-		HashMap<String, String> memberMap = new HashMap<>();
-		ArrayList<String> memberNames = (ArrayList<String>) db.getUsers();
-		for (String name : memberNames) {
+		ArrayList<String> userNames = (ArrayList<String>) db.getUsers(); //Retrieve all members in database
+		for (String name : userNames) {
 			if(!name.equals("admin")) {
-				db.updateRole(name, request.getParameter(name+"role"));
+				db.updateRole(name, request.getParameter(name+"role")); //Updates the roles of all users according to the fields on the webpage.
 			}
 		}
 		doGet(request, response);
 	}
-
 }
