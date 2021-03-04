@@ -29,7 +29,7 @@ class FT1 {
 
 	@Test
 	void LoginSuccessfull() { 
-		assertTrue(alex.checkLogin(alexBean), "You did not get logged in.");
+		assertTrue(alex.checkLogin("Alex", "123ABCde"), "You did not get logged in.");
 	}
 
 }

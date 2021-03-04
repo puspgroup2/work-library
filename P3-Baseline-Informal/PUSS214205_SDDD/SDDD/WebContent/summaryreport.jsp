@@ -216,8 +216,7 @@
     (data) => {
       if (data == 'ok') {
         // Reload the page.
-        console.log("JDHSKAS")
-        location.href = "/TimeReportManagementServlet";
+        location.href = "/TimeReportServlet";
         //location.reload();
       }
     });
