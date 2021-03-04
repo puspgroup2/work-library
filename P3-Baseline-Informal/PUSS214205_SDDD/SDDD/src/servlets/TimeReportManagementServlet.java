@@ -83,6 +83,21 @@ public class TimeReportManagementServlet extends HttpServlet {
 				db.setSigned(true, userName, id);	
 			}
 		}
+		
+		if(request.getParameter("input").equals("Unsign")) {
+			// The timereports come as a string in the format of: ["x1", "x2"]
+			// We need to parse this into a Java list.
+			String unsignedReports = request.getParameter("timeReports");
+			List<Integer> ids = unStringifiy(unsignedReports);
+			for (Integer id: ids) {
+				db.setSigned(false, userName, id);	
+			}
+		}
+		
+		
+		
+		
+		
 		// Send response so JS can reload page. Can this ever be NOT ok? 
 		ServletOutputStream out = response.getOutputStream();
 		out.print("ok");
