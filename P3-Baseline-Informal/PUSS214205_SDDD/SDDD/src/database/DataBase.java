@@ -277,6 +277,7 @@ public class DataBase {
 	 * @return True if there was not already a Time Report for that week and user.
 	 */
 	public boolean updateWeek(int reportID, String userName, int newWeek) {
+		if (newWeek < 0 || newWeek > 54) return false;
 		if (this.weekAlreadyExists(userName, newWeek)) return false;
 		String sql = "UPDATE TimeReports "
 				+ "SET Week = ? "
@@ -293,13 +294,15 @@ public class DataBase {
 
 	/* Helper method for updateTimeReport */
 	private boolean weekAlreadyExists(String userName, Integer week) {
-		if (week < 0 || week > 54) return true;
 		String sql = "SELECT * from TimeReports where Week = ? and userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, week);
 			ps.setString(2, userName);
 			ResultSet rs = ps.executeQuery();
-			return rs != null;
+			if (rs == null) return false; 
+			System.out.println("Week exists!");
+			return true;
+			
 		} catch (SQLException e) {
 			handleSQLException(e);
 		}
@@ -826,9 +829,8 @@ public class DataBase {
 		db.connect();
 
 
-		System.out.println(db.updateDocumentTimeD(1, db.getDocumentTimeD(5)));
-		int reportId = db.newTimeReport("Assar", 666);
-		db.updateTotalMinutes(reportId, 666);
+		db.newTimeReport("admin", 13);
+		
 			
 	}
 	
