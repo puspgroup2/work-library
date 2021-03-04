@@ -21,7 +21,7 @@ import beans.TimeReportBean;
 import database.DataBase;
 
 /**
- * Servlet implementation class TimeReportServlet
+ * This servlet handles most managements for time report handling-
  */
 @WebServlet("/TimeReportServlet")
 public class TimeReportServlet extends ServletBase {
