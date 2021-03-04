@@ -170,21 +170,19 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Week:</label> 
                     <div class="col-8">
-                      <input id="week" name="week" type="text" class="form-control">
+                      <input type="number" id="week" name="week" class="form-control">
                     </div>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td colspan="7">
-                  <fieldset disabled>
                     <div class="form-group row">
-                      <label for="text" class="col-5 col-form-label"><b>Part A: Total time this week (minutes):</b></label> 
+                      <label for="text" class="col-5 col-form-label"><b>Part A: Total time this week (minutes):</b></label>
                       <div class="col-7">
-                        <input id="totaltime" name="totaltime" type="text" class="form-control">
+                        <input type="number" id="totaltime" name="totaltime" class="form-control">
                       </div>
                     </div>
-                    </fieldset>
                 </td>
               </tr>
               <tr>
@@ -206,263 +204,235 @@
                 <td>11</td>
                 <td>SDP</td>
                 <td>
-                  <input id="sdp_d" name="sdp_d" type="text" class="form-control">
+                  <input type="number" id="sdp_d" name="sdp_d" class="sdp_report_value form-control">
                 </td>
                 <td>
-                  <input id="sdp_i" name="sdp_i" type="text" class="form-control">
+                  <input type="number" id="sdp_i" name="sdp_i" class="sdp_report_value form-control">
                 </td>
                 <td>
-                  <input id="sdp_f" name="sdp_f" type="text" class="form-control">
+                  <input type="number" id="sdp_f" name="sdp_f" class="sdp_report_value form-control">
                 </td>
                 <td>
-                  <input id="sdp_r" name="sdp_r" type="text" class="form-control">
+                  <input type="number" id="sdp_r" name="sdp_r" class="sdp_report_value form-control">
                 </td>
                 <td>
-                  <fieldset disabled>
-                  <input id="sdp_total" name="sdp_total" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="sdp_total" name="sdp_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td>12</td>
                 <td>SRS</td>
                 <td>
-                  <input id="srs_d" name="srs_d" type="text" class="form-control">
+                  <input type="number" id="srs_d" name="srs_d" class="srs_report_value form-control">
                 </td>
                 <td>
-                  <input id="srs_i" name="srs_i" type="text" class="form-control">
+                  <input type="number" id="srs_i" name="srs_i" class="srs_report_value form-control">
                 </td>
                 <td>
-                  <input id="srs_f" name="srs_f" type="text" class="form-control">
+                  <input type="number" id="srs_f" name="srs_f" class="srs_report_value form-control">
                 </td>
                 <td>
-                  <input id="srs_r" name="srs_r" type="text" class="form-control">
+                  <input type="number" id="srs_r" name="srs_r" class="srs_report_value form-control">
                 </td>
                 <td>
-                  <fieldset disabled>
-                  <input id="srs_total" name="srs_total" type="text" class="form-control">
-                  </fieldset>
+                  <input type="number" id="srs_total"  name="srs_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td>13</td>
                 <td>SVVS</td>
                 <td>
-                  <input id="svvs_d" name="svvs_d" type="text" class="form-control">
+                  <input type="number" id="svvs_d" name="svvs_d" class="svvs_report_value form-control">
                 </td>
                 <td>
-                  <input id="svvs_i" name="svvs_i" type="text" class="form-control">
+                  <input type="number" id="svvs_i" name="svvs_i" class="svvs_report_value form-control">
                 </td>
                 <td>
-                  <input id="svvs_f" name="svvs_f" type="text" class="form-control">
+                  <input type="number" id="svvs_f" name="svvs_f" class="svvs_report_value form-control">
                 </td>
                 <td>
-                  <input id="svvs_r" name="svvs_r" type="text" class="form-control">
+                  <input type="number" id="svvs_r" name="svvs_r" class="svvs_report_value form-control">
                 </td>
                 <td>
-                  <fieldset disabled>
-                  <input id="srs_total" name="srs_total" type="text" class="form-control">
-                  </fieldset>
+                  <input type="number" id="svvs_total" name="svvs_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td>14</td>
                 <td>STLDD</td>
                 <td>
-                  <input id="stldd_d" name="stldd_d" type="text" class="form-control">
+                  <input type="number" id="stldd_d" name="stldd_d" class="stldd_report_value form-control">
                 </td>
                 <td>
-                  <input id="stldd_i" name="stldd_i" type="text" class="form-control">
+                  <input type="number" id="stldd_i" name="stldd_i" class="stldd_report_value form-control">
                 </td>
                 <td>
-                  <input id="stldd_f" name="stldd_f" type="text" class="form-control">
+                  <input type="number" id="stldd_f" name="stldd_f" class="stldd_report_value form-control">
                 </td>
                 <td>
-                  <input id="stldd_r" name="stldd_r" type="text" class="form-control">
+                  <input type="number" id="stldd_r" name="stldd_r" class="stldd_report_value form-control">
                 </td>
                 <td>
-                  <fieldset disabled>
-                  <input id="stldd_total" name="stldd_total" type="text" class="form-control">
-                  </fieldset>
+                  <input type="number" id="stldd_total"  name="stldd_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td>15</td>
                 <td>SVVI</td>
                 <td>
-                  <input id="svvi_d" name="svvi_d" type="text" class="form-control">
+                  <input type="number" id="svvi_d" name="svvi_d" class="svvi_report_value form-control">
                 </td>
                 <td>
-                  <input id="svvi_i" name="svvi_i" type="text" class="form-control">
+                  <input type="number" id="svvi_i" name="svvi_i" class="svvi_report_value form-control">
                 </td>
                 <td>
-                  <input id="svvi_f" name="svvi_f" type="text" class="form-control">
+                  <input type="number" id="svvi_f" name="svvi_f" class="svvi_report_value form-control">
                 </td>
                 <td>
-                  <input id="svvi_r" name="svvi_r" type="text" class="form-control">
+                  <input type="number" id="svvi_r" name="svvi_r" class="svvi_report_value form-control">
                 </td>
                 <td>
-                  <fieldset disabled>
-                  <input id="svvi_total" name="svvi_total" type="text" class="form-control">
-                  </fieldset>
+                  <input type="number" id="svvi_total" name="svvi_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td>16</td>
                 <td>SDDD</td>
                 <td>
-                  <input id="sddd_d" name="sddd_d" type="text" class="form-control">
+                  <input type="number" id="sddd_d" name="sddd_d" class="sddd_report_value form-control">
                 </td>
                 <td>
-                  <input id="sddd_i" name="sddd_i" type="text" class="form-control">
+                  <input type="number" id="sddd_i" name="sddd_i" class="sddd_report_value form-control">
                 </td>
                 <td>
-                  <input id="sddd_f" name="sddd_f" type="text" class="form-control">
+                  <input type="number" id="sddd_f" name="sddd_f" class="sddd_report_value form-control">
                 </td>
                 <td>
-                  <input id="sddd_r" name="sddd_r" type="text" class="form-control">
+                  <input type="number" id="sddd_r" name="sddd_r" class="sddd_report_value form-control">
                 </td>
                 <td>
-                  <fieldset disabled>
-                  <input id="sddd_total" name="sddd_total" type="text" class="form-control">
-                  </fieldset>
+                  <input type="number" id="sddd_total" name="sddd_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td>17</td>
                 <td>SVVR</td>
                 <td>
-                  <input id="svvr_d" name="svvr_d" type="text" class="form-control">
+                  <input type="number" id="svvr_d" name="svvr_d" class="svvr_report_value form-control">
                 </td>
                 <td>
-                  <input id="svvr_i" name="svvr_i" type="text" class="form-control">
+                  <input type="number" id="svvr_i" name="svvr_i" class="svvr_report_value form-control">
                 </td>
                 <td>
-                  <input id="svvr_f" name="svvr_f" type="text" class="form-control">
+                  <input type="number" id="svvr_f" name="svvr_f" class="svvr_report_value form-control">
                 </td>
                 <td>
-                  <input id="svvr_r" name="svvr_r" type="text" class="form-control">
+                  <input type="number" id="svvr_r" name="svvr_r" class="svvr_report_value form-control">
                 </td>
                 <td>
-                  <fieldset disabled>
-                  <input id="svvr_total" name="svvr_total" type="text" class="form-control">
-                  </fieldset>
+                  <input type="number" id="svvr_total" name="svvr_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td>18</td>
                 <td>SSD</td>
                 <td>
-                  <input id="ssd_d" name="ssd_d" type="text" class="form-control">
+                  <input type="number" id="ssd_d" name="ssd_d" class="ssd_report_value form-control">
                 </td>
                 <td>
-                  <input id="ssd_i" name="ssd_i" type="text" class="form-control">
+                  <input type="number" id="ssd_i" name="ssd_i" class="ssd_report_value form-control">
                 </td>
                 <td>
-                  <input id="ssd_f" name="ssd_f" type="text" class="form-control">
+                  <input type="number" id="ssd_f" name="ssd_f" class="ssd_report_value form-control">
                 </td>
                 <td>
-                  <input id="ssd_r" name="ssd_r" type="text" class="form-control">
+                  <input type="number" id="ssd_r" name="ssd_r" class="ssd_report_value form-control">
                 </td>
                 <td>
-                  <fieldset disabled>
-                  <input id="ssd_total" name="ssd_total" type="text" class="form-control">
-                  </fieldset>
+                  <input type="number" id="ssd_total" name="ssd_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td>19</td>
                 <td>Final Report</td>
                 <td>
-                  <input id="final_d" name="final_d" type="text" class="form-control">
+                  <input type="number" id="final_d" name="final_d" class="final_report_value form-control">
                 </td>
                 <td>
-                  <input id="final_i" name="final_i" type="text" class="form-control">
+                  <input type="number" id="final_i" name="final_i" class="final_report_value form-control">
                 </td>
                 <td>
-                  <input id="final_f" name="final_f" type="text" class="form-control">
+                  <input type="number" id="final_f" name="final_f" class="final_report_value form-control">
                 </td>
                 <td>
-                  <input id="final_r" name="final_r" type="text" class="form-control">
+                  <input type="number" id="final_r" name="final_r" class="final_report_value form-control">
                 </td>
                 <td>
-                  <fieldset disabled>
-                  <input id="final_total" name="final_total" type="text" class="form-control">
-                  </fieldset>
+                  <input type="number" id="final_total" name="final_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td colspan="2"><b>Sum</b></td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_d" name="total_d" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_d" name="total_d" class="form-control" disabled>
                 </td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_i" name="total_i" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_i" name="total_i" class="form-control" disabled>
                 </td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_f" name="total_f" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_f" name="total_f" class="form-control" disabled>
                 </td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_r" name="total_r" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_r" name="total_r" class="form-control" disabled>
                 </td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_total" name="total_total" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_total" name="total_total" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
                 <td colspan="2">21</td>
                 <td colspan="4">Functional test</td>
-                <td><input id="functional_test" name="functional_test" type="text" class="form-control"></td>
+                <td><input type="number" id="functional_test" class="other-values" name="functional_test" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input id="system_test" name="system_test" type="text" class="form-control"></td>
+                <td><input type="number" id="system_test" class="other-values" name="system_test" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input id="regression_test" name="regression_test" type="text" class="form-control"></td>
+                <td><input type="number" id="regression_test" class="other-values" name="regression_test" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
                 <td colspan="4">Meeting</td>
-                <td><input id="meeting" name="meeting" type="text" class="form-control"></td>
+                <td><input type="number" id="meeting" class="other-values" name="meeting" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">41</td>
                 <td colspan="4">Lecture</td>
-                <td><input id="lecture" name="lecture" type="text" class="form-control"></td>
+                <td><input type="number" id="lecture" class="other-values" name="lecture" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">42</td>
                 <td colspan="4">Exercise</td>
-                <td><input id="exercise" name="exercise" type="text" class="form-control"></td>
+                <td><input type="number" id="exercise" class="other-values" name="exercise" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input id="computer_exercise" name="computer_exercise" type="text" class="form-control"></td>
+                <td><input type="number" id="computer_exercise" class="other-values" name="computer_exercise" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input id="home_reading" name="home_reading" type="text" class="form-control"></td>
+                <td><input type="number" id="home_reading" class="other-values" name="home_reading" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
                 <td colspan="4">Other</td>
-                <td><input id="other" name="other" type="text" class="form-control"></td>
+                <td><input type="number" id="other" class="other-values" name="other" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="7">
@@ -482,9 +452,7 @@
                 <td>D</td>
                 <td colspan="3">Developing new code, test cases and documentation including documentation of the system</td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_d" name="total_d" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_d" name="total_d" type="text" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
@@ -492,9 +460,7 @@
                 <td>I</td>
                 <td colspan="3">Time spent preparing and at meeting for informal reviews</td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_i" name="total_i" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_i" name="total_i" type="text" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
@@ -502,9 +468,7 @@
                 <td>F</td>
                 <td colspan="3">Time spent preparing and at meeting for formal reviews</td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_f" name="total_f" type="text" class="form-control">
-                  </fieldset>
+                    <input type="number" id="total_f" name="total_f" type="text" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
@@ -512,9 +476,7 @@
                 <td>R</td>
                 <td colspan="3">Time spent improving, revising or correction documents and design objects</td>
                 <td>
-                  <fieldset disabled>
-                    <input id="total_r" name="total_r" type="text" class="form-control">
-                  </fieldset>  
+                    <input type="number" id="total_r" name="total_r" type="text" class="form-control" disabled>
                 </td>
               </tr>
               <tr>
@@ -523,9 +485,7 @@
               <tr>
                 <td colspan="6"><b>Signed by manager</b></td>
                 <td>
-                <fieldset disabled>
-                  <input id="signature" name="signature" type="text" class="form-control">
-                </fieldset>
+                  <input type="number" id="signature" name="signature" type="text" class="form-control" disabled>
               </td>
               </tr>
             </table>
@@ -543,4 +503,99 @@
   </div>
   <!-- /#page-content-wrapper -->
 </div>
+
+<script>
+
+  // Format is "row-boxes", "row-total"
+  let documents = [
+    ["sdp_report_value", "sdp_total"],
+    ["srs_report_value", "srs_total"],
+    ["svvs_report_value", "svvs_total"],
+    ["stldd_report_value", "stldd_total"],
+    ["svvi_report_value", "svvi_total"],
+    ["sddd_report_value", "sddd_total"],
+    ["svvr_report_value", "svvr_total"],
+    ["ssd_report_value", "ssd_total"],
+    ["final_report_value", "final_total"]
+  ];
+
+  let total_columns = ['total_d', 'total_i', 'total_f', 'total_r'];
+
+  // Bind event listeners on all inputs
+  for (let doc of documents) {
+    for (let box of document.getElementsByClassName(doc[0])) {
+      box.addEventListener('input', updateTotals);
+    }
+  }
+
+  // Bind event listeners for others as well.
+  for (let box of document.getElementsByClassName("other-values")) {
+    box.addEventListener('input', updateTotals);
+  }
+
+  // Call it once to set to 0.
+  updateTotals();
+
+  /* Updates all the total boxes with the total report for each document. */
+  function updateTotals() {
+    let col_sums = [0, 0, 0, 0];
+
+    for (let doc of documents) {
+      let totalTime = getTotal(doc[0]);
+      document.getElementById(doc[1]).value = totalTime;
+
+      // Calculate the column totals.
+      let boxes = document.getElementsByClassName(doc[0]);
+      for (let i = 0; i < 4; i++) {
+        col_sums[i] += getValue(boxes[i]);
+      }
+    }
+
+    // Update the total boxes.
+    for (let i = 0; i < 4; i++) {
+        console.log(total_columns[i], col_sums[i])
+        for (let box of document.getElementsByName(total_columns[i])) {
+          box.value = col_sums[i];
+        }
+    }
+
+    let others = getOtherValues();
+
+    // Update the total time (not including "others").
+    let totalTotal = 0;
+    col_sums.forEach(time => totalTotal += time);
+    document.getElementById("total_total").value = totalTotal;
+
+
+    console.log(others, totalTotal)
+    // Update the absolute TOTAL time.
+    document.getElementById('totaltime').value = others + totalTotal;
+  }
+
+  /* Get the total time for the "other" values. */
+  function getOtherValues() {
+    let sum = 0;
+    for (let box of document.getElementsByClassName("other-values")) {
+      sum += getValue(box);
+    }
+    return sum;
+  }
+
+  /* Gets the total time for a given document. */
+  function getTotal(box_class) {
+    let boxes = document.getElementsByClassName(box_class);
+    let sum = 0;
+    for (let i = 0; i < 4; i++) {
+      let value = getValue(boxes[i]);
+      sum += value;
+    }
+    return sum;
+  }
+
+  /* Helper function to parse the integer value. */
+  function getValue(box) {
+    return Number.isNaN(parseInt(box.value)) ? 0 : parseInt(box.value);
+  }
+
+</script>
 </body>

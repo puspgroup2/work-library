@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <%@page import = "java.util.ArrayList"%>
@@ -139,7 +139,7 @@
           <% for (TimeReportBean bean : list) { %>
         	  
             <tr>
-              <td><input type="radio" name="radioGroup" id="<%=bean.getWeek()%>" class='<%=(bean.getSigned() == null ? "notSigned" : "signed")%>'></td>
+              <td><input type="radio" name="radioGroup" id="<%=bean.getReportID()%>" class='<%=(bean.getSigned() == null ? "notSigned" : "signed")%>'></td>
               <td>${username}</td>
               <td><%=bean.getWeek() %></td>
               <td><%=bean.getTotalTime() %></td>
@@ -185,22 +185,16 @@
      </div>
 </div>
     
-    
-    
-       <form action="TimeReportServlet" method="POST">
-        <div class="d-flex justify-content-center" style="margin-top:5px">
-            <form class="form-inline my-2 my-lg-0" style="margin-right:2.5px">
-                <input type="submit" name="editBtn" id="editBtn" value="Edit selected report" class="btn btn-success" style="margin-right:3px">
-                <input type="submit" name="viewBtn" id="viewBtn" value="View selected report" class="btn btn-success" style="margin-left:3px; margin-right:3px">
-                <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
-                <button class="btn btn-primary" id='showSignBtn' type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample collapseExample2" style="margin-left:3px">
-                    Show signed reports
-                </button>                
-                </c:if>
-            </form>
+      <div class="d-flex justify-content-center" style="margin-top:5px">
+            <button class="btn btn-success" id='editBtn' style="margin-right:3px">Edit selected report</button>
+            <button class="btn btn-success" id='viewBtn' style="margin-left:3px; margin-right:3px">View selected report</button>
+            <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
+            <button class="btn btn-primary" id='showSignBtn' type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample collapseExample2" style="margin-left:3px">
+                Show signed reports
+            </button>
+            </c:if>
         </div>
-    </div>
-   </form>
+  </div>
     <!-- /#page-content-wrapper -->
 
 </div>
@@ -208,6 +202,42 @@
 <script>
 
     let showToggled = false;
+
+    /* Edit button callback function. Send a POST request with the report id. */
+    $('#editBtn').click(() =>  {
+      const report = getCheckedReport();
+      if (report == null)
+        return;
+
+      $.post("/TimeReportServlet", {
+        'editBtn': 'true',
+        'reportID': report.id
+      },
+      (response) => {
+        if (response == 'ok') {
+          // Reload the page.
+          location.href = "updatereport.jsp";
+        }
+      });
+    });
+
+    $('#viewBtn').click(() =>  {
+      const report = getCheckedReport();
+      if (report == null)
+        return;
+
+      $.post("/TimeReportServlet", {
+        'viewBtn': 'true',
+        'reportID': report.id
+      },
+      (response) => {
+        if (response == 'ok') {
+          // Reload the page.
+          location.href = "updatereport.jsp";
+        }
+      });
+    });
+
 
     $('#showSignBtn').click(() => {
       showToggled = !showToggled;
@@ -229,6 +259,16 @@
           $('#editBtn').prop('disabled', false);
         }
       })
+    }
+
+    function getCheckedReport() {
+      for (let radio of document.getElementsByName('radioGroup')) {
+        if (radio.checked) {
+          console.log(radio)
+          return radio;
+        }
+      }
+      return null;
     }
 
 

@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,7 @@ public class TimeReportServlet extends ServletBase {
 		List<TimeReportBean> TimeReportBeanCan = new ArrayList<TimeReportBean>();
 		for(Integer i : reportIdList) {
 			TimeReportBean trb = new TimeReportBean();
+			trb.setReportID(i);
 			trb.setSigned(db.getSignatureFromTimeReport(i));
 			trb.setTotalTime(db.getTotalMinutesFromTimeReport(i));
 			trb.setWeek(db.getWeekFromTimeReport(i));
@@ -92,19 +94,29 @@ public class TimeReportServlet extends ServletBase {
 		
 		if (editSelectedBtn != null) {
 			List<Integer> signedReports = db.getSignedTimeReportIDs(); 
-			if(!signedReports.contains(session.getAttribute("reportID"))) {
-				session.setAttribute("editable", true);
-				response.sendRedirect("updatereport.jsp");
-			}else {
-				session.setAttribute("editable", false);
-				response.sendRedirect("updatereport.jsp");
-			}
+			session.setAttribute("editable", true);
+			TimeReportBean tb = new TimeReportBean();
+			int reportID = Integer.parseInt(request.getParameter("reportID"));
+			tb.populateBean(db.getDocumentTimeD(reportID), 
+					db.getDocumentTimeF(reportID), 
+					db.getDocumentTimeI(reportID), 
+					db.getDocumentTimeR(reportID), 
+					db.getActivityReport(reportID));
+			
+			tb.setWeek(db.getWeekFromTimeReport(reportID));
+			tb.setUsername((String)session.getAttribute("username"));
+			session.setAttribute("TimeReportBean", tb);
+			
+			ServletOutputStream out = response.getOutputStream();
+			out.print("ok");
+			out.flush();
+			
+			
 		}
 		
 		if (submitNewReport != null) {
 			TimeReportBean trb3 = new TimeReportBean();
 			trb3.populateBean(request, response);
-			trb3.setTotalTime(request, response);
 			int id=db.newTimeReport((String) session.getAttribute("username"), Integer.parseInt(request.getParameter("week")));
 			
 			db.updateDocumentTimeD(id, trb3.getReportValuesD());
@@ -118,15 +130,28 @@ public class TimeReportServlet extends ServletBase {
 		
 		if (viewBtn != null) {
 			session.setAttribute("editable", false);
-			response.sendRedirect("updatereport.jsp");
+			TimeReportBean trb1 = new TimeReportBean();
+			int id = Integer.parseInt(request.getParameter("reportID"));
+			
+			trb1.populateBean(db.getDocumentTimeD(id), 
+					db.getDocumentTimeI(id), 
+					db.getDocumentTimeF(id), 
+					db.getDocumentTimeR(id), 
+					db.getActivityReport(id));
+			
+			trb1.setWeek(db.getWeekFromTimeReport(id));
+			trb1.setUsername(db.getUserNameFromTimeReport(id));
+			session.setAttribute("timereport", trb1);
+			ServletOutputStream out = response.getOutputStream();
+			out.print("ok");
+			out.flush();
 			
 		}
 		
 		if (submitEdit != null) {
 			TimeReportBean trb2 = new TimeReportBean();
 			trb2.populateBean(request, response);
-			trb2.setTotalTime(request, response);
-			int id=db.newTimeReport((String) session.getAttribute("username"), Integer.parseInt(request.getParameter("week")));
+			int id = (Integer) session.getAttribute("reportID");
 			
 			db.updateDocumentTimeD(id, trb2.getReportValuesD());
 			db.updateDocumentTimeI(id, trb2.getReportValuesI());

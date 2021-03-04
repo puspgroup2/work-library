@@ -25,12 +25,14 @@ public class TimeReportBean implements Serializable {
     private Map<String, Integer> reportValuesF = new HashMap<String, Integer>();
     private Map<String, Integer> reportValuesR = new HashMap<String, Integer>();
     private Map<String, Integer> reportValuesActivity = new HashMap<String, Integer>();
-    private String[] fieldNamesD = {"sdp_d", "srs_d", "svvs_d", "stldd_d", "svvi_d", "sddd_d", "svvr_d", "ssd_d", "fianl_d", "total_d"}; 
+    private String[] fieldNamesD = {"sdp_d", "srs_d", "svvs_d", "stldd_d", "svvi_d", "sddd_d", "svvr_d", "ssd_d", "final_d", "total_d"}; 
     private String[] fieldNamesI = {"sdp_i", "srs_i", "svvs_i", "stldd_i", "svvi_i", "sddd_i", "svvr_i", "ssd_i", "final_i", "total_i"}; 
     private String[] fieldNamesF = {"sdp_f", "srs_f", "svvs_f", "stldd_f", "svvi_f", "sddd_f", "svvr_f", "ssd_f", "final_f", "total_f"};
     private String[] fieldNamesR = {"sdp_r", "srs_r", "svvs_r", "stldd_r", "svvi_r", "sddd_r", "svvr_r", "ssd_r", "final_r", "total_r"};
     private String[] fieldNamesActivity = {	"functional_test", "system_test", "regression_test", "meeting", "lecture", "exercise", "computer_exercise", "home_reading", "other"};
-
+    private List<String[]> allFields = new ArrayList<String[]>();
+    private List<Map<String, Integer>> reportFields = new ArrayList<Map<String, Integer>>();
+    
     /*
       Fetches the week that the report was created for.
       @return week
@@ -74,11 +76,6 @@ public class TimeReportBean implements Serializable {
    */
     public void setTotalTime(int totalTime) {
     	this.totalTime = totalTime;
-    }
-    
-    public void setTotalTime(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String Input = request.getParameter("totaltime");
-    	totalTime = Integer.parseInt(Input);
     }
     
     /*
@@ -138,63 +135,45 @@ public class TimeReportBean implements Serializable {
     Sets the reported values into databaseData map .
     @param databaseData
    */
-    public void populateBean(Map<String, Integer> databaseDataD, Map<String, Integer> databaseDataI, Map<String, Integer> databaseDataF, Map<String, Integer> databaseDataR, Map<String, Integer> databaseDataActivity) {
-    	reportValuesD = databaseDataD;
-    	reportValuesI = databaseDataI;
-    	reportValuesF = databaseDataF;
-    	reportValuesR = databaseDataR;
-    	reportValuesActivity = databaseDataActivity;
+    public void populateBean(Map<String, Integer> D, Map<String, Integer> I, Map<String, Integer> F, Map<String, Integer> R, Map<String, Integer> Activity) {
+    	reportValuesD = D;
+    	reportValuesI = I;
+    	reportValuesF = F;
+    	reportValuesR = R;
+    	reportValuesActivity = Activity;
     }
 
     /*
-      Puts into the reported values map the user values and the fieldNames
+      puts the time from the time-report in their corresponding map and the "totaltime" in its own integer.
       @param request, response
      */
     public void populateBean(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    for(int i = 0; i < fieldNamesD.length; i++) {
-	    	String Input = request.getParameter(fieldNamesD[i]); 
-	    	if (request.getParameter(Input) == null) {
-	    		reportValuesD.put(fieldNamesD[i], 0);
+    	allFields.add(fieldNamesD);
+    	allFields.add(fieldNamesI);
+    	allFields.add(fieldNamesF);
+    	allFields.add(fieldNamesR);
+    	allFields.add(fieldNamesActivity);
+    	
+    	reportFields.add(reportValuesD);
+    	reportFields.add(reportValuesI);
+    	reportFields.add(reportValuesF);
+    	reportFields.add(reportValuesR);
+    	reportFields.add(reportValuesActivity);
+    	
+	   for(int i = 0; i < allFields.size(); i++) {
+		  for(int j = 0; j < allFields.get(i).length; j++) {
+	    	String Input = request.getParameter(allFields.get(i)[j]); 
+	    	if (Input == null) {
+	    		reportFields.get(i).put(allFields.get(i)[j], 0);
 	    	} else {
-	    		reportValuesD.put(fieldNamesD[i], Integer.parseInt(Input));
+	    		reportFields.get(i).put(allFields.get(i)[j], Integer.parseInt(Input));
 	    	}
-	    	}
-	    	
-    	for(int i = 0; i < fieldNamesI.length; i++) {
-        	String Input = request.getParameter(fieldNamesI[i]); 
-        	if (request.getParameter(Input) == null) {
-        		reportValuesI.put(fieldNamesI[i], 0);
-        	} else {
-        		reportValuesI.put(fieldNamesI[i], Integer.parseInt(Input));
-        	}
-        	}
-    	
-    	for(int i = 0; i < fieldNamesF.length; i++) {
-        	String Input = request.getParameter(fieldNamesF[i]); 
-        	if (request.getParameter(Input) == null) {
-        		reportValuesF.put(fieldNamesF[i], 0);
-        	} else {
-        		reportValuesF.put(fieldNamesF[i], Integer.parseInt(Input));
-        	}
-        	}
-    	
-    	for(int i = 0; i < fieldNamesR.length; i++) {
-        	String Input = request.getParameter(fieldNamesR[i]); 
-        	if (request.getParameter(Input) == null) {
-        		reportValuesR.put(fieldNamesR[i], 0);
-        	} else {
-        		reportValuesR.put(fieldNamesR[i], Integer.parseInt(Input));
-        	}
-        	}
-    	
-    	for(int i = 0; i < fieldNamesActivity.length; i++) {
-        	String Input = request.getParameter(fieldNamesActivity[i]); 
-        	if (request.getParameter(Input) == null) {
-        		reportValuesActivity.put(fieldNamesActivity[i], 0);
-        	} else {
-        		reportValuesActivity.put(fieldNamesActivity[i], Integer.parseInt(Input));
-        	}
-        	}
+	    	} 
+	   }
+	   
+	   	String Input = request.getParameter("totaltime");
+   		totalTime = Integer.parseInt(Input);
+
     }
 
 }
