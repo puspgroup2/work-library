@@ -20,17 +20,13 @@ import handlers.MailHandler;
 import handlers.PasswordHandler;
 
 @WebServlet("/AdministrationServlet")
-public class AdministrationServlet extends HttpServlet{
+public class AdministrationServlet extends ServletBase{
 	private static final long serialVersionUID = 1L;
-	
-	private HashMap<String, String> memberMap;
-	private UserManagementBean umb;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataBase db = new DataBase();
-		db.connect();
+		
 		HttpSession session = request.getSession();
 		UserManagementBean userBeanAdmin = new UserManagementBean();
 		
@@ -57,8 +53,6 @@ public class AdministrationServlet extends HttpServlet{
 		String username = request.getParameter("username");
 		String mail = request.getParameter("mail");
 
-		DataBase db = new DataBase();
-		db.connect();
 		HttpSession session = request.getSession();
 		
 		HashMap<String, String> mapM = new HashMap<String, String>();
@@ -103,10 +97,7 @@ public class AdministrationServlet extends HttpServlet{
 		}
 		doGet(request, response);
 	}
-	
-	private void removeAction() {
-		
-	}
+
 	
 	private static boolean verifyName(String username) {
 		String regex = "^[0-9a-zA-Z]\\w{5,10}$";
