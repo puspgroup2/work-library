@@ -174,6 +174,7 @@ public class TimeReportBean implements Serializable {
 	   }
 	   
 	   	String Input = request.getParameter("totaltime");
+	   	if(Input == null) Input = "0";
    		totalTime = Integer.parseInt(Input);
 
     }
