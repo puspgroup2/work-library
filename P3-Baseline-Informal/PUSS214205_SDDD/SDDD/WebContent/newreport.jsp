@@ -118,6 +118,11 @@
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
+    <c:if test="${sessionScope.reportError eq 1}">
+        <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+            There is already a report with the given week.
+        </div>
+    </c:if>
 
     <div class="container-fluid">
       <div>
@@ -519,6 +524,17 @@
   for (let box of document.getElementsByClassName("other-values")) {
     box.addEventListener('input', updateTotals);
   }
+
+  // Week must be between 0-53!
+  document.getElementById('week').addEventListener('input', change => {
+    const week = document.getElementById('week');
+    const value = getValue(week);
+    if (value > 53) {
+      week.value = 53;
+    } else if (value < 0) {
+      week.value = 0;
+    }
+  });
 
   // Call it once to set to 0.
   updateTotals();

@@ -507,7 +507,7 @@
             </table>
             <div class="form-group row">
               <div class="offset-0 col-8">
-                <button name="submitEdit" type="submit" class="btn btn-primary">Submit</button>
+                <button name="submitEdit" type="submit" class="btn btn-primary">Submit change</button>
               </div>
             </div>
           </form>
@@ -557,6 +557,17 @@
   for (let box of document.getElementsByClassName("other-values")) {
     box.addEventListener('input', updateTotals);
   }
+
+  // Week must be between 0-53!
+  document.getElementById('week').addEventListener('input', change => {
+    const week = document.getElementById('week');
+    const value = getValue(week);
+    if (value > 53) {
+      week.value = 53;
+    } else if (value < 0) {
+      week.value = 0;
+    }
+  });
 
   // Call it once to set to 0.
   updateTotals();
