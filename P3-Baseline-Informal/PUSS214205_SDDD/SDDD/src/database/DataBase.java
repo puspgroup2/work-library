@@ -801,15 +801,11 @@ public class DataBase {
 	 * @param password The password of the user.
 	 * @return true if they were correct, otherwise false will be returned.
 	 */
-	public boolean checkLogin(UserBean bajsbean) {
+	public boolean checkLogin(String userName, String password) {
 		String sql = "SELECT * FROM Users WHERE userName = ? AND password = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			String userName = bajsbean.getUserName();
-			String password = bajsbean.getPassword();
-
 			ps.setString(1, userName);
 			ps.setString(2, password);
-
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
