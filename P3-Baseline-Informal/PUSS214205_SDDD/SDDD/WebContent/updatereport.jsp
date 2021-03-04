@@ -128,6 +128,8 @@
           <div class="card-body">
         
          <form id="myForm" action="TimeReportServlet" method="POST">
+            <input type="hidden" value="<%=bean.getReportID()%>" name="reportID">
+
             <table class="table table-bordered">
               <tbody>
                 <tr>
@@ -177,14 +179,12 @@
               </tr>
               <tr>
                 <td colspan="7">
-                  <fieldset disabled>
                     <div class="form-group row">
                       <label for="text" class="col-5 col-form-label"><b>Part A: Total time this week (minutes):</b></label> 
                       <div class="col-7">
-                        <input id="totaltime" name="totaltime" type="text" class="form-control" value="<%=bean.getTotalTime()%>">
+                        <input id="totalMinutes" name="totalMinutes" type="text" class="form-control" value="<%=bean.getTotalTime()%>">
                       </div>
                     </div>
-                    </fieldset>
                 </td>
               </tr>
               <tr>
@@ -531,7 +531,7 @@
             </table>
             <div class="form-group row">
               <div class="offset-0 col-8">
-                <button name="submitNew" type="submit" class="btn btn-primary">Submit</button>
+                <button name="submitEdit" type="submit" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </form>
