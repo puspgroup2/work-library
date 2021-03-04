@@ -239,16 +239,18 @@ public class DataBase {
 	 * @return the Time Report ID.
 	 */
 	public int newTimeReport(String userName, int week) {
-		if (!this.weekOK(userName, week)) return 0;
-        String sql = "INSERT into TimeReports(userName, week) values(?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, userName);
-            ps.setInt(2, week);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-        	handleSQLException(e);
-        }
-        return getReportID(userName, week);
+		if (this.weekOK(userName, week)) {
+			String sql = "INSERT into TimeReports(userName, week) values(?, ?)";
+			try (PreparedStatement ps = connection.prepareStatement(sql)) {
+				ps.setString(1, userName);
+				ps.setInt(2, week);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				handleSQLException(e);
+			}
+			return getReportID(userName, week);
+		}
+		return 0;
     }
 	
 	/**
@@ -300,7 +302,8 @@ public class DataBase {
 			ps.setInt(1, week);
 			ps.setString(2, userName);
 			ResultSet rs = ps.executeQuery();
-			if (rs == null) {
+			System.out.println(rs.getFetchSize());
+			if (rs.getFetchSize() == 0) {
 				System.out.println("Week ok!!!!");
 				return true;
 			}
@@ -633,24 +636,6 @@ public class DataBase {
 		return reportID;
 	}
 	
-	// helper method
-	private int getWeek(int reportID) {
-		int week = 0;
-		String sql = "SELECT week "
-				+ "from TimeReports "
-				+ "where reportID = ?";
-		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setInt(1, reportID);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				week = rs.getInt("week");
-				System.out.println(week);
-			}
-		} catch (SQLException e) {
-			handleSQLException(e);
-		}
-		return week;
-	}
 	
 	
 	/**
@@ -830,7 +815,7 @@ public class DataBase {
 		db.connect();
 
 
-		System.out.println(db.newTimeReport("oscar", 2));
+		System.out.println(db.newTimeReport("oscar", 10));
 		
 			
 	}
