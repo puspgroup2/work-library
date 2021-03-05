@@ -38,6 +38,7 @@ public class TimeReportManagementServlet extends ServletBase {
 		List<TimeReportBean> unsignedReports = getUnsignedReports();
 		session.setAttribute("unsignedReports", unsignedReports);
 		response.sendRedirect("signreport.jsp");
+		System.out.println(request.getParameter("getUsersReport"));
 	}
 
 
