@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
 
 import beans.TimeReportBean;
 import database.DataBase;
-import handlers.ServletHandler;
 
 /**
  * This servlet handles most managements for time report handling-
@@ -35,8 +34,8 @@ public class TimeReportServlet extends ServletBase {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		List<TimeReportBean> timeReports = ServletHandler.getTimeReportList(session);
-		List<TimeReportBean> signedReports = ServletHandler.getSignedReports();
+		List<TimeReportBean> timeReports = getTimeReportList(session);
+		List<TimeReportBean> signedReports = getSignedReports();
 		
 		session.setAttribute("signedReports", signedReports);		// Only signed
 		session.setAttribute("timeReports", timeReports);		// All time reports
@@ -74,11 +73,11 @@ public class TimeReportServlet extends ServletBase {
 		} 
 		else if (editSelectedBtn != null) {
 			session.setAttribute("editable", true);
-			ServletHandler.sendViewTimeReportRedirect(request, response, session);
+			sendViewTimeReportRedirect(request, response, session);
 		} 
 		else if (viewBtn != null) {
 			session.setAttribute("editable", false);
-			ServletHandler.sendViewTimeReportRedirect(request, response, session);
+			sendViewTimeReportRedirect(request, response, session);
 		} 
 		else if (submitNewReport != null) {
 			TimeReportBean bean = new TimeReportBean();
@@ -88,7 +87,7 @@ public class TimeReportServlet extends ServletBase {
 					(String) session.getAttribute("username"), 
 					Integer.parseInt(request.getParameter("week")));
 				if (reportID != 0) {
-					ServletHandler.updateReport(request, response, session, db, reportID);
+					updateReport(request, response, session, db, reportID);
 					doGet(request,response);
 					session.setAttribute("reportError", 0);
 				} else {
@@ -104,17 +103,14 @@ public class TimeReportServlet extends ServletBase {
 			TimeReportBean bean = new TimeReportBean();
 			bean.populateBean(request, response);
 			int reportID = Integer.parseInt(request.getParameter("reportID"));
-			ServletHandler.updateReport(request, response, session, db, reportID);
+			updateReport(request, response, session, db, reportID);
 			doGet(request,response);
 		}
 		else if (getUsersReport != null) {
-			List<TimeReportBean> usersTimeReports = ServletHandler.getTimeReportList(getUsersReport);
+			List<TimeReportBean> usersTimeReports = getTimeReportList(getUsersReport);
 			
 			session.setAttribute("timeReports", usersTimeReports);
 			response.sendRedirect("summaryreport.jsp");
 		}
 	}
-	
-	
-
 }
