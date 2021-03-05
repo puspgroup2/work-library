@@ -253,7 +253,7 @@ public class TimeReportServlet extends ServletBase {
 				);
 		bean.setReportID(reportID);
 		bean.setWeek(db.getWeekFromTimeReport(reportID));
-		bean.setUsername(username);
+		bean.setUsername(db.getUserNameFromTimeReport(reportID));
 
 		return bean;
 	}
