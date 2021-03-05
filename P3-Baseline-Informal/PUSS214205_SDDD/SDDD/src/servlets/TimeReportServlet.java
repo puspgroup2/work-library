@@ -62,7 +62,7 @@ public class TimeReportServlet extends ServletBase {
 		String createNewNav = request.getParameter("new");		 	 // Navigation to newreport.jsp
 		String viewSummary = request.getParameter("summary");		 // Navigation to summaryreport.jsp
 		String getUsersReport = request.getParameter("getUsersReport");
-		System.out.println(getUsersReport);
+		
 		
 		// Only one of the parameters can be NOT null per POST request.
 		if (viewSummary != null) {

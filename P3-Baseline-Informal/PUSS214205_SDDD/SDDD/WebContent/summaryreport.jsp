@@ -29,7 +29,7 @@
 	%>
 
 <nav class="navbar navbar-light navbar-expand-md bg-light">
-    <a class="navbar-brand abs">TimeMate</a>
+    <a class="navbar-brand abs" href="index.jsp">TimeMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>

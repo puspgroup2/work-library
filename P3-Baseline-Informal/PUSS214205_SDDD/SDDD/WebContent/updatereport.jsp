@@ -121,7 +121,7 @@
       <div>
         <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:50px; margin-bottom:50px;">
           <div class="card-header">
-          Edit Time Report
+          Time Report
           </div>
           <div class="card-body">
         
@@ -136,7 +136,7 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Name:</label> 
                     <div class="col-8">
-                      <input id="username" name="username" type="text" class="form-control" placeholder="${username}">
+                      <input id="username" name="username" type="text" class="form-control" placeholder=<%=bean.getUsername() %>>
                     </div>
                   </div>
                 </fieldset>
@@ -148,7 +148,7 @@
                   <div class="form-group row">
                     <label for="text" class="col-4 col-form-label">Role:</label> 
                     <div class="col-8">
-                      <input id="projectgroup" name="projectgroup" type="text" class="form-control" placeholder="${role}">
+                      <input id="projectgroup" name="projectgroup" type="text" class="form-control" placeholder=<%=bean.getRole() %>>
                     </div>
                   </div>
                   </fieldset>
