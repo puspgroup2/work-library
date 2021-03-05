@@ -61,6 +61,7 @@ public class TimeReportServlet extends ServletBase {
 		String submitEdit = request.getParameter("submitEdit");      // Submit button in updatereport.jsp
 		String createNewNav = request.getParameter("new");		 	 // Navigation to newreport.jsp
 		String viewSummary = request.getParameter("summary");		 // Navigation to summaryreport.jsp
+		String getUsersReport = request.getParameter("getUsersReport");
 		
 		// Only one of the parameters can be NOT null per POST request.
 		if (viewSummary != null) {
@@ -104,7 +105,21 @@ public class TimeReportServlet extends ServletBase {
 			updateReport(request, response, session, db, reportID);
 			doGet(request,response);
 		}
-
+		else if (getUsersReport != null) {
+			List<TimeReportBean> timereportlist = new ArrayList<TimeReportBean>();
+			List<Integer> reportIdList = db.getTimeReportIDs(getUsersReport);
+			for(Integer id : reportIdList) {
+				TimeReportBean trb = new TimeReportBean();
+				trb.populateBean(translateDbToFrontend(db.getDocumentTimeD(id), 'd'), 
+								 translateDbToFrontend(db.getDocumentTimeI(id), 'i'), 
+								 translateDbToFrontend(db.getDocumentTimeF(id), 'f'), 
+								 translateDbToFrontend(db.getDocumentTimeR(id), 'r'), 
+								 db.getActivityReport(id), 
+								 db.getTotalMinutesFromTimeReport(id));
+				timereportlist.add(trb);
+			}
+			session.setAttribute("userReports", timereportlist);
+		}
 	}
 	
 	/** Helper method to get all unsigned report .*/
