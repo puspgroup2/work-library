@@ -106,19 +106,12 @@ public class TimeReportServlet extends ServletBase {
 			doGet(request,response);
 		}
 		else if (getUsersReport != null) {
-			List<TimeReportBean> timereportlist = new ArrayList<TimeReportBean>();
-			List<Integer> reportIdList = db.getTimeReportIDs(getUsersReport);
-			for(Integer id : reportIdList) {
-				TimeReportBean trb = new TimeReportBean();
-				trb.setSigned(db.getSignatureFromTimeReport(id));
-				trb.setReportID(id);
-				trb.setWeek(db.getWeekFromTimeReport(id));
-				trb.setUsername(getUsersReport);
-				timereportlist.add(trb);
+			List<TimeReportBean> list = getTimeReportList(request.getParameter(getUsersReport));
+			session.setAttribute("timeReports", list);
+			response.sendRedirect("summaryreport.jsp");
 			}
-			session.setAttribute("userReports", timereportlist);
 		}
-	}
+	
 	
 	/** Helper method to get all unsigned report .*/
 	private List<TimeReportBean> getTimeReportList(HttpSession session) {
@@ -139,6 +132,27 @@ public class TimeReportServlet extends ServletBase {
 						 Comparator.nullsFirst(Comparator.naturalOrder())));
 		return timeReports;
 	}
+	
+	/** Helper method to get all unsigned report .*/
+	private List<TimeReportBean> getTimeReportList(String userName) {
+		List<Integer> reportIdList = db.getTimeReportIDs(userName);
+		List<TimeReportBean> timeReports = new ArrayList<TimeReportBean>();
+		
+		for(Integer id : reportIdList) {
+			TimeReportBean bean = new TimeReportBean();
+			bean.setReportID(id);
+			bean.setSigned(db.getSignatureFromTimeReport(id));
+			bean.setTotalTime(db.getTotalMinutesFromTimeReport(id));
+			bean.setWeek(db.getWeekFromTimeReport(id));
+			timeReports.add(bean);			
+		}
+		
+		// Sorts the list by week, from lowest to highest. Can handle null values
+		timeReports.sort(Comparator.comparing(b -> b.getWeek(), 
+						 Comparator.nullsFirst(Comparator.naturalOrder())));
+		return timeReports;
+	}
+	
 	
 	/** Helper method to get all signed report .*/
 	private List<TimeReportBean> getSignedReports() {
