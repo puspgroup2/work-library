@@ -178,7 +178,11 @@
                        <input class="form-check-input" type="checkbox" value="" id="<%=bean.getReportID()%>">
                     </div>
                   </td>
-          	<td><%=bean.getUsername() %></td>
+          	<td>
+          	<form action="TimeReportManagementServlet">
+                <input type="submit" value="<%=bean.getUsername()%>" id="getUsersReport" name="getUsersReport" value="<%=bean.getUsername()%>" class="nav-link astext">
+            </form>
+            </td>
           	<td><%=bean.getWeek() %></td>
           	<td><%=bean.getTotalTime() %></td>
           	<td><%=(bean.getSigned() == null ? "No" : "Yes") %></td>
