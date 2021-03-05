@@ -31,7 +31,7 @@ public class ServletBase extends HttpServlet {
 	// Define states
 	public static final int LOGIN_FALSE = 0;
 	public static final int LOGIN_TRUE = 1;	
-	protected DataBase db = null;
+	protected static DataBase db = null;
 	
 	
 	/**
