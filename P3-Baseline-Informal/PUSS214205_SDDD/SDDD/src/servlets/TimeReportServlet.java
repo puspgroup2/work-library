@@ -121,7 +121,7 @@ public class TimeReportServlet extends ServletBase {
 			timeReports.add(bean);			
 		}
 		
-		// Rather cryptic way to sort but works fine!.
+		// Sorts the list by week, from lowest to highest. Can handle null values
 		timeReports.sort(Comparator.comparing(b -> b.getWeek(), 
 						 Comparator.nullsFirst(Comparator.naturalOrder())));
 		return timeReports;
@@ -141,8 +141,9 @@ public class TimeReportServlet extends ServletBase {
 			signedBean.setUsername(db.getUserNameFromTimeReport(x));
 			signedReports.add(signedBean);
 		}
-		// Rather cryptic way to sort but works fine!.
-		signedReports.sort(Comparator.comparing(b -> b.getWeek(), Comparator.nullsFirst(Comparator.naturalOrder())));
+		// Sorts the list by week, from lowest to highest. Can handle null values
+		signedReports.sort(Comparator.comparing(b -> b.getWeek(), 
+				Comparator.nullsFirst(Comparator.naturalOrder())));
 		return signedReports;
 	}
 
