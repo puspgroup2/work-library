@@ -202,16 +202,16 @@
                 <td>11</td>
                 <td>SDP</td>
                 <td>
-                  <input type="number" id="sdp_d" name="sdp_d" class="sdp_report_value form-control">
+                  <input type="number" id="sdp_d" min="0" name="sdp_d" class="sdp_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="sdp_i" name="sdp_i" class="sdp_report_value form-control">
+                  <input type="number" id="sdp_i" min="0" name="sdp_i" class="sdp_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="sdp_f" name="sdp_f" class="sdp_report_value form-control">
+                  <input type="number" id="sdp_f" min="0" name="sdp_f" class="sdp_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="sdp_r" name="sdp_r" class="sdp_report_value form-control">
+                  <input type="number" id="sdp_r" min="0" name="sdp_r" class="sdp_report_value form-control">
                 </td>
                 <td>
                     <input type="number" id="sdp_total" name="sdp_total" class="form-control" disabled>
@@ -221,16 +221,16 @@
                 <td>12</td>
                 <td>SRS</td>
                 <td>
-                  <input type="number" id="srs_d" name="srs_d" class="srs_report_value form-control">
+                  <input type="number" id="srs_d" min="0" name="srs_d" class="srs_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="srs_i" name="srs_i" class="srs_report_value form-control">
+                  <input type="number" id="srs_i" min="0" name="srs_i" class="srs_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="srs_f" name="srs_f" class="srs_report_value form-control">
+                  <input type="number" id="srs_f" min="0" name="srs_f" class="srs_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="srs_r" name="srs_r" class="srs_report_value form-control">
+                  <input type="number" id="srs_r" min="0" name="srs_r" class="srs_report_value form-control">
                 </td>
                 <td>
                   <input type="number" id="srs_total"  name="srs_total" class="form-control" disabled>
@@ -240,16 +240,16 @@
                 <td>13</td>
                 <td>SVVS</td>
                 <td>
-                  <input type="number" id="svvs_d" name="svvs_d" class="svvs_report_value form-control">
+                  <input type="number" id="svvs_d" min="0" name="svvs_d" class="svvs_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="svvs_i" name="svvs_i" class="svvs_report_value form-control">
+                  <input type="number" id="svvs_i" min="0" name="svvs_i" class="svvs_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="svvs_f" name="svvs_f" class="svvs_report_value form-control">
+                  <input type="number" id="svvs_f" min="0" name="svvs_f" class="svvs_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="svvs_r" name="svvs_r" class="svvs_report_value form-control">
+                  <input type="number" id="svvs_r" min="0" name="svvs_r" class="svvs_report_value form-control">
                 </td>
                 <td>
                   <input type="number" id="svvs_total" name="svvs_total" class="form-control" disabled>
@@ -259,16 +259,16 @@
                 <td>14</td>
                 <td>STLDD</td>
                 <td>
-                  <input type="number" id="stldd_d" name="stldd_d" class="stldd_report_value form-control">
+                  <input type="number" id="stldd_d" min="0" name="stldd_d" class="stldd_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="stldd_i" name="stldd_i" class="stldd_report_value form-control">
+                  <input type="number" id="stldd_i" min="0" name="stldd_i" class="stldd_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="stldd_f" name="stldd_f" class="stldd_report_value form-control">
+                  <input type="number" id="stldd_f" min="0" name="stldd_f" class="stldd_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="stldd_r" name="stldd_r" class="stldd_report_value form-control">
+                  <input type="number" id="stldd_r" min="0" name="stldd_r" class="stldd_report_value form-control">
                 </td>
                 <td>
                   <input type="number" id="stldd_total"  name="stldd_total" class="form-control" disabled>
@@ -278,16 +278,16 @@
                 <td>15</td>
                 <td>SVVI</td>
                 <td>
-                  <input type="number" id="svvi_d" name="svvi_d" class="svvi_report_value form-control">
+                  <input type="number" id="svvi_d" min="0" name="svvi_d" class="svvi_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="svvi_i" name="svvi_i" class="svvi_report_value form-control">
+                  <input type="number" id="svvi_i" min="0" name="svvi_i" class="svvi_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="svvi_f" name="svvi_f" class="svvi_report_value form-control">
+                  <input type="number" id="svvi_f" min="0" name="svvi_f" class="svvi_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="svvi_r" name="svvi_r" class="svvi_report_value form-control">
+                  <input type="number" id="svvi_r" min="0" name="svvi_r" class="svvi_report_value form-control">
                 </td>
                 <td>
                   <input type="number" id="svvi_total" name="svvi_total" class="form-control" disabled>
@@ -297,16 +297,16 @@
                 <td>16</td>
                 <td>SDDD</td>
                 <td>
-                  <input type="number" id="sddd_d" name="sddd_d" class="sddd_report_value form-control">
+                  <input type="number" id="sddd_d" min="0" name="sddd_d" class="sddd_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="sddd_i" name="sddd_i" class="sddd_report_value form-control">
+                  <input type="number" id="sddd_i" min="0" name="sddd_i" class="sddd_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="sddd_f" name="sddd_f" class="sddd_report_value form-control">
+                  <input type="number" id="sddd_f" min="0" name="sddd_f" class="sddd_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="sddd_r" name="sddd_r" class="sddd_report_value form-control">
+                  <input type="number" id="sddd_r" min="0" name="sddd_r" class="sddd_report_value form-control">
                 </td>
                 <td>
                   <input type="number" id="sddd_total" name="sddd_total" class="form-control" disabled>
@@ -316,16 +316,16 @@
                 <td>17</td>
                 <td>SVVR</td>
                 <td>
-                  <input type="number" id="svvr_d" name="svvr_d" class="svvr_report_value form-control">
+                  <input type="number" id="svvr_d" min="0" name="svvr_d" class="svvr_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="svvr_i" name="svvr_i" class="svvr_report_value form-control">
+                  <input type="number" id="svvr_i" min="0" name="svvr_i" class="svvr_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="svvr_f" name="svvr_f" class="svvr_report_value form-control">
+                  <input type="number" id="svvr_f" min="0" name="svvr_f" class="svvr_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="svvr_r" name="svvr_r" class="svvr_report_value form-control">
+                  <input type="number" id="svvr_r" min="0" name="svvr_r" class="svvr_report_value form-control">
                 </td>
                 <td>
                   <input type="number" id="svvr_total" name="svvr_total" class="form-control" disabled>
@@ -335,16 +335,16 @@
                 <td>18</td>
                 <td>SSD</td>
                 <td>
-                  <input type="number" id="ssd_d" name="ssd_d" class="ssd_report_value form-control">
+                  <input type="number" id="ssd_d" min="0" name="ssd_d" class="ssd_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="ssd_i" name="ssd_i" class="ssd_report_value form-control">
+                  <input type="number" id="ssd_i" min="0" name="ssd_i" class="ssd_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="ssd_f" name="ssd_f" class="ssd_report_value form-control">
+                  <input type="number" id="ssd_f" min="0" name="ssd_f" class="ssd_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="ssd_r" name="ssd_r" class="ssd_report_value form-control">
+                  <input type="number" id="ssd_r" min="0" name="ssd_r" class="ssd_report_value form-control">
                 </td>
                 <td>
                   <input type="number" id="ssd_total" name="ssd_total" class="form-control" disabled>
@@ -354,16 +354,16 @@
                 <td>19</td>
                 <td>Final Report</td>
                 <td>
-                  <input type="number" id="final_d" name="final_d" class="final_report_value form-control">
+                  <input type="number" id="final_d" min="0" name="final_d" class="final_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="final_i" name="final_i" class="final_report_value form-control">
+                  <input type="number" id="final_i" min="0" name="final_i" class="final_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="final_f" name="final_f" class="final_report_value form-control">
+                  <input type="number" id="final_f" min="0" name="final_f" class="final_report_value form-control">
                 </td>
                 <td>
-                  <input type="number" id="final_r" name="final_r" class="final_report_value form-control">
+                  <input type="number" id="final_r" min="0" name="final_r" class="final_report_value form-control">
                 </td>
                 <td>
                   <input type="number" id="final_total" name="final_total" class="form-control" disabled>
@@ -390,47 +390,47 @@
               <tr>
                 <td colspan="2">21</td>
                 <td colspan="4">Functional test</td>
-                <td><input type="number" id="functionalTest" class="other-values" name="functionalTest" class="form-control"></td>
+                <td><input type="number" id="functionalTest" min="0" class="other-values" name="functionalTest" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
-                <td><input type="number" id="systemTest" class="other-values" name="systemTest" class="form-control"></td>
+                <td><input type="number" id="systemTest" min="0" class="other-values" name="systemTest" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
-                <td><input type="number" id="regressionTest" class="other-values" name="regressionTest" class="form-control"></td>
+                <td><input type="number" id="regressionTest" min="0" class="other-values" name="regressionTest" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">30</td>
                 <td colspan="4">Meeting</td>
-                <td><input type="number" id="meeting" class="other-values" name="meeting" class="form-control"></td>
+                <td><input type="number" id="meeting" min="0" class="other-values" name="meeting" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">41</td>
                 <td colspan="4">Lecture</td>
-                <td><input type="number" id="lecture" class="other-values" name="lecture" class="form-control"></td>
+                <td><input type="number" id="lecture" min="0" class="other-values" name="lecture" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">42</td>
                 <td colspan="4">Exercise</td>
-                <td><input type="number" id="exercise" class="other-values" name="exercise" class="form-control"></td>
+                <td><input type="number" id="exercise" min="0" class="other-values" name="exercise" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
-                <td><input type="number" id="computerExercise" class="other-values" name="computerExercise" class="form-control"></td>
+                <td><input type="number" id="computerExercise" min="0" class="other-values" name="computerExercise" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
-                <td><input type="number" id="homeReading" class="other-values" name="homeReading" class="form-control"></td>
+                <td><input type="number" id="homeReading" min="0" class="other-values" name="homeReading" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="2">100</td>
                 <td colspan="4">Other</td>
-                <td><input type="number" id="other" class="other-values" name="other" class="form-control"></td>
+                <td><input type="number" id="other" min="0" class="other-values" name="other" class="form-control"></td>
               </tr>
               <tr>
                 <td colspan="7">
