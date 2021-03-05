@@ -21,6 +21,7 @@ public class TimeReportBean implements Serializable {
 	private String signed;
 	private int totalTime;
 	private int reportID = -1;
+	private String role;
 	private Map<String, Integer> reportValuesD = new HashMap<String, Integer>();
 	private Map<String, Integer> reportValuesI = new HashMap<String, Integer>();
 	private Map<String, Integer> reportValuesF = new HashMap<String, Integer>();
@@ -56,6 +57,14 @@ public class TimeReportBean implements Serializable {
 	 */
 	public void setWeek(int week) {
 		this.week = week;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	/**
