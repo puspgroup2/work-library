@@ -50,7 +50,7 @@
             	  <form action="AdministrationServlet">
                   <input type="submit" value="Administration" class="nav-link astext">
                 </form>
-            </c:if>
+              </c:if>
           </ul>
 
           <ul class="navbar-nav ml-auto">
