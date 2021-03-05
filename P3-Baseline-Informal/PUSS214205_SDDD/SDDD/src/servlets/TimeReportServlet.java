@@ -110,12 +110,10 @@ public class TimeReportServlet extends ServletBase {
 			List<Integer> reportIdList = db.getTimeReportIDs(getUsersReport);
 			for(Integer id : reportIdList) {
 				TimeReportBean trb = new TimeReportBean();
-				trb.populateBean(translateDbToFrontend(db.getDocumentTimeD(id), 'd'), 
-								 translateDbToFrontend(db.getDocumentTimeI(id), 'i'), 
-								 translateDbToFrontend(db.getDocumentTimeF(id), 'f'), 
-								 translateDbToFrontend(db.getDocumentTimeR(id), 'r'), 
-								 db.getActivityReport(id), 
-								 db.getTotalMinutesFromTimeReport(id));
+				trb.setSigned(db.getSignatureFromTimeReport(id));
+				trb.setReportID(id);
+				trb.setWeek(db.getWeekFromTimeReport(id));
+				trb.setUsername(getUsersReport);
 				timereportlist.add(trb);
 			}
 			session.setAttribute("userReports", timereportlist);
