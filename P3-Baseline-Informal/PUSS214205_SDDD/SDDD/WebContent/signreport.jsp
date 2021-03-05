@@ -107,7 +107,7 @@
             </form>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
     	       	<form action="TimeReportManagementServlet">
-        	        <input type="submit" value="Sign Time Reports" class="list-group-item list-group-item-action bg-light astext">
+        	        <input type="submit" value="Sign Time Reports" class="list-group-item list-group-item-action active bg-secondary astext">
               	</form>
             </c:if>
             </div>
