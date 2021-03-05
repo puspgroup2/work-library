@@ -80,15 +80,20 @@ public class TimeReportServlet extends ServletBase {
 		else if (submitNewReport != null) {
 			TimeReportBean bean = new TimeReportBean();
 			bean.populateBean(request, response);
-			int reportID = db.newTimeReport(
-						(String) session.getAttribute("username"), 
-						Integer.parseInt(request.getParameter("week")));
-			if (reportID != 0) {
-				updateReport(request, response, session, db, reportID);
-				doGet(request,response);
-				session.setAttribute("reportError", 0);
-			} else {
-				session.setAttribute("reportError", 1);
+			try {
+				int reportID = db.newTimeReport(
+					(String) session.getAttribute("username"), 
+					Integer.parseInt(request.getParameter("week")));
+				if (reportID != 0) {
+					updateReport(request, response, session, db, reportID);
+					doGet(request,response);
+					session.setAttribute("reportError", 0);
+				} else {
+					session.setAttribute("reportError", 1);
+					response.sendRedirect("newreport.jsp");
+				}
+			} catch (NumberFormatException e) {
+				session.setAttribute("reportError", 2);
 				response.sendRedirect("newreport.jsp");
 			}
 		} 

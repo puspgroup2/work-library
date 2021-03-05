@@ -100,7 +100,7 @@ public class AdministrationServlet extends ServletBase{
 
 	
 	private static boolean verifyName(String username) {
-		String regex = "^[0-9a-zA-Z]\\w{5,10}$";
+		String regex = "^[0-9a-zA-Z]\\w{4,10}$";
 		
 		Pattern p = Pattern.compile(regex);
 		

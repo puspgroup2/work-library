@@ -124,9 +124,15 @@
         </div>
     </c:if>
 
+	  <c:if test="${sessionScope.reportError eq 2}">
+        <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+            You need to enter a week for the report.
+        </div>
+    </c:if>
+
     <div class="container-fluid">
       <div>
-        <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:50px; margin-bottom:50px;">
+        <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:1rem; margin-bottom:50px;">
           <div class="card-header">
           New Time Report
           </div>
@@ -471,15 +477,10 @@
                     <input type="number" id="total_r" name="total_r" type="text" class="form-control" disabled>
                 </td>
               </tr>
-              <tr>
-                <td colspan="7"><b>Part D: Signature</b></td>
-              </tr>
-              <tr>
-                <td colspan="6"><b>Signed by manager</b></td>
-                <td>
-                  <input type="number" id="signature" name="signature" type="text" class="form-control" disabled>
-              </td>
-              </tr>
+              
+              
+              
+              
             </table>
             <div class="form-group row">
               <div class="offset-0 col-8">
