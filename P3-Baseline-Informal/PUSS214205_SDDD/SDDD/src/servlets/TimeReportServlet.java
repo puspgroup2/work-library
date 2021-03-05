@@ -240,7 +240,6 @@ public class TimeReportServlet extends ServletBase {
 	/** Helper method to get and fill a time report beam. */
 	private TimeReportBean getTimeReportBean(HttpServletRequest request, HttpSession session) {
 		int reportID = Integer.parseInt(request.getParameter("reportID"));
-		String username = (String) session.getAttribute("username");
 
 		TimeReportBean bean = new TimeReportBean();
 		bean.populateBean(
@@ -254,6 +253,7 @@ public class TimeReportServlet extends ServletBase {
 		bean.setReportID(reportID);
 		bean.setWeek(db.getWeekFromTimeReport(reportID));
 		bean.setUsername(db.getUserNameFromTimeReport(reportID));
+		bean.setRole(db.getRole(bean.getUsername()));
 
 		return bean;
 	}
