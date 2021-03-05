@@ -124,9 +124,15 @@
         </div>
     </c:if>
 
+	  <c:if test="${sessionScope.reportError eq 2}">
+        <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
+            You need to enter a week for the report.
+        </div>
+    </c:if>
+
     <div class="container-fluid">
       <div>
-        <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:50px; margin-bottom:50px;">
+        <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:1rem; margin-bottom:50px;">
           <div class="card-header">
           New Time Report
           </div>
