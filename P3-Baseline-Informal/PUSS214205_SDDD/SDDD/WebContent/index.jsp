@@ -32,11 +32,9 @@
       <div class="navbar-collapse collapse" id="collapsingNavbar">
           <ul class="navbar-nav">
              
-              <li class="nav-item">
-                <form action="TimeReportServlet">
-                  <input type="submit" value="Time Report" class="nav-link astext">
-                </form>
-              </li>
+              <form action="TimeReportServlet">
+              <input type="submit" value="Time Report" class="nav-link astext">  
+           </form>
               <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
             	<li class="nav-item">
                 <form action="UserManagementServlet">

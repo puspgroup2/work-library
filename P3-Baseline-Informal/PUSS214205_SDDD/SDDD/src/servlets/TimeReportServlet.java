@@ -107,7 +107,7 @@ public class TimeReportServlet extends ServletBase {
 			doGet(request,response);
 		}
 		else if (getUsersReport != null) {
-			List<TimeReportBean> usersTimeReports = getTimeReportList(request.getParameter(getUsersReport));
+			List<TimeReportBean> usersTimeReports = getTimeReportList(getUsersReport);
 			
 			session.setAttribute("timeReports", usersTimeReports);
 			response.sendRedirect("summaryreport.jsp");
