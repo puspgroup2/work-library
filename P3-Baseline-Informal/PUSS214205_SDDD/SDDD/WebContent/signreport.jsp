@@ -32,16 +32,14 @@
 	%>
 
 <nav class="navbar navbar-light navbar-expand-md bg-light">
-    <a class="navbar-brand abs">TimeMate</a>
+    <a class="navbar-brand abs" href="index.jsp">TimeMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="navbar-collapse collapse" id="collapsingNavbar">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="index.jsp">Home</a>
-            </li>
+           
             <li class="nav-item active">
                 <a class="nav-link" href="summaryreport.jsp">Time Report</a>
             </li>
@@ -99,7 +97,7 @@
  <!-- Sidebar -->
     <div>
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Options</div>
+            <div class="sidebar-heading">Time Report</div>
             <div class="list-group list-group-flush">
             <form action="TimeReportServlet">
        	        <input type="submit" name="summary" value="Time Report Summary" class="list-group-item list-group-item-action bg-light astext">

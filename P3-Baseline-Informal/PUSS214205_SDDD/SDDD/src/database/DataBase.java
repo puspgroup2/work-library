@@ -313,7 +313,7 @@ public class DataBase {
 	/* Helper method for updateTimeReport. Checks if week has a valid value and
 	 * that there are no other Time Reports for that user that week. */
 	private boolean weekOK(String userName, Integer week) {
-		if (week < 0 || week > 54)
+		if (week < 1 || week > 54)
 			return false;
 		String sql = "SELECT * FROM TimeReports WHERE Week = ? AND userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
