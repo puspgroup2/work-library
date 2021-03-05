@@ -493,17 +493,8 @@
                    
                 </td>
               </tr>
-              <tr>
-                <td colspan="7"><b>Part D: Signature</b></td>
-              </tr>
-              <tr>
-                <td colspan="6"><b>Signed by manager</b></td>
-                <td>
-                
-                  <input type="number" id="signature" name="signature" type="text" class="form-control" disabled>
-               
-              </td>
-              </tr>
+             
+              
             </table>
             <div class="form-group row">
               <div class="offset-0 col-8">
