@@ -140,7 +140,7 @@
         	  
             <tr>
               <td><input type="radio" name="radioGroup" id="<%=bean.getReportID()%>" class='<%=(bean.getSigned() == null ? "notSigned" : "signed")%>'></td>
-              <td>${username}</td>
+              <td><%=bean.getUsername()%></td>
               <td><%=bean.getWeek() %></td>
               <td><%=bean.getTotalTime() %></td>
               <td><%=(bean.getSigned() == null ? "No" : "Yes")%></td>

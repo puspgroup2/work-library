@@ -122,6 +122,7 @@ public class TimeReportServlet extends ServletBase {
 		
 		for(Integer id : reportIdList) {
 			TimeReportBean bean = new TimeReportBean();
+			bean.setUsername((String)session.getAttribute("username"));
 			bean.setReportID(id);
 			bean.setSigned(db.getSignatureFromTimeReport(id));
 			bean.setTotalTime(db.getTotalMinutesFromTimeReport(id));
@@ -142,6 +143,7 @@ public class TimeReportServlet extends ServletBase {
 		
 		for(Integer id : reportIdList) {
 			TimeReportBean bean = new TimeReportBean();
+			bean.setUsername(userName);
 			bean.setReportID(id);
 			bean.setSigned(db.getSignatureFromTimeReport(id));
 			bean.setTotalTime(db.getTotalMinutesFromTimeReport(id));
