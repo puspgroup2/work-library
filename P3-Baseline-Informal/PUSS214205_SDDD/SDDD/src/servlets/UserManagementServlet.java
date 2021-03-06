@@ -1,6 +1,5 @@
 package servlets;
 
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,16 +20,19 @@ public class UserManagementServlet extends ServletBase {
 
 	/**
 	 * This method is called when the webpage using this class is loaded.
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * 
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		UserManagementBean umb = new UserManagementBean();
-		HashMap<String, String> userMap = new HashMap<>(); //Creates a map intended to contain <Username, Role>.
+		HashMap<String, String> userMap = new HashMap<>(); // Creates a map intended to contain <Username, Role>.
 		ArrayList<String> userNames = (ArrayList<String>) db.getUsers();
 		for (String s : userNames) {
-			if(!s.equals("admin")) {
-				userMap.put(s, db.getRole(s)); //Fills the map with values from the database.
+			if (!s.equals("admin")) {
+				userMap.put(s, db.getRole(s)); // Fills the map with values from the database.
 			}
 		}
 		umb.populateBean(userMap);
@@ -40,13 +42,17 @@ public class UserManagementServlet extends ServletBase {
 
 	/**
 	 * This method is called when submitting the changes made to users.
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * 
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<String> userNames = (ArrayList<String>) db.getUsers(); //Retrieve all members in database
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ArrayList<String> userNames = (ArrayList<String>) db.getUsers(); // Retrieve all members in database
 		for (String name : userNames) {
-			if(!name.equals("admin")) {
-				db.updateRole(name, request.getParameter(name+"role")); //Updates the roles of all users according to the fields on the webpage.
+			if (!name.equals("admin")) {
+				db.updateRole(name, request.getParameter(name + "role")); // Updates the roles of all users according to
+																			// the fields on the webpage.
 			}
 		}
 		doGet(request, response);

@@ -36,7 +36,7 @@ public class LogOut extends HttpServlet {
 			session.removeAttribute("username");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
-			session.setAttribute("state",ServletBase.LOGIN_FALSE);
+			session.setAttribute("state", ServletBase.LOGIN_FALSE);
 		}
 	}
 }
