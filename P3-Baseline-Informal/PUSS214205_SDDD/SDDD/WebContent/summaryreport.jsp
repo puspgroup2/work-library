@@ -95,7 +95,7 @@
  <!-- Sidebar -->
     <div>
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Options</div>
+            <div class="sidebar-heading">Time Report</div>
             <div class="list-group list-group-flush">
             <form action="TimeReportServlet">
        	        <input type="submit" name="summary" value="Time Report Summary" class="list-group-item active list-group-item-action bg-secondary astext">
