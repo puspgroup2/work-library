@@ -58,11 +58,17 @@ public class TimeReportBean implements Serializable {
 	public void setWeek(int week) {
 		this.week = week;
 	}
-	
+	/**
+	 * Fetches the role of the user.
+	 * @return
+	 */
 	public String getRole() {
 		return role;
 	}
-	
+	/**
+	 * Sets the role of the user.
+	 * @param role
+	 */
 	public void setRole(String role) {
 		this.role = role;
 	}
