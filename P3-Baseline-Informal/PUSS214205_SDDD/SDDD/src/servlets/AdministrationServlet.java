@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.UserManagementBean;
-import database.DataBase;
 import handlers.MailHandler;
 import handlers.PasswordHandler;
 
