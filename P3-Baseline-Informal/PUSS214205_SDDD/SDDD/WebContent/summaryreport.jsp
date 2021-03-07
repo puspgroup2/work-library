@@ -132,6 +132,7 @@
               <th scope="col">Signed</th>
             </tr>
           </thead>
+          <form name="radioButtons">
           <tbody>
           <%List<TimeReportBean> list = (ArrayList<TimeReportBean>) session.getAttribute("timeReports"); %>
           
@@ -146,6 +147,7 @@
             </tr>
            <%} %>
           </tbody>
+          </form>
         </table>
         
       </div>
@@ -206,6 +208,12 @@
     <!-- /#page-content-wrapper -->
 
 </div>
+
+<script>
+  window.onload = function(){
+    radioButtons.reset();
+  }
+</script>
 
 <script>
   $('#Unsign').on('click', () => {
