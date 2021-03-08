@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import java.util.Map;
 
-/*This class is the bean for the web page "signreport.jsp".*/
+/**This class is the bean for the web page "signreport.jsp".*/
 public class TimeReportManagementBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
