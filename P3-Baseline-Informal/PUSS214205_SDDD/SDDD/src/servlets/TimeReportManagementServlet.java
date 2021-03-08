@@ -22,8 +22,9 @@ public class TimeReportManagementServlet extends ServletBase {
 
 	private static final long serialVersionUID = 1L;
 
+
 	/**
-	 * 
+	 * Handles GET request and serves signreport.jsp.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
