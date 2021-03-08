@@ -24,9 +24,9 @@ public class MailHandler {
 	/**
 	 * Send password to the recipient's e-mail.
 	 * 
-	 * @param recipient The e-mail of recipient
-	 * @param username  recipient's username
-	 * @param password  recipient's password
+	 * @param recipient The e-mail of recipient.
+	 * @param username  recipient's username.
+	 * @param password  recipient's password.
 	 */
 	public void sendPasswordMail(String recipient, String username, String password) {
 		// Recipient's email ID needs to be mentioned.
@@ -66,8 +66,8 @@ public class MailHandler {
 			message.setText(
 					"Your login credentials are:" + "\n" + "Username: " + username + "\n" + "Password: " + password);
 			Transport.send(message);
-		} catch (MessagingException mex) {
-			mex.printStackTrace();
+		} catch (MessagingException exception) {
+			exception.printStackTrace();
 		}
 	}
 }
