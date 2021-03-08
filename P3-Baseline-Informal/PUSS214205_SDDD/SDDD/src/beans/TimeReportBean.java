@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/*This class is the bean for the web pages "newReport.jsp, editReport.jsp and summaryReport.jsp".*/
+/** This class is the bean for the web pages "newReport.jsp, editReport.jsp and summaryReport.jsp".*/
 public class TimeReportBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
