@@ -2,7 +2,9 @@ package beans;
 
 import java.io.Serializable;
 
-/**This class is the bean for the web page "login.jsp".*/
+/**
+ * This class is the bean for the web page "login.jsp".
+ */
 public class UserBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -46,7 +48,7 @@ public class UserBean implements Serializable {
 	/**
 	 * Sets the role of the user that is logged in.
 	 * 
-	 * @param role
+	 * @param role.
 	 */
 	public void setRole(String role) {
 		this.role = role;
