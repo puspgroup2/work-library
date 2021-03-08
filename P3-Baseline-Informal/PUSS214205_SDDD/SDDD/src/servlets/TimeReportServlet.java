@@ -102,7 +102,7 @@ public class TimeReportServlet extends ServletBase {
 		}
 	}
 	
-	/** Helper method to get all unsigned report . */
+	/** Helper method to get all unsigned reports of the logged in user. */
 	public List<TimeReportBean> getTimeReportList(HttpSession session) {
 		List<Integer> reportIdList = db.getTimeReportIDs((String) session.getAttribute("username"));
 		List<TimeReportBean> timeReports = new ArrayList<TimeReportBean>();
@@ -122,7 +122,7 @@ public class TimeReportServlet extends ServletBase {
 		return timeReports;
 	}
 
-	/** Helper method to get all unsigned report . */
+	/** Helper method to get all unsigned reports of a chosen user. */
 	public List<TimeReportBean> getTimeReportList(String userName) {
 		List<Integer> reportIdList = db.getTimeReportIDs(userName);
 		List<TimeReportBean> timeReports = new ArrayList<TimeReportBean>();
