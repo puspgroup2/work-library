@@ -193,6 +193,7 @@ public class ServletBase extends HttpServlet {
 		bean.setReportID(reportID);
 		bean.setWeek(db.getWeekFromTimeReport(reportID));
 		bean.setUsername(username);
+		bean.setRole(db.getRole(username));
 
 		return bean;
 	}
