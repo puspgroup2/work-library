@@ -15,13 +15,13 @@ public class PasswordHandler {
 
 	/**
 	 * Hashes the provided password string with the provided salt string using
-	 * SHA-256
+	 * SHA-256.
 	 * 
-	 * @param password the users password
-	 * @param salt     the users salt
-	 * @return hashed password as a String
+	 * @param password the users password.
+	 * @param salt     the users salt.
+	 * @return hashed password as a String.
 	 * @throws NoSuchAlgorithmException if the given cryptographic algorithm is not
-	 *                                  available in the environment
+	 *                                  available in the environment.
 	 */
 	public static String hashPassword(String password, String salt) {
 		String hashedPassword = null;
@@ -34,16 +34,16 @@ public class PasswordHandler {
 			byte[] bytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
 			// Encodes the bytes array to String
 			hashedPassword = Base64.getEncoder().encodeToString(bytes);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+		} catch (NoSuchAlgorithmException exception) {
+			exception.printStackTrace();
 		}
 		return hashedPassword;
 	}
 
 	/**
-	 * Generates a new random password according to requirement 6.2.1 in PUSS214201
+	 * Generates a new random password according to requirement 6.2.1 in PUSS214201.
 	 * 
-	 * @return password as a String
+	 * @return password as a String.
 	 */
 	public static String generatePassword() {
 		ArrayList<Character> passwordChars = new ArrayList<>();
@@ -67,9 +67,9 @@ public class PasswordHandler {
 	}
 
 	/**
-	 * Generates a new random salt String
+	 * Generates a new random salt String.
 	 * 
-	 * @return salt as a String
+	 * @return salt as a String.
 	 */
 	public static String generateSalt() {
 		byte[] salt = new byte[16];

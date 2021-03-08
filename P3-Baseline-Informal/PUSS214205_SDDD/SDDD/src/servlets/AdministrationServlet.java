@@ -108,14 +108,14 @@ public class AdministrationServlet extends ServletBase {
 	private static boolean verifyName(String username) {
 		String regex = "^[0-9a-zA-Z]\\w{4,10}$";
 
-		Pattern p = Pattern.compile(regex);
+		Pattern pattern = Pattern.compile(regex);
 
 		if (username == null) {
 			return false;
 		}
 
-		Matcher m = p.matcher(username);
+		Matcher matcher = pattern.matcher(username);
 
-		return m.matches();
+		return matcher.matches();
 	}
 }
