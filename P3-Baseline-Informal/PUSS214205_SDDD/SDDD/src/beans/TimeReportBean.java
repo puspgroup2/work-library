@@ -105,7 +105,7 @@ public class TimeReportBean implements Serializable {
 	}
 
 	/**
-	 * Sets the total time for a specified week .
+	 * Sets the total time for a specified week.
 	 * 
 	 * @param totalTime
 	 */
@@ -150,7 +150,7 @@ public class TimeReportBean implements Serializable {
 	}
 
 	/**
-	 * Fetches a list of the D reported values, the values are in minutes.
+	 * Fetches a list of the reported values for Document Development, the values are in minutes.
 	 * 
 	 * @return map reportValuesD
 	 */
@@ -159,7 +159,7 @@ public class TimeReportBean implements Serializable {
 	}
 
 	/**
-	 * Fetches a list of the I reported values, the values are in minutes.
+	 * Fetches a list of the reported values for Document Informal Review, the values are in minutes.
 	 * 
 	 * @return map reportValuesI
 	 */
@@ -168,7 +168,7 @@ public class TimeReportBean implements Serializable {
 	}
 
 	/**
-	 * Fetches a list of the F reported values, the values are in minutes.
+	 * Fetches a list of the reported values for Document Formal Review, the values are in minutes.
 	 * 
 	 * @return map reportValuesF
 	 */
@@ -177,7 +177,7 @@ public class TimeReportBean implements Serializable {
 	}
 
 	/**
-	 * Fetches a list of the R reported values, the values are in minutes.
+	 * Fetches a list of the reported values for Document Rework, the values are in minutes.
 	 * 
 	 * @return map reportValuesR
 	 */
@@ -186,7 +186,7 @@ public class TimeReportBean implements Serializable {
 	}
 
 	/**
-	 * Fetches a list of the Activity reported values, the values are in minutes.
+	 * Fetches a list of the reported values that are not directly linked to a specific document, the values are in minutes.
 	 * 
 	 * @return map reportValuesActivity
 	 */
