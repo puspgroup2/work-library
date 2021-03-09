@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This is the class is the bean for the web page "usermanagement.jsp".
+ * This class is the bean for the web page "usermanagement.jsp".
  */
 public class UserManagementBean implements Serializable {
 	private static final long serialVersionUID = 1L;
