@@ -99,11 +99,13 @@ public class TimeReportServlet extends ServletBase {
 			response.sendRedirect("summaryreport.jsp");
 		}
 	}
-	
-	/** Helper method to get all reports of the logged in user. 
+
+	/**
+	 * Helper method to get all reports of the logged in user.
 	 * 
 	 * @param session the current session
-	 * @return a list of TimeReportBeans containing all time reports for the currently logged in user
+	 * @return a list of TimeReportBeans containing all time reports for the
+	 *         currently logged in user
 	 */
 	public List<TimeReportBean> getTimeReportList(HttpSession session) {
 		List<Integer> reportIdList = db.getTimeReportIDs((String) session.getAttribute("username"));
@@ -124,10 +126,12 @@ public class TimeReportServlet extends ServletBase {
 		return timeReports;
 	}
 
-	/** Helper method to get all reports of a specified user. 
+	/**
+	 * Helper method to get all reports of a specified user.
 	 * 
-	 *@param userName the username to get all timereports from 
-	 *@return a list of TimeReportBeans containing all timereports the user specified in the parameter
+	 * @param userName the username to get all timereports from
+	 * @return a list of TimeReportBeans containing all timereports the user
+	 *         specified in the parameter
 	 */
 	public List<TimeReportBean> getTimeReportList(String userName) {
 		List<Integer> reportIdList = db.getTimeReportIDs(userName);
@@ -148,9 +152,11 @@ public class TimeReportServlet extends ServletBase {
 		return timeReports;
 	}
 
-	/** Helper method to get all signed report . 
+	/**
+	 * Helper method to get all signed report .
 	 * 
-	 * @return returns a list of TimeReportBeans containing all signed timereports in the database
+	 * @return returns a list of TimeReportBeans containing all signed timereports
+	 *         in the database
 	 */
 	public List<TimeReportBean> getSignedReports() {
 		List<TimeReportBean> signedReports = new ArrayList<TimeReportBean>();
@@ -177,7 +183,8 @@ public class TimeReportServlet extends ServletBase {
 	 * Database.java
 	 * 
 	 * @param map a map of time report values
-	 * @return a map that uses the same format as the database uses when handling maps
+	 * @return a map that uses the same format as the database uses when handling
+	 *         maps
 	 */
 	public Map<String, Integer> translateFrontendToDb(Map<String, Integer> map) {
 		Map<String, Integer> translated = new HashMap<>();
@@ -201,9 +208,10 @@ public class TimeReportServlet extends ServletBase {
 	 * names of the Frontend can be found in TimeReportBean.java and the db in
 	 * Database.java
 	 * 
-	 * @param map a map of time report values
+	 * @param map       a map of time report values
 	 * @param character ????
-	 * @return a map that uses the same format as the frontend uses when handling maps
+	 * @return a map that uses the same format as the frontend uses when handling
+	 *         maps
 	 */
 	public Map<String, Integer> translateDbToFrontend(Map<String, Integer> map, char character) {
 		Map<String, Integer> translated = new HashMap<>();
@@ -224,7 +232,8 @@ public class TimeReportServlet extends ServletBase {
 	}
 
 	/** Helper method that redirects the client to view a time report. */
-	public void sendViewTimeReportRedirect(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void sendViewTimeReportRedirect(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 		HttpSession session = request.getSession();
 		TimeReportBean bean = getTimeReportBean(request);
 		session.setAttribute("timereport", bean);
@@ -241,7 +250,8 @@ public class TimeReportServlet extends ServletBase {
 		out.flush();
 	}
 
-	/** Helper method to get and fill a time report beam. 
+	/**
+	 * Helper method to get and fill a time report bean.
 	 * 
 	 * 
 	 */
@@ -263,8 +273,8 @@ public class TimeReportServlet extends ServletBase {
 	}
 
 	/** Helper method to update a time report. */
-	public void updateReport(HttpServletRequest request, HttpServletResponse response, DataBase db,
-			int reportID) throws ServletException, IOException {
+	public void updateReport(HttpServletRequest request, HttpServletResponse response, DataBase db, int reportID)
+			throws ServletException, IOException {
 		TimeReportBean bean = new TimeReportBean();
 		bean.populateBean(request, response);
 
@@ -275,5 +285,5 @@ public class TimeReportServlet extends ServletBase {
 		db.updateActivityReport(reportID, bean.getReportValuesActivity());
 		db.updateTotalMinutes(reportID, bean.getTotalTime());
 	}
-	
+
 }
