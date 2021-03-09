@@ -13,19 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class LogOut.
+ * 
+ * Handles the function of the logout button.
  */
 @WebServlet("/LogOut")
 public class LogOut extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-
-	
-
 	/**
 	 * Removes a user from the current session.
-	 * 
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
