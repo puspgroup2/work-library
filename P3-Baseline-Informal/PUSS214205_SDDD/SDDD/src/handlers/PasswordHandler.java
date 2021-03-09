@@ -9,6 +9,9 @@ import java.util.Base64;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * This class handles generating and hashing passwords.
+ */
 public class PasswordHandler {
 
 	private static final Random rand = new SecureRandom();
