@@ -24,8 +24,9 @@ public class PasswordChangerServlet extends ServletBase {
 	private final int PW_CHANGE_FAILED_FALSE_CURRENT_PASSWORD_ = 3;
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * Handles POST request and serves changepassword.jsp, which allows users
+	 * to change their password.
+	 * The method checks and highlights if the password change was successful and if it fails why.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
