@@ -102,7 +102,11 @@ public class TimeReportServlet extends ServletBase {
 		}
 	}
 	
-	/** Helper method to get all reports of the logged in user. */
+	/** Helper method to get all reports of the logged in user. 
+	 * 
+	 * @param session the current session
+	 * @return a list of TimeReportBeans containing all time reports for the currently logged in user
+	 */
 	public List<TimeReportBean> getTimeReportList(HttpSession session) {
 		List<Integer> reportIdList = db.getTimeReportIDs((String) session.getAttribute("username"));
 		List<TimeReportBean> timeReports = new ArrayList<TimeReportBean>();
@@ -122,7 +126,11 @@ public class TimeReportServlet extends ServletBase {
 		return timeReports;
 	}
 
-	/** Helper method to get all reports of a specific user. */
+	/** Helper method to get all reports of a specified user. 
+	 * 
+	 *@param userName the username to get all timereports from 
+	 *@return a list of TimeReportBeans containing all timereports the user specified in the parameter
+	 */
 	public List<TimeReportBean> getTimeReportList(String userName) {
 		List<Integer> reportIdList = db.getTimeReportIDs(userName);
 		List<TimeReportBean> timeReports = new ArrayList<TimeReportBean>();
@@ -142,7 +150,10 @@ public class TimeReportServlet extends ServletBase {
 		return timeReports;
 	}
 
-	/** Helper method to get all signed report . */
+	/** Helper method to get all signed report . 
+	 * 
+	 * @return returns a list of TimeReportBeans containing all signed timereports in the database
+	 */
 	public List<TimeReportBean> getSignedReports() {
 		List<TimeReportBean> signedReports = new ArrayList<TimeReportBean>();
 		List<Integer> signedTimeReportIDs = db.getSignedTimeReportIDs();
@@ -166,6 +177,9 @@ public class TimeReportServlet extends ServletBase {
 	 * This is required since Frontend and DB uses different key names. The field
 	 * names of the Frontend can be found in TimeReportBean.java and the db in
 	 * Database.java
+	 * 
+	 * @param map a map of time report values
+	 * @return a map that uses the same format as the database uses when handling maps
 	 */
 	public Map<String, Integer> translateFrontendToDb(Map<String, Integer> map) {
 		Map<String, Integer> translated = new HashMap<>();
@@ -188,6 +202,10 @@ public class TimeReportServlet extends ServletBase {
 	 * This is required since Frontend and DB uses different key names. The field
 	 * names of the Frontend can be found in TimeReportBean.java and the db in
 	 * Database.java
+	 * 
+	 * @param map a map of time report values
+	 * @param character ????
+	 * @return a map that uses the same format as the frontend uses when handling maps
 	 */
 	public Map<String, Integer> translateDbToFrontend(Map<String, Integer> map, char character) {
 		Map<String, Integer> translated = new HashMap<>();
@@ -229,7 +247,6 @@ public class TimeReportServlet extends ServletBase {
 	public TimeReportBean getTimeReportBean(HttpServletRequest request, HttpSession session) {
 		int reportID = Integer.parseInt(request.getParameter("reportID"));
 		String username = db.getUserNameFromTimeReport(reportID);
-
 		TimeReportBean bean = new TimeReportBean();
 		bean.populateBean(translateDbToFrontend(db.getDocumentTimeD(reportID), 'd'),
 				translateDbToFrontend(db.getDocumentTimeI(reportID), 'i'),
