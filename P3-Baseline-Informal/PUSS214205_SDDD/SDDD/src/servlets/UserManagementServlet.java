@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Servlet implementation class UserMangementServlet
+ * This servlet handles most managements for user handling
  */
 @WebServlet("/UserManagementServlet")
 public class UserManagementServlet extends ServletBase {
@@ -20,9 +20,6 @@ public class UserManagementServlet extends ServletBase {
 
 	/**
 	 * This method is called when the webpage using this class is loaded.
-	 * 
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -42,9 +39,6 @@ public class UserManagementServlet extends ServletBase {
 
 	/**
 	 * This method is called when submitting the changes made to users.
-	 * 
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
