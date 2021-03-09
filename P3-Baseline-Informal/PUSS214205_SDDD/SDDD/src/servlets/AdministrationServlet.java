@@ -50,7 +50,7 @@ public class AdministrationServlet extends ServletBase {
 	}
 
 	/**
-	 *This method handels removing and adding users functions. 
+	 *This method handles removing and adding users functions. 
 	 *Used to see which buttons is pressed. If a string != null, then that button was pressed
 	 * 
 	 * @throws ServletException if interference with normal operations occurs.
