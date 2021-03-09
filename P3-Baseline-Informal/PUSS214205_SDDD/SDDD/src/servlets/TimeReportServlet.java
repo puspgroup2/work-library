@@ -64,10 +64,10 @@ public class TimeReportServlet extends ServletBase {
 			response.sendRedirect("newreport.jsp");
 		} else if (editSelectedBtn != null) {
 			session.setAttribute("editable", true);
-			sendViewTimeReportRedirect(request, response, session);
+			sendViewTimeReportRedirect(request, response);
 		} else if (viewBtn != null) {
 			session.setAttribute("editable", false);
-			sendViewTimeReportRedirect(request, response, session);
+			sendViewTimeReportRedirect(request, response);
 		} else if (submitNewReport != null) {
 			TimeReportBean bean = new TimeReportBean();
 			bean.populateBean(request, response);
@@ -75,7 +75,7 @@ public class TimeReportServlet extends ServletBase {
 				int reportID = db.newTimeReport((String) session.getAttribute("username"),
 						Integer.parseInt(request.getParameter("week")));
 				if (reportID != 0) {
-					updateReport(request, response, session, db, reportID);
+					updateReport(request, response, db, reportID);
 					doGet(request, response);
 					session.setAttribute("reportError", 0);
 				} else {
@@ -90,7 +90,7 @@ public class TimeReportServlet extends ServletBase {
 			TimeReportBean bean = new TimeReportBean();
 			bean.populateBean(request, response);
 			int reportID = Integer.parseInt(request.getParameter("reportID"));
-			updateReport(request, response, session, db, reportID);
+			updateReport(request, response, db, reportID);
 			doGet(request, response);
 		} else if (getUsersReport != null) {
 			List<TimeReportBean> usersTimeReports = getTimeReportList(getUsersReport);
@@ -224,9 +224,9 @@ public class TimeReportServlet extends ServletBase {
 	}
 
 	/** Helper method that redirects the client to view a time report. */
-	public void sendViewTimeReportRedirect(HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) throws IOException {
-		TimeReportBean bean = getTimeReportBean(request, session);
+	public void sendViewTimeReportRedirect(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		TimeReportBean bean = getTimeReportBean(request);
 		session.setAttribute("timereport", bean);
 		sendJsResponse(response);
 	}
@@ -241,8 +241,11 @@ public class TimeReportServlet extends ServletBase {
 		out.flush();
 	}
 
-	/** Helper method to get and fill a time report beam. */
-	public TimeReportBean getTimeReportBean(HttpServletRequest request, HttpSession session) {
+	/** Helper method to get and fill a time report beam. 
+	 * 
+	 * 
+	 */
+	public TimeReportBean getTimeReportBean(HttpServletRequest request) {
 		int reportID = Integer.parseInt(request.getParameter("reportID"));
 		String username = db.getUserNameFromTimeReport(reportID);
 		TimeReportBean bean = new TimeReportBean();
@@ -260,7 +263,7 @@ public class TimeReportServlet extends ServletBase {
 	}
 
 	/** Helper method to update a time report. */
-	public void updateReport(HttpServletRequest request, HttpServletResponse response, HttpSession session, DataBase db,
+	public void updateReport(HttpServletRequest request, HttpServletResponse response, DataBase db,
 			int reportID) throws ServletException, IOException {
 		TimeReportBean bean = new TimeReportBean();
 		bean.populateBean(request, response);

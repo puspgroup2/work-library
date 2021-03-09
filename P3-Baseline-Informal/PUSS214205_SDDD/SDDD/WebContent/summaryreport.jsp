@@ -200,7 +200,7 @@
             <button class="btn btn-success" id='viewBtn' style="margin-left:3px; margin-right:3px">View selected report</button>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
             <button class="btn btn-primary" id='showSignBtn' type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample collapseExample2" style="margin-left:3px">
-                Show signed reports
+                SHOW SIGNED REPORTS
             </button>
             </c:if>
         </div>
@@ -209,17 +209,19 @@
 
 </div>
 
+<!-- Script for resetting radiobuttons when refreshing the page -->
 <script>
   window.onload = function(){
     radioButtons.reset();
   }
 </script>
 
+<!-- Script for unsigning Time reports -->
 <script>
   $('#Unsign').on('click', () => {
     const boxes = getSignedReports();
     const ids = boxes.map(box => $(box).attr('id'));
-    console.log(ids)
+    
     $.post("/TimeReportManagementServlet",  {
       "input": "Unsign",
       "timeReports": JSON.stringify(ids)
@@ -261,7 +263,7 @@
 
 </script>
 
-
+<!-- Script for clicking the different buttons "Edit Selected Report", "View selected report" and "Show signed reports" -->
 <script>
 
     let showToggled = false;
