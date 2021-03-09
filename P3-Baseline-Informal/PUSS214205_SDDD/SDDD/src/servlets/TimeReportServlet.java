@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.TimeReportBean;
-import database.DataBase;
 
 /**
  * This servlet handles most managements for time report handling
