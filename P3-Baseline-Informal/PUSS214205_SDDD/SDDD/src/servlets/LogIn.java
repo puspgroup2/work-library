@@ -36,6 +36,10 @@ public class LogIn extends ServletBase {
 	 * then the session state is changed to login, the userName that is saved in the
 	 * session is updated, and the user is relocated to the functionality page.
 	 * 
+	 * @throws ServletException if interference with normal operations occurs.
+	 * @throws IOException if wrong input is received.
+	 * @param request a HttpServletRequest which contains session data
+	 * @param response a HttpServletResponse which is used to send redirects to the user
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -70,6 +74,11 @@ public class LogIn extends ServletBase {
 
 	/**
 	 * All requests are forwarded to the doGet method. ,
+	 * 
+	 * @throws ServletException if interference with normal operations occurs.
+	 * @throws IOException if wrong input is received.
+	 * @param request a HttpServletRequest which contains session data
+	 * @param response a HttpServletResponse which is used to send redirects to the user
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
