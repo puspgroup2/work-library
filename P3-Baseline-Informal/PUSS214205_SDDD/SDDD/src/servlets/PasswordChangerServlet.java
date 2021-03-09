@@ -27,6 +27,9 @@ public class PasswordChangerServlet extends ServletBase {
 	 * Handles POST request and serves changepassword.jsp, which allows users
 	 * to change their password.
 	 * The method checks and highlights if the password change was successful and if it fails why.
+	 * 
+	 * @throws ServletException if interference with normal operations occurs.
+	 * @throws IOException if wrong input is received.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
