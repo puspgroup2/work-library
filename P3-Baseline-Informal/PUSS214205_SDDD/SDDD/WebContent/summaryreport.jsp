@@ -200,7 +200,7 @@
             <button class="btn btn-success" id='viewBtn' style="margin-left:3px; margin-right:3px">View selected report</button>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
             <button class="btn btn-primary" id='showSignBtn' type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample collapseExample2" style="margin-left:3px">
-                Show signed reports
+                SHOW SIGNED REPORTS
             </button>
             </c:if>
         </div>
