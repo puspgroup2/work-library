@@ -23,9 +23,6 @@ public class TimeReportManagementServlet extends ServletBase {
 
 	/**
 	 * Handles GET request and serves signreport.jsp.
-	 * 
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -57,9 +54,6 @@ public class TimeReportManagementServlet extends ServletBase {
 
 	/**
 	 * This post handled sign/unsign with a Time report.
-	 * 
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
