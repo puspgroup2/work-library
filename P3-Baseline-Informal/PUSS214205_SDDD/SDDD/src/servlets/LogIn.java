@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/LogIn")
 public class LogIn extends ServletBase {
-	private static final long serialVersionUID = 1L;
 	private final int USER_LOGIN_FAILED_ = 0;
 	private final int PW_CHANGE_FAILED_ = 1;
 	private final int PW_CHANGE_SUCCESS_ = 2;

@@ -10,8 +10,6 @@ import database.DataBase;
  */
 public class ServletBase extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-
 	// Define states
 	public static final int LOGIN_FALSE = 0;
 	public static final int LOGIN_TRUE = 1;
