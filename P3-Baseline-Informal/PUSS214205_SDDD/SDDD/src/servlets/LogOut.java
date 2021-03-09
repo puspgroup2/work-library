@@ -19,9 +19,7 @@ public class LogOut extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	public LogOut() {
-		super();
-	}
+	
 
 	/**
 	 * Removes a user from the current session.
