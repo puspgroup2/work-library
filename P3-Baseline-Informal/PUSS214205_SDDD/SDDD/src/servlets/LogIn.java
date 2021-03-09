@@ -37,8 +37,6 @@ public class LogIn extends ServletBase {
 	 * then the session state is changed to login, the username that is saved in the
 	 * session is updated, and the user is relocated to the functionality page.
 	 * 
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
