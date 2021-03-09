@@ -33,10 +33,10 @@ public class MailHandler {
 	 */
 	public void sendPasswordMail(String recipient, String userName, String password) {
 		// Recipient's email ID needs to be mentioned.
-		String to = recipient;
+		String toRecipient = recipient;
 
 		// Sender's email ID needs to be mentioned
-		String from = senderEmail;
+		String fromSender = senderEmail;
 
 		// Assuming you are sending email from through gmails smtp
 		String host = "smtp.gmail.com";
@@ -59,8 +59,8 @@ public class MailHandler {
 
 		try {
 			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(from));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.setFrom(new InternetAddress(fromSender));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(toRecipient));
 			message.setSubject("Your TimeMate login credentials");
 			message.setText(
 					"Your login credentials are:" + "\n" + "Username: " + userName + "\n" + "Password: " + password);
