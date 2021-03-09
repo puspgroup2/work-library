@@ -22,9 +22,6 @@ import javax.servlet.http.HttpServletResponse;
  * logged in. Then the user is asked for name and password. If the user is
  * logged in he/she is directed to the functionality page.
  * 
- * @author Martin Host
- * @version 1.0
- * 
  */
 @WebServlet("/LogIn")
 
@@ -33,10 +30,6 @@ public class LogIn extends ServletBase {
 	private final int USER_LOGIN_FAILED_ = 0;
 	private final int PW_CHANGE_FAILED_ = 1;
 	private final int PW_CHANGE_SUCCESS_ = 2;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 
 	/**
 	 * Implementation of all input to the servlet. All post-messages are forwarded
@@ -83,9 +76,6 @@ public class LogIn extends ServletBase {
 
 	/**
 	 * All requests are forwarded to the doGet method. ,
-	 * 
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
