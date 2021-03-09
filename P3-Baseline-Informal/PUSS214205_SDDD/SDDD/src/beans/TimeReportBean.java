@@ -62,7 +62,7 @@ public class TimeReportBean implements Serializable {
 	/**
 	 * Fetches the role of the user.
 	 * 
-	 * @return
+	 * @return role
 	 */
 	public String getRole() {
 		return role;
