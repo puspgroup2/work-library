@@ -21,12 +21,9 @@ import javax.servlet.http.HttpServletResponse;
  * The first thing that happens is that the user is logged out if he/she is
  * logged in. Then the user is asked for name and password. If the user is
  * logged in he/she is directed to the functionality page.
- * 
  */
 @WebServlet("/LogIn")
-
 public class LogIn extends ServletBase {
-	private static final long serialVersionUID = 1L;
 	private final int USER_LOGIN_FAILED_ = 0;
 	private final int PW_CHANGE_FAILED_ = 1;
 	private final int PW_CHANGE_SUCCESS_ = 2;

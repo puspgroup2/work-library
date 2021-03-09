@@ -16,8 +16,7 @@ import java.util.HashMap;
  */
 @WebServlet("/UserManagementServlet")
 public class UserManagementServlet extends ServletBase {
-	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * This method is called when the webpage using this class is loaded.
 	 */

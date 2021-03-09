@@ -28,10 +28,10 @@ public class MailHandler {
 	 * Send password to the recipient's e-mail.
 	 * 
 	 * @param recipient The e-mail of recipient.
-	 * @param username  recipient's username.
+	 * @param userName  recipient's userName.
 	 * @param password  recipient's password.
 	 */
-	public void sendPasswordMail(String recipient, String username, String password) {
+	public void sendPasswordMail(String recipient, String userName, String password) {
 		// Recipient's email ID needs to be mentioned.
 		String to = recipient;
 
@@ -50,7 +50,7 @@ public class MailHandler {
 		properties.put("mail.smtp.ssl.enable", "true");
 		properties.put("mail.smtp.auth", "true");
 
-		// Get the Session object.// and pass username and password
+		// Get the Session object.// and pass userName and password
 		Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(senderEmail, senderPassword);
@@ -63,7 +63,7 @@ public class MailHandler {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject("Your TimeMate login credentials");
 			message.setText(
-					"Your login credentials are:" + "\n" + "Username: " + username + "\n" + "Password: " + password);
+					"Your login credentials are:" + "\n" + "Username: " + userName + "\n" + "Password: " + password);
 			Transport.send(message);
 		} catch (MessagingException exception) {
 			exception.printStackTrace();

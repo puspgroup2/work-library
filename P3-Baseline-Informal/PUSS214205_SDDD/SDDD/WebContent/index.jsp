@@ -12,17 +12,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="TimeMate">
+  <meta name="author" content="PUSPGroup2">
   <title>TimeMate - Home</title>
 </head>
 
 <body>
+  <!-- To make sure user is logged in-->
   <%
     if(session.getAttribute("username") == null) {
       response.sendRedirect("login.jsp");
     }
   %>
+
+  <!-- Start of navbar -->
   <nav class="navbar navbar-light navbar-expand-md bg-light">
       <a class="navbar-brand abs" href="index.jsp">TimeMate</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -63,29 +66,9 @@
           </ul>
       </div>
   </nav>
-  
-  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-        <h4>Log Out <i class="fa fa-lock"></i></h4>
-      </div>
-      <div class="modal-body">
-        <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
-        <div class="actionsBtns">
-            <form action="LogOut">
-            
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input type="submit" class="btn btn-default btn-primary" value="Logout" />
-	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <!-- End of navbar -->
 
+  <!-- Start card for welcoming user -->
   <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 30rem; margin-top:50px; margin-bottom:50px;">
     <div class="card-header">
       <h5>Welcome to TimeMate ${username}</h5>
@@ -95,4 +78,29 @@
       Please see the navigation bar at the top of the website in order to navigate.
     </div>
   </div>
+  <!-- End card for welcoming user -->
+
+  <!-- Start modal for logout -->
+  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+          <h4>Log Out <i class="fa fa-lock"></i></h4>
+        </div>
+        <div class="modal-body">
+          <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
+          <div class="actionsBtns">
+              <form action="LogOut">
+              
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                  <input type="submit" class="btn btn-default btn-primary" value="Logout" />
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End modal for logout -->
 </body>
