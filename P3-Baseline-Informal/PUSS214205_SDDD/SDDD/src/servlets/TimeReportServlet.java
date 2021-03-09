@@ -27,6 +27,8 @@ public class TimeReportServlet extends ServletBase {
 	 * Handles GET request and serves summaryreport.jsp, which displays a summary of
 	 * all Time reports for the user.
 	 * 
+	 * @throws ServletException if interference with normal operations occurs.
+	 * @throws IOException if wrong input is received.
 	 * @param request a HttpServletRequest which contains session data
 	 * @param response a HttpServletResponse which is used to send redirects to the user
 	 */
@@ -46,6 +48,8 @@ public class TimeReportServlet extends ServletBase {
 	 * Time report - View a summary of a Time report - Submit edit changes to a Time
 	 * report - Create a new Time report - View a summary of all Time reports
 	 * 
+	 * @throws ServletException if interference with normal operations occurs.
+	 * @throws IOException if wrong input is received.
 	 * @param request a HttpServletRequest which contains session data
 	 * @param response a HttpServletResponse which is used to send redirects to the user
 	 */
