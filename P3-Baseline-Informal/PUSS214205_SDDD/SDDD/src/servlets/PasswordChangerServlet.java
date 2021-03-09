@@ -12,6 +12,8 @@ import handlers.PasswordHandler;
 
 /**
  * Servlet implementation class PasswordChangerServlet.
+ * Handles password changes from changepassword.jsp. Sends the changes to the database if it's approved.
+ * Returns messages to changepassword.jsp upon success or failure.
  */
 @WebServlet("/PasswordChangerServlet")
 public class PasswordChangerServlet extends ServletBase {

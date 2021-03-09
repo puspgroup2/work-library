@@ -12,18 +12,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="TimeMate">
+  <meta name="author" content="PUSPGroup2">
   <title>TimeMate - Change Password</title>
 </head>
 
 <body>
+  <!-- To make sure user is logged in -->
   <%
     if(session.getAttribute("username") == null) {
       response.sendRedirect("login.jsp");
     }
   %>
 
+  <!-- Start of navbar -->
   <nav class="navbar navbar-light navbar-expand-md bg-light">
       <a class="navbar-brand abs" href="index.jsp">TimeMate</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -32,10 +34,9 @@
 
       <div class="navbar-collapse collapse" id="collapsingNavbar">
         <ul class="navbar-nav">
-          
           <form action="TimeReportServlet">
               <input type="submit" value="Time Report" class="nav-link astext">  
-           </form>
+          </form>
           <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
             <form action="UserManagementServlet">
               <input type="submit" value="User Management" class="nav-link astext">
@@ -62,7 +63,9 @@
         </ul>
       </div>
   </nav>
+  <!-- End of navbar -->
 
+  <!-- Start of pop up messages -->
   <c:if test="${sessionScope.passwordMessage eq 0}">
       <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
           Your new password can not be the same as your old
@@ -86,8 +89,9 @@
           Your current password was wrong, try again
       </div>
   </c:if>
+  <!-- End of pop up messages -->
 
-
+  <!-- Start card for change password -->
   <div>
     <div class="card mx-auto rounded shadow shadow-sm text-center" style="max-width: 25rem; margin-top:1rem; margin-bottom:50px;">
       <div class="card-header"><h5>Change password</h5></div>
@@ -135,7 +139,9 @@
       </div>
     </div>
   </div>
+  <!-- End card for change password -->
 
+  <!-- Start modal for logout -->
   <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -156,52 +162,75 @@
       </div>
     </div>
   </div>
+  <!-- End modal for logout -->
 
+  <!-- Start script for password check -->
   <script>
     $("input[type=password]").keyup(function(){
+      // Check for uppercase letters
       var ucase = new RegExp("[A-Z]+");
+      // Check for lowercase letters
       var lcase = new RegExp("[a-z]+");
+      // Check for numbers
       var num = new RegExp("[0-9]+");
       
+      // If password length is equal to or greater than 8
       if($("#password").val().length >= 8){
+        // Set color to green for 8chars
         $("#8chars").css("color","#00A41E");
       }else{
+        // Otherwise, set color to red and keep button disabled
         $("#8chars").css("color","#FF0004");
         $('#changePassword').prop('disabled', true);
       }
       
+      // If password contains atleast one uppercase letter
       if(ucase.test($("#password").val())){
+        // Set color to green for ucase
         $("#ucase").css("color","#00A41E");
       }else{
+        // Otherwise, set color to red and keep button disabled
         $("#ucase").css("color","#FF0004");
         $('#changePassword').prop('disabled', true);
       }
       
+      // If password contains atleast one lowercase letter
       if(lcase.test($("#password").val())){
+        // Set color to green for lcase
         $("#lcase").css("color","#00A41E");
       }else{
+        // Otherwise, set color to red and keep button disabled
         $("#lcase").css("color","#FF0004");
         $('#changePassword').prop('disabled', true);
       }
       
+      // If password contains atleast one number
       if(num.test($("#password").val())){
+        // Set color to green for num
         $("#num").css("color","#00A41E");
       }else{
+        // Otherwise, set color to red and keep button disabled
         $("#num").css("color","#FF0004");
         $('#changePassword').prop('disabled', true);
       }
       
+      // If passwords are matching
       if($("#password").val() == $("#password2").val() && $("#password").val() != ""){
+        // Set color green for pwmatch
         $("#pwmatch").css("color","#00A41E");
       }else{
+        // Otherwise, set color to red and keep button disabled
         $("#pwmatch").css("color","#FF0004");
         $('#changePassword').prop('disabled', true);
       }
       
+      // If all the above requirements are fullfilled
       if($("#password").val() == $("#password2").val() && num.test($("#password").val()) && lcase.test($("#password").val()) && ucase.test($("#password").val()) && $("#password").val().length >= 8) {
+        // Enable the button
         $('#changePassword').prop('disabled', false);
       }
       
     });
   </script>
+  <!-- End script for password check -->
 </body>
