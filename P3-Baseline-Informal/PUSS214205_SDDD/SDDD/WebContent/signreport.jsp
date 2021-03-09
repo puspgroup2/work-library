@@ -159,7 +159,8 @@
     </div>
   </div>
   <!-- End log out modal -->
-
+  
+<!-- script for signing Time Reports -->
 <script>
   $('#submit').on('click', () => {
     const boxes = getSignedReports();
@@ -172,7 +173,7 @@
     (data) => {
       if (data == 'ok') {
         // Reload the page.
-        console.log("JDHSKAS")
+        
         location.href = "/TimeReportManagementServlet";
         //location.reload();
       }
