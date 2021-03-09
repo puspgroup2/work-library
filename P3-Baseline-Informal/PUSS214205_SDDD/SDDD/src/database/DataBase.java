@@ -64,7 +64,7 @@ public class DataBase {
 	/**
 	 * Only the admin can perform this action.
 	 * 
-	 * @param username The userName of the user.
+	 * @param username The username of the user.
 	 * @param password The password for the login.
 	 * @param email    The email of the user.
 	 * @param salt     The salt to be added.
@@ -100,7 +100,7 @@ public class DataBase {
 	/**
 	 * Only the admin can perform this action.
 	 * 
-	 * @param username The userName of the user.
+	 * @param username The username of the user.
 	 * @return true if the user was successfully removed from the database.
 	 */
 	public boolean removeUser(String username) {
@@ -119,7 +119,7 @@ public class DataBase {
 	/**
 	 * Returns a list containing a user's all Time Report ID's.
 	 * 
-	 * @param username The userName of the user.
+	 * @param username The username of the user.
 	 * @return list of Time Report IDs.
 	 */
 	public List<Integer> getTimeReportIDs(String username) {
@@ -182,13 +182,13 @@ public class DataBase {
 	 * Sets the Time Report as signed by the project leader.
 	 * 
 	 * @param yes      if the Time Report be signed.
-	 * @param userName the name of the project leader.
+	 * @param username the name of the project leader.
 	 * @param reportID the number of the Time Report in question.
 	 */
-	public void setSigned(boolean yes, String userName, int reportID) {
+	public void setSigned(boolean yes, String username, int reportID) {
 		String sql = "UPDATE TimeReports SET signature = ? WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			String result = yes ? userName : null;
+			String result = yes ? username : null;
 			ps.setString(1, result);
 			ps.setInt(2, reportID);
 			ps.executeUpdate();
@@ -200,15 +200,15 @@ public class DataBase {
 	/**
 	 * Retrieves a user's role with the help of their userName.
 	 * 
-	 * @param userName The userName of the user.
+	 * @param username The username of the user.
 	 * @return the role of the user, null will otherwise be returned.
 	 */
-	public String getRole(String userName) {
+	public String getRole(String username) {
 		String role = null;
 		String sql = "SELECT role FROM Users WHERE userName = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, userName);
+			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				role = rs.getString("role");
@@ -222,16 +222,16 @@ public class DataBase {
 	/**
 	 * Updates the user's role.
 	 * 
-	 * @param userName The userName of the user.
+	 * @param username The username of the user.
 	 * @param role     The role of the user.
 	 * @return true and updates the user's role, returns false if it wasn't
 	 *         possible.
 	 */
-	public boolean updateRole(String userName, String role) {
+	public boolean updateRole(String username, String role) {
 		String sql = "UPDATE Users SET role = ? WHERE userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, role);
-			ps.setString(2, userName);
+			ps.setString(2, username);
 			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			handleSQLException(e);
@@ -244,21 +244,21 @@ public class DataBase {
 	/**
 	 * Creates a new Time Report.
 	 * 
-	 * @param userName The userName of the user associated with the Time Report.
+	 * @param username The username of the user associated with the Time Report.
 	 * @param week     The week of the Time Report.
 	 * @return the Time Report ID.
 	 */
-	public int newTimeReport(String userName, int week) {
-		if (this.weekOK(userName, week)) {
+	public int newTimeReport(String username, int week) {
+		if (this.weekOK(username, week)) {
 			String sql = "INSERT INTO TimeReports(userName, week) VALUES(?, ?)";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
-				ps.setString(1, userName);
+				ps.setString(1, username);
 				ps.setInt(2, week);
 				ps.executeUpdate();
 			} catch (SQLException e) {
 				handleSQLException(e);
 			}
-			return getReportID(userName, week);
+			return getReportID(username, week);
 		}
 		return 0;
 	}
@@ -290,12 +290,12 @@ public class DataBase {
 	 * Updates the value of the week associated with a given reportID.
 	 * 
 	 * @param reportID The reportID of the Time Report that is to be altered.
-	 * @param userName The user's unique identifier.
+	 * @param username The user's unique identifier.
 	 * @param newWeek  The new week value.
 	 * @return True if there was not already a Time Report for that week and user.
 	 */
-	public boolean updateWeek(int reportID, String userName, int newWeek) {
-		if (!weekOK(userName, newWeek))
+	public boolean updateWeek(int reportID, String username, int newWeek) {
+		if (!weekOK(username, newWeek))
 			return false;
 		String sql = "UPDATE TimeReports SET Week = ? WHERE reportID = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -311,13 +311,13 @@ public class DataBase {
 
 	/* Helper method for updateTimeReport. Checks if week has a valid value and
 	 * that there are no other Time Reports for that user that week. */
-	private boolean weekOK(String userName, Integer week) {
+	private boolean weekOK(String username, Integer week) {
 		if (week < 1 || week > 54)
 			return false;
 		String sql = "SELECT * FROM TimeReports WHERE Week = ? AND userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, week);
-			ps.setString(2, userName);
+			ps.setString(2, username);
 			ResultSet rs = ps.executeQuery();
 			System.out.println(rs.getFetchSize());
 			if (!rs.next()) {
@@ -658,15 +658,15 @@ public class DataBase {
 
 	/**
 	 * 
-	 * @param userName The userName associated with the user.
+	 * @param username The username associated with the user.
 	 * @param week     The week that the time report is referring to.
 	 * @return the report id.
 	 */
-	public int getReportID(String userName, int week) {
+	public int getReportID(String username, int week) {
 		int reportID = 0;
 		String sql = "SELECT reportID FROM TimeReports WHERE userName = ?" + " AND week = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, userName);
+			ps.setString(1, username);
 			ps.setInt(2, week);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -715,14 +715,14 @@ public class DataBase {
 	/**
 	 * Retrieves a user's password with the help of their userName.
 	 * 
-	 * @param userName The userName of the user.
+	 * @param username The username of the user.
 	 * @return password of the user, null will be returned if it's wrong.
 	 */
-	public String getPassword(String userName) {
+	public String getPassword(String username) {
 		String pw = null;
 		String sql = "SELECT password FROM Users WHERE userName = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, userName);
+			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				pw = rs.getString("password");
@@ -754,16 +754,16 @@ public class DataBase {
 	/**
 	 * Changes a user's password.
 	 * 
-	 * @param userName The user's username.
+	 * @param username The user's username.
 	 * @param password The user's password.
 	 * @return true if the change was successful, otherwise false.
 	 */
-	public boolean changePassword(String userName, String password) {
+	public boolean changePassword(String username, String password) {
 		String sql = "UPDATE Users SET password = ? WHERE userName = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, password);
-			ps.setString(2, userName);
+			ps.setString(2, username);
 			return ps.executeUpdate() > 0;
 		} catch (SQLException e) {
 			handleSQLException(e);
@@ -774,15 +774,15 @@ public class DataBase {
 	/**
 	 * Retrieves a user's e-mail with the help of their username.
 	 * 
-	 * @param userName The username of the user.
+	 * @param username The username of the user.
 	 * @return e-mail if it exists, otherwise null will be returned.
 	 */
-	public String getEmail(String userName) {
+	public String getEmail(String username) {
 		String email = null;
 		String sql = "SELECT email FROM Users WHERE userName = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, userName);
+			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				email = rs.getString("email");
@@ -796,21 +796,21 @@ public class DataBase {
 	/**
 	 * Checks if the password for a specific user is correct.
 	 * 
-	 * @param userName The name to identify the user.
+	 * @param username The name to identify the user.
 	 * @param password The password of the user.
 	 * @return true if they were correct, otherwise false will be returned.
 	 */
-	public boolean checkLogin(String userName, String password) {
+	public boolean checkLogin(String username, String password) {
 		String sql = "SELECT * FROM Users WHERE userName = ? AND password = ?";
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setString(1, userName);
+			ps.setString(1, username);
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
 				String name = rs.getString("userName");
 				String pw = rs.getString("password");
-				return name.equals(userName) && pw.equals(password);
+				return name.equals(username) && pw.equals(password);
 			}
 		} catch (SQLException e) {
 			handleSQLException(e);
