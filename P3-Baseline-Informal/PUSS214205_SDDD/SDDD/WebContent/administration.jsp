@@ -5,7 +5,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
@@ -16,12 +15,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="TimeMate">
+  <meta name="author" content="PUSPGroup2">
   <title>TimeMate - Administration</title>
 </head>
 
 <body>
+  <!-- To make sure user is logged in -->
   <%
     if(session.getAttribute("username") == null) {
       response.sendRedirect("login.jsp");
@@ -30,6 +30,7 @@
     }
   %>
 	
+  <!-- Start of navbar -->
   <nav class="navbar navbar-light navbar-expand-md bg-light">
     <a class="navbar-brand abs" href="index.jsp">TimeMate</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -38,15 +39,14 @@
 
     <div class="navbar-collapse collapse" id="collapsingNavbar">
         <ul class="navbar-nav">
-          
             <form action="TimeReportServlet">
               <input type="submit" value="Time Report" class="nav-link astext">  
-           </form>
+            </form>
             <c:if test = "${sessionScope.role eq 'ADMIN' || sessionScope.role eq 'PG'}">
             	<form action="UserManagementServlet">
                 <input type="submit" value="User Management" class="nav-link astext">
               </form>
-          </c:if>
+            </c:if>
             <c:if test = "${sessionScope.role eq 'ADMIN'}">
             	<form action="AdministrationServlet">
                 <input type="submit" value="Administration" class="nav-link astext">
@@ -68,7 +68,9 @@
           </ul>
       </div>
   </nav>
-      
+  <!-- End of navbar -->
+
+  <!-- Start of pop up messages -->
   <c:if test="${sessionScope.AdminMessage eq 0}">
       <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
           There is already an user with that name.
@@ -85,8 +87,10 @@
     <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
         The username must be 5-10 letters long and only contain 0-9, A-Z, a-z
     </div>
-</c:if>
+  </c:if>
+  <!-- End of pop up messages -->
 
+  <!-- Start card for add user -->
   <div>
     <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:1rem; margin-bottom:50px;">
       <div class="card-header">Add user</div>
@@ -126,7 +130,9 @@
       </div>
     </div>
   </div>
+  <!-- End card for add user -->
 
+  <!-- Start card for remove user -->
   <div class="card mx-auto rounded shadow shadow-sm" style="max-width:50rem; margin-top:50px; margin-bottom:50px;">
     <div class="card-header">Remove users</div>
     <div class="card-body">
@@ -140,10 +146,11 @@
             </tr>
           </thead>
           <tbody>
+            <!-- Start code to populate table with users -->
             <%
             UserManagementBean adminBean = (UserManagementBean) session.getAttribute("AdministrationBean");
-                        HashMap<String, String> userMap = (HashMap<String, String>)adminBean.getUserMap();
-                        for(Map.Entry<String, String> user : userMap.entrySet()) {
+            HashMap<String, String> userMap = (HashMap<String, String>)adminBean.getUserMap();
+            for(Map.Entry<String, String> user : userMap.entrySet()) {
             %>
             <tr>
               <td>
@@ -156,6 +163,7 @@
             </tr>
             <%}%>
           </tbody>
+          <!-- End code to populate table with users -->
         </table>
         <div><b>When clicking confirm, you will remove all checked users</b></div><br>
         <div class="form-group row">
@@ -166,7 +174,9 @@
       </form>
     </div>
   </div>
+  <!-- End card for remove user -->
 
+  <!-- Start modal for logout -->
   <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -187,4 +197,5 @@
       </div>
     </div>
   </div>
+  <!-- End modal for logout -->
 </body>

@@ -12,11 +12,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="TimeMate">
+  <meta name="author" content="PUSPGroup2">
   <title>TimeMate - Log in</title>
 </head>
 
+<!-- Start of pop up messages -->
 <c:if test="${sessionScope.message eq 0}">
     <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
         You have entered wrong username and/or password
@@ -35,6 +36,7 @@
         A new password has been sent to your mail
     </div>
 </c:if>
+<!-- End of pop up messages -->
 
 <body>
   <!--Log in card-->
