@@ -195,12 +195,14 @@ public class TimeReportBean implements Serializable {
 	}
 
 	/**
+	 * Fills the bean with report values from the database.
+	 * One map for each field in the time report with an Integer for the total time.
 	 * 
-	 * @param D        The map of the D reported values
-	 * @param I        The map of the I reported values
-	 * @param F        The map of the F reported values
-	 * @param R        The map of the R reported values
-	 * @param Activity The map of the Activity reported values
+	 * @param D        The map of the reported values in the D field of a time report
+	 * @param I        The map of the reported values in the I field of a time report
+	 * @param F        The map of the reported values in the F field of a time report
+	 * @param R        The map of the reported values in the R field of a time report
+	 * @param Activity The map of the reported values in the Activity field of a time report
 	 * @param time     Total time
 	 */
 	public void populateBean(Map<String, Integer> D, Map<String, Integer> I, Map<String, Integer> F,
@@ -214,6 +216,9 @@ public class TimeReportBean implements Serializable {
 	}
 
 	/**
+	 * Fills the bean with report values from front-end.
+	 * Retrieves values from each field in the time report and puts it into the corresponding map.
+	 * Retrieves the value of the total time entered into the time report and puts it into an integer.
 	 * 
 	 * @param request
 	 * @param response
