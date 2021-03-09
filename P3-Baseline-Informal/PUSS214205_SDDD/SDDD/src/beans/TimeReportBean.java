@@ -198,10 +198,10 @@ public class TimeReportBean implements Serializable {
 	 * Fills the bean with report values from the database.
 	 * One map for each field in the time report with an Integer for the total time.
 	 * 
-	 * @param D        The map of the reported values in the D field of a time report
-	 * @param I        The map of the reported values in the I field of a time report
-	 * @param F        The map of the reported values in the F field of a time report
-	 * @param R        The map of the reported values in the R field of a time report
+	 * @param D        The map of the reported values in the Development field of a time report
+	 * @param I        The map of the reported values in the Informal Review field of a time report
+	 * @param F        The map of the reported values in the Formal Review field of a time report
+	 * @param R        The map of the reported values in the Rework field of a time report
 	 * @param Activity The map of the reported values in the Activity field of a time report
 	 * @param time     Total time
 	 */

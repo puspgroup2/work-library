@@ -52,8 +52,8 @@ public class DataBase {
 	public boolean disconnect() throws SQLException {
 		try {
 			connection.close();
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return false;
 		}
 		return true;
@@ -78,8 +78,8 @@ public class DataBase {
 			if (rs.next()) {
 				return false;
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return false;
 		}
 
@@ -91,8 +91,8 @@ public class DataBase {
 			ps.setString(4, salt);
 			ps.executeUpdate();
 			return true;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return false;
 		}
 	}
@@ -108,8 +108,8 @@ public class DataBase {
 		try (PreparedStatement ps = connection.prepareStatement(removeUser)) {
 			ps.setString(1, username);
 			return ps.executeUpdate() > 0;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return false;
 		}
 	}
@@ -132,8 +132,8 @@ public class DataBase {
 				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return timeReportIDs;
 		}
 	}
@@ -152,8 +152,8 @@ public class DataBase {
 				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return timeReportIDs;
 		}
 	}
@@ -172,8 +172,8 @@ public class DataBase {
 				timeReportIDs.add(rs.getInt(1));
 			}
 			return timeReportIDs;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return timeReportIDs;
 		}
 	}
@@ -192,8 +192,8 @@ public class DataBase {
 			ps.setString(1, result);
 			ps.setInt(2, reportID);
 			ps.executeUpdate();
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 	}
 
@@ -213,8 +213,8 @@ public class DataBase {
 			while (rs.next()) {
 				role = rs.getString("role");
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return role;
 	}
@@ -233,8 +233,8 @@ public class DataBase {
 			ps.setString(1, role);
 			ps.setString(2, username);
 			return ps.executeUpdate() > 0;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return false;
 		}
 	}
@@ -255,8 +255,8 @@ public class DataBase {
 				ps.setString(1, username);
 				ps.setInt(2, week);
 				ps.executeUpdate();
-			} catch (SQLException e) {
-				handleSQLException(e);
+			} catch (SQLException exception) {
+				handleSQLException(exception);
 			}
 			return getReportID(username, week);
 		}
@@ -280,8 +280,8 @@ public class DataBase {
 			ps.setInt(2, reportID);
 			ps.executeUpdate();
 			return true;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return false;
 	}
@@ -303,8 +303,8 @@ public class DataBase {
 			ps.setInt(2, reportID);
 			ps.executeUpdate();
 			return true;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return false;
 	}
@@ -324,8 +324,8 @@ public class DataBase {
 				System.out.println("WEEK OK");
 				return true;
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		System.out.println("WEEK NOT OK");
 		return false;
@@ -349,8 +349,8 @@ public class DataBase {
 			try (PreparedStatement ps = connection.prepareStatement(addActivityReport)) {
 				ps.setInt(1, reportID);
 				ps.executeUpdate();
-			} catch (SQLException e) {
-				handleSQLException(e);
+			} catch (SQLException exception) {
+				handleSQLException(exception);
 				return false;
 			}
 		}
@@ -361,8 +361,8 @@ public class DataBase {
 				ps.setInt(1, activityReport.get(s));
 				ps.setInt(2, reportID);
 				ps.execute();
-			} catch (SQLException e) {
-				handleSQLException(e);
+			} catch (SQLException exception) {
+				handleSQLException(exception);
 			}
 		}
 		return true;
@@ -435,8 +435,8 @@ public class DataBase {
 			try (PreparedStatement ps = connection.prepareStatement(addDocumentTime)) {
 				ps.setInt(1, reportID);
 				ps.executeUpdate();
-			} catch (SQLException e) {
-				handleSQLException(e);
+			} catch (SQLException exception) {
+				handleSQLException(exception);
 				return false;
 			}
 		}
@@ -447,8 +447,8 @@ public class DataBase {
 				ps.setInt(1, documentTime.get(s));
 				ps.setInt(2, reportID);
 				ps.execute();
-			} catch (SQLException e) {
-				handleSQLException(e);
+			} catch (SQLException exception) {
+				handleSQLException(exception);
 			}
 		}
 		return true;
@@ -466,8 +466,8 @@ public class DataBase {
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setInt(1, reportID);
 			return ps.executeUpdate() > 0;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return false;
 		}
 	}
@@ -489,8 +489,8 @@ public class DataBase {
 
 			}
 
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return users;
 	}
@@ -511,8 +511,8 @@ public class DataBase {
 			while (rs.next()) {
 				username = rs.getString("userName");
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return username;
 	}
@@ -533,8 +533,8 @@ public class DataBase {
 			while (rs.next()) {
 				totalminutes = rs.getInt("totalMinutes");
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return totalminutes;
 	}
@@ -555,8 +555,8 @@ public class DataBase {
 			while (rs.next()) {
 				signature = rs.getString("signature");
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return signature;
 	}
@@ -577,8 +577,8 @@ public class DataBase {
 			while (rs.next()) {
 				week = rs.getInt("week");
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return week;
 	}
@@ -650,8 +650,8 @@ public class DataBase {
 				documentTime.put("finalReport", rs.getInt("finalReport"));
 				return documentTime;
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return null;
 		}
 	}
@@ -672,8 +672,8 @@ public class DataBase {
 			while (rs.next()) {
 				reportID = rs.getInt("reportID");
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return reportID;
 	}
@@ -706,8 +706,8 @@ public class DataBase {
 				activityReport.put("other", rs.getInt("other"));
 				return activityReport;
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return null;
 		}
 	}
@@ -727,8 +727,8 @@ public class DataBase {
 			while (rs.next()) {
 				pw = rs.getString("password");
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return pw;
 	}
@@ -745,8 +745,8 @@ public class DataBase {
 			while (rs.next()) {
 				return rs.getString("salt");
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return null;
 	}
@@ -765,8 +765,8 @@ public class DataBase {
 			ps.setString(1, password);
 			ps.setString(2, username);
 			return ps.executeUpdate() > 0;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 			return false;
 		}
 	}
@@ -787,8 +787,8 @@ public class DataBase {
 			while (rs.next()) {
 				email = rs.getString("email");
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return email;
 	}
@@ -812,16 +812,16 @@ public class DataBase {
 				String pw = rs.getString("password");
 				return name.equals(username) && pw.equals(password);
 			}
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return false;
 	}
 
 	/* Helper method for SQLException handling. */
-	private void handleSQLException(SQLException e) {
-		System.err.println(e);
-		e.printStackTrace();
+	private void handleSQLException(SQLException exception) {
+		System.err.println(exception);
+		exception.printStackTrace();
 	}
 
 	/* Helper method. */
@@ -832,8 +832,8 @@ public class DataBase {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next())
 				return rs;
-		} catch (SQLException e) {
-			handleSQLException(e);
+		} catch (SQLException exception) {
+			handleSQLException(exception);
 		}
 		return null;
 	}
