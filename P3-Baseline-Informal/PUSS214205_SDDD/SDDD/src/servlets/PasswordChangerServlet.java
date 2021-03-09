@@ -17,7 +17,7 @@ import handlers.PasswordHandler;
  */
 @WebServlet("/PasswordChangerServlet")
 public class PasswordChangerServlet extends ServletBase {
-	private static final long serialVersionUID = 1L;
+	
 	private final int PW_CHANGE_SUCCESSFUL_ = 2;
 	private final int PW_CHANGE_FAILED_NETWORK_ERROR_ = 1;
 	private final int PW_CHANGE_FAILED_IDENTICAL_PASSWORDS_ = 0;

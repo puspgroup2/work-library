@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 
 import handlers.MailHandler;
@@ -32,9 +31,9 @@ public class LogIn extends ServletBase {
 	 * Implementation of all input to the servlet. All post-messages are forwarded
 	 * to this method.
 	 * 
-	 * First logout the user, then check if he/she has provided a username and a
+	 * First logout the user, then check if he/she has provided a userName and a
 	 * password. If he/she has, it is checked with the database and if it matches
-	 * then the session state is changed to login, the username that is saved in the
+	 * then the session state is changed to login, the userName that is saved in the
 	 * session is updated, and the user is relocated to the functionality page.
 	 * 
 	 */
@@ -42,18 +41,18 @@ public class LogIn extends ServletBase {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		String username = request.getParameter("username");
+		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		if (username == null || password == null) {
+		if (userName == null || password == null) {
 			session.setAttribute("message", USER_LOGIN_FAILED_);
 		} else {
-			String salt = db.getSalt(username);
+			String salt = db.getSalt(userName);
 			if (salt != null) {
 				String hashPassword = PasswordHandler.hashPassword(password, salt);
-				if (db.checkLogin(username, hashPassword)) {
-					session.setAttribute("username", username);
-					session.setAttribute("role", db.getRole(username));
+				if (db.checkLogin(userName, hashPassword)) {
+					session.setAttribute("username", userName);
+					session.setAttribute("role", db.getRole(userName));
 					session.setAttribute("state", LOGIN_TRUE);
 					response.sendRedirect("index.jsp");
 				} else {
