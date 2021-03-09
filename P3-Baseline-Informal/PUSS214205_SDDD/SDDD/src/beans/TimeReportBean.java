@@ -17,7 +17,7 @@ public class TimeReportBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int week = 0;
-	private String username;
+	private String userName;
 	private String signed;
 	private int totalTime;
 	private int reportID = -1;
@@ -132,21 +132,21 @@ public class TimeReportBean implements Serializable {
 	}
 
 	/**
-	 * Sets the username for the current user.
+	 * Sets the userName for the current user.
 	 * 
 	 * @param username
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsername(String userName) {
+		this.userName = userName;
 	}
 
 	/**
-	 * Fetches the username.
+	 * Fetches the userName.
 	 * 
-	 * @return username
+	 * @return userName
 	 */
 	public String getUsername() {
-		return this.username;
+		return this.userName;
 	}
 
 	/**
