@@ -22,6 +22,8 @@ public class TimeReportManagementServlet extends ServletBase {
 
 	/**
 	 * Handles GET request and serves signreport.jsp.
+	 * @throws ServletException if interference with normal operations occurs.
+	 * @throws IOException if wrong input is received.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -52,7 +54,9 @@ public class TimeReportManagementServlet extends ServletBase {
 	}
 
 	/**
-	 * This post handled sign/unsign with a Time report.
+	 * This post handles sign/unsign with a Time report.
+	 * @throws ServletException if interference with normal operations occurs.
+	 * @throws IOException if wrong input is received.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
