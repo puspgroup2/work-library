@@ -21,9 +21,6 @@ import beans.TimeReportBean;
 @WebServlet("/TimeReportManagementServlet")
 public class TimeReportManagementServlet extends ServletBase {
 
-	private static final long serialVersionUID = 1L;
-
-
 	/**
 	 * Handles GET request and serves signreport.jsp.
 	 * 
