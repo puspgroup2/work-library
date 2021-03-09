@@ -1,4 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,27 +13,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
- <%@ page import="java.util.*" %>
- 
- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <%@page import="java.sql.*"%>
+  <meta name="description" content="TimeMate">
+  <meta name="author" content="PUSPGroup2">
   <title>TimeMate - New Time Report</title>
 </head>
 
 <body>
-<%
-	if(session.getAttribute("username") == null) {
-		response.sendRedirect("login.jsp");
-	}
-%>
+  <!-- To make sure user is logged in -->
+  <%
+    if(session.getAttribute("username") == null) {
+      response.sendRedirect("login.jsp");
+    }
+  %>
 
-<!--Start navbar-->
-<nav class="navbar navbar-light navbar-expand-md bg-light">
+  <!-- Start of navbar-->
+  <nav class="navbar navbar-light navbar-expand-md bg-light">
 
   <a class="navbar-brand abs" href="index.jsp">TimeMate</a>
   
@@ -69,29 +70,7 @@
           </ul>
       </div>
   </nav>
-  
-  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-        <h4>Log Out <i class="fa fa-lock"></i></h4>
-      </div>
-      <div class="modal-body">
-        <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
-        <div class="actionsBtns">
-            <form action="LogOut">
-            
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input type="submit" class="btn btn-default btn-primary" value="Logout" />
-	                <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--End navbar-->
+  <!-- End of navbar-->
 
 <div class="d-flex" id="wrapper">
 
@@ -118,6 +97,7 @@
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
+    <!-- Start pop up messages -->
     <c:if test="${sessionScope.reportError eq 1}">
         <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
             There is already a report with the given week.
@@ -129,7 +109,9 @@
             You need to enter a week for the report.
         </div>
     </c:if>
+    <!-- End pop up messages -->
 
+    <!-- Start new time report card -->
     <div class="container-fluid">
       <div>
         <div class="card mx-auto rounded shadow shadow-sm" style="max-width: 50rem; margin-top:1rem; margin-bottom:50px;">
@@ -189,6 +171,7 @@
                   (The sum of all seperate activities are automatically summed up and entered above)
                 </td>
               </tr>
+              <!-- Start header row -->
               <tr>
                 <td><b>Number</b></td>
                 <td><b>Activity</b></td>
@@ -198,6 +181,8 @@
                 <td><b>R</b></td>
                 <td><b>Total time</b></td>
               </tr>
+              <!-- End header row -->
+              <!-- Start SDP row -->
               <tr>
                 <td>11</td>
                 <td>SDP</td>
@@ -217,6 +202,8 @@
                     <input type="number" id="sdp_total" name="sdp_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End SDP row -->
+              <!-- Start SRS row -->
               <tr>
                 <td>12</td>
                 <td>SRS</td>
@@ -236,6 +223,8 @@
                   <input type="number" id="srs_total"  name="srs_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End SRS row -->
+              <!-- Start SVVS row -->
               <tr>
                 <td>13</td>
                 <td>SVVS</td>
@@ -255,6 +244,8 @@
                   <input type="number" id="svvs_total" name="svvs_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End SVVS row -->
+              <!-- Start STLDD row -->
               <tr>
                 <td>14</td>
                 <td>STLDD</td>
@@ -274,6 +265,8 @@
                   <input type="number" id="stldd_total"  name="stldd_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End STLDD row -->
+              <!-- Start SVVI row -->
               <tr>
                 <td>15</td>
                 <td>SVVI</td>
@@ -293,6 +286,8 @@
                   <input type="number" id="svvi_total" name="svvi_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End SVVI row -->
+              <!-- Start SDDD row -->
               <tr>
                 <td>16</td>
                 <td>SDDD</td>
@@ -312,6 +307,8 @@
                   <input type="number" id="sddd_total" name="sddd_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End SDDD row -->
+              <!-- Start SVVR row -->
               <tr>
                 <td>17</td>
                 <td>SVVR</td>
@@ -331,6 +328,8 @@
                   <input type="number" id="svvr_total" name="svvr_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End SVVR row -->
+              <!-- Start SDD row -->
               <tr>
                 <td>18</td>
                 <td>SSD</td>
@@ -350,6 +349,8 @@
                   <input type="number" id="ssd_total" name="ssd_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End SDD row -->
+              <!-- Start Final Report row -->
               <tr>
                 <td>19</td>
                 <td>Final Report</td>
@@ -369,6 +370,8 @@
                   <input type="number" id="final_total" name="final_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End Final Report row -->
+              <!-- Start Sum row -->
               <tr>
                 <td colspan="2"><b>Sum</b></td>
                 <td>
@@ -387,58 +390,80 @@
                     <input type="number" id="total_total" name="total_total" class="form-control" disabled>
                 </td>
               </tr>
+              <!-- End Sum row -->
+              <!-- Start Functional test row -->
               <tr>
                 <td colspan="2">21</td>
                 <td colspan="4">Functional test</td>
                 <td><input type="number" id="functionalTest" min="0" class="other-values" name="functionalTest" class="form-control"></td>
               </tr>
+              <!-- End Functional test row -->
+              <!-- Start System test row -->
               <tr>
                 <td colspan="2">22</td>
                 <td colspan="4">System test</td>
                 <td><input type="number" id="systemTest" min="0" class="other-values" name="systemTest" class="form-control"></td>
               </tr>
+              <!-- End System test row -->
+              <!-- Start Regression test row -->
               <tr>
                 <td colspan="2">23</td>
                 <td colspan="4">Regression test</td>
                 <td><input type="number" id="regressionTest" min="0" class="other-values" name="regressionTest" class="form-control"></td>
               </tr>
+              <!-- End Regression test row -->
+              <!-- Start Meeting row -->
               <tr>
                 <td colspan="2">30</td>
                 <td colspan="4">Meeting</td>
                 <td><input type="number" id="meeting" min="0" class="other-values" name="meeting" class="form-control"></td>
               </tr>
+              <!-- End Meeting row -->
+              <!-- Start Lecture row -->
               <tr>
                 <td colspan="2">41</td>
                 <td colspan="4">Lecture</td>
                 <td><input type="number" id="lecture" min="0" class="other-values" name="lecture" class="form-control"></td>
               </tr>
+              <!-- End Lecture row -->
+              <!-- Start Exercise row -->
               <tr>
                 <td colspan="2">42</td>
                 <td colspan="4">Exercise</td>
                 <td><input type="number" id="exercise" min="0" class="other-values" name="exercise" class="form-control"></td>
               </tr>
+              <!-- End Exercise row -->
+              <!-- Start Computer Exercise row -->
               <tr>
                 <td colspan="2">43</td>
                 <td colspan="4">Computer Exercise</td>
                 <td><input type="number" id="computerExercise" min="0" class="other-values" name="computerExercise" class="form-control"></td>
               </tr>
+              <!-- End Computer Exercise row -->
+              <!-- Start Home Reading row -->
               <tr>
                 <td colspan="2">44</td>
                 <td colspan="4">Home reading</td>
                 <td><input type="number" id="homeReading" min="0" class="other-values" name="homeReading" class="form-control"></td>
               </tr>
+              <!-- End Home Reading row -->
+              <!-- Start Other row -->
               <tr>
                 <td colspan="2">100</td>
                 <td colspan="4">Other</td>
                 <td><input type="number" id="other" min="0" class="other-values" name="other" class="form-control"></td>
               </tr>
+              <!-- End Other row -->
+              <!-- Start Part C row -->
               <tr>
                 <td colspan="7">
                   <b>Part C: Time spent at different types of sub activites</b><br>
                   (The values are summed up automatically)
                 </td>
               </tr>
+              <!-- End part C row -->
               </tbody>
+              <!-- Start total time -->
               <tr>
                 <td colspan="2"><b>Activity type</b></td>
                 <td><b>Activity code</b></td>
@@ -477,10 +502,7 @@
                     <input type="number" id="total_r" name="total_r" type="text" class="form-control" disabled>
                 </td>
               </tr>
-              
-              
-              
-              
+              <!-- End total time -->
             </table>
             <div class="form-group row">
               <div class="offset-0 col-8">
@@ -488,14 +510,38 @@
               </div>
             </div>
           </form>
-        
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- End new time report card -->
   <!-- /#page-content-wrapper -->
 </div>
+
+  <!-- Start of log out modal -->
+  <div class="modal" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+          <h4>Log Out <i class="fa fa-lock"></i></h4>
+        </div>
+        <div class="modal-body">
+          <p><i class="fa fa-question-circle"></i> Are you sure you want to log out? <br /></p>
+          <div class="actionsBtns">
+              <form action="LogOut">
+              
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                  <input type="submit" class="btn btn-default btn-primary" value="Logout" />
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of log out modal -->
 
 <script>
 

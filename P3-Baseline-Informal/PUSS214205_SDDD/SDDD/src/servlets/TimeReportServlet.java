@@ -23,8 +23,6 @@ import database.DataBase;
 @WebServlet("/TimeReportServlet")
 public class TimeReportServlet extends ServletBase {
 
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * Handles GET request and serves summaryreport.jsp, which displays a summary of
 	 * all Time reports for the user.
