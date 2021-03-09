@@ -52,14 +52,7 @@ public class PasswordChangerServlet extends ServletBase {
 			session.setAttribute("passwordMessage", PW_CHANGE_FAILED_FALSE_CURRENT_PASSWORD_);
 		}
 		response.sendRedirect("changepassword.jsp");
-		doGet(request, response);
+		
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	}
 }
