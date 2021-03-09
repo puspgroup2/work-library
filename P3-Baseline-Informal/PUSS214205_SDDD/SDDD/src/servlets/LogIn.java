@@ -37,9 +37,6 @@ public class LogIn extends ServletBase {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LogIn() {
-		super();
-	}
 
 	/**
 	 * Implementation of all input to the servlet. All post-messages are forwarded
