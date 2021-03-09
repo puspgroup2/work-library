@@ -21,6 +21,11 @@ public class LogOut extends HttpServlet {
 
 	/**
 	 * Removes a user from the current session.
+	 * 
+	 * @throws ServletException if interference with normal operations occurs.
+	 * @throws IOException if wrong input is received.
+	 * @param request a HttpServletRequest which contains session data
+	 * @param response a HttpServletResponse which is used to send redirects to the user
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
