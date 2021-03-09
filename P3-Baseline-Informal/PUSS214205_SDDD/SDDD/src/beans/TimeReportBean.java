@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 /** This class is the bean for the web pages "newReport.jsp, editReport.jsp and summaryReport.jsp".*/
 public class TimeReportBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
 	private int week = 0;
 	private String userName;
 	private String signed;
