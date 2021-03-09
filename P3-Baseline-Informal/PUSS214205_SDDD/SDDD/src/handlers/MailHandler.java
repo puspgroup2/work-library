@@ -4,6 +4,9 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+/**
+ * This class handles sending out mail to users requesting password change
+ */
 public class MailHandler {
 	/*
 	 * IN ORDER FOR THIS CLASS TO FUNCTION, TWO EXTERNAL JARS ARE REQUIRED. ADD ALL
@@ -49,13 +52,9 @@ public class MailHandler {
 
 		// Get the Session object.// and pass username and password
 		Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-
 			protected PasswordAuthentication getPasswordAuthentication() {
-
 				return new PasswordAuthentication(senderEmail, senderPassword);
-
 			}
-
 		});
 
 		try {
