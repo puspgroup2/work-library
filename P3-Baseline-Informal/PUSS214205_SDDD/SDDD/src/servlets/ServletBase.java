@@ -16,7 +16,7 @@ public class ServletBase extends HttpServlet {
 	protected static DataBase db = null;
 
 	/**
-	 * Default constructor.
+	 * This is the connector to the database.
 	 */
 	public ServletBase() {
 		db = new DataBase();
