@@ -209,17 +209,19 @@
 
 </div>
 
+<!-- Script for resetting radiobuttons when refreshing the page -->
 <script>
   window.onload = function(){
     radioButtons.reset();
   }
 </script>
 
+<!-- Script for unsigning Time reports -->
 <script>
   $('#Unsign').on('click', () => {
     const boxes = getSignedReports();
     const ids = boxes.map(box => $(box).attr('id'));
-    console.log(ids)
+    
     $.post("/TimeReportManagementServlet",  {
       "input": "Unsign",
       "timeReports": JSON.stringify(ids)
@@ -261,7 +263,7 @@
 
 </script>
 
-
+<!-- Script for clicking the different buttons "Edit Selected Report", "View selected report" and "Show signed reports" -->
 <script>
 
     let showToggled = false;
