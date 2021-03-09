@@ -19,9 +19,8 @@ public class PasswordHandler {
 	/**
 	 * Hashes the provided password string with the provided salt string using
 	 * SHA-256.
-	 * 
 	 * @param password the users password.
-	 * @param salt     the users salt.
+	 * @param salt the users salt.
 	 * @return hashed password as a String.
 	 * @throws NoSuchAlgorithmException if the given cryptographic algorithm is not
 	 *                                  available in the environment.
@@ -42,10 +41,8 @@ public class PasswordHandler {
 		}
 		return hashedPassword;
 	}
-
 	/**
 	 * Generates a new random password according to requirement 6.2.1 in PUSS214201.
-	 * 
 	 * @return password as a String.
 	 */
 	public static String generatePassword() {
@@ -68,7 +65,6 @@ public class PasswordHandler {
 		}
 		return sb.toString();
 	}
-
 	/**
 	 * Generates a new random salt String.
 	 * 
