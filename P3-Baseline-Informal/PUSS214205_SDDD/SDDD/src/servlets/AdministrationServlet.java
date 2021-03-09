@@ -22,8 +22,8 @@ import handlers.PasswordHandler;
 public class AdministrationServlet extends ServletBase {
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * This method gets users'name and emails then they are located to the adminstration function page.
+	 * It serves to administration.jsp
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -46,13 +46,11 @@ public class AdministrationServlet extends ServletBase {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 *This method handels removing and adding users functions. 
+	 *Used to see which buttons is pressed. If a string != null, then that button was pressed
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Used to see which buttons is pressed. If a string != null, then that button
-		// was pressed
 		String removeBtn = request.getParameter("remove");
 		String addBtn = request.getParameter("add");
 		String username = request.getParameter("username");
