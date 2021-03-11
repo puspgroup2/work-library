@@ -17,6 +17,9 @@ import beans.UserManagementBean;
 import handlers.MailHandler;
 import handlers.PasswordHandler;
 
+/**
+ * This class handles the administration page, which lets the admin remove/add users.
+ */
 @WebServlet("/AdministrationServlet")
 public class AdministrationServlet extends ServletBase {
 
