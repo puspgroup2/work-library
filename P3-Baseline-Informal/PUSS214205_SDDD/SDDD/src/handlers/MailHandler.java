@@ -8,10 +8,12 @@ import javax.mail.internet.*;
  * This class handles sending out mail to users requesting password change
  */
 public class MailHandler {
+	
 	/*
 	 * IN ORDER FOR THIS CLASS TO FUNCTION, TWO EXTERNAL JARS ARE REQUIRED. ADD ALL
 	 * JARS IN THE "resources" FOLDER TO CLASSPATH .
 	 */
+	
 	private final String senderEmail = "puspmailgroup2@gmail.com";
 	private final String senderPassword = "_7xYxeY-9c$7by.r%/aL";
 	private Properties prop_;

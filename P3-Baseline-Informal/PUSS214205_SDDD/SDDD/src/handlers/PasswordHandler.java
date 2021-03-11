@@ -41,6 +41,7 @@ public class PasswordHandler {
 		}
 		return hashedPassword;
 	}
+	
 	/**
 	 * Generates a new random password according to requirement 6.2.1 in PUSS214201.
 	 * @return password as a String.
@@ -65,6 +66,7 @@ public class PasswordHandler {
 		}
 		return sb.toString();
 	}
+	
 	/**
 	 * Generates a new random salt String.
 	 * 
@@ -75,4 +77,5 @@ public class PasswordHandler {
 		rand.nextBytes(salt);
 		return Base64.getEncoder().encodeToString(salt);
 	}
+	
 }
