@@ -12,9 +12,6 @@ import java.util.Map;
 
 /**
  * A database used by the time reporting system TimeMate.
- * 
- * @author Anna, Alexandra, Annelie
- *
  */
 public class DataBase {
 	private Connection connection;
