@@ -18,20 +18,20 @@
 </head>
 
 <!-- Start of pop up messages -->
-<c:if test="${sessionScope.message eq 0}">
+<c:if test="${param.message eq 0}">
     <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
         You have entered wrong username and/or password
     </div>
 </c:if>
 
-<c:if test="${sessionScope.message eq 1}">
+<c:if test="${param.message eq 1}">
     <div class="alert alert-danger p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
         There is no such user in the database
     </div>
 </c:if>
 
 
-<c:if test="${sessionScope.message eq 2}">
+<c:if test="${param.message eq 2}">
     <div class="alert alert-success p-1 mx-auto" style="margin-top:1rem; max-width: 25rem" role="alert">
         A new password has been sent to your mail
     </div>

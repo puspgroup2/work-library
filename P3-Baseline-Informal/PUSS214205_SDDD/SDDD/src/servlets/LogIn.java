@@ -61,13 +61,11 @@ public class LogIn extends ServletBase {
 					response.sendRedirect("index.jsp");
 				} else {
 					// ---------Failed Login--------------
-					session.setAttribute("message", USER_LOGIN_FAILED_);
-					response.sendRedirect("login.jsp");
+					response.sendRedirect("login.jsp?message="+USER_LOGIN_FAILED_);
 				}
 			} else {
 				// ------------Failed Login----------------
-				session.setAttribute("message", USER_LOGIN_FAILED_);
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("login.jsp?message="+USER_LOGIN_FAILED_);
 			}
 		}
 	}
@@ -93,11 +91,9 @@ public class LogIn extends ServletBase {
 			mh.sendPasswordMail(mail, userName, pw);
 
 			db.changePassword(userName, PasswordHandler.hashPassword(pw, db.getSalt(userName)));
-			session.setAttribute("message", PW_CHANGE_SUCCESS_);
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("login.jsp?message="+PW_CHANGE_SUCCESS_);
 		} else {
-			session.setAttribute("message", PW_CHANGE_FAILED_);
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("login.jsp?message="+PW_CHANGE_FAILED_);
 		}
 	}
 }
