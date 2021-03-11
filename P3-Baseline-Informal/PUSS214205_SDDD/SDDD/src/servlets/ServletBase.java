@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServlet;
 import database.DataBase;
 
 /**
- * This class is the superclass for all servlets in the application. It includes
+ * This class is the superclass for most servlets in the application. It includes
  * basic functionality required by many servlets, like for example the connection to the database.
  */
 public class ServletBase extends HttpServlet {
