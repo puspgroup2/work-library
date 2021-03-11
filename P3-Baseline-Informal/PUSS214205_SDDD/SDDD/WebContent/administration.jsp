@@ -88,6 +88,8 @@
         The username must be 5-10 letters long and only contain 0-9, A-Z, a-z
     </div>
   </c:if>
+
+  <c:remove var="AdminMessage" scope="session"/>
   <!-- End of pop up messages -->
 
   <!-- Start card for add user -->

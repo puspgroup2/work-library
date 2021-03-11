@@ -109,6 +109,8 @@
             You need to enter a week for the report.
         </div>
     </c:if>
+
+    <c:remove var="reportError" scope="session"/>
     <!-- End pop up messages -->
 
     <!-- Start new time report card -->
