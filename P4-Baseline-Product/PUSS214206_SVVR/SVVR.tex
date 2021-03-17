@@ -5,6 +5,8 @@
 \usepackage{geometry}
 \usepackage{tikz}
 \usepackage{rotating}
+\usepackage[export]{adjustbox}
+
 
 
 % ---- Commands ------- %
@@ -106,14 +108,22 @@
 \end{tabular}
 
 \section{Overview}
+Function tests were run under the development phase as instructed in the SVVS. However additional function tests were run asswell by the testers own volition to insure minimal function of the system. RT1 was performed four times during this phase.\newline \newline After the initial development of the SDDD the system was tested with ST1, ST2 and ST3. The results of the mentioned System tests were reported to UG in the first informal review. After the first informal review UG further developed the SDDD and it was once again tested with ST1, ST2 and ST3 before the SDDD was put in baseline to insure that the system was operational.\newline \newline After each function test and regressions test a test form was filed. These can be seen under appendix A and B respectively.  System tests had their own test form and these can be seen in appendix C.The result of each test was noted in a Google sheet as specified in the SVVS. The sheet in question can be viewed under appendix D. Protocols from reviews can be seen under appendix E. 
+
+\section{Reference Documents}
+\begin{enumerate}
+	\item Software Verification and Validation Instructions: 	TimeMate, v. 1.1, Doc. number: PUSS214203
+\end{enumerate}
 
 \section{Test Process}
+Before testing commenced it was known that FT16 would be left out. This after UG insisted that it’d be impossible to test. \newline \newline Function test FT7, FT25 and FT26 should be noted. Though they initially passed their individual function test they later failed during the first wave of system tests because the initial implementation was wrong and was corrected by UG just before the system tests took place. The tests failed since it could not be tested according to the instructions in the SVVI, that commanded the tester to add a user with a username shorter than five characters, something that is specified in the base system SRS should not be allowed. This is not to say that the function did not work, it did, had the input been correct, but instead it’s to say that the tests in the SVVI had to be rewritten slightly. It should also be noted that FT22 and FT23 failed in the first wave of system tests for two testers who were conducting ST3. This was noted by UG during the first informal review. \newline \newline In the second wave of system test, which was conducted before informal review two, FT7, FT25 and FT26 passed along with all other function tests and system tests and the SDDD was put in baseline shortly after informal review 2. It should be noted however that FT14. FT15, FT22, FT23, FT28 worked for all test members except one and is therefore marked yellow in the Google sheet. However since it worked on a majority of computers it was ruled that this was an unknown error caused by an unknown source local to that testers PC.
+
 
 \section{Appendices}
 \begin{itemize}
 \item \textbf{A.} Function Test Result
-\item \textbf{B.} System Test Result
-\item \textbf{C.} Regression Test Result 
+\item \textbf{B.} Regression Test Result 
+\item \textbf{C.} System Test Result
 \item \textbf{D.} Test Result in Google Sheet
 \item \textbf{E.} Review Protocols
 \end{itemize}
@@ -318,68 +328,7 @@
 
 \newpage
 \begin{flushleft}
-{\large \textbf{B. System Test Result}}
-\end{flushleft}
-
-\vspace*{\fill}
-                \hfill
-                \begin{center}
-                This page unintentionally left blank.
-                \end{center}
-                \vspace{\fill}
-                \thispagestyle{empty}
-
-\begin{figure}
-     \centering
-     \includegraphics[width=13cm]{images/2021-03-04_Alexander_ST1-1}
-     \renewcommand\figurename{Figure}
-     \label{fig:my_label}
- \end{figure}
- 
- \begin{figure}
-     \centering
-     \includegraphics[width=13cm]{images/2021-03-04_Alexander_ST1-2}
-     \renewcommand\figurename{Figure}
-     \caption{System test form for ST1}
-     \label{fig:my_label}
- \end{figure}
-
-
-\begin{figure}
-     \centering
-     \includegraphics[width=13cm]{images/2021-03-04_Malte_ST2-1}
-     \renewcommand\figurename{Figure}
-     \label{fig:my_label}
- \end{figure}
- 
- \begin{figure}
-     \centering
-     \includegraphics[width=13cm]{images/2021-03-04_Malte_ST2-2}
-     \renewcommand\figurename{Figure}
-     \caption{System test form for ST2}
-     \label{fig:my_label}
- \end{figure}
- 
-
-\begin{figure}
-     \centering
-     \includegraphics[width=13cm]{images/2021-03-04_Anas_ST3-1}
-     \renewcommand\figurename{Figure}
-     \label{fig:my_label}
- \end{figure}
- 
- \begin{figure}
-     \centering
-     \includegraphics[width=13cm]{images/2021-03-04_Anas_ST3-2}
-     \renewcommand\figurename{Figure}
-     \caption{System test form for ST2}
-     \label{fig:my_label}
- \end{figure}
-
-
-\newpage
-\begin{flushleft}
-{\large \textbf{C. Regression Test Result}}
+{\large \textbf{B. Regression Test Result}}
 \end{flushleft}
 
 \vspace*{\fill}
@@ -421,17 +370,241 @@
      \caption{Regression test form for RT1 (FT1,FT21)}
      \label{fig:my_label}
  \end{figure}
+ 
 
+\newpage
+\begin{flushleft}
+{\large \textbf{C. System Test Result}}
+\end{flushleft}
+
+\vspace*{\fill}
+                \hfill
+                \begin{center}
+                This page unintentionally left blank.
+                \end{center}
+                \vspace{\fill}
+                \thispagestyle{empty}
+
+\begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-04_Alexander_ST1-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-04_Alexander_ST1-2}
+     \renewcommand\figurename{Figure}
+     \caption{System test form for ST1 First Wave}
+     \label{fig:my_label}
+ \end{figure}
+
+
+\begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-04_Malte_ST2-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-04_Malte_ST2-2}
+     \renewcommand\figurename{Figure}
+     \caption{System test form for ST2 First Wave}
+     \label{fig:my_label}
+ \end{figure}
+ 
+
+\begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-04_Anas_ST3-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-04_Anas_ST3-2}
+     \renewcommand\figurename{Figure}
+     \caption{System test form for ST3 First Wave}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-08_Alexander_ST1-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-08_Alexander_ST1-2}
+     \renewcommand\figurename{Figure}
+     \caption{System test form for ST1 Second Wave}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-08_Malte_ST2-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-08_Malte_ST2-2}
+     \renewcommand\figurename{Figure}
+     \caption{System test form for ST2 Second Wave}
+     \label{fig:my_label}
+ \end{figure}
+
+
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-08_Anas_ST3-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/2021-03-08_Anas_ST3-2}
+     \renewcommand\figurename{Figure}
+     \caption{System test form for ST3 Second Wave}
+     \label{fig:my_label}
+ \end{figure}
 
 \newpage
 \begin{flushleft}
 {\large \textbf{D. Test Result in Google Sheet}}
 \end{flushleft}
 
+\vspace*{\fill}
+                \hfill
+                \begin{center}
+                This page unintentionally left blank.
+                \end{center}
+                \vspace{\fill}
+                \thispagestyle{empty}
+
+
+ \begin{figure}
+     \centering
+     \includegraphics[width=19cm, left]{images/Testresultat TimeMate 1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+  \begin{figure}
+     \centering
+     \includegraphics[width=19cm, left]{images/Testresultat TimeMate 2}
+     \renewcommand\figurename{Figure}
+     \caption{Test Result in Google Sheet}
+     \label{fig:my_label}
+ \end{figure}
+
+
 \newpage
 \begin{flushleft}
 {\large \textbf{E. Review Protocols}}
 \end{flushleft}
+
+
+\vspace*{\fill}
+                \hfill
+                \begin{center}
+                This page unintentionally left blank.
+                \end{center}
+                \vspace{\fill}
+                \thispagestyle{empty}
+                
+
+\begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/SDP - Granskningsprotokoll-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/SDP - Granskningsprotokoll-2}
+     \renewcommand\figurename{Figure}
+     \caption{Review Protocol for SDP}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ 
+\begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/SRS - Granskningsprotokoll-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/SRS - Granskningsprotokoll-2}
+     \renewcommand\figurename{Figure}
+     \caption{Review Protocol for SRS}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/STLDD - Granskningsprotokoll-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/STLDD - Granskningsprotokoll-2}
+     \renewcommand\figurename{Figure}
+     \caption{Review Protocol for STLDD}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ 
+  \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/SVVI - Granskningsprotokoll-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/SVVI - Granskningsprotokoll-2}
+     \renewcommand\figurename{Figure}
+     \caption{Review Protocol for SVVI}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ 
+   \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/SVVS - Granskningsprotokoll-1}
+     \renewcommand\figurename{Figure}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ \begin{figure}
+     \centering
+     \includegraphics[width=13cm]{images/SVVS - Granskningsprotokoll-2}
+     \renewcommand\figurename{Figure}
+     \caption{Review Protocol for SVVS}
+     \label{fig:my_label}
+ \end{figure}
+ 
+ 
+ 
 
 
 %---------Document ends here-----------

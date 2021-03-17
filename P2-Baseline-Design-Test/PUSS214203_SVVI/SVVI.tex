@@ -63,7 +63,7 @@
     \documentNumber {03}    
     
     % BASELINE.VERSION
-    \documentVersion {1.1}
+    \documentVersion {1.2}
     
     % Full name - SHORTNAME
     \documentTitle {Software Verification and Validation Instructions}
@@ -73,7 +73,7 @@
     \documentAuthors {Test Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-03-03}
+    \documentDate {2021-03-15}
 }
 
 \begin{document}
@@ -101,7 +101,8 @@
    0.4 & 2021-02-24 & TG & Corrected reference error, changed descriptions for testcases,  \\
        &            &   &   removed paragraph in chapter 4. \\
    1.0 & 2021-03-01 & TG & Reached baseline. \\ 
-   1.1 & 2021-03-03 & TG & Changed SVVS ref. and minor changes to FT9, 12, 20, 21.   
+   1.1 & 2021-03-03 & TG & Changed SVVS ref. and minor changes to FT9, 12, 20, 21.\\
+   1.2 & 2021-03-15 & TG & Padded all usernames with numbers so they are at least five charters long. \\   
 \end{tabular}
 
 \section{Introduction}
@@ -130,11 +131,11 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 \subsection{Login and Logout}
 	\begin{itemize}
 		\item \textbf{FT1:  User can login with correct username and 			password. (JUnit)} \newline
-		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. \newline
-		\textbf{End state:} User “Alex” is logged in. 
+		\textbf{Start state:} User not logged in, user “Alex12” does exist in the database and has password “123ABCde”. \newline
+		\textbf{End state:} User “Alex12” is logged in. 
 		\begin{enumerate}
-			\item Create a Database-object called “Alex”.
-			\item assertTrue(Alex.checkLogin(“Alex”,“123ABCde”)).
+			\item Create a Database-object called “Alex12”.
+			\item assertTrue(Alex12.checkLogin(“Alex12”,“123ABCde”)).
 			\item Check that the test passes.
 		\end{enumerate}
 		
@@ -148,44 +149,44 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 		\end{enumerate}
 		
 		\item \textbf{FT3: User cannot login with other users passwords.} \newline
-		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. User “Erik” also exists in the database and has password “deCBA321”. \newline
-		\textbf{End state:} User “Alex” is not logged in.   
+		\textbf{Start state:} User not logged in, user “Alex12” does exist in the database and has password “123ABCde”. User “Erik1” also exists in the database and has password “deCBA321”. \newline
+		\textbf{End state:} User “Alex12” is not logged in.   
 		\begin{enumerate}
 			\item  Access the login page. 
-			\item Login with username “Alex” and password “deCBA321”. 
+			\item Login with username “Alex12” and password “deCBA321”. 
 			\item Check that the user is not logged in and that an error message is given.
 		\end{enumerate}
 		
 		\item \textbf{FT4: User cannot login with foregoing password.} \newline
-		\textbf{Start state:} User not logged in, user “Alex” exists in database with password “123ABCde”.  \newline
-		\textbf{End state:} User “Alex” is not logged in.   
+		\textbf{Start state:} User not logged in, user “Alex12” exists in database with password “123ABCde”.  \newline
+		\textbf{End state:} User “Alex12” is not logged in.   
 		\begin{enumerate}
 			\item Access the login page. 
-			\item Login with username “Alex” and password “123ABCde”.
-			\item Change password for user “Alex” to “deCBA321”.
+			\item Login with username “Alex12” and password “123ABCde”.
+			\item Change password for user “Alex12” to “deCBA321”.
 			\item Click the “Logout” button.
 			\item Access the login page. 
-			\item Login with username “Alex” and password “123ABCde”.
+			\item Login with username “Alex12” and password “123ABCde”.
 			\item Check that the user is not logged in and that an error message is given. 
 		\end{enumerate}
 		
 		\item \textbf{FT5: User can logout.} \newline
-		\textbf{Start state:} User “Alex” exist in the database and is logged in. \newline
+		\textbf{Start state:} User “Alex12” exist in the database and is logged in. \newline
 		\textbf{End state:} User not logged in.   
 		\begin{enumerate}
 			\item Press the “Logout” button. 
-			\item Check that “Alex” is not logged in. 
+			\item Check that “Alex12” is not logged in. 
 		\end{enumerate}
 		
 		\item \textbf{FT6: User gets a new password from the server by email if requested.} \newline
-		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde” and email address “TimeMatePUSP2021@gmail.com” is registered in the database.\newline
-		\textbf{End state:}  User “Alex” is logged in.  
+		\textbf{Start state:} User not logged in, user “Alex12” does exist in the database and has password “123ABCde” and email address “TimeMatePUSP2021@gmail.com” is registered in the database.\newline
+		\textbf{End state:}  User “Alex12” is logged in.  
 		\begin{enumerate}
 			\item Access the login page. 
 			\item User requests a new password.
 			\item Access the inbox of “TimeMatePUSP2021@gmail.com” and copy the new password.
 			\item Access the login page.
-			\item Login using username “Alex” and the password received in the email.
+			\item Login using username “Alex12” and the password received in the email.
 			\item Check that the user is logged in. 
 		\end{enumerate}
 		
@@ -202,26 +203,26 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 		\end{enumerate}
 		
 		\item \textbf{FT8: User can change password from logged-in state.} \newline
-		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. \newline
-		\textbf{End state:} User “Alex” is logged in. 
+		\textbf{Start state:} User not logged in, user “Alex12” does exist in the database and has password “123ABCde”. \newline
+		\textbf{End state:} User “Alex12” is logged in. 
 		\begin{enumerate}
 			\item Access the login page.
-			\item Login with username “Alex” and password “123ABCde”.
+			\item Login with username “Alex12” and password “123ABCde”.
 			\item Click the “Change Password” button.
 			\item Choose the new password “deCBA321”.
 			\item Click the “Change Password” button.
 			\item Click the “Logout" button.
 			\item Access the login page.
-			\item Login with username “Alex” and password “deCBA321”.
+			\item Login with username “Alex12” and password “deCBA321”.
 			\item Check that the user is logged in.
 		\end{enumerate}
 		
 		\item \textbf {FT9: User tries to change password from logged-in state but enters incorrect new password.} \newline
-		\textbf{Start state:} User not logged in, user “Alex” does exist in the database and has password “123ABCde”. \newline
+		\textbf{Start state:} User not logged in, user “Alex12” does exist in the database and has password “123ABCde”. \newline
 		\textbf{End state:} User cannot change password.
 		\begin{enumerate}
 			\item Access the login page.
-			\item Login with username ’Alex’ and password “123ABCde”.
+			\item Login with username ’Alex12’ and password “123ABCde”.
 			\item Click the “Change Password” button.
 			\item Choose the new password “abcABC\%”.
 			\item Check that you cannot click the “Change Password” button.
@@ -368,7 +369,7 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 		\end{enumerate}
 		
 		\item \textbf{FT23: Can reverse a signed time report making it editable again.}\newline
-		\textbf{Start state:} Project Leader is logged in. User “Alex” does exist in the database and has password “123ABCde”. The user has submitted a time report that has been signed.
+		\textbf{Start state:} Project Leader is logged in. User “Alex12” does exist in the database and has password “123ABCde”. The user has submitted a time report that has been signed.
  \newline 
 		\textbf{End state:} The time report is now unsigned.
 		\begin{enumerate}
@@ -377,7 +378,7 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 			\item Make the time report unsigned.
 			\item Click the “Logout” button.
 			\item Access the login page.
-			\item Login with username “Alex” and password “123ABCde”.
+			\item Login with username “Alex12” and password “123ABCde”.
 			\item Click the “Time Report” button.
 			\item Select the time report that was unsigned by Project Leader.
 			\item Click the “Edit Time Report” button.
@@ -399,36 +400,36 @@ The detailed test instructions for the test cases introduced in ref. 1 are shown
 		\end{enumerate}
 		
 		\item \textbf{FT25: Can add a new user.} \newline
-		\textbf{Start state:} Logged in with the administrator account and on the Administration Page. User “Max” is not in the database. \newline
-		\textbf{End state:} User ”Max” is added to the database with a valid username and password.
+		\textbf{Start state:} Logged in with the administrator account and on the Administration Page. User “Max12” is not in the database. \newline
+		\textbf{End state:} User ”Max12” is added to the database with a valid username and password.
 		\begin{enumerate}
 			\item Click the “add a user” button.
-			\item Locate the text field “User Name” and enter “Max”.
+			\item Locate the text field “User Name” and enter “Max12”.
 			\item Locate the text field “Email Address” and enter “TimeMatePUSP2021@gmail.com”.
-			\item Check the “Max” is added to the database with MySql workbench.
+			\item Check the “Max12” is added to the database with MySql workbench.
 		\end{enumerate}
 		
 		
 		\item \textbf{FT26: Cannot add a new user with existing username.} \newline
-		\textbf{Start state:}  Logged in with the administrator account and on the Administration Page. User “Alex” exists in the database.\newline
+		\textbf{Start state:}  Logged in with the administrator account and on the Administration Page. User “Alex12” exists in the database.\newline
 		\textbf{End state:} The site displays a message informing that the user was not created.
 		\begin{enumerate}
 			\item Click the “add a user” button.
-			\item Locate the text field “User Name” and enter “Alex”.
+			\item Locate the text field “User Name” and enter “Alex12”.
 			\item Locate the text field “Email Address” and enter “TimeMatePUSP2021@gmail.com”.
-			\item Check that the site displays a message informing that user “Alex” already exists.
+			\item Check that the site displays a message informing that user “Alex12” already exists.
 			\item Check if there are two users with the same name in the database with MySql workbench.
 		\end{enumerate}
 		
 		
 		\item \textbf{FT27: Can remove a user.} \newline
-		\textbf{Start state:} Logged in with the administrator account and on the Administration page. User “Alex” exists in the database. \newline
-		\textbf{End state:} User “Alex”  is removed from the database.
+		\textbf{Start state:} Logged in with the administrator account and on the Administration page. User “Alex12” exists in the database. \newline
+		\textbf{End state:} User “Alex12”  is removed from the database.
 		\begin{enumerate}
-			\item Click the “remove a user” button corresponding to the user “Alex”.
-			\item Enter the user name “Alex”.
+			\item Click the “remove a user” button corresponding to the user “Alex12”.
+			\item Enter the user name “Alex12”.
 			\item Click the “confirm” button.
-			\item Check that the user ”Alex” is removed from the database with MySql workbench.
+			\item Check that the user ”Alex12” is removed from the database with MySql workbench.
 		\end{enumerate}
 		
 		

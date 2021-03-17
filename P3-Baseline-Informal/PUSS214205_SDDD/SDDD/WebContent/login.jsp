@@ -36,6 +36,8 @@
         A new password has been sent to your mail
     </div>
 </c:if>
+
+<c:remove var="message" scope="session"/>
 <!-- End of pop up messages -->
 
 <body>

@@ -5,21 +5,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import beans.UserBean;
 import database.DataBase;
 
 class FT1 {
 	private DataBase alex;
-	private UserBean alexBean;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		alex = new DataBase(); 
-		alex.connect();		//Must change connection in DataBase class so that it connects
-		alexBean = new UserBean();
-		alexBean.populateBean("Alex", "123ABCde");
-		
-		
+		alex.connect();		//Must change connection in DataBase class so that it connects	
 	}
 
 	@AfterEach
@@ -29,7 +23,7 @@ class FT1 {
 
 	@Test
 	void LoginSuccessfull() { 
-		assertTrue(alex.checkLogin("Alex", "123ABCde"), "You did not get logged in.");
+		assertTrue(alex.checkLogin("Alex", "2W7Ms/VSEPkVu2sYrSu0V2F51VTEEZwF52ryzd+nmVU="), "You did not get logged in.");		//Passwrod = 123ABCde
 	}
 
 }

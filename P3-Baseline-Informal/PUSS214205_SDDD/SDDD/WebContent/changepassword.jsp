@@ -89,6 +89,8 @@
           Your current password was wrong, try again
       </div>
   </c:if>
+
+  <c:remove var="passwordMessage" scope="session"/>
   <!-- End of pop up messages -->
 
   <!-- Start card for change password -->
