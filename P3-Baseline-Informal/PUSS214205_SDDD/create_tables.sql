@@ -1,3 +1,15 @@
+SET FOREIGN_KEY_CHECKS = 0;
+drop table if exists Users;
+drop table if exists TimeReports;
+drop table if exists ActivityReports;
+drop table if exists DocumentTimeD;
+drop table if exists DocumentTimeI;
+drop table if exists DocumentTimeF;
+drop table if exists DocumentTimeR;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
 CREATE TABLE Users (
 userName varChar(20) NOT NULL,
 password varChar(50) NOT NULL,
