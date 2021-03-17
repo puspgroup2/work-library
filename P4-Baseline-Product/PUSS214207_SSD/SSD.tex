@@ -6,7 +6,7 @@
 
 % ---- Commands ------- %
 \newcommand{\documentNumber}[1]{
-    \LARGE  \textbf{ PUSS2142{#1} } \\
+    \LARGE  \textbf{ PUSS214207 } \\
     \medskip
 }
 \newcommand{\documentVersion}[1]{
@@ -71,8 +71,8 @@
     %          - System Architecture Group
     %          - Developer Group
     %          - Test Group
-    \documentResponsible {Project Management Group}
-    \documentAuthors {Project Management group}
+    \documentResponsible {System Group}
+    \documentAuthors {System group}
     
     % Format: YYYY-MM-DD
     \documentDate {2021-03-03}
@@ -99,7 +99,7 @@
 \begin{tabular}{ l | l | l | l }
     Version & Date & Responsible & Description \\
     \hline
-    0.1 & 2021-03-03 & PG & Document created. \\
+    0.1 & 2021-03-03 & SG & Document created. \\
    
 \end{tabular}
 
@@ -110,24 +110,24 @@
  \begin{table}[h]
             \centering
             
-             \caption{Estimated time for each activity per person, per week}
+             \caption{The delivered system consists of the following documents/parts}
             \begin{tabular}{|l|c|c|c|}
                 \hline
                     \textbf{Doc / part} & \textbf{Doc.  number} & \textbf{Version} & \textbf{Comment} \\
                 \hline
-                    SRS & PUSS214201 & 1.x & Hej \\
+                    SRS & PUSS214201 & 1.1 &   \\
                  \hline
-                    SVVS & PUSS214202 & 1.x & Hej\\
+                    SVVS & PUSS214202 & 1.4 &  \\
                  \hline
-                    STLDD & PUSS214204 & 1.x & Hej\\
+                    STLDD & PUSS214204 & 1.0 &  \\
                  \hline
-                    SDDD & N/A  & N/A & Hej\\
+                    SDDD & PUSS214205  & 1.0 & war-file, javadoc and initialization script for database(SQL).   \\
                  \hline
-                    SVVI & PUSS214203 & 1.x & Hej\\
+                    SVVI & PUSS214203 & 1.2 &  \\
                  \hline
-                    SSD & PUSS214207 & 1.x & Hej\\
+                    SSD & PUSS214207 & 1.0 &  \\
                  \hline
-                    SVVR & PUSS214206 & 1.x & Hej\\
+                    SVVR & PUSS214206 & 1.0 &  \\
                  \hline
                  
             \end{tabular}
@@ -141,8 +141,10 @@
 \subsection{System objectives}
 The intention for the delivered system is to be used as a web-based time reporting system. The system builds upon the already given "BaseBlockSystem". The system is specifically created for project groups.
 
-\subsection{Differences  compared  to  the  Software  Requirements Specification (SRS) and the delivered system.}
-There are no differences.
+\subsection{Differences  compared  to  the  Software  Requirements Specification and the delivered system.}
+Requirement 6.5.2 is implemented differently. Instead of having to press  the button \textit{Add User} to be to add a new user, the admin is instead presented with the option to add a new user directly under the \textit{User Management} page.
+
+
 
 \section{Installation instructions}
 \begin{enumerate}
