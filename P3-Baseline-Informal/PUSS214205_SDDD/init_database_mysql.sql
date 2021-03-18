@@ -1,3 +1,6 @@
+-- script to create all tables and insert some data into the 
+-- database 
+
 SET FOREIGN_KEY_CHECKS = 0;
 drop table if exists Users;
 drop table if exists TimeReports;
@@ -117,3 +120,32 @@ PRIMARY KEY(reportID),
 FOREIGN KEY(reportID) REFERENCES TimeReports(reportID)
 ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+
+-- ---------- Add Example Users ----------------------
+
+insert into Users(userName, password)
+values('admin', 'adminpw');
+
+insert into Users(userName, password)
+values('ExampleUser1', 'pw');
+
+insert into Users(userName, password)
+values('ExampleUser2', 'pw');
+
+-- ---------- Add Example Time Report -------
+
+insert into TimeReports(userName, week)
+values('ExampleUser1', 9);
+
+insert into TimeReports(userName, week)
+values('ExampleUser1', 10);
+
+insert into TimeReports(userName, week)
+values('ExampleUser2', 9);
+
+insert into TimeReports(userName, week)
+values('ExampleUser2', 10); 
+
+
+
