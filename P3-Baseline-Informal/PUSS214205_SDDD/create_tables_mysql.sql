@@ -117,3 +117,16 @@ PRIMARY KEY(reportID),
 FOREIGN KEY(reportID) REFERENCES TimeReports(reportID)
 ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+
+-- ---------- INSERT DATA ----------------------
+
+insert into Users(userName, password)
+values('admin', 'adminpw');
+
+insert into Users(userName, password)
+values('Alice', 'pw');
+
+insert into Users(userName, password)
+values('Johan', 'pw');
+
