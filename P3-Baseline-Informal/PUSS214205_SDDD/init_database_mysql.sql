@@ -135,7 +135,7 @@ values('ExampleUser2', 'pw');
 
 -- ---------- Add Example Time Report -------
 
-inser into TimeReports(userName, week)
+insert into TimeReports(userName, week)
 values('ExampleUser1', 9);
 
 insert into TimeReports(userName, week)
