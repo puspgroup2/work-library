@@ -222,7 +222,7 @@
     const boxes = getSignedReports();
     const ids = boxes.map(box => $(box).attr('id'));
     
-    $.post("/TimeReportManagementServlet",  {
+    $.post("/SDDD/TimeReportManagementServlet",  {
       "input": "Unsign",
       "timeReports": JSON.stringify(ids)
     },
@@ -274,7 +274,7 @@
       if (report == null)
         return;
 
-      $.post("/TimeReportServlet", {
+      $.post("/SDDD/TimeReportServlet", {
         'editBtn': 'true',
         'reportID': report.id
       },
@@ -291,7 +291,7 @@
       if (report == null)
         return;
 
-      $.post("/TimeReportServlet", {
+      $.post("/SDDD/TimeReportServlet", {
         'viewBtn': 'true',
         'reportID': report.id
       },

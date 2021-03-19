@@ -10,7 +10,7 @@
     \medskip
 }
 \newcommand{\documentVersion}[1]{
-    v. {#1}
+    v. {#0.2}
 
     \medskip
 }
@@ -75,7 +75,7 @@
     \documentAuthors {System group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-03-03}
+    \documentDate {2021-03-18}
 }
 
 \begin{document}
@@ -100,6 +100,8 @@
     Version & Date & Responsible & Description \\
     \hline
     0.1 & 2021-03-03 & SG & Document created. \\
+    \hline
+    0.2 & 2021-03-18 & SG & Ready for informal review.
    
 \end{tabular}
 
@@ -139,19 +141,28 @@
 
 
 \subsection{System objectives}
-The intention for the delivered system is to be used as a web-based time reporting system. The system builds upon the already given "BaseBlockSystem". The system is specifically created for project groups.
+The intention for the delivered system is to be used as a web-based time reporting system. The system builds upon the already given \textit{BaseBlockSystem}. The system is specifically created for project groups.
 
-\subsection{Differences  compared  to  the  Software  Requirements Specification and the delivered system.}
-Requirement 6.5.2 is implemented differently. Instead of having to press  the button \textit{Add User} to be to add a new user, the admin is instead presented with the option to add a new user directly under the \textit{User Management} page.
+\subsection{Differences compared to the Software Requirements Specification}
+Requirement 6.5.2 is implemented differently. Instead of having to press  the button \textit{Add User} to add a new user, the admin is instead presented with the option to add a new user directly under the \textit{User Management} page.
 
 
 
 \section{Installation instructions}
+In order to install the system, the following is needed.
 \begin{enumerate}
+
     \item System must be started on a machine with a Tomcat server installed.
-    \item 
     
-    \item
+    \item  The system must have access to a MySQL server and the code for the
+    jdbc-connection in class ServletBase must be correct. The connection between the MySQL server and the system is already hard coded within the system.
+    
+    \item A VPN connection has to be established to vpn.lu.se.
+    
+    \item Activation.jar, javax.mail.jar and servlet-api.jar needs to be added to the class path. These files can be found in \textit{lib} directory which is located in the installation folder of \textit{apache-tomcat-9.0.43}.
+    
+    \item MySQL must include a database base with a table users, including all roles, as described in STLDD.
+
 \end{enumerate}
 
 %---------Document ends here-----------
