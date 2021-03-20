@@ -3,6 +3,7 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{geometry}
+\usepackage{hyperref}
 
 % ---- Commands ------- %
 \newcommand{\documentNumber}[1]{
@@ -72,7 +73,7 @@
     %          - Developer Group
     %          - Test Group
     \documentResponsible {System Group}
-    \documentAuthors {System group}
+    \documentAuthors {System Group}
     
     % Format: YYYY-MM-DD
     \documentDate {2021-03-18}
@@ -106,7 +107,7 @@
 \end{tabular}
 
 \section{Introduction}
-    This document presents the delivered system, and details which version each document is in. It also specifies limitations of the delivered system, and possible differences between the requirements specification and the delivered system.
+    This document presents the delivered system, and details which version each document is in. It also specifies the limitations of the delivered system, and possible differences between the requirements specification and the delivered system.
 
 \section{Delivered system}
  \begin{table}[h]
@@ -137,14 +138,14 @@
             \label{activitytable}
         \end{table}
 
-\section{Versions of SRS}
-SKRIVA STEGEN OCH ANLEDNINGEN TILL FÖRÄNDRINGAR I SRS
+\section{Document Library}
+The documents created in the project can be found on Github. Click \href{https://github.com/puspgroup2/document-library/tree/master/Documents}{here} to enter the document library. \\ 
 
 \section{Limitations}
 
 
 \subsection{System objectives}
-The intention for the delivered system is to be used as a web-based time reporting system. The system builds upon the already given \textit{BaseBlockSystem}. The system is specifically created for project groups.
+The intention for the delivered system is to be used as a web-based time reporting system. The system builds upon the already given \textit{BaseBlockSystem} and is specifically created for project groups.
 
 \subsection{Differences compared to the Software Requirements Specification}
 Requirement 6.5.2 is implemented differently. Instead of having to press  the button \textit{Add User} to add a new user, the admin is instead presented with the option to add a new user directly under the \textit{User Management} page.
