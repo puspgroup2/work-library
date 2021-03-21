@@ -95,7 +95,7 @@
 % FILL IN CORRECT VERSION HISTORY!
 % Not sure? Refer to SDP how it works or ask someone!
 
-\section{Document history}
+\section{Document History}
 
 \begin{tabular}{ l | l | l | l }
     Version & Date & Responsible & Description \\
@@ -111,7 +111,7 @@
 \section{Introduction}
     This document presents the delivered system, and details which version each document is in. It also specifies the limitations of the delivered system, and possible differences between the requirements specification and the delivered system.
 
-\section{Delivered system}
+\section{Delivered System}
  \begin{table}[h]
             \centering
             
@@ -143,7 +143,7 @@
             \label{activitytable}
         \end{table}
         
-        \section{Versions of Software Requirements System}
+        \section{Versions of Software Requirements Specification}
         The Software Requirements System was changed to \textit{v.1.1} after reaching baseline. The change affected the role description of the Administrator. Before the change it was stated that an Administrator should have the ability to add and remove project groups, however, there was no requirements referring to that ability.
         
      
@@ -154,24 +154,24 @@ The documents created in the project can be found on Github. Click \href{https:/
 \section{Limitations}
 
 
-\subsection{System objectives}
-The intention for the delivered system is to be used as a web-based time reporting system. The system builds upon the already given \textit{BaseBlockSystem} and is specifically created for software developing project groups, hence group roles is limited to developer, tester, system administrator, project leader and admin for the system itself.
+\subsection{System Objectives}
+The intention for the delivered system is to be used as a web-based time reporting system. The system builds upon the already given \textit{BaseBlockSystem} and is specifically created for software developing project groups, hence group roles that can be specified in the system is limited to developer, tester, system administrator, project leader and admin.
 
-\subsection{Differences compared to the Software Requirements Specification}
+\subsection{Differences Compared to the Software Requirements Specification}
 Requirement 6.5.2 is implemented differently. Instead of having to press  the button \textit{Add User} to add a new user, the admin is instead presented with the option to add a new user directly under the \textit{User Management} page.
 
 
-\section{Requirements to install project}
+\section{Requirements to Install Project}
 In order to install the system, the following is needed.
 \begin{enumerate}
 
-    \item System must be started on a machine with a Tomcat v 9.0 server installed.
+    \item The system must be started on a machine with a Tomcat v 9.0 server installed.
     
     \item A warfile is required to run the system outside of Eclipse.
     
     \item  The system must have access to a MySQL server. The connection between the MySQL server and the system is already hard coded within the system.
     
-    \item Activation.jar, javax.mail.jar and servlet-api.jar needs to be added to the class path. These files can be found in \textit{lib} directory which is located in the installation folder of \textit{apache-tomcat-9.0.43}.
+    \item Activation.jar, javax.mail.jar and servlet-api.jar needs to be added to the class path. These files can be found in \textit{lib} directory which is located in the installation folder \textit{apache-tomcat-9.0.43}.
     
     \item A VPN connection has to be established to vpn.lu.se.
     
@@ -184,13 +184,13 @@ In order to install the system, the following is needed.
 
 
 
-\section{Installation instructions}
+\section{Installation Instructions}
 
 \begin{enumerate}
-    \item Put SDDD.war the folder \textit{webapps} which is located in the installation folder of \textit{apache-tomcat-9.0.43}. Import SDDD.war in Eclipse. Make sure you uncheck \textit{jstl-impl.jar}, \textit{JSTL.jar} and \textit{taglibs-standar-jstlel-1.2.5.jar}.
+    \item Put SDDD.war in the folder \textit{webapps} which is located in the installation folder \textit{apache-tomcat-9.0.43}. Import SDDD.war in Eclipse. Make sure you uncheck \textit{jstl-impl.jar}, \textit{JSTL.jar} and \textit{taglibs-standar-jstlel-1.2.5.jar}.
     \item Set up Tomcat server.
     \item Establish a connection to vpn.lu.se if you are not already connected to the network of Lund University.
-    \item Start the server, either via terminal or with the startup files located in \textit{bin} under \textit{apache-tomcat-9.0.43} 
+    \item Start the server, either via the terminal or with the startup files located in \textit{bin} under \textit{apache-tomcat-9.0.43} 
     \item Navigate to a web browser, enter vm.23.cs.lth.se/SDDD to start using the system.
 \end{enumerate}
 
