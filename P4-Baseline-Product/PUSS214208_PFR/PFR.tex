@@ -58,12 +58,12 @@
 % ----- FILL THIS ----- %
 \title {
     \documentNumber {08}
-    \documentVersion {0.2}
+    \documentVersion {0.3}
     \documentTitle {Project Final Report}
     \documentGroup {2}
     \documentResponsible {Project Management Group}
     \documentAuthors {Project Management Group}
-    \documentDate {2021-03-19}
+    \documentDate {2021-03-21}
 }
 
 \begin{document}
@@ -84,6 +84,8 @@
     0.1 & 2021-03-17 & PG & Document created. \\
     \hline
     0.2 & 2021-03-19 & PG & Ready for informal review. \\
+    \hline
+    0.3 & 2021-03-21 & PG & Fixed typos and grammar mistakes. Document ready for hand-in. \\
 \end{tabular}
 
 \section{Terminology}
@@ -91,27 +93,29 @@
         \centering
         \begin{tabular}{| l | l |}
             \hline
-                SG & System management Group \\
-            \hline
                 DG & Developer Group \\
+            \hline
+                PG & Project management Group \\
+            \hline
+                SG & System management Group \\
             \hline
                 TG & Test Group \\
             \hline
-                PG & Project Management Group \\
+                SDDD & Software Detailed Design Document \\
             \hline 
                 SDP & Software Development Plan \\
             \hline
                 SRS & Software Requirements Specification \\
             \hline
-                SVVS & Software Verification and Validation Specification \\
-            \hline
-                SVVI & Software Verification and Validation Instruction \\
+                SSD & System Specification Document \\
             \hline
                 STLDD & Software Top Level Design Document \\
             \hline
                 SVVR & Software Verification and Validation Report \\
             \hline
-                SSD & System Specification Document \\
+                SVVI & Software Verification and Validation Instruction \\
+            \hline
+                SVVS & Software Verification and Validation Specification \\
             \hline
         \end{tabular}
         \caption{Terminology}
@@ -127,8 +131,7 @@
 \newpage
 
 \section{Executive Summary}
-    This report summarises the work done by project group 2 in the course \emph{ETSF20, Programvaruutveckling för stora projekt}. The project took took place during January, February and March of 2021. It involved 21 students and 3 faculty members at Lund University. The aim of this project was to give students practical experience of working in a large group with the aim to produce a time reporting system. Whilst the software was the end product, this report mainly focuses on the lessons learned during the course of the project. The group delivered a product that met the requirements and did so within the alloted time frame
-    and thus considered as a successful project..
+    This report summarises the work done by project group 2 in the course \emph{ETSF20, Programvaruutveckling för stora projekt}. The project took place during January, February and March of 2021. It involved 21 students and 3 faculty members at Lund University. The aim of this project was to give students practical experience of working in a large group with the aim to produce a time reporting system. Whilst the software was the end product, this report mainly focuses on the lessons learned during the course of the project. The group delivered a product that met the requirements and did so within the allotted time frame.
     \\ \\
     This report is structured as follows: Section \ref{overview} gives an overview of the
     project. Section \ref{analysis} presents an analysis of the results and aims to answer questions regarding taken decisions and challenges that were faced. Section \ref{tips} gives six tips for future project groups, and at last, section \ref{conclusion} gives a conclusion
@@ -141,14 +144,14 @@
     \subsection{Phase 1. Week 3-5 \label{phase1}}
         PG started planning and gathering the group during week 2 to prepare for phase 1.
         The first phase started with an overwhelming amount of information that everyone
-        had to digest. At the same time, big decisions hade to be taken such as creating groups,
+        had to digest. At the same time, big decisions had to be taken such as creating groups,
         creating a timeplan and certain design choices.
         \\ \\
         Writing the SDP, SRS and SVVS, which would lay the ground work for the next couple of months, went well. However the first informal
         review failed to catch most of the critical errors, which led to the formal reviewer not approving the documents for baseline and
         requiring us to hand in the documents for approval after adjustments.
         \\ \\
-        After reworking the documents, and our review process, we held a second informal review. This time, the remarks where
+        After reworking the documents and our review process, we held a second informal review. This time, the remarks were
         significantly more useful but the meeting structure did not support the ensuing discussions. The need for a second informal review and
         some scheduling issues for the formal review cost us three days. During the transition into phase 2 we took what we had learned and
         made adjustments to our review methods.
@@ -164,14 +167,14 @@
             \endminipage\hfill
             \minipage{0.32\textwidth}%
               \includegraphics[width=\linewidth]{images/week_5.png}
-              \caption{Worked hours week 4.}\label{fig:week5}
+              \caption{Worked hours week 5.}\label{fig:week5}
             \endminipage
         \end{figure}
 
     \subsection{Phase 2. Week 6-7 \label{phase2}}
         Due to the delay at the end of phase 1, the second phase was compressed to stay on schedule. 
         There was a slight panic at the beginning of the phase as the document deadline was closer than some group 
-        members had anticipated. This was solved by clear and concrete scheduling and effective work distribuitions within the development group. They scheduled an extra work shift and dedicated 3 members to do graphics for
+        members had anticipated. This was solved by clear and concrete scheduling and effective work distributions within the development group. They scheduled an extra work shift and dedicated 3 members to do graphics for
         the STLDD, which helped pipeline the writing process. DG had spent some time during phase 1 preparing for 
         this document, which gave them a running start when it was time to write.
         \\ \\
@@ -207,11 +210,11 @@
         DG spent a lot of time trying to translate the contents of STLDD to code
         and ambiguities started to show regarding how the system was supposed to fit together.
         This meant that valuable time that should have been spent producing running code, was
-        instead speant on understanding the STLDD as well as the SRS.
+        instead spent on understanding the STLDD as well as the SRS.
         \\ \\
-        The purpose and responsibilites of SG were somewhat unclear. The initial plan was that SG
+        The purpose and responsibilities of SG were somewhat unclear. The initial plan was that SG
         was to aid DG, handle the communication between DG and TG and assist any of the
-        groups if needed. It seemed like there were either a missunderstanding of this, or a lack of
+        groups if needed. It seemed like there were either a misunderstanding of this, or a lack of
         communication between SG and the rest, because according  to SG, no one needed help, but in
         reality, DG was quite far behind even early in phase 3.
         This lead to \emph{heroes}
@@ -219,8 +222,8 @@
         \\ \\
         The informal review was pushed forward a day and reviewing of code
         convention and code style was ignored due to the code being unfinished. Instead, only
-        functional tests and system tests were performed, all of which were succesful. However, there
-        were still minor discrepencies between the system and the SRS, as well as plenty of
+        functional tests and system tests were performed, all of which were successful. However, there
+        were still minor discrepancies between the system and the SRS, as well as plenty of
         undocumented and ugly code. 
         \\ \\
         The second informal review was pushed from Friday to the Tuesday of week 10, which was enough
@@ -244,14 +247,14 @@
         
         
     \subsection{Phase 4. Week 10-11 \label{phase4}}
-        Once the SDDD had reched baseline the project was put on hold as the group
+        Once the SDDD had reached baseline the project was put on hold as the group
         studied for the upcoming exams (week 11 was exam week). However, during the time that
         that DG spent finishing the software, the other groups started working on documents for phase 4.
-        Two out of the three documents were almost done by the time phase 4 \emph{officialy} started.
+        Two out of the three documents were almost done by the time phase 4 \emph{officially} started.
         \\ \\
-        The last project group meeting was on the tuesday of week 11 and the last informal review took
-        took place the following friday. Figure \ref{fig:week10} clearly shows that the project was \emph{not}
-        a priotiy during this week. Because this report was written during week 11, its time report graph is not included.
+        The last project group meeting was on the Tuesday of week 11 and the last informal review took
+        took place the following Friday. Figure \ref{fig:week10} clearly shows that the project was \emph{not}
+        a priority during this week. Because this report was written during week 11, its time report graph is not included.
         \begin{figure}[!htb]
             \centering
             \minipage{.32\textwidth}
@@ -265,7 +268,7 @@
         This number (9.8h/week) is very close to the expected value stated in SDP which was 10
         hours per week. However, even though the \emph{average} hours worked during the project came out to be 
         almost exactly what was expected, it is clear from figure \ref{fig:week3} to \ref{fig:week10}
-        that the hours were \emph{not} evenly distributed. Hereos started to emerge early
+        that the hours were \emph{not} evenly distributed. Heroes started to emerge early
         on and while this was discussed as a potential risk early in the project, it seemed unavoidable.
         \\ \\
         After week 5, PG showed graphs from reported work time to point out the differences and 
@@ -289,14 +292,14 @@
         \begin{figure}[!htb]
             \centering
             \minipage{1\textwidth}
-              \includegraphics[width=\linewidth]{images/schedule_after.png}
-              \caption{Schedule from SDP, showing when each baseline was reached.}\label{fig:schedule}
+              \includegraphics[width=\linewidth]{images/phase_bar_graph.png}
+              \caption{Graph comparing the estimated time for each phase to outcome. }\label{fig:schedule}
             \endminipage\hfill
         \end{figure}
       
       \subsection{Version Control \& Configuration Management \label{cm}}
         The decision to use git as version control was taken during phase 1
-        and it worked quite well. The few issues that occured, were small and easy to deal with.
+        and it worked quite well. The few issues that occurred, were small and easy to deal with.
         To educate the group, PG held a 45 minute long education of basic usage of git which was also
         recorded so that members that missed it could watch it afterwards.
         \\ \\
@@ -310,7 +313,7 @@
         to \emph{master}. This process took a little longer, but seemed like a solid solution that kept the \emph{master} branch up to date, and secure.
         \\ \\
         Figure \ref{fig:commits_total} and \ref{fig:commits} illustrates the commit distribution
-        and commit history during the project. As of writing this report, a total of 18 out of 21 group memebers have commited to the github repository with a total of 1,139 commits.
+        and commit history during the project. As of writing this report, a total of 18 out of 21 group members have committed to the GitHub repository with a total of 1,139 commits.
         
         \begin{figure}[!htb]
             \minipage{0.16\textwidth}
@@ -328,8 +331,7 @@
         \end{figure}
 
     \subsection{Status \& Problem reports}
-        13 problem reports were filed during the project. All of the reports
-        resulted in an update of the documents which lead to an update of the status reports.
+        In total, 15 problem reports were filed during the project. Out of these, 5 got rejected and the remaining 10 resulted in an update of the documents which lead to an update of the status reports.
         However, some of the problem reports were logically connected and thus only resulted
         in a single update in the status reports.
         \\ \\
@@ -351,12 +353,13 @@
         and worked flawlessly.
         \\ \\
         However, while the online communication worked very well for the most part, it resulted
-        in a lack of connection between group memebers. For instance, even though two of
+        in a lack of connection between group members. For instance, even though two of
         the ground rules specified in SDP were to actively participate during meetings,
-        and, as much as possible have the camera on, this did not happen. %%Något känns udda med den här meningen men kan inte sätta fingret på vad.
+        and, as much as possible have the camera on, this did not happen.
+
         The majority of the time during the project group meetings was
-        spent as a monologue from the president with just a few cameras on. %Ändrade från handful till few, handful låter för generöst, ändra tillbaks om du vill
-        When discussions occured it was mostly the same people who participated, which resulted
+        spent as a monologue from the president with just a few cameras on.
+        When discussions occurred it was mostly the same people who participated, which resulted
         in about 15 people not saying a word during most of the meetings.
         This caused frustration among PG as it was difficult to gauge the opinion of the group.
     
@@ -368,24 +371,59 @@
         much this helped, it seemed like reasonable solution.
         
     \subsection{Group Managers}
-        Besides the project managers, we appointed a manager for each work group SG, DG and TG. The tasks of the system manager and test manager were outlined in the Project Instructions and were quite clear, but the role of devolpment manager was not specified and thus \emph{not} clear.
-        This resulted in the ambiguities regarding the responsibilites, purpose of the role. This also lead to certain tasks falling between the cracks or being
-        delayed, such as splitting DG intro groups, telling inner groups in DG what to do, etc.
+        Besides the project managers, we appointed a manager for each work group SG, DG and TG. The tasks of the system manager and test manager were outlined in the Project Instructions and were quite clear, but the role of development manager was not specified and thus \emph{not} clear.
+        This resulted in the ambiguities regarding the responsibilities, purpose of the role. This also leads to certain tasks falling between the cracks or being
+        delayed, such as splitting DG into groups, telling inner groups in DG what to do, etc.
+
+    \subsection{Project Forms}
+        Figure \ref{fig:form_0} to \ref{fig:form_4} shows the result of an anonymous form that
+        was sent to each member in the group during the writing of this report. 18 out of 21 members
+        replied.
+
+        \begin{figure}[!htb]
+            \minipage{0.32\textwidth}
+              \includegraphics[width=\linewidth]{images/form_0.png}
+              \caption{Experienced stress.}\label{fig:form_0}
+            \endminipage\hfill
+            \minipage{0.32\textwidth}
+              \includegraphics[width=\linewidth]{images/form_1.png}
+              \caption{Spent time.}\label{fig:form_1}
+            \endminipage\hfill
+            \minipage{0.32\textwidth}
+              \includegraphics[width=\linewidth]{images/form_2.png}
+              \caption{Enjoyable project.}\label{fig:form_2}
+            \endminipage\hfill
+        \end{figure}
+
+        \begin{figure}[!htb]
+            \minipage{0.16\textwidth}
+            \endminipage\hfill
+            \minipage{0.32\textwidth}
+              \includegraphics[width=\linewidth]{images/form_3.png}
+              \caption{Communication.}\label{fig:form_3}
+            \endminipage\hfill
+            \minipage{0.32\textwidth}
+              \includegraphics[width=\linewidth]{images/form_4.png}
+              \caption{Knowing what to do.}\label{fig:form_4}
+            \endminipage\hfill
+            \minipage{0.16\textwidth}
+            \endminipage\hfill
+        \end{figure}
 
 
 \section{Analysis \label{analysis}}
-    This section desribes our perception of how the project went and how it lined up with our expectations. 
+    This section describes our perception of how the project went and how it lined up with our expectations.
     This section follows the same structure as the Project Overview.
 
     \subsection{Phase 1. Week 3-5} 
         During the first informal review, the bulk of the remarks were made up of grammar and spelling errors, rather
         than flaws in the  content. This was an issue since the documents being reviewed clearly needed more work, as demonstrated
-        by them not being approved for baselien by the formal reviewer. To correct for this, we introduced a guiding document that was
+        by them not being approved for baseline by the formal reviewer. To correct this, we introduced a guiding document that was
         supposed to aid reviewers. The idea of this document was to be a reference for all future reviews, and 
         thus cointained information about reviewing code that would have to be filtered out when 
-        reviewing a docuement and vice versa. The complexity of the document was suspecte to be an issue but it did help to some extent, because the next batch of reviewers remarks were more useful.
+        reviewing a docuement and vice versa. The complexity of the document was suspected to be an issue but it did help to some extent, because the next batch of reviewers remarks were more useful.
         \\ \\
-        The influx of useful remarks exposed another flaw in our review process. The inital plan for the meeting was
+        The influx of useful remarks exposed another flaw in our review process. The initial plan for the meeting was
         that each reviewer presented their remarks, which would then be either accepted or discussed further. 
         The reference document had failed to mention how a reviewer should organize their
         remarks, which, along with the superfluous meeting structure, led to poorly structured presentations and discussions that were hard to follow.
@@ -405,9 +443,9 @@
         \end{itemize}
         
     \subsection{Phase 2. Week 6-7}
-        Group members where getting more comfortable with their roles and
-        tools which became visible since everything worked very well. In total, the documents probably had an equal amounts of issues as the documents from phase 1 but
-        most of these issues were found during the informal review, which were then corrected before the formal review.
+        Group members were getting more comfortable with their roles and
+        tools which became visible since everything worked very well. In total, phase 2 documents probably had an equal amount of issues as the phase 1 documents but
+        most of these issues were found during the informal review and could be corrected before the formal review.
         As a result we could make some final changes and put the documents in baseline ourselves, saving us a day or two.
         
     \subsection{Phase 3. Week 8-9 \label{analys_phase3}}
@@ -415,11 +453,11 @@
         was a week late to reach baseline. The reason behind the stress and delay was
         probably a combination of the following:
         \begin{itemize}
-            \item Important and time-consuming activites in other courses.
+            \item Important and time-consuming activities in other courses.
             \item Poor understanding of how the system was actually supposed to be work and
                     be put together.
             \item Lack of communication between the subgroups of DG which resulted in
-                    extra work, such as different variable names between frontend/backend. %Något tokig här oxå, men är inte säker på hur det ska rättas till
+                    extra work, such as different variable names between frontend/backend.
             \item SG feeling unsure of what to do, which meant that they were not utilized.
                     Figure \ref{fig:week8} and \ref{fig:week9} clearly illustrates this as
                     SG only spent an average of 7 hours while DG spent 17 hours on average.
@@ -446,7 +484,7 @@
         \\ \\
         This was not unexpected and in fact, something that PG pointed out very early on. On several occasions
         members were encouraged to talk about their goals and ambitions so they would get an understanding
-        of what to expected from each other. Wether this had an impact or not is unknown, but we felt that there was not much more to do.
+        of what to expected from each other. Whether this had an impact or not is unknown, but we felt that there was not much more to do.
     
     \subsection{Staying on Schedule \label{analyse_schedule}}
         The schedule was kept with minor deviations, but we did underestimate the time it would take
@@ -454,10 +492,10 @@
         after formal review, without any marks. This turned out to be quite naive since none of the formal reviews resulted in baseline without \emph{any} adjustments required.
         \\ \\
         Several members felt that more time should have been spent during phase 3 and
-        this was in fact the initial plan. However, after a dicussion, the group \emph{did} take
+        this was in fact the initial plan. However, after a discussion, the group \emph{did} take
         the decision to schedule two weeks for phase 3. Whilst more time during phase 3
-        obviosuly would have made it less stressful, one can argue that the reason it was stressful
-        was not because of lack of time, but rather because of poor communcation between the groups,
+        obviously would have made it less stressful, one can argue that the reason it was stressful
+        was not because of lack of time, but rather because of poor communication between the groups,
         poor preparation and the rest of the possible reasons mentioned in section \ref{analys_phase3}. Also,
         if more time would be spent on phase 3, the time has to come from somewhere, for instance phase 2, but then there
         would be less time to do the planning. Thus we propose the following improvements if we were do the project again:
@@ -468,8 +506,8 @@
         \end{itemize}
 
     \subsection{Version Control \& Configuration Management}
-        As explained in section \ref{cm} there were 3 members that did not do a single
-        commit to the project repository. While the cause of this is unknown we consider %Denna meningen känns oxå tokig
+        As explained in section \ref{cm} there were 3 members that did not make a single
+        commit to the project repository. While the cause of this is unknown, we consider
         one of the following explanations:
         \begin{enumerate}
             \item They do not know how to use git.
@@ -480,10 +518,6 @@
         better if every member was forced to do several pushes to the repository as soon
         as the decision to use git was taken. This would reduce the chances that people
         do not know how to use the tool and thus eliminate option 1. 
-        \\ \\
-        As a side not we would also like to mention that version control systems like git
-        should be introduced in our education, since they are a vital part of
-        software engineering.
     
     \subsection{Status \& Problem reports}
         Even though the UI of E-PUSS is a bit dated, the functionality worked
@@ -497,7 +531,7 @@
         contact people and to share files, join different rooms etc. It was also easier for
         people to participate during meetings since no traveling was required.
         However, as described in section \ref{communication} the lack of participation and active cameras
-        hade a negative impact on the communication.
+        had a negative impact on the communication.
     
     \subsection{Running the system locally \label{analyse_system}}
         To reduce problems to get the system running locally, 
@@ -512,21 +546,29 @@
         \end{enumerate}
         
     \subsection{Group Managers}
-        We believe that the issue with the developer manager role could have been prevented by carefully specifying the responsibilites of the
+        We believe that the issue with the developer manager role could have been prevented by carefully specifying the responsibilities of the
         role in the beginning of the project and having more discussions with the person who had the role.
         Another option would be to \emph{not} have a development manager
         and instead give the responsibilities to SG. This could also result in the role and purpose of 
         SG becoming more clear, which as discussed in section \ref{analys_phase3} was a problem during phase 3.
 
+    \subsection{Project Forms}
+        As seen in figure \ref{fig:form_0} to \ref{fig:form_4} the results indicate
+        that even though the project was stressful, most people enjoyed it and believed that
+        the communication generally worked well. However there are still room for improvements
+        and in the following section, we aim to share some tips to make the graphs look even prettier
+        for future groups.
+
+
 \section{Six tips for future project groups \label{tips}}
 
-    To help future project groups we have compiled a list of five tips that we would like to share.
+    To help future project groups we have compiled a list of six tips that we would like to share.
     They come as a result of the project and the lessons we have learned.
     
     \subsection{Tip 1}
         In the beginning, ensure that you spend enough time to fully understand the purpose and the
         responsibility for each role. Spending more time on this early on will be useful as the project
-        goes on as it will help to ensure that everyone knows what to do, and what their responsibilites are. It is also crucial
+        goes on as it will help to ensure that everyone knows what to do, and what their responsibilities are. It is also crucial
         to convey this information to the groups.
         
     \subsection{Tip 2}
@@ -541,7 +583,7 @@
         questions can be used:
         \begin{enumerate}
             \item \emph{Who} is reviewing?
-            \item \emph{What} should the revieweer look for?
+            \item \emph{What} should the reviewer look for?
             \item \emph{Where} should the comments/notes from the reviewer be, and in what format?
         \end{enumerate}
         Also remember that the informal reviews are meant to catch errors and \emph{improve}
@@ -552,7 +594,7 @@
         Just like any other programming project, development time is very hard to estimate. 
         The third phase was by far the most stressful due to optimistic planning and delays caused by earlier phases. 
         When making a schedule for a future project, it would be wise to give development as much time as possible and 
-        take into account that things do generally do not work out of the box.
+        take into account that things do not always work out of the box.
         
     \subsection{Tip 5}
         Use each phase as a learning experience, be open to altering your procedures based on feedback from the group, \emph{even if} it requires making changes to baselined documents.
@@ -561,16 +603,16 @@
         Feedback does not come on its own. Setting up a system for constant feedback from the group could aid in identifying bottle necks and in turn, improving efficiency.
     
 \section{Conclusion \label{conclusion}}
-    An important thing to consider is the external stress factor that other courses, and seperate 
+    An important thing to consider is the external stress factor that other courses, and separate
     modules of this course, introduced. It has been a shared sentiment within the group that the 
     work load during this semester has been overwhelming. Several group members have had issues 
     balancing school work, some even putting other courses on hold. Whilst it is expected of a 
     student who studies at full pace to put 40 hours/week into their school work, the reality 
     of the situation is that most do not. The the sudden jump in time required had a big impact 
-    on the stress level felt by the group. Despite this, the group came togheter and worked hard to get results. 
+    on the stress level felt by the group. Despite this, the group came together and worked hard to get results.
     \\ \\
     TimeMate was delivered on time and all requirements were met. By this metric it would be
-    fair to say that the project went well. There are multiple lessons to take away from this project, all of which are very importnat.
+    fair to say that the project went well. There are multiple lessons to take away from this project, all of which are very important.
     As preparation, as well as during, the writing of this report the group discussed the project. The perception within the group is
     that the project was fun and very valuable from an academic standpoint. So in conclusion, the members of project group 2 are proud of
     their collective effort and consider this project to have been a rather stressful, but an equally valuable experience.
@@ -578,7 +620,7 @@
 \newpage
 \section{Acknowledgements}
     Thank you to Christine Lindholm for you guidance and patience. \\ \\
-    Thank you to Emelie Engström for making making our documents legible. \\ \\
+    Thank you to Emelie Engström for making our documents legible. \\ \\
     Thank you to Anders Bruce for your technical expertise. \\ \\
     Lastly, a big thank you to every member in group 2:
     \begin{itemize}
@@ -588,11 +630,11 @@
         \item Ramtin Mosavi (SG)
         \item Filip Sjövall (SG)
         \item Mustafa Elomeiri (SG)
+        \item Oscar Johansson (DG Leader)
         \item Alexandra Galonja (DG)
         \item Anna Bergvall (DG)
         \item Annelie Sinander (DG)
         \item Hjalmar Janson (DG)
-        \item Oscar Johansson (DG Leader)
         \item Sebastian Forslund (DG)
         \item Abd Salam (DG)
         \item Alaa Wahbah (DG)
