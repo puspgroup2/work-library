@@ -166,7 +166,7 @@
     const boxes = getSignedReports();
     const ids = boxes.map(box => $(box).attr('id'));
     console.log(ids)
-    $.post("/TimeReportManagementServlet",  {
+    $.post("/SDDD/TimeReportManagementServlet",  {
       "input": "sign",
       "timeReports": JSON.stringify(ids)
     },
