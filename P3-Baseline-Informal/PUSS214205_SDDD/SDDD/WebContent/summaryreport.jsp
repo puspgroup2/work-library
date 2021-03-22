@@ -229,7 +229,7 @@
     (data) => {
       if (data == 'ok') {
         // Reload the page.
-        location.href = "/TimeReportServlet";
+        location.href = "/SDDD/TimeReportServlet";
         //location.reload();
       }
     });

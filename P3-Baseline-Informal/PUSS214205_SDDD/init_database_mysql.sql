@@ -147,14 +147,81 @@ values('ExampleUser2', 9);
 insert into TimeReports(userName, week)
 values('ExampleUser2', 10); 
 
+insert into TimeReports(userName, totalMinutes, week)
+values('ExampleUser1', 170, 9);
+
+insert into TimeReports(userName, totalMinutes, week)
+values('ExampleUser1', 225, 10);
+
+insert into TimeReports(userName, totalMinutes, week)
+values('ExampleUser2', 170, 9);
+
+insert into TimeReports(userName, totalMinutes, week)
+values('ExampleUser2', 170, 10);
+
+
+-- Need to add each of the report types for each Time Report.
+
+-- Report 1
+insert into ActivityReports values
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
 insert into DocumentTimeD(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
-values(1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+values(1, 60, 0, 0, 0, 0, 0, 0, 0, 0);
 
 insert into DocumentTimeR(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
-values(1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+values(1, 0, 0, 0, 0, 45, 0, 0, 0, 0);
+
+insert into DocumentTimeI(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(1, 0, 0, 0, 0, 45, 0, 0, 0, 0);
+
+insert into DocumentTimeF(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(1, 0, 0, 0, 0, 0, 0, 20, 0, 0);
+
+-- Report 2
+insert into ActivityReports values
+(2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 insert into DocumentTimeD(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
-values(2, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+values(2, 60, 0, 0, 0, 60, 0, 0, 0, 0);
 
 insert into DocumentTimeR(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
-values(2, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+values(2, 65, 0, 0, 0, 45, 20, 0, 0, 0);
+
+insert into DocumentTimeI(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(2, 60, 0, 0, 0, 45, 0, 15, 0, 0);
+
+insert into DocumentTimeF(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(2, 40, 0, 0, 0, 20, 0, 20, 0, 0);
+
+-- Report 3
+insert into ActivityReports values
+(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+insert into DocumentTimeD(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(3, 60, 0, 0, 0, 0, 0, 60, 0, 0);
+
+insert into DocumentTimeR(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(3, 45, 0, 0, 0, 45, 0, 0, 0, 0);
+
+insert into DocumentTimeI(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(3, 45, 0, 0, 0, 45, 0, 0, 0, 0);
+
+insert into DocumentTimeF(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(3, 20, 0, 0, 0, 0, 0, 20, 0, 0);
+
+-- Report 4
+insert into ActivityReports values
+(4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+insert into DocumentTimeD(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(4, 60, 0, 0, 0, 0, 0, 60, 0, 0);
+
+insert into DocumentTimeR(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(4, 45, 0, 0, 0, 45, 0, 0, 0, 0);
+
+insert into DocumentTimeI(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(4, 45, 0, 0, 0, 45, 0, 0, 0, 0);
+
+insert into DocumentTimeF(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(4, 20, 0, 0, 0, 0, 0, 20, 0, 0);
