@@ -6,3 +6,5 @@
 | 0.3 | 2021-03-08 | UG | Document ready for second informal review. |
 | 0.4 | 2021-03-11 | UG | Bug fixes, requirement adjustments and added javadoc. |
 | 1.0 | 2021-03-12 | UG | Reached baseline. |
+| 1.1 | 2021-03-22 | PG | Updated links and created a new warfile |
+
