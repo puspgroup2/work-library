@@ -135,17 +135,6 @@ values('ExampleUser2', '9ou8qBEC0N8Gu/MoxeQCo4lMeP7FA2dANchv3CGcpeU=', 'emelie.e
 
 -- ---------- Add Example Time Report -------
 
-insert into TimeReports(userName, week)
-values('ExampleUser1', 9);
-
-insert into TimeReports(userName, week)
-values('ExampleUser1', 10);
-
-insert into TimeReports(userName, week)
-values('ExampleUser2', 9);
-
-insert into TimeReports(userName, week)
-values('ExampleUser2', 10); 
 
 insert into TimeReports(userName, totalMinutes, week)
 values('ExampleUser1', 170, 9);
