@@ -281,7 +281,7 @@
       (response) => {
         if (response == 'ok') {
           // Reload the page.
-          location.href = "updatereport.jsp";
+          location.href = "/SDDD/updatereport.jsp";
         }
       });
     });
