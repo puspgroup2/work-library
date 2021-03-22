@@ -11,7 +11,7 @@
     \medskip
 }
 \newcommand{\documentVersion}[1]{
-    v. {#0.3}
+    v. {#1}
 
     \medskip
 }
@@ -62,7 +62,7 @@
     \documentNumber {01}    
     
     % BASELINE.VERSION
-    \documentVersion {0.3}
+    \documentVersion {0.4}
     
     % Full name - SHORTNAME
     \documentTitle {Template}
@@ -76,7 +76,7 @@
     \documentAuthors {System Group}
     
     % Format: YYYY-MM-DD
-    \documentDate {2021-03-20}
+    \documentDate {2021-03-22}
 }
 
 \begin{document}
@@ -104,7 +104,9 @@
     \hline
     0.2 & 2021-03-18 & SG & Ready for informal review. \\
     \hline
-    0.3 & 2021-03-20 & SG & Corrections after informal review.
+    0.3 & 2021-03-20 & SG & Corrections after informal review. \\
+    \hline
+    0.4 & 2021-03-22 & UG & Clarified the install instructions.
    
 \end{tabular}
 
@@ -183,15 +185,19 @@ In order to install the system, the following is needed.
 
 
 
-
+\newpage
 \section{Installation Instructions}
 
 \begin{enumerate}
     \item Put SDDD.war in the folder \textit{webapps} which is located in the installation folder \textit{apache-tomcat-9.0.43}. Import SDDD.war in Eclipse. Make sure you uncheck \textit{jstl-impl.jar}, \textit{JSTL.jar} and \textit{taglibs-standar-jstlel-1.2.5.jar}.
-    \item Set up Tomcat server.
+    \item Set up a tomcat server. 
+    		\begin{enumerate}
+    			\item Select Tomcat v9.0
+    			\item Add SDDD to the configured column. 
+    		\end{enumerate}
     \item Establish a connection to vpn.lu.se if you are not already connected to the network of Lund University.
     \item Start the server, either via the terminal or with the startup files located in \textit{bin} under \textit{apache-tomcat-9.0.43} 
-    \item Navigate to a web browser, enter vm.23.cs.lth.se/SDDD to start using the system.
+    \item Navigate to localhost:8080/SDDD via a web browser to start using the system.
 \end{enumerate}
 
 
