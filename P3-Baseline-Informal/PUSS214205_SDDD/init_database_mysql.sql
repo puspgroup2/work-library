@@ -123,15 +123,15 @@ ON UPDATE CASCADE ON DELETE CASCADE
 
 
 -- ---------- Add Example Users ----------------------
-
-insert into Users(userName, password)
-values('admin', 'adminpw');
-
-insert into Users(userName, password)
-values('ExampleUser1', 'pw');
-
-insert into Users(userName, password)
-values('ExampleUser2', 'pw');
+-- Password: adminpw
+insert into Users(userName, password, role, salt)
+values('admin', 'PZd75jzQtGXOxFsLQQwD1q1BIdAk0dxFZn/UwDHCdlU=', 'ADMIN', 'DitnkxxWz+e7/0kEFUCz7Q==');
+-- Password: t7FYBbp9
+insert into Users(userName, password, email, role, salt)
+values('ExampleUser1', '8xN0tdx0Gg9jhzBbsnJLHOWm6BONplyWaJbC+i2bRhM=', 'emelie.engstrom@cs.lth.se', 'PG', 'Rwe8H4tsvhiMPx/gPxo1Sw==');
+-- Password: plp8P1WX
+insert into Users(userName, password, email, role, salt)
+values('ExampleUser2', '9ou8qBEC0N8Gu/MoxeQCo4lMeP7FA2dANchv3CGcpeU=', 'emelie.engstrom@cs.lth.se', 'UG', '11y3hYdf1cf1R/9h0t4wUQ==');
 
 -- ---------- Add Example Time Report -------
 
@@ -147,5 +147,14 @@ values('ExampleUser2', 9);
 insert into TimeReports(userName, week)
 values('ExampleUser2', 10); 
 
+insert into DocumentTimeD(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
 
+insert into DocumentTimeR(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
 
+insert into DocumentTimeD(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(2, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+
+insert into DocumentTimeR(reportID, totalMinutes, SDP, SRS, SVVS, STLDD, SVVI, SDDD, SVVR, SSD)
+values(2, 8, 1, 1, 1, 1, 1, 1, 1, 1);
